@@ -1,0 +1,140 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="scripts/jquery.js"></script>
+    <script>
+        $(function(){
+            $("#includeHeader").load("header.html");
+        });
+
+        $(function(){
+            $("#includeMenu").load("menu.html");
+        });
+
+        $(function(){
+            $("#includeFooter").load("footer.html");
+        });
+    </script>
+
+    <!-- HEADER -->
+    <div id="includeHeader"></div>
+    <!-- /HEADER -->
+    <body>
+        
+        <div class="wrapper">
+            <div class="container">
+                <div class="row">
+                    <!-- MENU -->
+                    <div id="includeMenu"></div>
+                    <!-- /MENU -->
+
+                    <!-- PAGINA WEB -->
+                    <div class="span9">
+                        <div class="content">
+                            <div class="btn-controls">
+                                <div class="btn-box-row row-fluid">
+                                    <a class="btn-box big span4"><i class="icon-random"></i><b>65%</b>
+                                        <p class="text-muted">
+                                            Crescimento</p>
+                                    </a><a class="btn-box big span4"><i class="icon-user"></i><b>15</b>
+                                        <p class="text-muted">
+                                            Novos Clientes</p>
+                                    </a><a class="btn-box big span4"><i class="icon-shopping-cart"></i><b>40</b>
+                                        <p class="text-muted">
+                                            Encomendas</p>
+                                    </a>
+                                </div>
+                                <div class="btn-box-row row-fluid">
+                                    <div class="span8">
+                                        <div class="row-fluid">
+                                            <div class="span12">
+                                                <a href="#" class="btn-box small span4"><i class="icon-envelope"></i><b>Mensagens</b>
+                                                </a><a href="#" class="btn-box small span4"><i class="icon-group"></i><b>Clientes</b>
+                                                </a><a href="#" class="btn-box small span4"><i class="icon-exchange"></i><b>Encomendas</b>
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <ul class="widget widget-usage unstyled span4">
+                                        <li>
+                                            <p>
+                                                <strong>Tarefa 1</strong> <span class="pull-right small muted"></span>
+                                            </p>
+                                            <p>
+                                               Escrever Tarefa <span class="pull-right small muted"></span>
+                                            </p>
+
+                                        </li>
+                                        <li>
+                                            <p>
+                                                <strong>Tarefa 2</strong> <span class="pull-right small muted"></span>
+                                            </p>
+                                            <p>
+                                                Escrever Tarefa <span class="pull-right small muted"></span>
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <p>
+                                                <strong>Tarefa 3</strong> <span class="pull-right small muted"></span>
+                                            </p>
+                                            <p>
+                                                Escrever Tarefa <span class="pull-right small muted"></span>
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <p>
+                                                <strong>Tarefa 4</strong> <span class="pull-right small muted"></span>
+                                            </p>
+                                            <p>
+                                                Escrever Tarefa <span class="pull-right small muted"></span>
+                                            </p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!--/#btn-controls-->
+                            <div class="module">
+                                <div class="module-head">
+                                    <h3>
+                                        Numero de Encomendas</h3>
+                                </div>
+                                <div class="module-body">
+                                    <div class="chart inline-legend grid">
+                                        <div id="placeholder2" class="graph" style="height: 500px">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/.module-->
+                            <div class="module hide">
+                                <div class="module-head">
+                                    <h3>
+                                        Adjust Budget Range</h3>
+                                </div>
+                                <div class="module-body">
+                                    <div class="form-inline clearfix">
+                                        <a href="#" class="btn pull-right">Update</a>
+                                        <label for="amount">
+                                            Price range:</label>
+                                        &nbsp;
+                                        <input type="text" id="amount" class="input-" />
+                                    </div>
+                                    <hr />
+                                    <div class="slider-range">
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/.module-->
+                        </div>
+                        <!--/.content-->
+                    </div>
+                    <!--/.span9-->
+                </div>
+            </div>
+            <!--/.container-->
+        </div>
+        <!--/.wrapper-->
+        <div id="includeFooter"></div>
+      
+    </body>

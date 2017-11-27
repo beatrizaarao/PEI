@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="scripts/jquery.js"></script>
+    <script>
+        $(function(){
+            $("#includeHeader").load("header.html");
+        });
+
+        $(function(){
+            $("#includeMenu").load("menu.html");
+        });
+
+        $(function(){
+            $("#includeFooter").load("footer.html");
+        });
+    </script>
+
+    <!-- HEADER -->
+        <div id="includeHeader"></div>
+    <!-- /HEADER -->
+    <body>
+        
+        <div class="wrapper">
+            <div class="container">
+                <div class="row">
+                    <!-- MENU -->
+                    <div id="includeMenu"></div>
+                    <!-- /MENU -->
+
+                    <!-- INSERIR CODIGO DA PAGINA -->
+                </div>
+                 
+            </div>
+            <!--/.container-->
+        </div>
+        <!--/.wrapper-->
+
+        <div id="includeFooter"></div>
+
+
+      
+    </body>
