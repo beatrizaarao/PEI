@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow">
+    <title>Uniline</title>
+
+    <!-- Essential styles -->
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="assets/fancybox/jquery.fancybox.css?v=2.1.5" media="screen">
+
+
+    <!-- Boomerang styles -->
+    <link id="wpStylesheet" type="text/css" href="css/global-style-flat.css" rel="stylesheet" media="screen">
+
+
+    <!-- Favicon -->
+    <link href="images/favicon.png" rel="icon" type="image/png">
+
+    <!-- Assets -->
+    <link rel="stylesheet" href="assets/owl-carousel/owl.carousel.css">
+    <link rel="stylesheet" href="assets/owl-carousel/owl.theme.css">
+    <link rel="stylesheet" href="assets/sky-forms/css/sky-forms.css">
+    <!--[if lt IE 9]>
+    <link rel="stylesheet" href="assets/sky-forms/css/sky-forms-ie8.css">
+    <![endif]-->
+
+    <!-- Required JS -->
+    <script src="js/estilojs.js"></script>
+    <script src="js/OpCompTecido.js"></script>
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+
+
+
+    <!-- Page scripts -->
+
+</head>
+<body>
+<!-- MODALS -->
+
+
+<!-- MAIN CONTENT -->
+<div class="pg-opt">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Defenição do Produto</h2>
+            </div>
+            <div class="col-md-6">
+                <ol class="breadcrumb">
+                    <li><a href="index.html">Home</a></li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="slice bg-white">
+    <div class="wp-section">
+        <div class="container">
+            <!-- Checkout process - Progress bar -->
+            <ol class="progtrckr hidden-xs" data-progtrckr-steps="7">
+                <li class="progtrckr-done" id="step0">Inicio de Secção</li>
+                <li class="progtrckr-todo" id="step1">Defenição do Produto</li>
+                <li class="progtrckr-todo" id="step2">Preparação</li>
+                <li class="progtrckr-todo" id="step3">Tinturaria</li>
+                <li class="progtrckr-todo" id="step4">Acabamentos</li>
+                <li class="progtrckr-todo" id="step5">Embalagem</li>
+                <li class="progtrckr-todo" id="step6">Prazos e Morada</li>
+            </ol>
+
+            <div class="row">
+                    <div class="wp-block default user-form">
+                        <div class="form-body">
+                            <form action="" id="frmDefProd" class="sky-form">
+                                <fieldset class="no-padding">
+                                    <h1>Defenição do Produto</h1>
+                                                    <h2>Composição</h2>
+                                                    <div class="row">
+                                                    <div class="col-xs-6">
+                                                        <div class="form-group">
+                                                            <label class="select">
+                                                                <select name="CompNome" id="CompNome" onchange="compNome(), listaPonto(), containsPoli()">
+                                                                    <option value="0" selected="" disabled="">Nome</option>
+                                                                    <option value="1">ANARRUGA</option>
+                                                                    <option value="2">BRIM</option>
+                                                                    <option value="3">CAMBRAIA</option>
+                                                                    <option value="4">CETIM	</option>
+                                                                    <option value="5">CHAMOIX</option>
+                                                                    <option value="6">CHARMEUSE</option>
+                                                                    <option value="7">CHENILLE</option>
+                                                                    <option value="8">CHIFFON</option>
+                                                                    <option value="9">COTTON</option>
+                                                                    <option value="10">CREPE</option>
+                                                                    <option value="11">CREPINE</option>
+                                                                    <option value="12">CRETONE</option>
+                                                                    <option value="13">DIOLENE</option>
+                                                                    <option value="14">ESCALINE</option>
+                                                                    <option value="15">FELTRO</option>
+                                                                    <option value="16">FILÓ</option>
+                                                                    <option value="17">FLANELA</option>
+                                                                    <option value="18">FUSTÃO</option>
+                                                                    <option value="19">GABARDINE</option>
+                                                                    <option value="20">GAZAR</option>
+                                                                    <option value="21">GORGURÃO</option>
+                                                                    <option value="22">JACQUARD</option>
+                                                                    <option value="23">JEANS</option>
+                                                                    <option value="24">JERSEY</option>
+                                                                    <option value="25">JUTA</option>
+                                                                    <option value="26">LAISE</option>
+                                                                    <option value="27">LAMÊ</option>
+                                                                    <option value="28">LINHÃO</option>
+                                                                    <option value="29">LINHO</option>
+                                                                    <option value="30">LOUREX</option>
+                                                                    <option value="31">MICROVISCOSE</option>
+                                                                    <option value="32">MICROFIBRA</option>
+                                                                    <option value="33">MICROTULE</option>
+                                                                    <option value="34">MORIM</option>
+                                                                    <option value="35">MUSSELINE</option>
+                                                                    <option value="36">NYLON</option>
+                                                                    <option value="37">ORGANZA</option>
+                                                                    <option value="38">OXFORD</option>
+                                                                    <option value="39">PERCAL</option>
+                                                                    <option value="40">PIQUET</option>
+                                                                    <option value="41">POPELINE</option>
+                                                                    <option value="42">SARJA</option>
+                                                                    <option value="43">SEDA</option>
+                                                                    <option value="44">SHANTUNG</option>
+                                                                    <option value="45">TAC-TEL</option>
+                                                                    <option value="46">TAFETÁ</option>
+                                                                    <option value="47">TERGAL</option>
+                                                                    <option value="48">TIE-DYE</option>
+                                                                    <option value="49">TNT</option>
+                                                                    <option value="50">TRICOLEX</option>
+                                                                    <option value="51">TRICOLINE</option>
+                                                                    <option value="52">TUNIL K</option>
+                                                                    <option value="53">TWEED</option>
+                                                                    <option value="54">VELUDINE</option>
+                                                                    <option value="55">VELUDO</option>
+                                                                    <option value="56">VISCOFAILLE</option>
+                                                                    <option value="57">VISCOSE</option>
+                                                                    <option value="58">VOIL</option>
+                                                                    <option value="59">AIRSTRECH</option>
+                                                                    <option value="60">DRY FIT</option>
+                                                                    <option value="61">ENERGY</option>
+                                                                    <option value="62">FORRO</option>
+                                                                    <option value="63">HELANCA</option>
+                                                                    <option value="64">LIGANETE</option>
+                                                                    <option value="65">LENATEX</option>
+                                                                    <option value="66">MALHAS</option>
+                                                                    <option value="67">MOLETOM</option>
+                                                                    <option value="68">TULE</option>
+                                                                    <option value="69">VISCOLYCRA</option>
+                                                                </select>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                        <div class="col-xs-6">
+                                                            <div class="form-group">
+                                                                <label class="select">
+                                                                    <select name="CompComp" id="CompComp" onchange="containsPoli()">
+                                                                        <option value="0" selected="" disabled="">Composição</option>
+                                                                    </select>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                </div>
+                                                <h2>Ponto</h2>
+                                                    <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="select">
+                                                                <select name="CompComp" id="OpPonto">
+                                                                    <option value="0" selected="" disabled="">Ponto</option>
+                                                                </select>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                                <h2>Peso, Lagura e Quantidade</h2>
+                                                <div class="row">
+                                                    <section class="col-xs-2">
+                                                        <label>Peso do tecido</label>
+                                                        <label class="input">
+                                                            <input type="number" name="peso" placeholder="Peso" min="50" max="500">g/m &sup2
+                                                        </label>
+                                                    </section>
+                                                    <section class="col-xs-2">
+                                                        <label>largura inicial do tedico</label>
+                                                        <label class="input">
+                                                            <input type="number" name="largurai" placeholder="Largura Inicial" min="50" max="380">m &sup2
+                                                        </label>
+                                                    </section>
+                                                    <section class="col-xs-2">
+                                                        <label>largura final do tedico</label>
+                                                        <label class="input">
+                                                            <input type="number" name="larguraf" placeholder="Largura Final" min="50" max="380">m &sup2
+                                                        </label>
+                                                    </section>
+                                                    <section class="col-xs-4">
+                                                        <label>Quantidade de Tecido a Trabalhar </label>
+                                                        <label class="input">
+                                                            <input type="number" name="qunatidade" placeholder="Quantidade" onchange="updateStepone()">
+                                                        </label>
+                                                    </section>
+                                                    <section class="col-xs-1">
+                                                        <label></label>
+                                                        <label class="select">
+                                                            <select name="QuantUnit" id="QuantUnit">
+                                                                <option value="0" selected="">T</option>
+                                                                <option value="1">Kg</option>
+                                                                <option value="2">g</option>
+                                                                <option value="3">mg</option>
+                                                            </select>
+                                                        </label>
+                                                    </section>
+                                                </div>
+                                                <div class="row">
+                                                    <section class="textarea">
+                                                        <label class="textarea">
+                                                            <textarea rows="3" name="info" placeholder="Informação Adicional"></textarea>
+                                                        </label>
+                                                    </section>
+                                                </div>
+
+                                    <hr>
+                                    <hr>
+                                    <h1>Caderno de Encargos</h1>
+                                    <h2>Preparação</h2>
+                                    <div class="row">
+                                        <div class="col-xs-3">
+                                            <label class="checkbox"><input type="checkbox" name="gazar" checked on onchange="updateSteptwo()"><i></i>Gazar</label>
+                                        </div>
+                                        <div class="col-xs-3" id="branquearg">
+                                            <label class="checkbox"><input type="checkbox" name="branquear" id="branquear" checked onchange="changeOpone(), updateSteptwo()"><i></i>Branquear</label>
+                                            <input type="checkbox" name="branquearop1" id="branquearop1" onchange="changeOpbr1(), updateSteptwo()" checked><i></i>Branco</br>
+                                            <input type="checkbox" name="branquearop2" id="branquearop2" onchange="changeOpbr2(), updateSteptwo()"><i></i>Meio Branco</br>
+                                            <input type="checkbox" name="branquearop3" id="branquearop3" onchange="changeOpbr3(), updateSteptwo()"><i></i>BE</br>
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <label class="checkbox"><input type="checkbox" name="lavar" id="lavar" onchange="changeOponed(), updateSteptwo()"><i></i>Lavar</label>
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <label class="checkbox"><input type="checkbox" name="mercerizar" id="mercerizar" checked  onchange="updateSteptwo()"><i></i>Mercerizar</label>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <hr>
+                                    <h2>Tinturaria</h2>
+                                    <div class="row" id="tintasg">
+                                    </div>
+                                    <div class="row">
+                                    </br>
+                                    <section class="col-xs-5">
+                                        <label>Pantones</label>
+                                        <label class="input">
+                                            <input type="text" name="pantone" placeholder="Inisira aqui o codigo do Pantone que quer aplicar como cor" onchange="updateSteptre">
+                                        </label>
+                                    </section>
+                                    </div>
+                                    <hr>
+                                    </br>
+                                    <section>
+                                        <a class="btn btn-base btn-icon btn-icon-right pull-right" href="prodef2.html" style="width: 150px;">Proximo Passo</a>
+                                    </section>
+                                </fieldset>
+                            </form>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="col">
+                    <h4>Contacte-nos</h4>
+                    <ul>
+                        <li>Universidade do Minho, Gualtar-Braga</li>
+                        <li>Telefone: +351 253 657 657 | Fax: +351 253 657 658 </li>
+                        <li>Email: <a href="mailto:hello@example.com" title="Email Us">uniline_pt@hotmail.com</a></li>
+                        <li>Skype: <a href="skype:my.business?call" title="Skype us">UnilineSkype</a></li>
+                        <li>Gerir Encomendas é a nossa Arte.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="col">
+                    <h4>Lista de Email's</h4>
+                    <p>Increva-se aqui para receber noticias sobre as nossas novidades.</p>
+                    <form class="form-horizontal form-light">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Your email address...">
+                            <span class="input-group-btn">
+                                    <button class="btn btn-base" type="button">Inscreva-se Já!</button>
+                                </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="col col-social-icons">
+                    <h4>Siga-nos</h4>
+                    <a href="#"><i class="fa fa-facebook"></i></a>
+                    <a href="#"><i class="fa fa-google-plus"></i></a>
+                    <a href="#"><i class="fa fa-linkedin"></i></a>
+                    <a href="#"><i class="fa fa-twitter"></i></a>
+                    <a href="#"><i class="fa fa-skype"></i></a>
+                    <a href="#"><i class="fa fa-pinterest"></i></a>
+                    <a href="#"><i class="fa fa-youtube-play"></i></a>
+                    <a href="#"><i class="fa fa-flickr"></i></a>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="col">
+                    <h4>Sobre Nós</h4>
+                    <p class="no-margin">
+                        Uniline - Software de Gestão de Encomendas Teixteis.
+                        <br><br>
+                        <a href="#" class="btn btn-block btn-base btn-icon fa-check"><span>Tente Agora</span></a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="row">
+            <div class="col-lg-9 copyright">
+                2017 © Uniline. Todos os direitos reservados.
+                <a href="#">Termos e Condições</a>
+            </div>
+            <div class="col-lg-3">
+                <a href="http://www.webpixels.ro" title="Made with love by Web Pixels" target="_blank" class="">
+                    <img src="images/uniline.png" alt="Web Pixels - Designing Forward | Logo" class="pull-right col-xs-5">
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+
+<!-- Essentials -->
+<script src="js/modernizr.custom.js"></script>
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="js/jquery.mousewheel-3.0.6.pack.js"></script>
+<script src="js/jquery.easing.js"></script>
+<script src="js/jquery.metadata.js"></script>
+<script src="js/jquery.hoverup.js"></script>
+<script src="js/jquery.hoverdir.js"></script>
+<script src="js/jquery.stellar.js"></script>
+
+<!-- Boomerang mobile nav - Optional  -->
+<script src="assets/responsive-mobile-nav/js/jquery.dlmenu.js"></script>
+<script src="assets/responsive-mobile-nav/js/jquery.dlmenu.autofill.js"></script>
+
+<!-- Forms -->
+<script src="assets/ui-kit/js/jquery.powerful-placeholder.min.js"></script>
+<script src="assets/ui-kit/js/cusel.min.js"></script>
+<script src="assets/sky-forms/js/jquery.form.min.js"></script>
+<script src="assets/sky-forms/js/jquery.validate.min.js"></script>
+<script src="assets/sky-forms/js/jquery.maskedinput.min.js"></script>
+<script src="assets/sky-forms/js/jquery.modal.js"></script>
+
+<!-- Assets -->
+<script src="assets/hover-dropdown/bootstrap-hover-dropdown.min.js"></script>
+<script src="assets/page-scroller/jquery.ui.totop.min.js"></script>
+<script src="assets/mixitup/jquery.mixitup.js"></script>
+<script src="assets/mixitup/jquery.mixitup.init.js"></script>
+<script src="assets/fancybox/jquery.fancybox.pack.js?v=2.1.5"></script>
+<script src="assets/waypoints/waypoints.min.js"></script>
+<script src="assets/milestone-counter/jquery.countTo.js"></script>
+<script src="assets/easy-pie-chart/js/jquery.easypiechart.js"></script>
+<script src="assets/social-buttons/js/rrssb.min.js"></script>
+<script src="assets/nouislider/js/jquery.nouislider.min.js"></script>
+<script src="assets/owl-carousel/owl.carousel.js"></script>
+<script src="assets/bootstrap/js/tooltip.js"></script>
+<script src="assets/bootstrap/js/popover.js"></script>
+
+<!-- Sripts for individual pages, depending on what plug-ins are used -->
+<script type="text/javascript">
+    $(function(){
+        // Validation for login form
+        $("#frmLogin").validate({
+            // Rules for form validation
+            rules:{
+                email:{
+                    required: true,
+                    email: true
+                },
+                password:{
+                    required: true,
+                    minlength: 3,
+                    maxlength: 20
+                }
+            },
+
+            // Messages for form validation
+            messages:{
+                email:{
+                    required: 'Please enter your email address',
+                    email: 'Please enter a VALID email address'
+                },
+                password:{
+                    required: 'Please enter your password'
+                }
+            },
+            // Do not change code below
+            errorPlacement: function(error, element){
+                error.insertAfter(element.parent());
+            }
+        });
+    });
+</script>
+
+<!-- Boomerang App JS -->
+<script src="js/wp.app.js"></script>
+<!--[if lt IE 9]>
+<script src="js/html5shiv.js"></script>
+<script src="js/respond.min.js"></script>
+<![endif]-->
+
+<!-- Temp -- You can remove this once you started to work on your project -->
+<script src="js/jquery.cookie.js"></script>
+<script src="js/wp.switcher.js"></script>
+<script type="text/javascript" src="js/wp.ga.js"></script>
+
+
+</body>
+</html>
