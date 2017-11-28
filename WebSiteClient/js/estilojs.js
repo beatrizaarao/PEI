@@ -307,11 +307,11 @@ function changeacabz(){
 }
 
 function changecaland(){
-    if(document.getElementById("calandq").checked || document.getElementById("calandf").checked) {
+    if(document.getElementById("calandq").checked  || document.getElementById("calandf").checked) {
         document.getElementById("calandar").checked = true
     }
     else {
-        document.getElementById("calandar").checked = true
+        document.getElementById("calandar").checked = false
     }
 }
 

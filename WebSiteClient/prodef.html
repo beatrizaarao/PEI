@@ -203,7 +203,7 @@
                                                     <section class="col-xs-4">
                                                         <label>Quantidade de Tecido a Trabalhar </label>
                                                         <label class="input">
-                                                            <input type="number" name="qunatidade" placeholder="Quantidade" onchange="updateStepone()">
+                                                            <input type="text" name="qunatidade" placeholder="Quantidade"  onchange="updateStepone()">
                                                         </label>
                                                     </section>
                                                     <section class="col-xs-1">
@@ -232,30 +232,36 @@
                                     <h2>Preparação</h2>
                                     <div class="row">
                                         <div class="col-xs-3">
-                                            <label class="checkbox"><input type="checkbox" name="gazar" checked on onchange="updateSteptwo()"><i></i>Gazar</label>
+                                            <label class="checkbox"><input type="checkbox" name="gazar"  onchange="updateSteptwo()"><i></i>Gazar</label>
                                         </div>
                                         <div class="col-xs-3" id="branquearg">
-                                            <label class="checkbox"><input type="checkbox" name="branquear" id="branquear" checked onchange="changeOpone(), updateSteptwo()"><i></i>Branquear</label>
-                                            <input type="checkbox" name="branquearop1" id="branquearop1" onchange="changeOpbr1(), updateSteptwo()" checked><i></i>Branco</br>
-                                            <input type="checkbox" name="branquearop2" id="branquearop2" onchange="changeOpbr2(), updateSteptwo()"><i></i>Meio Branco</br>
-                                            <input type="checkbox" name="branquearop3" id="branquearop3" onchange="changeOpbr3(), updateSteptwo()"><i></i>BE</br>
+                                            <label class="checkbox"><input type="checkbox" name="branquear" id="branquear"  onchange="changeOpone(), updateSteptwo()"><i></i>Branquear</label>
                                         </div>
                                         <div class="col-xs-3">
                                             <label class="checkbox"><input type="checkbox" name="lavar" id="lavar" onchange="changeOponed(), updateSteptwo()"><i></i>Lavar</label>
                                         </div>
                                         <div class="col-xs-3">
-                                            <label class="checkbox"><input type="checkbox" name="mercerizar" id="mercerizar" checked  onchange="updateSteptwo()"><i></i>Mercerizar</label>
+                                            <label class="checkbox"><input type="checkbox" name="mercerizar" id="mercerizar"   onchange="updateSteptwo()"><i></i>Mercerizar</label>
                                         </div>
                                     </div>
                                     <hr>
                                     <hr>
                                     <h2>Tinturaria</h2>
                                     <div class="row" id="tintasg">
+                                        <div class="col-xs-3" >
+                                            <label class="checkbox"><input type="checkbox" name="Reativos" id="Reativos"  onchange="updateSteptre(), changetintd()"><i></i>Reativos</label>
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <label class="checkbox"><input type="checkbox" name="Cubas" id="Cubas" onchange="changetintdd(), updateSteptre()"><i></i>Cubas</label>
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <label class="checkbox"><input type="checkbox" name="Pigmentos" id="Pigmentos"   onchange="updateSteptre(), changetintddd()"><i></i>Pigmentos</label>
+                                        </div>
                                     </div>
                                     <div class="row">
                                     </br>
                                     <section class="col-xs-5">
-                                        <label>Pantones</label>
+                                        <label>Pantone</label>
                                         <label class="input">
                                             <input type="text" name="pantone" placeholder="Inisira aqui o codigo do Pantone que quer aplicar como cor" onchange="updateSteptre">
                                         </label>
