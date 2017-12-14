@@ -1,488 +1,408 @@
+extends layout
+
+block content
+    h1= title
+    p Welcome to #{title}
 
     <!-- MAIN CONTENT -->
-    	<div class="pg-opt">
-        <div class="container"> 
-            <div class="row">
-                <div class="col-md-6">
-                    <h2>Inicio de Sessão</h2>
-                </div>
-                <div class="col-md-6">
-                    <ol class="breadcrumb">
-                        <li><a href="index.html">Home</a></li>
-                    </ol>
-                </div>
-            </div>
-        </div>
-    </div>
+    div(class='pg-opt')
+        div(class='container')
+            div(class='row')
+                div(class='col-md-6')
+                    h2)Inicio de Sessão/h2)
+                div(class='col-md-6')
+                    ol(class='breadcrumb')
+                        li
+                            a(href='index.html') Home
+    section(class='slice bg-white')
+         div(class='wp-section')
+            div(class='container')
+                <!-- Checkout process - Progress bar --)
+                ol(class='progtrckr hidden-xs' data-progtrckr-steps='7')
+                    li(class='progtrckr-todo') Inicio de Secção
+                    li(class='progtrckr-todo') Definição do Produto
+                    li(class='progtrckr-todo') Preparação
+                    li(class='progtrckr-todo') Tinturaria
+                    li(class='progtrckr-todo') Acabamentos
+                    li(class='progtrckr-todo') Embalagem
+                    li(class='progtrckr-todo') Prazos e Morada
+                div(class='row')
+                    div(class='col-md-4')
+                        div(class='wp-block default user-form')
+                            div(class='form-header')
+                                h2 Iniciar a sessão na sua conta
+                            div(class='form-body')
+                                form(action='' id='frmLogin' class='sky-form')
+                                    fieldset
+                                        section
+                                            div(class='form-group')
+                                                label(class='label') NIF
+                                                label(class='input')
+                                                    i(class='icon-append fa fa-user')
+                                                    input(type='text' name='nif' pattern='[0-9]{9}$')
+                                        section
+                                            div(class='form-group')
+                                                label(class='label') Password
+                                                label(class='input')
+                                                    i(class='icon-append fa fa-lock')
+                                                    input(type='password' name='password')
+                                        section
+                                            div(class='row')
+                                                div(class='col-md-12')
+                                                    label(class='checkbox')
+                                                    input(type='checkbox' name='remember' checked): i Manter-me ligado
 
-	<section class="slice bg-white">
-        <div class="wp-section">
-            <div class="container">
-                <!-- Checkout process - Progress bar -->
-                <ol class="progtrckr hidden-xs" data-progtrckr-steps="7">
-                    <li class="progtrckr-todo">Inicio de Secção</li>
-                    <li class="progtrckr-todo">Definição do Produto</li>
-                    <li class="progtrckr-todo">Preparação</li>
-                    <li class="progtrckr-todo">Tinturaria</li>
-                    <li class="progtrckr-todo">Acabamentos</li>
-                    <li class="progtrckr-todo">Embalagem</li>
-                    <li class="progtrckr-todo">Prazos e Morada</li>
-                </ol>
+                                        section
+                                            a(class='btn btn-base btn-icon btn-icon-right pull-right' href='prodef.html' style='width: 150px;') Entrar
+                            div(class='form-footer')
+                                p Perdeu a sua password?
+                                    a(href='#') Clique aqui para recupera-la.
+                    div(class='col-md-8')
+                        div(class='wp-block default user-form')
+                            div(class='form-header')
+                                h2 Sou um novo Cliente - Criar uma Conta
+                            div(class='form-body')
+                                form(action='' id='frmRegister' class='sky-form')
+                                    fieldset(class='no-padding')
+                                        section
+                                        section
+                                        section
+                                            div(class='row')
+                                                div(class='col-xs-6')
+                                                    div(class='form-group')
+                                                        label(class='label') NIF
+                                                        label(class='input')
+                                                            i(class='icon-append fa fa-user')
+                                                            input(type='text' name='nif' placeholder='' pattern='[0-9]{9}$')
+                                                            b(class='tooltip tooltip-bottom-right') Necessario para inicar a sessão
 
-                <div class="row">
-                    <div class="col-md-4">
-                    
-                        <div class="wp-block default user-form">
-                            
-                            <div class="form-header">
-                                <h2>Iniciar a sessão na sua conta</h2>
-                            </div>
-                            <div class="form-body">
-                                <form action="" id="frmLogin" class="sky-form">                                    
-                                    <fieldset>                  
-                                        <section>
-                                            <div class="form-group">
-                                                <label class="label">NIF</label>
-                                                <label class="input">
-                                                    <i class="icon-append fa fa-user"></i>
-                                                    <input type="text" name="nif" pattern="[0-9]{9}$">
-                                                </label>
-                                            </div>     
-                                        </section>
-                                        <section>
-                                            <div class="form-group">
-                                                <label class="label">Password</label>
-                                                <label class="input">
-                                                    <i class="icon-append fa fa-lock"></i>
-                                                    <input type="password" name="password">
-                                                </label>
-                                            </div>     
-                                        </section> 
-                                        <section>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <label class="checkbox"><input type="checkbox" name="remember" checked><i></i>Manter-me ligado</label>
-                                                </div>
-                                            </div>
-                                        </section>
+                                                div(class='col-xs-6')
+                                                    div(class='form-group')
+                                                        div(class='form-group')
+                                                            label(class='label') E-mail
+                                                            label(class='input')
+                                                                i(class='icon-append fa fa-envelope-o')
+                                                                input(type='email' name='email' placeholder='')
+                                                                b(class='tooltip tooltip-bottom-right') Necessario para verificar a sua conta
 
-                                        <section>
-                                            <a class="btn btn-base btn-icon btn-icon-right pull-right" href="prodef.html" style="width: 150px;">Entrar</a>
-                                        </section>
-                                    </fieldset>  
-                                </form> 
-                            </div>
-                            <div class="form-footer">
-                                <p>Perdeu a sua password? <a href="#">Clique aqui para recupera-la.</a></p>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="col-md-8">
-                        <div class="wp-block default user-form">    
-                            <div class="form-header">
-                                <h2>Sou um novo Cliente - Criar uma Conta</h2>
-                            </div>
-                            <div class="form-body">
-                                <form action="" id="frmRegister" class="sky-form">                                    
-                                    <fieldset class="no-padding">    
-                                        <section>
-                                        <section>
-                                        <section>
-                                            <div class="row">
-                                                <div class="col-xs-6">
-                                                    <div class="form-group">
-                                                        <label class="label">NIF</label>
-                                                        <label class="input">
-                                                            <i class="icon-append fa fa-user"></i>
-                                                            <input type="text" name="nif" placeholder="" pattern="[0-9]{9}$">
-                                                            <b class="tooltip tooltip-bottom-right">Necessario para inicar a sessão</b>
-                                                        </label>
-                                                    </div>               
-                                                </div>
-                                                <div class="col-xs-6">
-                                                    <div class="form-group">
-                                                        <div class="form-group">
-                                                            <label class="label">E-mail</label>
-                                                            <label class="input">
-                                                                <i class="icon-append fa fa-envelope-o"></i>
-                                                                <input type="email" name="email" placeholder="">
-                                                                <b class="tooltip tooltip-bottom-right">Necessario para verificar a sua conta</b>
-                                                            </label>
-                                                        </div>  
-                                                    </div>               
-                                                </div>
-                                            </div>   
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="label">Password</label>
-                                                        <label class="input">
-                                                            <i class="icon-append fa fa-lock"></i>
-                                                            <input type="password" name="password" placeholder="">
-                                                            <b class="tooltip tooltip-bottom-right">Necessario para inicar a sessão</b>
-                                                        </label>
-                                                    </div>               
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="label">Confirmar Password</label>
-                                                        <label class="input">
-                                                            <i class="icon-append fa fa-lock"></i>
-                                                            <input type="password" name="cpassword" placeholder="">
-                                                            <b class="tooltip tooltip-bottom-right">Necessario para verificar a sua conta</b>
-                                                        </label>
-                                                    </div>               
-                                                </div>
-                                            </div>   
-                                        </section>
-                                        <hr>
-                                        <section>
-                                            <div class="row">
-                                                <section class="col-xs-6">
-                                                    <label class="label">Primeiro Nome</label>
-                                                    <label class="input">
-                                                        <i class="icon-append fa fa-user"></i>
-                                                        <input type="text" name="fname" placeholder="">
-                                                    </label>
-                                                </section>
-                                                <section class="col-xs-6">
-                                                    <label class="label">Ultimo Nome</label>
-                                                    <label class="input">
-                                                        <i class="icon-append fa fa-user"></i>
-                                                        <input type="text" name="lname" placeholder="">
-                                                    </label>
-                                                </section>
-                                            </div> 
-                                            <div class="row">
-                                                <section class="col-xs-6">
-                                                    <label class="label">Empresa</label>
-                                                    <label class="input">
-                                                        <i class="icon-append fa fa-building"></i>
-                                                        <input type="email" name="email" placeholder="">
-                                                    </label>
-                                                </section>
-                                                <section class="col-xs-6">
-                                                    <label class="label">Contacto Telefonico</label>
-                                                    <label class="input">
-                                                        <i class="icon-append fa fa-phone"></i>
-                                                        <input type="tel" name="phone" placeholder="">
-                                                    </label>
-                                                </section>
-                                            </div>
-                                        </section>
-                                        </section>
-                                        </section>
-                                    </fieldset>  
-
-                                    <fieldset>
-                                        <div class="row">
-                                            <section class="col-xs-4">
-                                                <label class="select">
-                                                    <select name="country">
-                                                        <option value="0" selected="" disabled="">País</option>
-                                                        <option value="AF">Afghanistan</option>
-                                                        <option value="AX">Åland Islands</option>
-                                                        <option value="AL">Albania</option>
-                                                        <option value="DZ">Algeria</option>
-                                                        <option value="AS">American Samoa</option>
-                                                        <option value="AD">Andorra</option>
-                                                        <option value="AO">Angola</option>
-                                                        <option value="AI">Anguilla</option>
-                                                        <option value="AQ">Antarctica</option>
-                                                        <option value="AG">Antigua and Barbuda</option>
-                                                        <option value="AR">Argentina</option>
-                                                        <option value="AM">Armenia</option>
-                                                        <option value="AW">Aruba</option>
-                                                        <option value="AU">Australia</option>
-                                                        <option value="AT">Austria</option>
-                                                        <option value="AZ">Azerbaijan</option>
-                                                        <option value="BS">Bahamas</option>
-                                                        <option value="BH">Bahrain</option>
-                                                        <option value="BD">Bangladesh</option>
-                                                        <option value="BB">Barbados</option>
-                                                        <option value="BY">Belarus</option>
-                                                        <option value="BE">Belgium</option>
-                                                        <option value="BZ">Belize</option>
-                                                        <option value="BJ">Benin</option>
-                                                        <option value="BM">Bermuda</option>
-                                                        <option value="BT">Bhutan</option>
-                                                        <option value="BO">Bolivia, Plurinational State of</option>
-                                                        <option value="BQ">Bonaire, Sint Eustatius and Saba</option>
-                                                        <option value="BA">Bosnia and Herzegovina</option>
-                                                        <option value="BW">Botswana</option>
-                                                        <option value="BV">Bouvet Island</option>
-                                                        <option value="BR">Brazil</option>
-                                                        <option value="IO">British Indian Ocean Territory</option>
-                                                        <option value="BN">Brunei Darussalam</option>
-                                                        <option value="BG">Bulgaria</option>
-                                                        <option value="BF">Burkina Faso</option>
-                                                        <option value="BI">Burundi</option>
-                                                        <option value="KH">Cambodia</option>
-                                                        <option value="CM">Cameroon</option>
-                                                        <option value="CA">Canada</option>
-                                                        <option value="CV">Cape Verde</option>
-                                                        <option value="KY">Cayman Islands</option>
-                                                        <option value="CF">Central African Republic</option>
-                                                        <option value="TD">Chad</option>
-                                                        <option value="CL">Chile</option>
-                                                        <option value="CN">China</option>
-                                                        <option value="CX">Christmas Island</option>
-                                                        <option value="CC">Cocos (Keeling) Islands</option>
-                                                        <option value="CO">Colombia</option>
-                                                        <option value="KM">Comoros</option>
-                                                        <option value="CG">Congo</option>
-                                                        <option value="CD">Congo, the Democratic Republic of the</option>
-                                                        <option value="CK">Cook Islands</option>
-                                                        <option value="CR">Costa Rica</option>
-                                                        <option value="CI">Côte d'Ivoire</option>
-                                                        <option value="HR">Croatia</option>
-                                                        <option value="CU">Cuba</option>
-                                                        <option value="CW">Curaçao</option>
-                                                        <option value="CY">Cyprus</option>
-                                                        <option value="CZ">Czech Republic</option>
-                                                        <option value="DK">Denmark</option>
-                                                        <option value="DJ">Djibouti</option>
-                                                        <option value="DM">Dominica</option>
-                                                        <option value="DO">Dominican Republic</option>
-                                                        <option value="EC">Ecuador</option>
-                                                        <option value="EG">Egypt</option>
-                                                        <option value="SV">El Salvador</option>
-                                                        <option value="GQ">Equatorial Guinea</option>
-                                                        <option value="ER">Eritrea</option>
-                                                        <option value="EE">Estonia</option>
-                                                        <option value="ET">Ethiopia</option>
-                                                        <option value="FK">Falkland Islands (Malvinas)</option>
-                                                        <option value="FO">Faroe Islands</option>
-                                                        <option value="FJ">Fiji</option>
-                                                        <option value="FI">Finland</option>
-                                                        <option value="FR">France</option>
-                                                        <option value="GF">French Guiana</option>
-                                                        <option value="PF">French Polynesia</option>
-                                                        <option value="TF">French Southern Territories</option>
-                                                        <option value="GA">Gabon</option>
-                                                        <option value="GM">Gambia</option>
-                                                        <option value="GE">Georgia</option>
-                                                        <option value="DE">Germany</option>
-                                                        <option value="GH">Ghana</option>
-                                                        <option value="GI">Gibraltar</option>
-                                                        <option value="GR">Greece</option>
-                                                        <option value="GL">Greenland</option>
-                                                        <option value="GD">Grenada</option>
-                                                        <option value="GP">Guadeloupe</option>
-                                                        <option value="GU">Guam</option>
-                                                        <option value="GT">Guatemala</option>
-                                                        <option value="GG">Guernsey</option>
-                                                        <option value="GN">Guinea</option>
-                                                        <option value="GW">Guinea-Bissau</option>
-                                                        <option value="GY">Guyana</option>
-                                                        <option value="HT">Haiti</option>
-                                                        <option value="HM">Heard Island and McDonald Islands</option>
-                                                        <option value="VA">Holy See (Vatican City State)</option>
-                                                        <option value="HN">Honduras</option>
-                                                        <option value="HK">Hong Kong</option>
-                                                        <option value="HU">Hungary</option>
-                                                        <option value="IS">Iceland</option>
-                                                        <option value="IN">India</option>
-                                                        <option value="ID">Indonesia</option>
-                                                        <option value="IR">Iran, Islamic Republic of</option>
-                                                        <option value="IQ">Iraq</option>
-                                                        <option value="IE">Ireland</option>
-                                                        <option value="IM">Isle of Man</option>
-                                                        <option value="IL">Israel</option>
-                                                        <option value="IT">Italy</option>
-                                                        <option value="JM">Jamaica</option>
-                                                        <option value="JP">Japan</option>
-                                                        <option value="JE">Jersey</option>
-                                                        <option value="JO">Jordan</option>
-                                                        <option value="KZ">Kazakhstan</option>
-                                                        <option value="KE">Kenya</option>
-                                                        <option value="KI">Kiribati</option>
-                                                        <option value="KP">Korea, Democratic People's Republic of</option>
-                                                        <option value="KR">Korea, Republic of</option>
-                                                        <option value="KW">Kuwait</option>
-                                                        <option value="KG">Kyrgyzstan</option>
-                                                        <option value="LA">Lao People's Democratic Republic</option>
-                                                        <option value="LV">Latvia</option>ch
-                                                        <option value="LB">Lebanon</option>
-                                                        <option value="LS">Lesotho</option>
-                                                        <option value="LR">Liberia</option>
-                                                        <option value="LY">Libya</option>
-                                                        <option value="LI">Liechtenstein</option>
-                                                        <option value="LT">Lithuania</option>
-                                                        <option value="LU">Luxembourg</option>
-                                                        <option value="MO">Macao</option>
-                                                        <option value="MK">Macedonia, the former Yugoslav Republic of</option>
-                                                        <option value="MG">Madagascar</option>
-                                                        <option value="MW">Malawi</option>
-                                                        <option value="MY">Malaysia</option>
-                                                        <option value="MV">Maldives</option>
-                                                        <option value="ML">Mali</option>
-                                                        <option value="MT">Malta</option>
-                                                        <option value="MH">Marshall Islands</option>
-                                                        <option value="MQ">Martinique</option>
-                                                        <option value="MR">Mauritania</option>
-                                                        <option value="MU">Mauritius</option>
-                                                        <option value="YT">Mayotte</option>
-                                                        <option value="MX">Mexico</option>
-                                                        <option value="FM">Micronesia, Federated States of</option>
-                                                        <option value="MD">Moldova, Republic of</option>
-                                                        <option value="MC">Monaco</option>
-                                                        <option value="MN">Mongolia</option>
-                                                        <option value="ME">Montenegro</option>
-                                                        <option value="MS">Montserrat</option>
-                                                        <option value="MA">Morocco</option>
-                                                        <option value="MZ">Mozambique</option>
-                                                        <option value="MM">Myanmar</option>
-                                                        <option value="NA">Namibia</option>
-                                                        <option value="NR">Nauru</option>
-                                                        <option value="NP">Nepal</option>
-                                                        <option value="NL">Netherlands</option>
-                                                        <option value="NC">New Caledonia</option>
-                                                        <option value="NZ">New Zealand</option>
-                                                        <option value="NI">Nicaragua</option>
-                                                        <option value="NE">Niger</option>
-                                                        <option value="NG">Nigeria</option>
-                                                        <option value="NU">Niue</option>
-                                                        <option value="NF">Norfolk Island</option>
-                                                        <option value="MP">Northern Mariana Islands</option>
-                                                        <option value="NO">Norway</option>
-                                                        <option value="OM">Oman</option>
-                                                        <option value="PK">Pakistan</option>
-                                                        <option value="PW">Palau</option>
-                                                        <option value="PS">Palestinian Territory, Occupied</option>
-                                                        <option value="PA">Panama</option>
-                                                        <option value="PG">Papua New Guinea</option>
-                                                        <option value="PY">Paraguay</option>
-                                                        <option value="PE">Peru</option>
-                                                        <option value="PH">Philippines</option>
-                                                        <option value="PN">Pitcairn</option>
-                                                        <option value="PL">Poland</option>
-                                                        <option value="PT">Portugal</option>
-                                                        <option value="PR">Puerto Rico</option>
-                                                        <option value="QA">Qatar</option>
-                                                        <option value="RE">Réunion</option>
-                                                        <option value="RO">Romania</option>
-                                                        <option value="RU">Russian Federation</option>
-                                                        <option value="RW">Rwanda</option>
-                                                        <option value="BL">Saint Barthélemy</option>
-                                                        <option value="SH">Saint Helena, Ascension and Tristan da Cunha</option>
-                                                        <option value="KN">Saint Kitts and Nevis</option>
-                                                        <option value="LC">Saint Lucia</option>
-                                                        <option value="MF">Saint Martin (French part)</option>
-                                                        <option value="PM">Saint Pierre and Miquelon</option>
-                                                        <option value="VC">Saint Vincent and the Grenadines</option>
-                                                        <option value="WS">Samoa</option>
-                                                        <option value="SM">San Marino</option>
-                                                        <option value="ST">Sao Tome and Principe</option>
-                                                        <option value="SA">Saudi Arabia</option>
-                                                        <option value="SN">Senegal</option>
-                                                        <option value="RS">Serbia</option>
-                                                        <option value="SC">Seychelles</option>
-                                                        <option value="SL">Sierra Leone</option>
-                                                        <option value="SG">Singapore</option>
-                                                        <option value="SX">Sint Maarten (Dutch part)</option>
-                                                        <option value="SK">Slovakia</option>
-                                                        <option value="SI">Slovenia</option>
-                                                        <option value="SB">Solomon Islands</option>
-                                                        <option value="SO">Somalia</option>
-                                                        <option value="ZA">South Africa</option>
-                                                        <option value="GS">South Georgia and the South Sandwich Islands</option>
-                                                        <option value="SS">South Sudan</option>
-                                                        <option value="ES">Spain</option>
-                                                        <option value="LK">Sri Lanka</option>
-                                                        <option value="SD">Sudan</option>
-                                                        <option value="SR">Suriname</option>
-                                                        <option value="SJ">Svalbard and Jan Mayen</option>
-                                                        <option value="SZ">Swaziland</option>
-                                                        <option value="SE">Sweden</option>
-                                                        <option value="CH">Switzerland</option>
-                                                        <option value="SY">Syrian Arab Republic</option>
-                                                        <option value="TW">Taiwan, Province of China</option>
-                                                        <option value="TJ">Tajikistan</option>
-                                                        <option value="TZ">Tanzania, United Republic of</option>
-                                                        <option value="TH">Thailand</option>
-                                                        <option value="TL">Timor-Leste</option>
-                                                        <option value="TG">Togo</option>
-                                                        <option value="TK">Tokelau</option>
-                                                        <option value="TO">Tonga</option>
-                                                        <option value="TT">Trinidad and Tobago</option>
-                                                        <option value="TN">Tunisia</option>
-                                                        <option value="TR">Turkey</option>
-                                                        <option value="TM">Turkmenistan</option>
-                                                        <option value="TC">Turks and Caicos Islands</option>
-                                                        <option value="TV">Tuvalu</option>
-                                                        <option value="UG">Uganda</option>
-                                                        <option value="UA">Ukraine</option>
-                                                        <option value="AE">United Arab Emirates</option>
-                                                        <option value="GB">United Kingdom</option>
-                                                        <option value="US">United States</option>
-                                                        <option value="UM">United States Minor Outlying Islands</option>
-                                                        <option value="UY">Uruguay</option>
-                                                        <option value="UZ">Uzbekistan</option>
-                                                        <option value="VU">Vanuatu</option>
-                                                        <option value="VE">Venezuela, Bolivarian Republic of</option>
-                                                        <option value="VN">Viet Nam</option>
-                                                        <option value="VG">Virgin Islands, British</option>
-                                                        <option value="VI">Virgin Islands, U.S.</option>
-                                                        <option value="WF">Wallis and Futuna</option>
-                                                        <option value="EH">Western Sahara</option>
-                                                        <option value="YE">Yemen</option>
-                                                        <option value="ZM">Zambia</option>
-                                                        <option value="ZW">Zimbabwe</option>
-                                                    </select>
-                                                    <i></i>
-                                                </label>
-                                            </section>
-                                            
-                                            <section class="col-xs-4">
-                                                <label class="input">
-                                                    <input type="text" name="distrito" placeholder="Distrito">
-                                                </label>
-                                            </section>
-                                            <section class = "col-xs-4">
-                                                <label class="input">
-                                                    <input type="text" name="concelho" placeholder="Concelho">
-                                                </label>
-                                            </section>
-                                            <section class="col-xs-3">
-                                                <label class="input">
-                                                    <input type="text" name="codpost" placeholder="Codigo Postal" pattern="[0-9]{4}-[0-9]{3}$">
-                                                </label>
-                                            </section>
-                                            <section class="col-xs-7">
-                                                <label class="input">
-                                                    <input type="text" name="freguesia" placeholder="Freguesia">
-                                                </label>
-                                            </section>
-                                        </div>
+                                            div(class='row')
+                                                div(class='col-md-6')
+                                                    div(class='form-group')
+                                                        label(class='label') Password
+                                                        label(class='input')
+                                                            i(class='icon-append fa fa-lock')
+                                                            input(type='password' name='password' placeholder='')
+                                                            b(class='tooltip tooltip-bottom-right') Necessario para inicar a sessão
+                                                div(class='col-md-6')
+                                                    div(class='form-group')
+                                                        label(class='label') Confirmar Password
+                                                        label(class='input')
+                                                            i(class='icon-append fa fa-lock')
+                                                            input(type='password' name='cpassword' placeholder='')
+                                                            b(class='tooltip tooltip-bottom-right') Necessario para verificar a sua conta
+                                        hr
+                                        section
+                                            div(class='row')
+                                                section(class='col-xs-6')
+                                                    label(class='label') Primeiro Nome
+                                                    label(class='input')
+                                                        i(class='icon-append fa fa-user')
+                                                        input(type='text' name='fname' placeholder='')
+                                                section(class='col-xs-6')
+                                                    label(class='label') Ultimo Nome
+                                                    label(class='input')
+                                                        i(class='icon-append fa fa-user')
+                                                        input(type='text' name='lname' placeholder='')
+                                            div(class='row')
+                                                section(class='col-xs-6')
+                                                    label(class='label') Empresa
+                                                    label(class='input')
+                                                        i(class='icon-append fa fa-building')
+                                                        input(type='email' name='email' placeholder='')
+                                                section(class='col-xs-6')
+                                                    label(class='label') Contacto Telefonico
+                                                    label(class='input')
+                                                        i(class='icon-append fa fa-phone')
+                                                        input(type='tel' name='phone' placeholder='')
+                                    fieldset
+                                        div(class='row')
+                                            section(class='col-xs-4')
+                                                label(class='select')
+                                                    select(name='country')
+                                                        option(value='0' selected=' disabled=') País
+                                                        option(value='AF') Afghanistan
+                                                        option(value='AX') Åland Islands
+                                                        option(value='AL') Albania
+                                                        option(value='DZ') Algeria
+                                                        option(value='AS') American Samoa
+                                                        option(value='AD') Andorra
+                                                        option(value='AO') Angola
+                                                        option(value='AI') Anguilla
+                                                        option(value='AQ') Antarctica
+                                                        option(value='AG') Antigua and Barbuda
+                                                        option(value='AR') Argentina
+                                                        option(value='AM') Armenia
+                                                        option(value='AW') Aruba
+                                                        option(value='AU') Australia
+                                                        option(value='AT') Austria
+                                                        option(value='AZ') Azerbaijan
+                                                        option(value='BS') Bahamas
+                                                        option(value='BH') Bahrain
+                                                        option(value='BD') Bangladesh
+                                                        option(value='BB') Barbados
+                                                        option(value='BY') Belarus
+                                                        option(value='BE') Belgium
+                                                        option(value='BZ') Belize
+                                                        option(value='BJ') Benin
+                                                        option(value='BM') Bermuda
+                                                        option(value='BT') Bhutan
+                                                        option(value='BO') Bolivia, Plurinational State of
+                                                        option(value='BQ') Bonaire, Sint Eustatius and Saba
+                                                        option(value='BA') Bosnia and Herzegovina
+                                                        option(value='BW') Botswana
+                                                        option(value='BV') Bouvet Island
+                                                        option(value='BR') Brazil
+                                                        option(value='IO') British Indian Ocean Territory
+                                                        option(value='BN') Brunei Darussalam
+                                                        option(value='BG') Bulgaria
+                                                        option(value='BF') Burkina Faso
+                                                        option(value='BI') Burundi
+                                                        option(value='KH') Cambodia
+                                                        option(value='CM') Cameroon
+                                                        option(value='CA') Canada
+                                                        option(value='CV') Cape Verde
+                                                        option(value='KY') Cayman Islands
+                                                        option(value='CF') Central African Republic
+                                                        option(value='TD') Chad
+                                                        option(value='CL') Chile
+                                                        option(value='CN') China
+                                                        option(value='CX') Christmas Island
+                                                        option(value='CC') Cocos (Keeling) Islands
+                                                        option(value='CO') Colombia
+                                                        option(value='KM') Comoros
+                                                        option(value='CG') Congo
+                                                        option(value='CD') Congo, the Democratic Republic of the
+                                                        option(value='CK') Cook Islands
+                                                        option(value='CR') Costa Rica
+                                                        option(value='CI') Côte d'Ivoire
+                                                        option(value='HR') Croatia
+                                                        option(value='CU') Cuba
+                                                        option(value='CW') Curaçao
+                                                        option(value='CY') Cyprus
+                                                        option(value='CZ') Czech Republic
+                                                        option(value='DK') Denmark
+                                                        option(value='DJ') Djibouti
+                                                        option(value='DM') Dominica
+                                                        option(value='DO') Dominican Republic
+                                                        option(value='EC') Ecuador
+                                                        option(value='EG') Egypt
+                                                        option(value='SV') El Salvador
+                                                        option(value='GQ') Equatorial Guinea
+                                                        option(value='ER') Eritrea
+                                                        option(value='EE') Estonia
+                                                        option(value='ET') Ethiopia
+                                                        option(value='FK') Falkland Islands (Malvinas)
+                                                        option(value='FO') Faroe Islands
+                                                        option(value='FJ') Fiji
+                                                        option(value='FI') Finland
+                                                        option(value='FR') France
+                                                        option(value='GF') French Guiana
+                                                        option(value='PF') French Polynesia
+                                                        option(value='TF') French Southern Territories
+                                                        option(value='GA') Gabon
+                                                        option(value='GM') Gambia
+                                                        option(value='GE') Georgia
+                                                        option(value='DE') Germany
+                                                        option(value='GH') Ghana
+                                                        option(value='GI') Gibraltar
+                                                        option(value='GR') Greece
+                                                        option(value='GL') Greenland
+                                                        option(value='GD') Grenada
+                                                        option(value='GP') Guadeloupe
+                                                        option(value='GU') Guam
+                                                        option(value='GT') Guatemala
+                                                        option(value='GG') Guernsey
+                                                        option(value='GN') Guinea
+                                                        option(value='GW') Guinea-Bissau
+                                                        option(value='GY') Guyana
+                                                        option(value='HT') Haiti
+                                                        option(value='HM') Heard Island and McDonald Islands
+                                                        option(value='VA') Holy See (Vatican City State)
+                                                        option(value='HN') Honduras
+                                                        option(value='HK') Hong Kong
+                                                        option(value='HU') Hungary
+                                                        option(value='IS') Iceland
+                                                        option(value='IN') India
+                                                        option(value='ID') Indonesia
+                                                        option(value='IR') Iran, Islamic Republic of
+                                                        option(value='IQ') Iraq
+                                                        option(value='IE') Ireland
+                                                        option(value='IM') Isle of Man
+                                                        option(value='IL') Israel
+                                                        option(value='IT') Italy
+                                                        option(value='JM') Jamaica
+                                                        option(value='JP') Japan
+                                                        option(value='JE') Jersey
+                                                        option(value='JO') Jordan
+                                                        option(value='KZ') Kazakhstan
+                                                        option(value='KE') Kenya
+                                                        option(value='KI') Kiribati
+                                                        option(value='KP') Korea, Democratic People's Republic of
+                                                        option(value='KR') Korea, Republic of
+                                                        option(value='KW') Kuwait
+                                                        option(value='KG') Kyrgyzstan
+                                                        option(value='LA') Lao People's Democratic Republic
+                                                        option(value='LV') Latviach
+                                                        option(value='LB') Lebanon
+                                                        option(value='LS') Lesotho
+                                                        option(value='LR') Liberia
+                                                        option(value='LY') Libya
+                                                        option(value='LI') Liechtenstein
+                                                        option(value='LT') Lithuania
+                                                        option(value='LU') Luxembourg
+                                                        option(value='MO') Macao
+                                                        option(value='MK') Macedonia, the former Yugoslav Republic of
+                                                        option(value='MG') Madagascar
+                                                        option(value='MW') Malawi
+                                                        option(value='MY') Malaysia
+                                                        option(value='MV') Maldives
+                                                        option(value='ML') Mali
+                                                        option(value='MT') Malta
+                                                        option(value='MH') Marshall Islands
+                                                        option(value='MQ') Martinique
+                                                        option(value='MR') Mauritania
+                                                        option(value='MU') Mauritius
+                                                        option(value='YT') Mayotte
+                                                        option(value='MX') Mexico
+                                                        option(value='FM') Micronesia, Federated States of
+                                                        option(value='MD') Moldova, Republic of
+                                                        option(value='MC') Monaco
+                                                        option(value='MN') Mongolia
+                                                        option(value='ME') Montenegro
+                                                        option(value='MS') Montserrat
+                                                        option(value='MA') Morocco
+                                                        option(value='MZ') Mozambique
+                                                        option(value='MM') Myanmar
+                                                        option(value='NA') Namibia
+                                                        option(value='NR') Nauru
+                                                        option(value='NP') Nepal
+                                                        option(value='NL') Netherlands
+                                                        option(value='NC') New Caledonia
+                                                        option(value='NZ') New Zealand
+                                                        option(value='NI') Nicaragua
+                                                        option(value='NE') Niger
+                                                        option(value='NG') Nigeria
+                                                        option(value='NU') Niue
+                                                        option(value='NF') Norfolk Island
+                                                        option(value='MP') Northern Mariana Islands
+                                                        option(value='NO') Norway
+                                                        option(value='OM') Oman
+                                                        option(value='PK') Pakistan
+                                                        option(value='PW') Palau
+                                                        option(value='PS') Palestinian Territory, Occupied
+                                                        option(value='PA') Panama
+                                                        option(value='PG') Papua New Guinea
+                                                        option(value='PY') Paraguay
+                                                        option(value='PE') Peru
+                                                        option(value='PH') Philippines
+                                                        option(value='PN') Pitcairn
+                                                        option(value='PL') Poland
+                                                        option(value='PT') Portugal
+                                                        option(value='PR') Puerto Rico
+                                                        option(value='QA') Qatar
+                                                        option(value='RE') Réunion
+                                                        option(value='RO') Romania
+                                                        option(value='RU') Russian Federation
+                                                        option(value='RW') Rwanda
+                                                        option(value='BL') Saint Barthélemy
+                                                        option(value='SH') Saint Helena, Ascension and Tristan da Cunha
+                                                        option(value='KN') Saint Kitts and Nevis
+                                                        option(value='LC') Saint Lucia
+                                                        option(value='MF') Saint Martin (French part)
+                                                        option(value='PM') Saint Pierre and Miquelon
+                                                        option(value='VC') Saint Vincent and the Grenadines
+                                                        option(value='WS') Samoa
+                                                        option(value='SM') San Marino
+                                                        option(value='ST') Sao Tome and Principe
+                                                        option(value='SA') Saudi Arabia
+                                                        option(value='SN') Senegal
+                                                        option(value='RS') Serbia
+                                                        option(value='SC') Seychelles
+                                                        option(value='SL') Sierra Leone
+                                                        option(value='SG') Singapore
+                                                        option(value='SX') Sint Maarten (Dutch part)
+                                                        option(value='SK') Slovakia
+                                                        option(value='SI') Slovenia
+                                                        option(value='SB') Solomon Islands
+                                                        option(value='SO') Somalia
+                                                        option(value='ZA') South Africa
+                                                        option(value='GS') South Georgia and the South Sandwich Islands
+                                                        option(value='SS') South Sudan
+                                                        option(value='ES') Spain
+                                                        option(value='LK') Sri Lanka
+                                                        option(value='SD') Sudan
+                                                        option(value='SR') Suriname
+                                                        option(value='SJ') Svalbard and Jan Mayen
+                                                        option(value='SZ') Swaziland
+                                                        option(value='SE') Sweden
+                                                        option(value='CH') Switzerland
+                                                        option(value='SY') Syrian Arab Republic
+                                                        option(value='TW') Taiwan, Province of China
+                                                        option(value='TJ') Tajikistan
+                                                        option(value='TZ') Tanzania, United Republic of
+                                                        option(value='TH') Thailand
+                                                        option(value='TL') Timor-Leste
+                                                        option(value='TG') Togo
+                                                        option(value='TK') Tokelau
+                                                        option(value='TO') Tonga
+                                                        option(value='TT') Trinidad and Tobago
+                                                        option(value='TN') Tunisia
+                                                        option(value='TR') Turkey
+                                                        option(value='TM') Turkmenistan
+                                                        option(value='TC') Turks and Caicos Islands
+                                                        option(value='TV') Tuvalu
+                                                        option(value='UG') Uganda
+                                                        option(value='UA') Ukraine
+                                                        option(value='AE') United Arab Emirates
+                                                        option(value='GB') United Kingdom
+                                                        option(value='US') United States
+                                                        option(value='UM') United States Minor Outlying Islands
+                                                        option(value='UY') Uruguay
+                                                        option(value='UZ') Uzbekistan
+                                                        option(value='VU') Vanuatu
+                                                        option(value='VE') Venezuela, Bolivarian Republic of
+                                                        option(value='VN') Viet Nam
+                                                        option(value='VG') Virgin Islands, British
+                                                        option(value='VI') Virgin Islands, U.S.
+                                                        option(value='WF') Wallis and Futuna
+                                                        option(value='EH') Western Sahara
+                                                        option(value='YE') Yemen
+                                                        option(value='ZM') Zambia
+                                                        option(value='ZW') Zimbabwe
+                                                    i
+                                            section(class='col-xs-4')
+                                                label(class='input')
+                                                    input(type='text' name='distrito' placeholder='Distrito')
+                                            section(class = 'col-xs-4')
+                                                label(class='input')
+                                                    input(type='text' name='concelho' placeholder='Concelho')
+                                            section(class='col-xs-3')
+                                                label(class='input')
+                                                    input(type='text' name='codpost' placeholder='Codigo Postal' pattern='[0-9]{4}-[0-9]{3}$')
+                                            section(class='col-xs-7')
+                                                label(class='input')
+                                                    input(type='text' name='freguesia' placeholder='Freguesia')
                                         
-                                        <section>
-                                            <label class="input">
-                                                <input type="text" name="morada" placeholder="Morada">
-                                            </label>
-                                        </section>
+                                        section
+                                            label(class='input')
+                                                input(type='text' name='morada' placeholder='Morada')
                                         
-                                        <section>
-                                            <label class="textarea">
-                                                <textarea rows="3" name="info" placeholder="Informação Adicional"></textarea>
-                                            </label>
-                                        </section>
-                                        <section>
-                                            <section>
-                                                <a class="btn btn-base btn-icon btn-icon-right pull-right" href="#" style="width: 150px;">Registar Agora</a>
-                                            </section>
-                                        </section>
-                                    </fieldset>
-                                </form> 
-                            </div>
-                            <div class="form-footer">
-                                <p>Porque é que preciso de uma conta? <a href="#">Click aqui para descobrir.</a></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+                                        section
+                                            label(class='textarea')
+                                                textarea(rows='3' name='info' placeholder='Informação Adicional')
+                                        section
+                                            section
+                                                a(class='btn btn-base btn-icon btn-icon-right pull-right' href='#' style='width: 150px;') Registar Agora
+                            div(class='form-footer')
+                                p Porque é que preciso de uma conta? a href='#')Click aqui para descobrir.
 
