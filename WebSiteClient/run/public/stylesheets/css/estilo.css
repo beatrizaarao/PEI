@@ -17,7 +17,7 @@ figure.foto-legenda img{
     padding: 30px;
 }
 .inical-page{
-    background-image: url('../../images/inicial-page2.jpg');
+    background-image: url('/../../images/inicial-page2.jpg');
     background-repeat: no-repeat;
     background-size: 100%;
     background-size: cover;

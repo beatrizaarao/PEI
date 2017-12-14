@@ -2,39 +2,35 @@ doctype html
 html
   head
     meta(charset='utf-8')
-    meta(name='viewport' content='')
-    meta(name='viewport' content='width=device-width, initial-scale=1.0')
-    meta(name='robots' content='index, follow')
+    meta(name='viewport', content='')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(name='robots', content='index, follow')
 
     title= title
 
-    <!-- Essential styles -->
-    link(rel='stylesheet' href='../public/assets/bootstrap/css/bootstrap.min.css' type='text/css')
-    link(rel='stylesheet' href='../public/font-awesome/css/font-awesome.min.css' type='text/css')
-    link(rel='stylesheet' href='../public/assets/fancybox/jquery.fancybox.css?v=2.1.5' media='screen')
+    link(rel='stylesheet', href='/assets/bootstrap/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/font-awesome/css/font-awesome.min.css')
+    link(rel='stylesheet', href='/assets/fancybox/jquery.fancybox.css?v=2.1.5')
 
-    <!-- Boomerang styles -->
-    link(id='wpStylesheet' type='text/css' href='../public/stylesheets/css/global-style-flat.css' rel='stylesheet' media='screen')
 
-    <!-- Favicon -->
-    link(href='run/public/images/images/favicon.png' rel='icon' type='image/png')
+    link(rel='stylesheet', href='/stylesheets/css/global-style-flat.css')
 
-    <!-- Assets -->
-    link(rel='stylesheet' href='../public/assets/owl-carousel/owl.carousel.css')
-    link(rel='stylesheet' href='../public/assets/owl-carousel/owl.theme.css')
-    link(rel='stylesheet' href='../public/assets/sky-forms/css/sky-forms.css')
-    link(rel='stylesheet' href='../public/stylesheets/css/estilo.css')
-    <!--[if lt IE 9]>
-    link(rel='stylesheet' href='../public/assets/sky-forms/css/sky-forms-ie8.css')
-    <![endif]-->
 
-    <!-- Required JS -->
-    script(src='../public/javascripts/js/estilojs.js')
-    script(src='../public/javascripts/js/OpCompTecido.js')
-    script(src='../public/javascripts/js/jquery.js')
-    script(src='../public/javascripts/js/jquery-ui.min.js')
+    link(rel='stylesheet', href='/assets/owl-carousel/owl.carousel.css')
+    link(rel='stylesheet', href='/assets/owl-carousel/owl.theme.css')
+    link(rel='stylesheet', href='/assets/sky-forms/css/sky-forms.css')
+    link(rel='stylesheet', href='/stylesheets/css/estilo.css')
 
-    <!-- Page scripts -->
+    link(rel='stylesheet', href='/assets/sky-forms/css/sky-forms-ie8.css')
+
+
+
+    script(src='/javascripts/js/estilojs.js')
+    script(src='/javascripts/js/OpCompTecido.js')
+    script(src='/javascripts/js/jquery.js')
+    script(src='/javascripts/js/jquery-ui.min.js')
+
+
 
   body
     block content
@@ -96,55 +92,55 @@ html
                     a(href='#') Termos e Condições
                     div(class='col-lg-3')
                         a(href='http://www.webpixels.ro' title='Made with love by Web Pixels' target='_blank')
-                        img(src='../public/images/images/uniline.png' alt='Web Pixels - Designing Forward | Logo' class='pull-right col-xs-5')
+                        img(src='/images/images/uniline.png' alt='Web Pixels - Designing Forward | Logo' class='pull-right col-xs-5')
 
-<!-- Essentials -->
-script(src='../public/javascripts/js/modernizr.custom.js')
-script(src='../public/assets/bootstrap/js/bootstrap.min.js')
-script(src='../public/javascripts/js/jquery.mousewheel-3.0.6.pack.js')
-script(src='../public/javascripts/js/jquery.easing.js')
-script(src='../public/javascripts/js/jquery.metadata.js')
-script(src='../public/javascripts/js/jquery.hoverup.js')
-script(src='../public/javascripts/js/jquery.hoverdir.js')
-script(src='../public/javascripts/js/jquery.stellar.js')
 
-<!-- Boomerang mobile nav - Optional  -->
-script(src='../public/assets/responsive-mobile-nav/js/jquery.dlmenu.js')
-script(src='../public/assets/responsive-mobile-nav/js/jquery.dlmenu.autofill.js')
+script(src='/javascripts/js/modernizr.custom.js')
+script(src='/assets/bootstrap/js/bootstrap.min.js')
+script(src='/javascripts/js/jquery.mousewheel-3.0.6.pack.js')
+script(src='/javascripts/js/jquery.easing.js')
+script(src='/javascripts/js/jquery.metadata.js')
+script(src='/javascripts/js/jquery.hoverup.js')
+script(src='/javascripts/js/jquery.hoverdir.js')
+script(src='/javascripts/js/jquery.stellar.js')
 
-<!-- Forms -->
-script(src='../public/assets/ui-kit/js/jquery.powerful-placeholder.min.js')
-script(src='../public/assets/ui-kit/js/cusel.min.js')
-script(src='../public/assets/sky-forms/js/jquery.form.min.js')
-script(src='../public/assets/sky-forms/js/jquery.validate.min.js')
-script(src='../public/assets/sky-forms/js/jquery.maskedinput.min.js')
-script(src='../public/assets/sky-forms/js/jquery.modal.js')
 
-<!-- Assets -->
-script(src='../public/assets/hover-dropdown/bootstrap-hover-dropdown.min.js')
-script(src='../public/assets/page-scroller/jquery.ui.totop.min.js')
-script(src='../public/assets/mixitup/jquery.mixitup.js')
-script(src='../public/assets/mixitup/jquery.mixitup.init.js')
-script(src='../public/assets/fancybox/jquery.fancybox.pack.js?v=2.1.5')
-script(src='../public/assets/waypoints/waypoints.min.js')
-script(src='../public/assets/milestone-counter/jquery.countTo.js')
-script(src='../public/assets/easy-pie-chart/js/jquery.easypiechart.js')
-script(src='../public/assets/social-buttons/js/rrssb.min.js')
-script(src='../public/assets/nouislider/js/jquery.nouislider.min.js')
-script(src='../public/assets/owl-carousel/owl.carousel.js')
-script(src='../public/assets/bootstrap/js/tooltip.js')
-script(src='../public/assets/bootstrap/js/popover.js')
+script(src='/assets/responsive-mobile-nav/js/jquery.dlmenu.js')
+script(src='/assets/responsive-mobile-nav/js/jquery.dlmenu.autofill.js')
 
-<!-- Boomerang App JS -->
-script(src='../public/javascripts/js/wp.app.js')
-<!--[if lt IE 9]>
-script(src='../public/javascripts/js/html5shiv.js')
-script(src='../public/javascripts/js/respond.min.js')
-<![endif]--)
 
-<!-- Temp -- You can remove this once you started to work on your project --)
-script(src='../public/javascripts/js/jquery.cookie.js')
-script(src='../public/javascripts/js/wp.switcher.js')
-script(type='text/javascript', src='../public/javascripts/js/wp.ga.js')
+script(src='/assets/ui-kit/js/jquery.powerful-placeholder.min.js')
+script(src='/assets/ui-kit/js/cusel.min.js')
+script(src='/assets/sky-forms/js/jquery.form.min.js')
+script(src='/assets/sky-forms/js/jquery.validate.min.js')
+script(src='/assets/sky-forms/js/jquery.maskedinput.min.js')
+script(src='/assets/sky-forms/js/jquery.modal.js')
+
+
+script(src='/assets/hover-dropdown/bootstrap-hover-dropdown.min.js')
+script(src='/assets/page-scroller/jquery.ui.totop.min.js')
+script(src='/assets/mixitup/jquery.mixitup.js')
+script(src='/assets/mixitup/jquery.mixitup.init.js')
+script(src='/assets/fancybox/jquery.fancybox.pack.js?v=2.1.5')
+script(src='/assets/waypoints/waypoints.min.js')
+script(src='/assets/milestone-counter/jquery.countTo.js')
+script(src='/assets/easy-pie-chart/js/jquery.easypiechart.js')
+script(src='/assets/social-buttons/js/rrssb.min.js')
+script(src='/assets/nouislider/js/jquery.nouislider.min.js')
+script(src='/assets/owl-carousel/owl.carousel.js')
+script(src='/assets/bootstrap/js/tooltip.js')
+script(src='/assets/bootstrap/js/popover.js')
+
+
+script(src='/javascripts/js/wp.app.js')
+
+script(src='/javascripts/js/html5shiv.js')
+script(src='/javascripts/js/respond.min.js')
+
+
+
+script(src='/javascripts/js/jquery.cookie.js')
+script(src='/javascripts/js/wp.switcher.js')
+script(type='text/javascript', src='/javascripts/js/wp.ga.js')
 
 

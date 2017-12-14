@@ -1,15 +1,13 @@
 extends layout
 
 block content
-    h1= title
-    p Welcome to #{title}
 
     <!-- MAIN CONTENT -->
     div(class='pg-opt')
         div(class='container')
             div(class='row')
                 div(class='col-md-6')
-                    h2)Inicio de Sessão/h2)
+                    h2 Inicio de Sessão
                 div(class='col-md-6')
                     ol(class='breadcrumb')
                         li
@@ -17,7 +15,7 @@ block content
     section(class='slice bg-white')
          div(class='wp-section')
             div(class='container')
-                <!-- Checkout process - Progress bar --)
+                //!-- Checkout process - Progress bar --
                 ol(class='progtrckr hidden-xs' data-progtrckr-steps='7')
                     li(class='progtrckr-todo') Inicio de Secção
                     li(class='progtrckr-todo') Definição do Produto
@@ -39,21 +37,22 @@ block content
                                                 label(class='label') NIF
                                                 label(class='input')
                                                     i(class='icon-append fa fa-user')
-                                                    input(type='text' name='nif' pattern='[0-9]{9}$')
+                                                        input(type='text' name='nif' pattern='[0-9]{9}$')
                                         section
                                             div(class='form-group')
                                                 label(class='label') Password
                                                 label(class='input')
                                                     i(class='icon-append fa fa-lock')
-                                                    input(type='password' name='password')
+                                                        input(type='password' name='password')
                                         section
                                             div(class='row')
                                                 div(class='col-md-12')
                                                     label(class='checkbox')
-                                                    input(type='checkbox' name='remember' checked): i Manter-me ligado
+                                                        input(type='checkbox' name='remember' checked='true')
+                                                        i Manter-me ligado
 
                                         section
-                                            input(type='button' class='btn btn-base btn-icon btn-icon-right pull-right' href='prodef.html' style='width: 150px;') Entrar
+                                            input(type='button' class='btn btn-base btn-icon btn-icon-right pull-right' href='order' style='width: 150px;' value="Entrar")
                             div(class='form-footer')
                                 p Perdeu a sua password?
                                     a(href='#') Clique aqui para recupera-la.
