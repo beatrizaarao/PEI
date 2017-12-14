@@ -13,7 +13,7 @@ block content
                 div(class='col-md-6')
                     ol(class='breadcrumb')
                         li
-                            a(href='index.html') Home
+                            a(href='home') Home
     section(class='slice bg-white')
          div(class='wp-section')
             div(class='container')
@@ -32,7 +32,7 @@ block content
                             div(class='form-header')
                                 h2 Iniciar a sessão na sua conta
                             div(class='form-body')
-                                form(action='' id='frmLogin' class='sky-form')
+                                form(action='/signin' id='frmLogin' class='sky-form' method='post' enctype='multipart/form-data')
                                     fieldset
                                         section
                                             div(class='form-group')
@@ -53,7 +53,7 @@ block content
                                                     input(type='checkbox' name='remember' checked): i Manter-me ligado
 
                                         section
-                                            a(class='btn btn-base btn-icon btn-icon-right pull-right' href='prodef.html' style='width: 150px;') Entrar
+                                            input(type='button' class='btn btn-base btn-icon btn-icon-right pull-right' href='prodef.html' style='width: 150px;') Entrar
                             div(class='form-footer')
                                 p Perdeu a sua password?
                                     a(href='#') Clique aqui para recupera-la.
@@ -62,7 +62,7 @@ block content
                             div(class='form-header')
                                 h2 Sou um novo Cliente - Criar uma Conta
                             div(class='form-body')
-                                form(action='' id='frmRegister' class='sky-form')
+                                form(action='/signup' id='frmRegister' class='sky-form' method='post' enctype='multipart/form-data')
                                     fieldset(class='no-padding')
                                         section
                                         section
@@ -118,12 +118,12 @@ block content
                                                     label(class='label') Empresa
                                                     label(class='input')
                                                         i(class='icon-append fa fa-building')
-                                                        input(type='email' name='email' placeholder='')
+                                                        input(type='text' name='ename' placeholder='')
                                                 section(class='col-xs-6')
                                                     label(class='label') Contacto Telefonico
                                                     label(class='input')
                                                         i(class='icon-append fa fa-phone')
-                                                        input(type='tel' name='phone' placeholder='')
+                                                        input(type='text' name='phone' placeholder='' pattern='[0-9]{9}$')
                                     fieldset
                                         div(class='row')
                                             section(class='col-xs-4')
@@ -402,7 +402,8 @@ block content
                                                 textarea(rows='3' name='info' placeholder='Informação Adicional')
                                         section
                                             section
-                                                a(class='btn btn-base btn-icon btn-icon-right pull-right' href='#' style='width: 150px;') Registar Agora
+                                                input(type="button" class='btn btn-base btn-icon btn-icon-right pull-right' style='width: 150px;' value='Registar Agora')
                             div(class='form-footer')
-                                p Porque é que preciso de uma conta? a href='#')Click aqui para descobrir.
+                                p Porque é que preciso de uma conta?
+                                    a(href='#') Click aqui para descobrir.
 
