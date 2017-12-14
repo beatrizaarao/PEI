@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="6dd76bf6-55c6-450c-a9bb-86a19e891395" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebSiteClient/run/views/login-register.pug" afterPath="$PROJECT_DIR$/WebSiteClient/run/views/login-register.pug" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebSiteClient/run/views/prodef.pug" afterPath="$PROJECT_DIR$/WebSiteClient/run/views/prodef.pug" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -20,38 +20,7 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="login-register.pug" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/WebSiteClient/run/views/login-register.pug">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="549">
-              <caret line="408" column="0" lean-forward="true" selection-start-line="408" selection-start-column="0" selection-end-line="408" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="prodef2.pug" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/WebSiteClient/run/views/prodef2.pug">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="28" lean-forward="true" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="prodef.pug" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/WebSiteClient/run/views/prodef.pug">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4080">
-              <caret line="240" column="0" lean-forward="true" selection-start-line="240" selection-start-column="0" selection-end-line="240" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -75,14 +44,16 @@
       <find>/script)</find>
       <find>/option)</find>
       <find>)</find>
+      <find>/[a-z]*\)</find>
+      <find>/option\)</find>
+      <find>option\([a-z='A-Z]*\)</find>
       <find>&lt;</find>
       <find>&gt;</find>
-      <find>&quot;</find>
       <find>class</find>
       <find>/[a-z]*\)</find>
       <find>value</find>
-      <find>/option\)</find>
-      <find>option\([a-z='A-Z]*\)</find>
+      <find>&quot;</find>
+      <find>option\([a-zA-Z='0-9]*\)</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -110,6 +81,7 @@
         <option value="$PROJECT_DIR$/WebSiteClient/run/views/prodef2.pug" />
         <option value="$PROJECT_DIR$/WebSiteClient/run/views/index.pug" />
         <option value="$PROJECT_DIR$/WebSiteClient/run/views/login-register.pug" />
+        <option value="$PROJECT_DIR$/WebSiteClient/run/views/prodef.pug" />
       </list>
     </option>
   </component>
@@ -359,7 +331,7 @@
       <updated>1511864584477</updated>
       <workItem from="1511864590400" duration="5438000" />
       <workItem from="1513182967422" duration="3346000" />
-      <workItem from="1513208080271" duration="9101000" />
+      <workItem from="1513208080271" duration="10733000" />
     </task>
     <task id="LOCAL-00001" summary="- configurei a aplicação WebSiteClient para funcionar com o node.js&#10;">
       <created>1513184112459</created>
@@ -382,17 +354,24 @@
       <option name="project" value="LOCAL" />
       <updated>1513215311823</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="proddef para pug entre outros">
+      <created>1513219890481</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1513219890481</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17885000" />
+    <option name="totallyTimeSpent" value="19517000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1376" height="744" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24962631" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24962631" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -634,26 +613,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/WebSiteClient/run/views/prodef2.pug">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="28" lean-forward="true" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/WebSiteClient/run/views/prodef.pug">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4080">
-          <caret line="240" column="0" lean-forward="true" selection-start-line="240" selection-start-column="0" selection-end-line="240" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="85">
+          <caret line="5" column="4" lean-forward="false" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
+          <folding>
+            <element signature="n#select#0;n#label#0;n#div#0;n#div#0;n#div#0;n#fieldset#0;n#form#0;n#div#0;n#div#0;n#div#1;n#div#0;n#section#0;n#!!top" expanded="false" />
+            <element signature="n#select#0;n#label#0;n#div#0;n#div#1;n#div#0;n#fieldset#0;n#form#0;n#div#0;n#div#0;n#div#1;n#div#0;n#section#0;n#!!top" expanded="false" />
+            <element signature="n#div#2;n#fieldset#0;n#form#0;n#div#0;n#div#0;n#div#1;n#div#0;n#section#0;n#!!top" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/WebSiteClient/run/views/login-register.pug">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="549">
-          <caret line="408" column="0" lean-forward="true" selection-start-line="408" selection-start-column="0" selection-end-line="408" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebSiteClient/run/views/prodef2.pug">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="28" lean-forward="true" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
+        <state relative-caret-position="306">
+          <caret line="18" column="34" lean-forward="true" selection-start-line="18" selection-start-column="34" selection-end-line="18" selection-end-column="34" />
           <folding />
         </state>
       </provider>

@@ -1,240 +1,191 @@
+extends layout
+
+block content
+    h1= title
+    p Welcome to #{title}
 
 <!-- MAIN CONTENT -->
-<div class="pg-opt">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <h2>Definição do Produto</h2>
-            </div>
-            <div class="col-md-6">
-                <ol class="breadcrumb">
-                    <li><a href="index.html">Home</a></li>
-                </ol>
-            </div>
-        </div>
-    </div>
-</div>
+    div(class='pg-opt')
+        div(class='container')
+            div(class='row')
+                div(class='col-md-6')
+                    h2 Definição do Produto
+                div(class='col-md-6')
+                    ol(class='breadcrumb')
+                        li
+                            a(href='index.html')Home
 
-<section class="slice bg-white">
-    <div class="wp-section">
-        <div class="container">
-            <!-- Checkout process - Progress bar -->
-            <ol class="progtrckr hidden-xs" data-progtrckr-steps="7">
-                <li class="progtrckr-done" id="step0">Inicio de Secção</li>
-                <li class="progtrckr-todo" id="step1">Definição do Produto</li>
-                <li class="progtrckr-todo" id="step2">Preparação</li>
-                <li class="progtrckr-todo" id="step3">Tinturaria</li>
-                <li class="progtrckr-todo" id="step4">Acabamentos</li>
-                <li class="progtrckr-todo" id="step5">Embalagem</li>
-                <li class="progtrckr-todo" id="step6">Prazos e Morada</li>
-            </ol>
-
-            <div class="row">
-                    <div class="wp-block default user-form">
-                        <div class="form-body">
-                            <form action="" id="frmDefProd" class="sky-form">
-                                <fieldset class="no-padding">
-                                    <h1>Definição do Produto</h1>
-                                                    <h2>Composição</h2>
-                                                    <div class="row">
-                                                    <div class="col-xs-6">
-                                                        <div class="form-group">
-                                                            <label class="select">
-                                                                <select name="CompNome" id="CompNome" onchange="compNome(), listaPonto(), containsPoli()">
-                                                                    <option value="0" selected="" disabled="">Nome</option>
-                                                                    <option value="1">ANARRUGA</option>
-                                                                    <option value="2">BRIM</option>
-                                                                    <option value="3">CAMBRAIA</option>
-                                                                    <option value="4">CETIM	</option>
-                                                                    <option value="5">CHAMOIX</option>
-                                                                    <option value="6">CHARMEUSE</option>
-                                                                    <option value="7">CHENILLE</option>
-                                                                    <option value="8">CHIFFON</option>
-                                                                    <option value="9">COTTON</option>
-                                                                    <option value="10">CREPE</option>
-                                                                    <option value="11">CREPINE</option>
-                                                                    <option value="12">CRETONE</option>
-                                                                    <option value="13">DIOLENE</option>
-                                                                    <option value="14">ESCALINE</option>
-                                                                    <option value="15">FELTRO</option>
-                                                                    <option value="16">FILÓ</option>
-                                                                    <option value="17">FLANELA</option>
-                                                                    <option value="18">FUSTÃO</option>
-                                                                    <option value="19">GABARDINE</option>
-                                                                    <option value="20">GAZAR</option>
-                                                                    <option value="21">GORGURÃO</option>
-                                                                    <option value="22">JACQUARD</option>
-                                                                    <option value="23">JEANS</option>
-                                                                    <option value="24">JERSEY</option>
-                                                                    <option value="25">JUTA</option>
-                                                                    <option value="26">LAISE</option>
-                                                                    <option value="27">LAMÊ</option>
-                                                                    <option value="28">LINHÃO</option>
-                                                                    <option value="29">LINHO</option>
-                                                                    <option value="30">LOUREX</option>
-                                                                    <option value="31">MICROVISCOSE</option>
-                                                                    <option value="32">MICROFIBRA</option>
-                                                                    <option value="33">MICROTULE</option>
-                                                                    <option value="34">MORIM</option>
-                                                                    <option value="35">MUSSELINE</option>
-                                                                    <option value="36">NYLON</option>
-                                                                    <option value="37">ORGANZA</option>
-                                                                    <option value="38">OXFORD</option>
-                                                                    <option value="39">PERCAL</option>
-                                                                    <option value="40">PIQUET</option>
-                                                                    <option value="41">POPELINE</option>
-                                                                    <option value="42">SARJA</option>
-                                                                    <option value="43">SEDA</option>
-                                                                    <option value="44">SHANTUNG</option>
-                                                                    <option value="45">TAC-TEL</option>
-                                                                    <option value="46">TAFETÁ</option>
-                                                                    <option value="47">TERGAL</option>
-                                                                    <option value="48">TIE-DYE</option>
-                                                                    <option value="49">TNT</option>
-                                                                    <option value="50">TRICOLEX</option>
-                                                                    <option value="51">TRICOLINE</option>
-                                                                    <option value="52">TUNIL K</option>
-                                                                    <option value="53">TWEED</option>
-                                                                    <option value="54">VELUDINE</option>
-                                                                    <option value="55">VELUDO</option>
-                                                                    <option value="56">VISCOFAILLE</option>
-                                                                    <option value="57">VISCOSE</option>
-                                                                    <option value="58">VOIL</option>
-                                                                    <option value="59">AIRSTRECH</option>
-                                                                    <option value="60">DRY FIT</option>
-                                                                    <option value="61">ENERGY</option>
-                                                                    <option value="62">FORRO</option>
-                                                                    <option value="63">HELANCA</option>
-                                                                    <option value="64">LIGANETE</option>
-                                                                    <option value="65">LENATEX</option>
-                                                                    <option value="66">MALHAS</option>
-                                                                    <option value="67">MOLETOM</option>
-                                                                    <option value="68">TULE</option>
-                                                                    <option value="69">VISCOLYCRA</option>
-                                                                </select>
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                        <div class="col-xs-6">
-                                                            <div class="form-group">
-                                                                <label class="select">
-                                                                    <select name="CompComp" id="CompComp" onchange="containsPoli()">
-                                                                        <option value="0" selected="" disabled="">Composição</option>
-                                                                    </select>
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                </div>
-                                                <h2>Ponto</h2>
-                                                    <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label class="select">
-                                                                <select name="CompComp" id="OpPonto">
-                                                                    <option value="0" selected="" disabled="">Ponto</option>
-                                                                </select>
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                    </div>
-                                                <h2>Peso, Lagura e Quantidade</h2>
-                                                <div class="row">
-                                                    <section class="col-xs-2">
-                                                        <label>Peso do tecido</label>
-                                                        <label class="input">
-                                                            <input type="number" name="peso" placeholder="Peso" min="50" max="500">g/m &sup2
-                                                        </label>
-                                                    </section>
-                                                    <section class="col-xs-2">
-                                                        <label>largura inicial do tedico</label>
-                                                        <label class="input">
-                                                            <input type="number" name="largurai" placeholder="Largura Inicial" min="50" max="380">m &sup2
-                                                        </label>
-                                                    </section>
-                                                    <section class="col-xs-2">
-                                                        <label>largura final do tedico</label>
-                                                        <label class="input">
-                                                            <input type="number" name="larguraf" placeholder="Largura Final" min="50" max="380">m &sup2
-                                                        </label>
-                                                    </section>
-                                                    <section class="col-xs-4">
-                                                        <label>Quantidade de Tecido a Trabalhar </label>
-                                                        <label class="input">
-                                                            <input type="text" name="qunatidade" placeholder="Quantidade"  onchange="updateStepone()">
-                                                        </label>
-                                                    </section>
-                                                    <section class="col-xs-1">
-                                                        <label></label>
-                                                        <label class="select">
-                                                            <select name="QuantUnit" id="QuantUnit">
-                                                                <option value="0" selected="">T</option>
-                                                                <option value="1">Kg</option>
-                                                                <option value="2">g</option>
-                                                                <option value="3">mg</option>
-                                                            </select>
-                                                        </label>
-                                                    </section>
-                                                </div>
-                                    <h2>Caderno de Encargos</h2>
-                                                <div class="row">
-                                                    <section class="textarea">
-                                                        <label class="textarea">
-                                                            <textarea rows="3" name="info" placeholder="Informação Adicional"></textarea>
-                                                        </label>
-                                                    </section>
-                                                </div>
-
-                                    <hr>
-                                    <hr>
-                                    <h2>Preparação</h2>
-                                    <div class="row">
-                                        <div class="col-xs-3">
-                                            <label class="checkbox"><input type="checkbox" name="gazar"  onchange="updateSteptwo()"><i></i>Gazar</label>
-                                        </div>
-                                        <div class="col-xs-3" id="branquearg">
-                                            <label class="checkbox"><input type="checkbox" name="branquear" id="branquear"  onchange="changeOpone(), updateSteptwo()"><i></i>Branquear</label>
-                                        </div>
-                                        <div class="col-xs-3">
-                                            <label class="checkbox"><input type="checkbox" name="lavar" id="lavar" onchange="changeOponed(), updateSteptwo()"><i></i>Lavar</label>
-                                        </div>
-                                        <div class="col-xs-3">
-                                            <label class="checkbox"><input type="checkbox" name="mercerizar" id="mercerizar"   onchange="updateSteptwo()"><i></i>Mercerizar</label>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <hr>
-                                    <h2>Tinturaria</h2>
-                                    <div class="row" id="tintasg">
-                                        <div class="col-xs-3" >
-                                            <label class="checkbox"><input type="checkbox" name="Reativos" id="Reativos"  onchange="updateSteptre(), changetintd()"><i></i>Reativos</label>
-                                        </div>
-                                        <div class="col-xs-3">
-                                            <label class="checkbox"><input type="checkbox" name="Cubas" id="Cubas" onchange="changetintdd(), updateSteptre()"><i></i>Cubas</label>
-                                        </div>
-                                        <div class="col-xs-3">
-                                            <label class="checkbox"><input type="checkbox" name="Pigmentos" id="Pigmentos"   onchange="updateSteptre(), changetintddd()"><i></i>Pigmentos</label>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                    </br>
-                                    <section class="col-xs-5">
-                                        <label>Pantone</label>
-                                        <label class="input">
-                                            <input type="text" name="pantone" placeholder="Inisira aqui o codigo do Pantone que quer aplicar como cor" onchange="updateSteptre">
-                                        </label>
-                                    </section>
-                                    </div>
-                                    <hr>
-                                    </br>
-                                    <section>
-                                        <a class="btn btn-base btn-icon btn-icon-right pull-right" href="prodef2.html" style="width: 150px;">Proximo Passo</a>
-                                    </section>
-                                </fieldset>
-                            </form>
-                        </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
+    section(class='slice bg-white')
+        div(class='wp-section')
+            div(class='container')
+            <!-- Checkout process - Progress bar --)
+                ol(class='progtrckr hidden-xs' data-progtrckr-steps='7')
+                    li(class='progtrckr-done' id='step0') Inicio de Secçã
+                    li(class='progtrckr-todo' id='step1') Definição do Produt
+                    li(class='progtrckr-todo' id='step2') Preparaçã
+                    li(class='progtrckr-todo' id='step3') Tinturari
+                    li(class='progtrckr-todo' id='step4') Acabamento
+                    li(class='progtrckr-todo' id='step5') Embalage
+                    li(class='progtrckr-todo' id='step6') Prazos e Morad
+                div(class='row')
+                    div(class='wp-block default user-form')
+                        div(class='form-body')
+                            form(action='' id='frmDefProd' class='sky-form')
+                                fieldset(class='no-padding')
+                                    h1 Definição do Produto
+                                    h2 Composição
+                                    div(class='row')
+                                        div(class='col-xs-6')
+                                            div(class='form-group')
+                                                label(class='select')
+                                                    select(name='CompNome' id='CompNome' onchange='compNome(), listaPonto(), containsPoli()')
+                                                        option(value='0' selected='' disabled='') Nome
+                                                        option(value='1') ANARRUG
+                                                        option(value='2') BRIM
+                                                        option(value='3') CAMBRAIA
+                                                        option(value='4') CETIM
+                                                        option(value='5') CHAMOI
+                                                        option(value='6') CHARMEUS
+                                                        option(value='7') CHENILL
+                                                        option(value='8') CHIFFO
+                                                        option(value='9') COTTO
+                                                        option(value='10') CREP
+                                                        option(value='11') CREPIN
+                                                        option(value='12') CRETON
+                                                        option(value='13') DIOLEN
+                                                        option(value='14') ESCALIN
+                                                        option(value='15') FELTR
+                                                        option(value='16') FIL
+                                                        option(value='17') FLANEL
+                                                        option(value='18') FUSTÃ
+                                                        option(value='19') GABARDIN
+                                                        option(value='20') GAZA
+                                                        option(value='21') GORGURÃ
+                                                        option(value='22') JACQUAR
+                                                        option(value='23') JEAN
+                                                        option(value='24') JERSE
+                                                        option(value='25') JUT
+                                                        option(value='26') LAIS
+                                                        option(value='27') LAM
+                                                        option(value='28') LINHÃ
+                                                        option(value='29') LINH
+                                                        option(value='30') LOURE
+                                                        option(value='31') MICROVISCOS
+                                                        option(value='32') MICROFIBR
+                                                        option(value='33') MICROTUL
+                                                        option(value='34') MORI
+                                                        option(value='35') MUSSELIN
+                                                        option(value='36') NYLO
+                                                        option(value='37') ORGANZ
+                                                        option(value='38') OXFOR
+                                                        option(value='39') PERCA
+                                                        option(value='40') PIQUE
+                                                        option(value='41') POPELIN
+                                                        option(value='42') SARJ
+                                                        option(value='43') SED
+                                                        option(value='44') SHANTUN
+                                                        option(value='45') TAC-TE
+                                                        option(value='46') TAFET
+                                                        option(value='47') TERGA
+                                                        option(value='48') TIE-DY
+                                                        option(value='49') TN
+                                                        option(value='50') TRICOLE
+                                                        option(value='51') TRICOLIN
+                                                        option(value='52') TUNIL
+                                                        option(value='53') TWEE
+                                                        option(value='54') VELUDIN
+                                                        option(value='55') VELUD
+                                                        option(value='56') VISCOFAILL
+                                                        option(value='57') VISCOS
+                                                        option(value='58') VOI
+                                                        option(value='59') AIRSTREC
+                                                        option(value='60') DRY FI
+                                                        option(value='61') ENERG
+                                                        option(value='62') FORR
+                                                        option(value='63') HELANC
+                                                        option(value='64') LIGANE
+                                                        option(value='65') LENAT
+                                                        option(value='66') MALHA
+                                                        option(value='67') MOLETO
+                                                        option(value='68') TUL
+                                                        option(value='69') VISCOLYC
+                                        div(class='col-xs-6')
+                                            div(class='form-group')
+                                                label(class='select')
+                                                    select(name='CompComp' id='CompComp' onchange='containsPoli()')
+                                                        option(value='0' selected='' disabled='') Composiçã
+                                    h2 Ponto
+                                    div(class='row')
+                                        div(class='col-md-6')
+                                            div(class='form-group')
+                                                label(class='select')
+                                                    select name='CompComp' id='OpPonto')
+                                                        option(value='0' selected='' disabled='') Ponto
+                                    h2 Peso, Lagura e Quantidade/h2
+                                    div(class='row')
+                                        section(class='col-xs-2')
+                                            label Peso do tecid
+                                                label(class='input')
+                                                    input(type='number' name='peso' placeholder='Peso' min='50' max='500') g/m &sup2
+                                                    section(class='col-xs-2')
+                                                        label largura inicial do tedic
+                                                        label(class='input')
+                                                            input(type='number' name='largurai' placeholder='Largura Inicial' min='50' max='380')m &sup2
+                                                    section(class='col-xs-2')
+                                                        label largura final do tedic
+                                                        label(class='input')
+                                                            input(type='number' name='larguraf' placeholder='Largura Final' min='50' max='380')m &sup2
+                                                    section(class='col-xs-4')
+                                                        label Quantidade de Tecido a Trabalhar
+                                                        label(class='input')
+                                                            input(type='text' name='qunatidade' placeholder='Quantidade'  onchange='updateStepone()')
+                                                    section(class='col-xs-1')
+                                                        label
+                                                        label(class='select')
+                                                            select(name='QuantUnit' id='QuantUnit')
+                                                                option(value='0' selected='')T
+                                                                option(value='1') K
+                                                                option(value='2') g
+                                                                option(value='3') mg
+                                    h2)Caderno de Encargos/h2)
+                                    div(class='row')
+                                        section(class='textarea')
+                                            label(class='textarea')
+                                                textarea(rows='3' name='info' placeholder='Informação Adicional')
+                                    hr
+                                    hr
+                                    h2 Preparação
+                                    div(class='row')
+                                        div(class='col-xs-3')
+                                            label(class='checkbox')
+                                                input(type='checkbox' name='gazar'  onchange='updateSteptwo()'): i Gaza
+                                        div(class='col-xs-3' id='branquearg')
+                                            label(class='checkbox')
+                                                input(type='checkbox' name='branquear' id='branquear' onchange='changeOpone(), updateSteptwo()'): i Branquea
+                                        div(class='col-xs-3')
+                                            label(class='checkbox')
+                                                input(type='checkbox' name='lavar' id='lavar' onchange='changeOponed(), updateSteptwo()'): i Lava
+                                        div(class='col-xs-3')
+                                            label(class='checkbox')
+                                                input(type='checkbox' name='mercerizar' id='mercerizar' onchange='updateSteptwo()'): i Merceriza
+                                    hr
+                                    hr
+                                    h2 Tinturaria
+                                    div(class='row' id='tintasg')
+                                        div(class='col-xs-3' )
+                                            label(class='checkbox')
+                                                input(type='checkbox' name='Reativos' id='Reativos'  onchange='updateSteptre(), changetintd()'): i Reativo
+                                        div(class='col-xs-3')
+                                            label(class='checkbox')
+                                                input(type='checkbox' name='Cubas' id='Cubas' onchange='changetintdd(), updateSteptre()'): i Cuba
+                                        div(class='col-xs-3')
+                                            label(class='checkbox')
+                                            input(type='checkbox' name='Pigmentos' id='Pigmentos' onchange='updateSteptre(), changetintddd()'): i Pigmento
+                                    div(class='row')
+                                        section(class='col-xs-5')
+                                            label Panton
+                                            label(class='input')
+                                                input(type='text' name='pantone' placeholder='Inisira aqui o codigo do Pantone que quer aplicar como cor' onchange='updateSteptre')
+                                    hr
+                                    section
+                                        a(class='btn btn-base btn-icon btn-icon-right pull-right' href='prodef2.html' style='width: 150px;') Proximo Pass
