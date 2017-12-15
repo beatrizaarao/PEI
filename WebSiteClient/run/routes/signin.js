@@ -20,7 +20,7 @@ router.post('/',function(req,res,next) {
           // nao é suposto haver mais do que um resultado
           if(docs[0].password === fields.password){
             res.cookie('online', fields.username)
-            res.redirect('/orer')
+            res.redirect('/order')
           }
           else{
             res.render('lr', { title: 'Login' , status: 'Password errada para o utilizador inserido'});

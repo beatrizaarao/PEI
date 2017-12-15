@@ -15,21 +15,11 @@ router.post('/',function(req,res,next) {
   var status=""
   
   form.parse(req,function(err,fields,files){
-    console.log(JSON.stringify(fields))
-    //verificar se todos os campos obrigatorios foram preenchidos
-    var requiredFields = Object.keys(user.schema.tree).filter(x in user.schema.tree[x].required === true)
-    var emptyField = false
-    for(f in requiredFields){
-      if(fields[requiredFields[f]] === undefined)
-        emptyField=true
-    }
-    if(emptyField){
-      status="Por favor preencha todos os campos obrigatórios"
-      res.render('lr',{ title: 'Signup' , status: status  });
-    }
-    else{
+
+      console.log(JSON.stringify(fields))
+
       //verificar se já existe algum utilizador com o username inserido no formulário
-      user.find({'username': fields.username},function(err2,docs){
+      user.find({'nif': fields.nif},function(err2,docs){
         if(!err2){
           if(docs.length === 0){
             if(fields.password!=fields.cpassword){
@@ -44,7 +34,7 @@ router.post('/',function(req,res,next) {
                   pnome: fields.fname,
                   unome: fields.lname,
                   ename: fields.ename,
-                  phone: fileds.phone,
+                  phone: fields.phone,
                   country: fields.country,
                   distrito: fields.distrito,
                   concelho: fields.concelho,
@@ -55,7 +45,7 @@ router.post('/',function(req,res,next) {
               }).save(function(err3, doc){
                 if(!err3){
                   status="Registo Efetuado com sucesso."
-                  res.redirect("/signin")
+                  res.redirect("/order")
                 }
                 else{
                   console.log("Erro ao efetuar o registo:\r\n" + err +"\r\n\r\n");
@@ -67,19 +57,18 @@ router.post('/',function(req,res,next) {
             }
           }
           else{
-            res.render('lr',{title: 'Signup',
-                                      status: 'Já existe um utilizador com esse username'})
+            res.render('lr',{title: 'Signup', status: 'Já existe um utilizador com esse nif'})
           }
         }
         else{
-          console.log("Erro a adicionar utilizador: "+err2)
+          console.log("Erro a adicionar utilizador: " + err2)
           res.render('lr',{title: 'Signup',
                                     status: 'Ocorreu um erro, por favor tente novamente'})
         }
       })
-    } 
+
   })
-  
+
 })
 
 module.exports = router;
