@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
     res.redirect('/sigin')
   }
   else{
-    res.redirect('/')
+    res.redirect('/prodef')
   }
 });
 
