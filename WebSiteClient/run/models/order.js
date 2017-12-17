@@ -19,4 +19,4 @@ var SchemaOrder= new Schema({
     moradaeprazos:{type: [String]}
 })
 
-module.exports = mongoose.model('orders',SchemaUser)
+module.exports = mongoose.model('orders',SchemaOrder)

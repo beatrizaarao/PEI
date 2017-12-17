@@ -1,10 +1,9 @@
 extends layout
 
 block content
-    h1= title
-    p Welcome to #{title}
 
-<!-- MAIN CONTENT -->
+
+
     div(class='pg-opt')
         div(class='container')
             div(class='row')
@@ -13,12 +12,12 @@ block content
                 div(class='col-md-6')
                     ol(class='breadcrumb')
                         li
-                            a(href='index.html')Home
+                            a(href='index.html') Home
 
     section(class='slice bg-white')
         div(class='wp-section')
             div(class='container')
-            <!-- Checkout process - Progress bar --)
+
                 ol(class='progtrckr hidden-xs' data-progtrckr-steps='7')
                     li(class='progtrckr-done' id='step0') Inicio de Secçã
                     li(class='progtrckr-todo' id='step1') Definição do Produt
@@ -125,25 +124,28 @@ block content
                                     div(class='row')
                                         section(class='col-xs-2')
                                             label Peso do tecido
-                                                label(class='input')
-                                                    input(type='number' name='peso' placeholder='Peso' min='50' max='500') g/m &sup2
-                                                    section(class='col-xs-2')
-                                                        label largura inicial do tedic
-                                                        label(class='input')
-                                                            input(type='number' name='largurai' placeholder='Largura Inicial' min='50' max='380')m &sup2
-                                                    section(class='col-xs-2')
-                                                        label largura final do tedic
-                                                        label(class='input')
-                                                            input(type='number' name='larguraf' placeholder='Largura Final' min='50' max='380')m &sup2
-                                                    section(class='col-xs-4')
-                                                        label Quantidade de Tecido a Trabalhar
-                                                        label(class='input')
-                                                            input(type='text' name='qunatidade' placeholder='Quantidade'  onchange='updateStepone()')
-                                                    section(class='col-xs-1')
-                                                        label
-                                                        label(class='select')
-                                                            select(name='QuantUnit' id='QuantUnit')
-                                                                option(value='0' selected='')T
+                                            label(class='input')
+                                                input(type='number' name='peso' placeholder='Peso' min='50' max='500')
+                                                p g/m
+                                        section(class='col-xs-2')
+                                            label largura inicial do tedic
+                                            label(class='input')
+                                                input(type='number' name='largurai' placeholder='Largura Inicial' min='50' max='380')
+                                                p m2
+                                        section(class='col-xs-2')
+                                            label largura final do tedic
+                                            label(class='input')
+                                                input(type='number' name='larguraf' placeholder='Largura Final' min='50' max='380')
+                                                p m2
+                                        section(class='col-xs-4')
+                                            label Quantidade de Tecido a Trabalhar
+                                            label(class='input')
+                                                input(type='text' name='qunatidade' placeholder='Quantidade'  onchange='updateStepone()')
+                                        section(class='col-xs-1')
+                                            label
+                                            label(class='select')
+                                            select(name='QuantUnit' id='QuantUnit')
+                                                                option(value='0' selected='') T
                                                                 option(value='1') K
                                                                 option(value='2') g
                                                                 option(value='3') mg
@@ -158,29 +160,43 @@ block content
                                     div(class='row')
                                         div(class='col-xs-3')
                                             label(class='checkbox')
-                                                input(type='checkbox' name='gazar'  onchange='updateSteptwo()'): i Gaza
+                                                input(type='checkbox' name='gazar'  onchange='updateSteptwo()')
+                                                i
+                                                p Gaza
                                         div(class='col-xs-3' id='branquearg')
                                             label(class='checkbox')
-                                                input(type='checkbox' name='branquear' id='branquear' onchange='changeOpone(), updateSteptwo()'): i Branquea
+                                                input(type='checkbox' name='branquear' id='branquear' onchange='changeOpone(), updateSteptwo()')
+                                                i
+                                                p Branquea
                                         div(class='col-xs-3')
                                             label(class='checkbox')
-                                                input(type='checkbox' name='lavar' id='lavar' onchange='changeOponed(), updateSteptwo()'): i Lava
+                                                input(type='checkbox' name='lavar' id='lavar' onchange='changeOponed(), updateSteptwo()')
+                                                i
+                                                p Lava
                                         div(class='col-xs-3')
                                             label(class='checkbox')
-                                                input(type='checkbox' name='mercerizar' id='mercerizar' onchange='updateSteptwo()'): i Merceriza
+                                                input(type='checkbox' name='mercerizar' id='mercerizar' onchange='updateSteptwo()')
+                                                i
+                                                p Merceriza
                                     hr
                                     hr
                                     h2 Tinturaria
                                     div(class='row' id='tintasg')
                                         div(class='col-xs-3' )
                                             label(class='checkbox')
-                                                input(type='checkbox' name='Reativos' id='Reativos'  onchange='updateSteptre(), changetintd()'): i Reativo
+                                                input(type='checkbox' name='Reativos' id='Reativos'  onchange='updateSteptre(), changetintd()')
+                                                i
+                                                p Reativo
                                         div(class='col-xs-3')
                                             label(class='checkbox')
-                                                input(type='checkbox' name='Cubas' id='Cubas' onchange='changetintdd(), updateSteptre()'): i Cuba
+                                                input(type='checkbox' name='Cubas' id='Cubas' onchange='changetintdd(), updateSteptre()')
+                                                i
+                                                p Cuba
                                         div(class='col-xs-3')
                                             label(class='checkbox')
-                                            input(type='checkbox' name='Pigmentos' id='Pigmentos' onchange='updateSteptre(), changetintddd()'): i Pigmento
+                                                input(type='checkbox' name='Pigmentos' id='Pigmentos' onchange='updateSteptre(), changetintddd()')
+                                                i
+                                                p Pigmentos
                                     div(class='row')
                                         section(class='col-xs-5')
                                             label Panton
