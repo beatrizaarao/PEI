@@ -3,6 +3,14 @@ extends layout
 block content
 
     p=status
+
+    - var n = photos.size();
+
+    while i < n
+        li = photos[i]
+        - i++
+
+    li=status
     <!-- MAIN CONTENT -->
     div(class='pg-opt')
         div(class='container')
