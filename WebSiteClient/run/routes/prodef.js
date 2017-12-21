@@ -10,8 +10,10 @@ router.get('/', function(req, res, next) {
     res.render('prodef', { title: 'Encomenda'});
 });
 
-/*router.post('/',function(req,res,next) {
-    var form= new formidable.IncomingForm();
+router.post('/',function(req,res,next) {
+    res.redirect('/encsuc')
+})
+   /* var form= new formidable.IncomingForm();
     var status=""
     form.parse(req,function(err,fields,files){
         user.find({'nif':fields.nif},function(err2,docs){

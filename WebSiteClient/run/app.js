@@ -16,6 +16,7 @@ var order = require('./routes/order')
 var signup = require('./routes/signup')
 var signin = require('./routes/signin')
 var prodef = require('./routes/prodef')
+var encsuc = require('./routes/encsuc')
 
 
 var app = express();
@@ -41,6 +42,7 @@ app.use('/order', order)
 app.use('/signup',signup)
 app.use('/signin',signin)
 app.use('/prodef', prodef)
+app.use('/encsuc', encsuc)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

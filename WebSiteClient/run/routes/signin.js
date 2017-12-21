@@ -19,7 +19,7 @@ router.post('/',function(req,res,next) {
         if(docs.length>0){
           // nao é suposto haver mais do que um resultado
           if(docs[0].password === fields.password){
-            res.cookie('online', fields.username)
+            res.cookie('online', fields.nif)
             res.redirect('/order')
           }
           else{

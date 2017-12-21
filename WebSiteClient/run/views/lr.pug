@@ -4,13 +4,6 @@ block content
 
     p=status
 
-    - var n = photos.size();
-
-    while i < n
-        li = photos[i]
-        - i++
-
-    li=status
     <!-- MAIN CONTENT -->
     div(class='pg-opt')
         div(class='container')
@@ -20,7 +13,7 @@ block content
                 div(class='col-md-6')
                     ol(class='breadcrumb')
                         li
-                            a(href='') Home
+                            a(href='/') Home
     section(class='slice bg-white')
          div(class='wp-section')
             div(class='container')
