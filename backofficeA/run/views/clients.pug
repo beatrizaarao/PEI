@@ -1,0 +1,49 @@
+extends layout
+
+div( class="wrapper")
+    div(class="container")
+        div(class="row")
+            include menu
+            div( class="span9")
+                div( class="content")
+                    div( class="module")
+                        div( class="module-head")
+                            h3 Todos os Clientes
+                        div( class="module-option clearfix")
+                            form
+                                div( class="input-append pull-left")
+                                    input type="text" class="span3" placeholder="Filtrar por nome...")
+                                        button( type="submit" class="btn")
+                                            i( class="icon-search")
+                            div( class="btn-group pull-right" data-toggle="buttons-radio")
+                                button( type="button" class="btn")Todos
+                                button( type="button" class="btn")Filtro1
+                                button( type="button" class="btn")Filtro2
+                        div( class="module-body")
+                            div( class="row-fluid")
+                                div( class="span6")
+                                    div( class="media user")
+                                        div( class="media-body")
+                                            h3(class="media-title" style="text-align: center;") Empresa 1
+                                            p( style="text-align: center;")
+                                                small( class="muted" ) Portugal
+                                            div( class="media-option btn-group shaded-icon pull-right")
+                                                button( class="btn btn-small")
+                                                    i( class="icon-envelope" )
+                                                button( class="btn btn-small")
+                                                    i( class="icon-share-alt")
+                            br
+                            div( class="pagination pagination-right")
+                                ul
+                                    li
+                                        a( href="#")
+                                            i( class="icon-double-angle-left")
+                                    li
+                                        a( href="#") 1
+                                    li
+                                        a( href="#") 2
+                                    li
+                                        a( href="#") 3
+                                    li
+                                        a(href="#")
+                                            i(class="icon-double-angle-right")
