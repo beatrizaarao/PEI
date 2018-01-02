@@ -5,6 +5,26 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+var mysql      = require('mysql');
+var connection = mysql.createConnection({
+    host     : 'localhost',
+    user     : 'id4056546_uniline',
+    password : 'pei1234',
+    database : 'id4056546_uniline'
+});
+
+connection.connect(function(err) {
+    if (err) {
+        console.error('error connecting: ' + err.stack);
+        return;
+    }
+
+    console.log('connected as id ' + connection.threadId);
+});
+
+
+
+
 var index = require('./routes/index');
 var users = require('./routes/users');
 var clients = require('./routes/clients');
