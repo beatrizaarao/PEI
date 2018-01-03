@@ -5,7 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var mysql      = require('mysql');
+/*var mysql      = require('mysql');
 var connection = mysql.createConnection({
     host     : 'localhost',
     user     : 'id4056546_uniline',
@@ -23,12 +23,12 @@ connection.connect(function(err) {
 });
 
 
-
+*/
 
 var index = require('./routes/index');
 var users = require('./routes/users');
 var clients = require('./routes/clients');
-var gestaoclients = require('./routes/gestaoClientes');
+var gestaoclients = require('./routes/gestaoclientes');
 var tasks = require('./routes/tasks');
 var message = require('./routes/message');
 
@@ -50,7 +50,7 @@ app.use('/', index);
 app.use('/users', users);
 app.use('/clients', clients);
 app.use('/tasks', tasks);
-app.use('/gesClients', gestaoclients);
+app.use('/gesclients', gestaoclients);
 app.use('/messages', message);
 
 // catch 404 and forward to error handler
