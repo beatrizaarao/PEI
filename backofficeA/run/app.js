@@ -5,25 +5,24 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-/*var mysql      = require('mysql');
+var mysql      = require('mysql');
 var connection = mysql.createConnection({
     host     : 'localhost',
-    user     : 'id4056546_uniline',
-    password : 'pei1234',
+    user     : 'root',
+    password : 'mysql',
     database : 'id4056546_uniline'
 });
 
-connection.connect(function(err) {
-    if (err) {
-        console.error('error connecting: ' + err.stack);
+connection.connect(function(err){
+    if(err){
+        console.log('Error connecting to Db');
         return;
     }
-
-    console.log('connected as id ' + connection.threadId);
+    console.log('Connection established');
 });
 
 
-*/
+
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -45,6 +44,10 @@ app.set('view engine', 'pug');
 //app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(function(req,res,next){
+    req.connection = connection;
+    next();
+});
 
 app.use('/', index);
 app.use('/users', users);
@@ -52,6 +55,9 @@ app.use('/clients', clients);
 app.use('/tasks', tasks);
 app.use('/gesclients', gestaoclients);
 app.use('/messages', message);
+
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

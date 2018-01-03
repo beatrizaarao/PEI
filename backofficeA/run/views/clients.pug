@@ -24,17 +24,18 @@ block content
                                     |Filtro2
                             div( class="module-body")
                                 div( class="row-fluid")
-                                    div( class="span6")
-                                        div( class="media user")
-                                            div( class="media-body")
-                                                h3(class="media-title" style="text-align: center;") Empresa 1
-                                                p( style="text-align: center;")
-                                                    small( class="muted" ) Portugal
-                                                div( class="media-option btn-group shaded-icon pull-right")
-                                                    button( class="btn btn-small")
-                                                        i( class="icon-envelope" )
-                                                    button( class="btn btn-small")
-                                                        i( class="icon-share-alt")
+                                    -for(var x = 0; x < dataGet.lenght; x++)
+                                        div( class="span6")
+                                            div( class="media user")
+                                                div( class="media-body")
+                                                    h3(class="media-title" style="text-align: center;") #{dataGet[x].NAME}
+                                                    p( style="text-align: center;")
+                                                        small( class="muted" ) Portugal
+                                                    div( class="media-option btn-group shaded-icon pull-right")
+                                                        button( class="btn btn-small")
+                                                            i( class="icon-envelope" )
+                                                        button( class="btn btn-small")
+                                                            i( class="icon-share-alt")
                                 br
                                 div( class="pagination pagination-right")
                                     ul
