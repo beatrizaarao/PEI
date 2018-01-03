@@ -24,11 +24,11 @@ block content
                                     |Filtro2
                             div( class="module-body")
                                 div( class="row-fluid")
-                                    -for(var x = 0; x < dataGet.lenght; x++)
+                                    each row in dataGet
                                         div( class="span6")
                                             div( class="media user")
                                                 div( class="media-body")
-                                                    h3(class="media-title" style="text-align: center;") #{dataGet[x].NAME}
+                                                    h3(class="media-title" style="text-align: center;")=row.NAME
                                                     p( style="text-align: center;")
                                                         small( class="muted" ) Portugal
                                                     div( class="media-option btn-group shaded-icon pull-right")

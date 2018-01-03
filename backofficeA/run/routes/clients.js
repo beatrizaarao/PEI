@@ -16,7 +16,6 @@ router.get('/', function(req, res, next) {
         // console.log('Data received from Db:\n');
         console.log(rows);
         var data = rows;
-        console.log("Outside--"+data.id);
         res.render('clients', { title: 'Clientes', dataGet: data });
     });
 
