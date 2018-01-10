@@ -1,6 +1,9 @@
 ﻿$(document).ready(function () {
     if($('.datatable-1').length>0){
-        $('.datatable-1').dataTable();
+        $('.datatable-1').dataTable({
+			/* Disable initial sort */
+            "aaSorting": []
+        } );
         $('.dataTables_paginate').addClass('btn-group datatable-pagination');
         $('.dataTables_paginate > a').wrapInner('<span />');
         $('.dataTables_paginate > a:first-child').append('<i class="icon-chevron-left shaded"></i>');

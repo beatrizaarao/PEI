@@ -14,9 +14,11 @@ router.get('/', function(req, res, next) {
         //if(err) throw err;
 
         // console.log('Data received from Db:\n');
-        console.log(rows);
+
         var data = rows;
+        console.log(data);
         res.render('clients', { title: 'Clientes', dataGet: data });
+
     });
 
 

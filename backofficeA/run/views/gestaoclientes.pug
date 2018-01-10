@@ -9,47 +9,31 @@ block content
                         .module
                             a(href='./clients')
                                 .module-head
-                                    h3 Todos os Clientes
-                            .module-option.clearfix
-                                form
-                                    .input-append.pull-left
-                                        input.span2(type='text', placeholder='Filtrar por nome...')
-                                        button.btn(type='submit')
-                                            i.icon-search
-                                .btn-group.pull-right(data-toggle='buttons-radio')
-                                    button.btn(type='button') Todos
-                                    button.btn(type='button') Filtro1
-                                    button.btn(type='button') Filtro2
-                            .module-body
-                                .row-fluid
-                                    .span6
-                                        .media.user
-                                            .media-body
-                                                h3.media-title(style='text-align: center;')
-                                                    | Empresa 1
-                                                p(style='text-align: center;')
-                                                    small.muted Portugal
-                                                .media-option.btn-group.shaded-icon.pull-right
-                                                    button.btn.btn-small
-                                                        i.icon-envelope
-                                                    button.btn.btn-small
-                                                        i.icon-share-alt
-                                    br
-                                .pagination.pagination-right
-                                        ul
-                                            li
-                                                a(href='#')
-                                                    i.icon-double-angle-left
-                                            li
-                                                a(href='#') 1
-                                            li
-                                                a(href='#') 2
-                                            li
-                                                a(href='#') 3
-                                            li
-                                                a(href='#')
-                                                    i.icon-double-angle-right
-                        // /.content
+                                    h3
+                                        | Todos os clientes
+                            .module-body.table
+                                    table#example.datatable-1.table(cellpadding='0', cellspacing='0', border='0', width='100%', aria-describedby='DataTables_Table_0_info', style='width: 100%;')
+                                        thead(style="display: none")
+                                            tr
+                                                th Clientes
+                                                th Cilentes
+                                        tbody
+                                            -for(var j=0,a=0; j <dataGet.length/2;j++,a++)
+                                                tr
+                                                    -for(var k=0; k<2; k++)
+                                                        td
+                                                            -var tamanho = dataGet.length/2
+                                                            if !(j == parseInt(tamanho) && k == 1 && dataGet.length % 2 != 0)
+                                                                div( class="media user")
+                                                                    div( class="media-body")
+                                                                        h3(class="media-title" style="text-align: center;")=dataGet[j+k+a].NAME
+                                                                        p( style="text-align: center;")
+                                                                            small( class="muted" )=dataGet[j+k+a].COUNTRY
+                                                                            div( class="media-option btn-group shaded-icon pull-right")
+                                                                                button( class="btn btn-small")
+                                                                                    i( class="icon-envelope" )
+                                                                                button( class="btn btn-small")
+                                                                                    i( class="icon-share-alt")
                 .span4
                         .content
                             .module.message
