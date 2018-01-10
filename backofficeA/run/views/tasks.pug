@@ -1,0 +1,91 @@
+extends layout
+block content
+        .wrapper
+            .container
+                .row
+                    // MENU
+                    include menu
+                    // /MENU
+                    .span9
+                        .content
+                            .module.message
+                                .module-head
+                                    h3 Gestão de Clientes
+                                .module-option.clearfix
+                                    .pull-left
+                                        | Filter :  
+                                        .btn-group
+                                            button.btn Todas
+                                            button.btn.dropdown-toggle(data-toggle="dropdown")
+                                                span.caret
+                                            ul.dropdown-menu
+                                                li
+                                                    a(href="#") Todas
+                                                li
+                                                    a(href="#") Por ver
+                                                li
+                                                    a(href="#") Feita
+                                .module-body.table
+                                    table.table.table-message
+                                        tbody
+                                            tr.heading
+                                                td.cell-icon
+                                                td.cell-title Task
+                                                td.cell-status.hidden-phone.hidden-tablet Status
+                                            tr.task
+                                                td.cell-icon
+                                                    i.icon-checker.high
+                                                td.cell-title
+                                                    div
+                                                        | Lorem ipsum dolor sit et, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                                td.cell-status.hidden-phone.hidden-tablet
+                                                    b.due Missed
+                                            tr.task
+                                                td.cell-icon
+                                                    i.icon-checker
+                                                td.cell-title
+                                                    div
+                                                        | Lorem ipsum dolor sit et, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                                td.cell-status.hidden-phone.hidden-tablet
+                                                    b.due Missed
+                                            tr.task
+                                                td.cell-icon
+                                                    i.icon-checker
+                                                td.cell-title
+                                                    div
+                                                        | Lorem ipsum dolor sit et, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                                td.cell-status.hidden-phone.hidden-tablet
+                                                    b.due Missed
+                                            tr.task.resolved
+                                                td.cell-icon
+                                                    i.icon-checker.high
+                                                td.cell-title
+                                                    div
+                                                        | Lorem ipsum dolor sit et, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                                td.cell-status.hidden-phone.hidden-tablet
+                                            tr.task.resolved
+                                                td.cell-icon
+                                                    i.icon-checker.high
+                                                td.cell-title
+                                                    div
+                                                        | Lorem ipsum dolor sit et, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                                td.cell-status.hidden-phone.hidden-tablet
+                                            tr.task.resolved
+                                                td.cell-icon
+                                                    i.icon-checker.high
+                                                td.cell-title
+                                                    div
+                                                        | Lorem ipsum dolor sit et, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                                td.cell-status.hidden-phone.hidden-tablet
+                                            tr.task.resolved
+                                                td.cell-icon
+                                                    i.icon-checker.high
+                                                td.cell-title
+                                                    div
+                                                        | Lorem ipsum dolor sit et, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                                td.cell-status.hidden-phone.hidden-tablet
+                                .module-foot
+                        // /.content
+                    // /.span9
+            // /.container
+        // /.wrapper

@@ -1,0 +1,270 @@
+extends layout
+block content
+        .wrapper
+            .container
+                .row
+
+                    include menu
+                    .span9
+                        .content
+                            .module.message
+                                .module-head
+                                    h3
+                                        | Message
+                                .module-option.clearfix
+                                    .pull-left
+                                        .btn-group
+                                            button.btn
+                                                | Inbox
+                                            button.btn.dropdown-toggle(data-toggle="dropdown")
+                                                span.caret
+                                            ul.dropdown-menu
+                                                li
+                                                    a(href="#") Inbox(11)
+                                                li
+                                                    a(href="#") Sent
+                                                li
+                                                    a(href="#") Draft(2)
+                                                li
+                                                    a(href="#") Trash
+                                                li.divider
+                                                li
+                                                    a(href="#") Settings
+                                    .pull-right
+                                        a.btn.btn-primary(href="#") Compose
+                                .module-body.table
+                                    table.table.table-message
+                                        tbody
+                                            tr.heading
+                                                td.cell-check
+                                                    input.inbox-checkbox(type="checkbox")
+                                                td.cell-icon
+                                                td.cell-author.hidden-phone.hidden-tablet
+                                                    | Sender
+                                                td.cell-title
+                                                    | Subject
+                                                td.cell-icon.hidden-phone.hidden-tablet
+                                                td.cell-time.align-right
+                                                    | Date
+                                            tr.unread
+                                                td.cell-check
+                                                    input.inbox-checkbox(type="checkbox")
+                                                td.cell-icon
+                                                    i.icon-star
+                                                td.cell-author.hidden-phone.hidden-tablet
+                                                    | John Donga
+                                                td.cell-title
+                                                    | Sample Work
+                                                td.cell-icon.hidden-phone.hidden-tablet
+                                                    i.icon-paper-clip
+                                                td.cell-time.align-right
+                                                    | 18:24
+                                            tr.unread.starred
+                                                td.cell-check
+                                                    input.inbox-checkbox(type="checkbox")
+                                                td.cell-icon
+                                                    i.icon-star
+                                                td.cell-author.hidden-phone.hidden-tablet
+                                                    | John Donga
+                                                td.cell-title
+                                                    | Test Title
+                                                td.cell-icon.hidden-phone.hidden-tablet
+                                                    i.icon-paper-clip-no
+                                                td.cell-time.align-right
+                                                    | 18:01
+                                            tr.unread
+                                                td.cell-check
+                                                    input.inbox-checkbox(type="checkbox")
+                                                td.cell-icon
+                                                    i.icon-star
+                                                td.cell-author.hidden-phone.hidden-tablet
+                                                    | Facebook
+                                                td.cell-title
+                                                    | Dongi sents you a friend request!
+                                                td.cell-icon.hidden-phone.hidden-tablet
+                                                    i.icon-paper-clip
+                                                td.cell-time.align-right
+                                                    | 23:58
+                                            tr.unread
+                                                td.cell-check
+                                                    input.inbox-checkbox(type="checkbox")
+                                                td.cell-icon
+                                                    i.icon-star
+                                                td.cell-author.hidden-phone.hidden-tablet
+                                                    | John Donga
+                                                td.cell-title
+                                                    | Something
+                                                td.cell-icon.hidden-phone.hidden-tablet
+                                                    i.icon-paper-clip
+                                                td.cell-time.align-right
+                                                    | 22:17
+                                            tr.read.starred
+                                                td.cell-check
+                                                    input.inbox-checkbox(type="checkbox")
+                                                td.cell-icon
+                                                    i.icon-star
+                                                td.cell-author.hidden-phone.hidden-tablet
+                                                    | John Donga
+                                                td.cell-title
+                                                    | Someone wants to talk to you!
+                                                td.cell-icon.hidden-phone.hidden-tablet
+                                                    i.icon-paper-clip-no
+                                                td.cell-time.align-right
+                                                    | May 21
+                                            tr.read
+                                                td.cell-check
+                                                    input.inbox-checkbox(type="checkbox")
+                                                td.cell-icon
+                                                    i.icon-star
+                                                td.cell-author.hidden-phone.hidden-tablet
+                                                    | John Doe
+                                                td.cell-title
+                                                    | Doe wants to talk to you!
+                                                td.cell-icon.hidden-phone.hidden-tablet
+                                                    i.icon-paper-clip
+                                                td.cell-time.align-right
+                                                    | May 15
+                                            tr.read.starred
+                                                td.cell-check
+                                                    input.inbox-checkbox(type="checkbox")
+                                                td.cell-icon
+                                                    i.icon-star
+                                                td.cell-author.hidden-phone.hidden-tablet
+                                                    | Social Network
+                                                td.cell-title
+                                                    | An example message from a social network
+                                                td.cell-icon.hidden-phone.hidden-tablet
+                                                    i.icon-paper-clip
+                                                td.cell-time.align-right
+                                                    | May 15
+                                            tr.unread
+                                                td.cell-check
+                                                    input.inbox-checkbox(type="checkbox")
+                                                td.cell-icon
+                                                    i.icon-star
+                                                td.cell-author.hidden-phone.hidden-tablet
+                                                    | John Donga
+                                                td.cell-title
+                                                    | Sample Work
+                                                td.cell-icon.hidden-phone.hidden-tablet
+                                                    i.icon-paper-clip
+                                                td.cell-time.align-right
+                                                    | 18:24
+                                            tr.unread.starred
+                                                td.cell-check
+                                                    input.inbox-checkbox(type="checkbox")
+                                                td.cell-icon
+                                                    i.icon-star
+                                                td.cell-author.hidden-phone.hidden-tablet
+                                                    | John Donga
+                                                td.cell-title
+                                                    | Test Title
+                                                td.cell-icon.hidden-phone.hidden-tablet
+                                                    i.icon-paper-clip-no
+                                                td.cell-time.align-right
+                                                    | 18:01
+                                            tr.unread
+                                                td.cell-check
+                                                    input.inbox-checkbox(type="checkbox")
+                                                td.cell-icon
+                                                    i.icon-star
+                                                td.cell-author.hidden-phone.hidden-tablet
+                                                    | Facebook
+                                                td.cell-title
+                                                    | Dongi sents you a friend request!
+                                                td.cell-icon.hidden-phone.hidden-tablet
+                                                    i.icon-paper-clip
+                                                td.cell-time.align-right
+                                                    | 23:58
+                                            tr.unread
+                                                td.cell-check
+                                                    input.inbox-checkbox(type="checkbox")
+                                                td.cell-icon
+                                                    i.icon-star
+                                                td.cell-author.hidden-phone.hidden-tablet
+                                                    | John Donga
+                                                td.cell-title
+                                                    | Something
+                                                td.cell-icon.hidden-phone.hidden-tablet
+                                                    i.icon-paper-clip
+                                                td.cell-time.align-right
+                                                    | 22:17
+                                            tr.read.starred
+                                                td.cell-check
+                                                    input.inbox-checkbox(type="checkbox")
+                                                td.cell-icon
+                                                    i.icon-star
+                                                td.cell-author.hidden-phone.hidden-tablet
+                                                    | John Donga
+                                                td.cell-title
+                                                    | Someone wants to talk to you!
+                                                td.cell-icon.hidden-phone.hidden-tablet
+                                                    i.icon-paper-clip-no
+                                                td.cell-time.align-right
+                                                    | May 21
+                                            tr.read
+                                                td.cell-check
+                                                    input.inbox-checkbox(type="checkbox")
+                                                td.cell-icon
+                                                    i.icon-star
+                                                td.cell-author.hidden-phone.hidden-tablet
+                                                    | John Doe
+                                                td.cell-title
+                                                    | Doe wants to talk to you!
+                                                td.cell-icon.hidden-phone.hidden-tablet
+                                                    i.icon-paper-clip
+                                                td.cell-time.align-right
+                                                    | May 15
+                                            tr.read.starred
+                                                td.cell-check
+                                                    input.inbox-checkbox(type="checkbox")
+                                                td.cell-icon
+                                                    i.icon-star
+                                                td.cell-author.hidden-phone.hidden-tablet
+                                                    | Social Network
+                                                td.cell-title
+                                                    | An example message from a social network
+                                                td.cell-icon.hidden-phone.hidden-tablet
+                                                    i.icon-paper-clip
+                                                td.cell-time.align-right
+                                                    | May 15
+                                            tr.read
+                                                td.cell-check
+                                                    input.inbox-checkbox(type="checkbox")
+                                                td.cell-icon
+                                                    i.icon-star
+                                                td.cell-author.hidden-phone.hidden-tablet
+                                                    | Greepit.com
+                                                td.cell-title
+                                                    | An email from Greepit.com
+                                                td.cell-icon.hidden-phone.hidden-tablet
+                                                    i.icon-paper-clip-no
+                                                td.cell-time.align-right
+                                                    | Jan 12
+                                            tr.read.starred
+                                                td.cell-check
+                                                    input.inbox-checkbox(type="checkbox")
+                                                td.cell-icon
+                                                    i.icon-star
+                                                td.cell-author.hidden-phone.hidden-tablet
+                                                    | EGrappler.com
+                                                td.cell-title
+                                                    | An email from EGrappler.com
+                                                td.cell-icon.hidden-phone.hidden-tablet
+                                                    i.icon-paper-clip
+                                                td.cell-time.align-right
+                                                    | Jan 11
+                                            tr.read
+                                                td.cell-check
+                                                    input.inbox-checkbox(type="checkbox")
+                                                td.cell-icon
+                                                    i.icon-star
+                                                td.cell-author.hidden-phone.hidden-tablet
+                                                    | An unread message
+                                                td.cell-title
+                                                    | This is how an unread message looks alike.
+                                                td.cell-icon.hidden-phone.hidden-tablet
+                                                    i.icon-paper-clip-no
+                                                td.cell-time.align-right
+                                                    | Jan 10
+                                .module-foot
