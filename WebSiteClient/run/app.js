@@ -2,15 +2,26 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var mysql      = require('mysql');
+var favicon = require('serve-favicon');
+var logger = require('morgan');
 
-var mongoose = require("mongoose")
 
-mongoose.connect("mongodb://Uniline:Pei2017um@ds046067.mlab.com:46067/uniline",
-{useMongoClient:true})
-mongoose.Promise = global.Promise
-var dbGlobal = mongoose.connection
-dbGlobal.on("error",console.error.bind(console,"MongoDB connection error: "))
+var connection = mysql.createConnection({
+    hostname : 'localhost',
+    port: '3307',
+    user     : 'root',
+    password : '',
+    database : 'mydb'
+});
 
+connection.connect(function(err){
+    if(err){
+        console.log('Error connecting to Db');
+        return;
+    }
+    console.log('Connection established');
+});
 var index = require('./routes/index')
 var order = require('./routes/order')
 var signup = require('./routes/signup')
@@ -32,10 +43,13 @@ app.set('view engine', 'pug');
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(function(req,res,next){
-    req.db = dbGlobal
-    next()
-})
+    req.connection = connection;
+    next();
+});
 
 app.use('/', index)
 app.use('/order', order)

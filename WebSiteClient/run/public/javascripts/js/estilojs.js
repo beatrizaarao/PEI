@@ -93,7 +93,7 @@ function readURL(input) {
 function updateSteptwo(){
     $('#step2').attr("class", "progtrckr-done")
 }
-function updateSteptre(){
+function updateSteptree(){
     $('#step3').attr("class", "progtrckr-done")
 }
 function updateStepone(){
@@ -287,7 +287,7 @@ function criaelemtinte(a, w, xx){
     d.setAttribute("name", a)
     d.setAttribute("id", a)
     if(w) {
-        d.setAttribute("onchange", xx)
+        d.setAttribute("onchange", "updateSteptree(), " + xx)
     }
     var e = document.createElement('i')
 

@@ -5,7 +5,7 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
   console.log(req.cookies)
   if(req.cookies.online === undefined){
-    res.redirect('/sigin')
+    res.redirect('/signin')
   }
   else{
     res.redirect('/prodef')
