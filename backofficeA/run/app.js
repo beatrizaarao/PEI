@@ -31,6 +31,7 @@ var users = require('./routes/users');
 var clients = require('./routes/clients');
 var tasks = require('./routes/tasks');
 var message = require('./routes/message');
+var clientInf = require('./routes/clientInfo');
 
 var app = express();
 
@@ -44,8 +45,8 @@ app.set('view engine', 'pug');
 //app.use(bodyParser.json());
 //app.use(bodyParser.urlencoded({ extended: false }));
 
-connection.query("SELECT * FROM Task WHERE STATE=0", function (error, result, client){
-    app.locals.missedd = result
+connection.query("SELECT ID_TASK FROM Task WHERE STATE=0", function (error, result, client){
+    app.locals.missedMenu = result;
 });
 
 
@@ -64,7 +65,8 @@ app.use('/users', users);
 app.use('/clients', clients);
 app.use('/tasks', tasks);
 app.use('/messages', message);
-//app.use(f1);
+app.use('/clientInfo', clientInf);
+
 
 
 // catch 404 and forward to error handler
@@ -73,17 +75,6 @@ app.use(function(req, res, next) {
   err.status = 404;
   next(err);
 });
-/*
-function f1(req, res, next){
-    var db = req.connection;
-    var missed = "";
-    missed = db.query("SELECT * FROM Task WHERE STATE=0")
-    console.log("PORRA" + missed);
-    res.locals.missedTasks = 1;
-    next();
-}
-
-*/
 
 // error handler
 app.use(function(err, req, res, next) {
