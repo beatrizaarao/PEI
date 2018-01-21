@@ -32,6 +32,7 @@ var clients = require('./routes/clients');
 var tasks = require('./routes/tasks');
 var message = require('./routes/message');
 var clientInf = require('./routes/clientInfo');
+var taskInf = require('./routes/taskDescription');
 
 var app = express();
 
@@ -65,8 +66,8 @@ app.use('/users', users);
 app.use('/clients', clients);
 app.use('/tasks', tasks);
 app.use('/messages', message);
+app.use('/taskDescription', taskInf);
 app.use('/clientInfo', clientInf);
-
 
 
 // catch 404 and forward to error handler

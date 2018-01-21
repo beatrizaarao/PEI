@@ -1,0 +1,52 @@
+extends layout
+block content
+    .span9
+        .module
+            .module-head
+                h3 Tarefa #{task[0].ID_TASK}
+            .module-body
+                p
+                   b
+                    font(size="3")
+                        |Descrição:
+                   |#{task[0].DESCRIPTION}
+
+                -if(task[0].Tipo==1)
+                    p FAZER MOSTRAR A ENCOMENDA
+                    button(class="btn btn-large btn-success") Cancelar Encomenda
+                    div(style="width:8px; height:auto; display:inline-block;")
+                    button(class="btn btn-large") Contactar Cliente
+                -else
+                    -if(task[0].Tipo==0)
+                        br
+                        table.table
+                            tbody
+                                tr
+                                    th: font(size="3") Nome:
+                                    td #{client[0].NAME}
+                                    th: font(size="3") Telefone:
+                                    td #{client[0].PHONE}
+                                tr
+                                    th: font(size="3") Nif:
+                                    td #{client[0].NIF}
+                                    th: font(size="3") Cidade:
+                                    td #{client[0].CITY}
+                                tr
+                                    th: font(size="3") Email:
+                                    td #{client[0].EMAIL}
+                                    th: font(size="3") Pais:
+                                    td #{client[0].COUNTRY}
+                                tr
+                                    th: font(size="3") Morada:
+                                    td #{client[0].STREET}
+                                    th: font(size="3") Código Postal:
+                                    td #{client[0].ZIP_CODE}
+                        br
+                        button(class="btn btn-large btn-success") Registar Cliente
+                        div(style="width:8px; height:auto; display:inline-block;")
+                        button(class="btn btn-large btn-danger") Cancelar Registo
+                    -else if(task[0].Tipo==2)
+                        p FAZER MOSTRAR A ENCOMENDA
+                        button(class="btn btn-large btn-success") Alterar Encomenda
+                        div(style="width:8px; height:auto; display:inline-block;")
+                        button(class="btn btn-large") Contactar Cliente
