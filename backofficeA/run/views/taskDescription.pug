@@ -42,11 +42,13 @@ block content
                                     th: font(size="3") Código Postal:
                                     td #{client[0].ZIP_CODE}
                         br
-                        button(class="btn btn-large btn-success") Registar Cliente
-                        div(style="width:8px; height:auto; display:inline-block;")
-                        button(class="btn btn-large btn-danger") Cancelar Registo
+                        -var t = task[0].ID_TASK
+                        form(action="/taskDescription/porra/" + t+"?_method=PUT", method="post")
+                            button(type="submit" class="btn btn-large btn-success" name="porra" value="aceitar") Registar Cliente
+                            div(style="width:8px; height:auto; display:inline-block;")
+                            button(type="submit" class="btn btn-large btn-danger" name="porra" value="rejeitar") Cancelar Registo
                     -else if(task[0].Tipo==2)
                         p FAZER MOSTRAR A ENCOMENDA
-                        button(class="btn btn-large btn-success") Alterar Encomenda
+                        button(class="btn btn-large btn-success" ) Alterar Encomenda
                         div(style="width:8px; height:auto; display:inline-block;")
                         button(class="btn btn-large") Contactar Cliente

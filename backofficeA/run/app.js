@@ -3,7 +3,8 @@ var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
+var methodOverride = require('method-override');
 
 var mysql      = require('mysql');
 var connection = mysql.createConnection({
@@ -50,15 +51,14 @@ connection.query("SELECT ID_TASK FROM Task WHERE STATE=0", function (error, resu
     app.locals.missedMenu = result;
 });
 
-
-
+app.use(methodOverride('_method'));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(function(req,res,next){
     req.connection = connection;
     next();
 });
-
 
 
 app.use('/', index);
