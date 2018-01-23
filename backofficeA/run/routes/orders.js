@@ -3,7 +3,15 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    res.render('orders', { title: 'Encomendas'});
+    var db = req.connection;
+    db.query("SELECT * from ORDEM WHERE STATUS=0", function (error, result, client){
+        ordersListMiss = result;
+        db.query("SELECT * from ORDEM WHERE STATUS!=0", function (error, result, client) {
+            other = result;
+            res.render('orders', {title: 'Encomendas', ordersMiss: ordersListMiss, otherOrders: other});
+        });
+    });
+
 });
 
 module.exports = router;
