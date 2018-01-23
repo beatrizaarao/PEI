@@ -5,6 +5,7 @@ block content
             .module-head
                 h3 Tarefa #{task[0].ID_TASK}
             .module-body
+                -var t = task[0].ID_TASK
                 p
                    b
                     font(size="3")
@@ -13,9 +14,10 @@ block content
 
                 -if(task[0].Tipo==1)
                     p FAZER MOSTRAR A ENCOMENDA
-                    button(class="btn btn-large btn-success") Cancelar Encomenda
-                    div(style="width:8px; height:auto; display:inline-block;")
-                    button(class="btn btn-large") Contactar Cliente
+                    form(action="/taskDescription/encomendas/" + t+"?_method=PUT", method="post")
+                        button(class="btn btn-large btn-success" type="submit" name="encomendas" value="cancelar") Cancelar Encomenda
+                        div(style="width:8px; height:auto; display:inline-block;")
+                        button(class="btn btn-large" type="submit" name="encomendas" value="contactar") Contactar Cliente
                 -else
                     -if(task[0].Tipo==0)
                         br
@@ -42,13 +44,11 @@ block content
                                     th: font(size="3") Código Postal:
                                     td #{client[0].ZIP_CODE}
                         br
-                        -var t = task[0].ID_TASK
                         form(action="/taskDescription/porra/" + t+"?_method=PUT", method="post")
                             button(type="submit" class="btn btn-large btn-success" name="porra" value="aceitar") Registar Cliente
                             div(style="width:8px; height:auto; display:inline-block;")
                             button(type="submit" class="btn btn-large btn-danger" name="porra" value="rejeitar") Cancelar Registo
                     -else if(task[0].Tipo==2)
                         p FAZER MOSTRAR A ENCOMENDA
-                        button(class="btn btn-large btn-success" ) Alterar Encomenda
                         div(style="width:8px; height:auto; display:inline-block;")
                         button(class="btn btn-large") Contactar Cliente

@@ -34,6 +34,7 @@ var tasks = require('./routes/tasks');
 var message = require('./routes/message');
 var clientInf = require('./routes/clientInfo');
 var taskInf = require('./routes/taskDescription');
+var order = require('./routes/orders');
 
 var app = express();
 
@@ -47,8 +48,12 @@ app.set('view engine', 'pug');
 //app.use(bodyParser.json());
 //app.use(bodyParser.urlencoded({ extended: false }));
 
-connection.query("SELECT ID_TASK FROM Task WHERE STATE=0", function (error, result, client){
-    app.locals.missedMenu = result;
+connection.query("SELECT COUNT(ID_TASK) AS tamanho FROM Task WHERE STATE=0", function (error, result, client){
+    app.locals.missedMenu = result[0].tamanho;
+});
+
+connection.query("SELECT COUNT(ID_ORDER) AS ord FROM ORDEM WHERE STATUS=0", function (error, result, client){
+    app.locals.missedOrders = result[0].ord;
 });
 
 app.use(methodOverride('_method'));
@@ -68,6 +73,7 @@ app.use('/tasks', tasks);
 app.use('/messages', message);
 app.use('/taskDescription', taskInf);
 app.use('/clientInfo', clientInf);
+app.use('/orders', order);
 
 
 // catch 404 and forward to error handler
