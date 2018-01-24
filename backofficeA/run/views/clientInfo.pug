@@ -7,6 +7,14 @@ block content
                     h3 Informação do Cliente
                 .module-body
                     .profile-head.media
+                        -function prettyDate(date){
+                            //if it's already a date object and not a string you don't need this line:
+                            -var d = date.getDate();
+                            -var monthNames = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
+                            -var m = monthNames[date.getMonth()];
+                            -var y = date.getFullYear();
+                            -return d+' '+m+' '+y;
+                        -}
                         a.media-avatar.pull-left(href='#')
                             if(user[0].img_path != null)
                                 img(src='/images/users/' + user[0].img_path)
@@ -40,13 +48,16 @@ block content
                     .profile-tab-content.tab-content
                         #activity.tab-pane.fade.active.in
                             h4 Encomendas Efetuadas
-                            p.profile-brief.strong
-                                |Data da Ultima Encomenda Efetuada:
-                                -if(uOrder[0]!=null)
-                                    | #{uOrder[0].BEGIN_DATE}
-                                -else
+                            -if(uOrder[0]!=null)
+                                p.profile-brief.strong
+                                    |Data da Ultima Encomenda Efetuada:
+                                    | #{prettyDate(uOrder[0].BEGIN_DATE)}
+                                    form(action="/orders/" + user[0].NIF, method="post")
+                                        button(class="btn btn-large btn-info pull-right" type="submit") Ver encomendas
+                            -else
+                                p.profile-brief.strong
+                                    | Data da Ultima Encomenda Efetuada:
                                     | Este cliente ainda não efetuou encomendas.
-                                b(class="btn btn-large btn-info pull-right") Ver encomendas
                             p.profile-brief.strong
                                 |Número total de Encomendas:
                                 |#{nOrder.length}

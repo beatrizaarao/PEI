@@ -23,38 +23,39 @@ block content
                             -var y = date.getFullYear();
                             -return d+' '+m+' '+y;
                         -}
-                        -for(var i=0;i<ordersMiss.length;i++)
-                                tr.task
-                                    td
-                                        a(href="#" style = "display:block; width:100%; height:100%; border:none; outline:none; text-decoration:none; color:inherit;")
-                                            |#{ordersMiss[i].ID_ORDER}
-                                    td
-                                        a(href="#" style = "display:block; width:100%; height:100%; border:none; outline:none; text-decoration:none; color:inherit;")
-                                            | #{ordersMiss[i].Client_NIF}
-                                    td
-                                        a(href="#" style = "display:block; width:100%; height:100%; border:none; outline:none; text-decoration:none; color:inherit;")
-                                            | #{prettyDate(ordersMiss[i].BEGIN_DATE)}
-                                    td
-                                        a(href="#" style = "display:block; width:100%; height:100%; border:none; outline:none; text-decoration:none; color:inherit;")
-                                            | #{prettyDate(ordersMiss[i].ASKED_DELIVERY_DATE)}
-                                    td.cell-status.hidden-phone.hidden-tablet
-                                            b.due Não Aprovada
-
-                        -for(var i=0;i<otherOrders.length;i++)
-                                tr.task.resolved
-                                    td
-                                        |#{otherOrders[i].ID_ORDER}
-                                    td
-                                        | #{otherOrders[i].Client_NIF}
-                                    td
-                                        | #{prettyDate(otherOrders[i].BEGIN_DATE)}
-                                    td
-                                        | #{prettyDate(otherOrders[i].ASKED_DELIVERY_DATE)}
-                                    td.cell-status.hidden-phone.hidden-tablet
-                                        -if(otherOrders[i].STATUS==1)
-                                             | Em Processamento
-                                        -else
-                                            -if(otherOrders[i].STATUS==2)
-                                                | Cancelada
+                        if(ordersMiss!=null)
+                            -for(var i=0;i<ordersMiss.length;i++)
+                                    tr.task
+                                        td
+                                            a(href="#" style = "display:block; width:100%; height:100%; border:none; outline:none; text-decoration:none; color:inherit;")
+                                                |#{ordersMiss[i].ID_ORDER}
+                                        td
+                                            a(href="#" style = "display:block; width:100%; height:100%; border:none; outline:none; text-decoration:none; color:inherit;")
+                                                | #{ordersMiss[i].Client_NIF}
+                                        td
+                                            a(href="#" style = "display:block; width:100%; height:100%; border:none; outline:none; text-decoration:none; color:inherit;")
+                                                | #{prettyDate(ordersMiss[i].BEGIN_DATE)}
+                                        td
+                                            a(href="#" style = "display:block; width:100%; height:100%; border:none; outline:none; text-decoration:none; color:inherit;")
+                                                | #{prettyDate(ordersMiss[i].ASKED_DELIVERY_DATE)}
+                                        td.cell-status.hidden-phone.hidden-tablet
+                                                b.due Não Aprovada
+                        if(otherOrders!=null)
+                            -for(var i=0;i<otherOrders.length;i++)
+                                    tr.task.resolved
+                                        td
+                                            |#{otherOrders[i].ID_ORDER}
+                                        td
+                                            | #{otherOrders[i].Client_NIF}
+                                        td
+                                            | #{prettyDate(otherOrders[i].BEGIN_DATE)}
+                                        td
+                                            | #{prettyDate(otherOrders[i].ASKED_DELIVERY_DATE)}
+                                        td.cell-status.hidden-phone.hidden-tablet
+                                            -if(otherOrders[i].STATUS==1)
+                                                 | Em Processamento
+                                            -else
+                                                -if(otherOrders[i].STATUS==2)
+                                                    | Cancelada
 
 

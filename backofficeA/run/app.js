@@ -5,6 +5,21 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 var methodOverride = require('method-override');
+var nodemailer = require('nodemailer');
+var app = express();
+
+
+var router = express.Router();
+
+var transporter = nodemailer.createTransport({
+    service: 'Gmail',
+    auth: {
+        user: 'encomenda.uniline@gmail.com', // Your email id
+        pass: 'pei123456' // Your password
+        }
+});
+
+
 
 var mysql      = require('mysql');
 var connection = mysql.createConnection({
@@ -35,8 +50,9 @@ var message = require('./routes/message');
 var clientInf = require('./routes/clientInfo');
 var taskInf = require('./routes/taskDescription');
 var order = require('./routes/orders');
+var comp = require('./routes/compose');
 
-var app = express();
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -64,6 +80,10 @@ app.use(function(req,res,next){
     req.connection = connection;
     next();
 });
+app.use(function(req,res,next){
+    req.transporter = transporter;
+    next();
+});
 
 
 app.use('/', index);
@@ -74,6 +94,7 @@ app.use('/messages', message);
 app.use('/taskDescription', taskInf);
 app.use('/clientInfo', clientInf);
 app.use('/orders', order);
+app.use('/compose', comp);
 
 
 // catch 404 and forward to error handler
