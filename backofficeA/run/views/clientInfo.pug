@@ -41,9 +41,10 @@ block content
                                 | Código Postal:
                                 | #{user[0].ZIP_CODE}
                             .profile-details.muted
-                                a.btn(href='#')
-                                    i.icon-envelope-alt.shaded
-                                    |    Enviar Mensagem
+                                form(action="/compose/clientInfo/" + user[0].NIF, method="post")
+                                    button(class="btn" type="submit")
+                                        i.icon-envelope-alt.shaded
+                                        |    Enviar Mensagem
                     br
                     .profile-tab-content.tab-content
                         #activity.tab-pane.fade.active.in

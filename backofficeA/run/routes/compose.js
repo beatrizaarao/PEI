@@ -42,4 +42,12 @@ router.post('/', function(req, res, next){
     }
 
 });
+
+router.post('/clientInfo/:nif', function(req, res, next) {
+    var db = req.connection;
+    db.query("Select EMAIL from Client where NIF=?",req.params.nif, function (error, result, client) {
+        var email= result;
+        res.render('compose', { title: 'Compor', emailDefault: email[0].EMAIL, assunto: "Inserir assunto...", mensagem: "Inserir mensagem..."});
+    });
+});
 module.exports = router;

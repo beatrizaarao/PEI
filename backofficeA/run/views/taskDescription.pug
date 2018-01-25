@@ -14,9 +14,10 @@ block content
 
                 -if(task[0].Tipo==1)
                     p FAZER MOSTRAR A ENCOMENDA
-                    form(action="/taskDescription/encomendas/" + t+"?_method=PUT", method="post")
+                    form(action="/taskDescription/encomendas/" + t+"?_method=PUT", method="post", style="display:inline; margin:0px; padding:0px;")
                         button(class="btn btn-large btn-success" type="submit" name="encomendas" value="cancelar") Cancelar Encomenda
                         div(style="width:8px; height:auto; display:inline-block;")
+                    form(action="/compose/clientInfo/" + task[0].Client_NIF, method="post" style="display:inline; margin:0px; padding:0px;")
                         button(class="btn btn-large" type="submit" name="encomendas" value="contactar") Contactar Cliente
                 -else
                     -if(task[0].Tipo==0)
@@ -51,4 +52,5 @@ block content
                     -else if(task[0].Tipo==2)
                         p FAZER MOSTRAR A ENCOMENDA
                         div(style="width:8px; height:auto; display:inline-block;")
-                        button(class="btn btn-large") Contactar Cliente
+                        form(action="/compose/clientInfo/" + task[0].Client_NIF, method="post" style="display:inline")
+                            button(class="btn btn-large" type="submit") Contactar Cliente

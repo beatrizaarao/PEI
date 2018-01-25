@@ -15,8 +15,12 @@ block content
                     form.form-horizontal.row-fluid(action="/compose" method="post")
                         .control-group
                             label.control-label(for='basicinput') Email
-                            .controls
-                                input#basicinput.span8(type='text', placeholder= email, name='email' required)
+                            -if(emailDefault==null)
+                                .controls
+                                    input#basicinput.span8(type='text', placeholder= email, name='email' required)
+                            -else
+                                .controls
+                                    input#basicinput.span8(type='text', value= emailDefault, name='email' required)
                         .control-group
                             label.control-label(for='basicinput') Assunto
                             .controls

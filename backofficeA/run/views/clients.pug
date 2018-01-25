@@ -31,8 +31,9 @@ block content
                                                                                 div( class="media-option btn-group shaded-icon pull-right")
                                                                                     -if(dataGet[j + k + a].IS_BLOCKED == 1)
                                                                                         button( style="hover: disabled!; active: disabled!; background-color: #ff3333; color: #ffffff") BLOQUEADO
-                                                                                    button( class="btn btn-small")
-                                                                                        i( class="icon-envelope" )
+                                                                                    form(action="/compose/clientInfo/" + dataGet[j+k+a].NIF, method="post" style="display:inline; margin:0px; padding:0px;")
+                                                                                        button( class="btn btn-small" type="submit")
+                                                                                            i( class="icon-envelope" )
                                                                                     a(href="/clientInfo/" + dataGet[j + k + a].NIF)
                                                                                         button( class="btn btn-small")
                                                                                             i( class="icon-share-alt")
