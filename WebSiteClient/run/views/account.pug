@@ -1,0 +1,127 @@
+extends layout
+
+block content
+    <!-- MAIN CONTENT -->
+    div(class='pg-opt')
+        div(class='container')
+            div(class='row')
+                div(class='col-md-6')
+                    h2 Gestão de conta
+                div(class='col-md-6')
+                    ol(class='breadcrumb')
+                        li
+                            a(href='/') Home
+
+    section(class='slice bg-white')
+         div(class='wp-section')
+            div(class='container')
+                if status
+                    div(class=errors ? "alert alert-danger" : "alert alert-success")=status
+                div(class='wp-block default user-form')
+                    div(class='form-header')
+                        h2 Editar Conta - #{user.pnome} #{user.unome}
+                    div(class='form-body')
+                        form(action='' id='frmAccountEdit' class='sky-form' method='post')
+                            fieldset(class='no-padding')
+                                section
+                                section
+                                section
+                                    div(class='row')
+                                        div(class='col-xs-6')
+                                            div(class='form-group')
+                                                label(class='label') NIF
+                                                label(class='input')
+                                                    i(class='icon-append fa fa-user')
+                                                    input(type='text' name='nif' placeholder='' pattern='[0-9]{9}$' disabled='disabled' value=user.nif)
+                                                    b(class='tooltip tooltip-bottom-right') Necessario para inicar a sessão
+
+                                        div(class='col-xs-6')
+                                            div(class='form-group')
+                                                label(class='label') E-mail
+                                                label(class=errors.email ? 'input state-error' : 'input')
+                                                    i(class='icon-append fa fa-envelope-o')
+                                                    input(type='email' name='email' placeholder='' value=user.email)
+                                                    b(class='tooltip tooltip-bottom-right') Necessario para verificar a sua conta
+                                                    if errors.email
+                                                        div(class="note note-error")=errors.email.message
+                                hr
+                                section
+                                    div(class='row')
+                                        section(class='col-xs-6')
+                                            label(class='label') Primeiro Nome
+                                            label(class=errors.pnome ? 'input state-error' : 'input')
+                                                i(class='icon-append fa fa-user')
+                                                input(type='text' name='fname' placeholder='' value=user.pnome)
+                                                if errors.pnome
+                                                    div(class="note note-error")=errors.pnome.message
+                                        section(class='col-xs-6')
+                                            label(class='label') Ultimo Nome
+                                            label(class=errors.unome ? 'input state-error' : 'input')
+                                                i(class='icon-append fa fa-user')
+                                                input(type='text' name='lname' placeholder='' value=user.unome)
+                                                if errors.unome
+                                                    div(class="note note-error")=errors.unome.message
+                                    div(class='row')
+                                        section(class='col-xs-6')
+                                            label(class='label') Empresa
+                                            label(class=errors.ename ? 'input state-error' : 'input')
+                                                i(class='icon-append fa fa-building')
+                                                input(type='text' name='ename' placeholder='' value=user.ename)
+                                                if errors.ename
+                                                    div(class="note note-error")=errors.ename.message
+                                        section(class='col-xs-6')
+                                            label(class='label') Contacto Telefonico
+                                            label(class=errors.phone ? 'input state-error' : 'input')
+                                                i(class='icon-append fa fa-phone')
+                                                input(type='text' name='phone' placeholder='' pattern='[0-9]{9}$' value=user.phone)
+                                                if errors.phone
+                                                    div(class="note note-error")=errors.phone.message
+                            fieldset
+                                div(class='row')
+                                    section(class='col-xs-4')
+                                        label(class=errors.country ? 'select state-error' : 'select')
+                                            select(name='country')
+                                                option(value='0' disabled='') País
+                                                each name, value in countries
+                                                    if value == user.country
+                                                        option(value=value selected='selected') #{name}
+                                                    else
+                                                        option(value=value) #{name}
+                                            if errors.country
+                                                div(class="note note-error")=errors.country.message
+                                    section(class='col-xs-4')
+                                        label(class=errors.distrito ? 'input state-error' : 'input')
+                                            input(type='text' name='distrito' placeholder='Distrito' value=user.distrito)
+                                            if errors.distrito
+                                                div(class="note note-error")=errors.distrito.message
+                                    section(class = 'col-xs-4')
+                                        label(class=errors.concelho ? 'input state-error' : 'input')
+                                            input(type='text' name='concelho' placeholder='Concelho' value=user.concelho)
+                                            if errors.concelho
+                                                div(class="note note-error")=errors.concelho.message
+                                    section(class='col-xs-3')
+                                        label(class=errors.codpost ? 'input state-error' : 'input')
+                                            input(type='text' name='codpost' placeholder='Codigo Postal' pattern='[0-9]{4}-[0-9]{3}$' value=user.codpost)
+                                            if errors.codpost
+                                                div(class="note note-error")=errors.codpost.message
+                                    section(class='col-xs-7')
+                                        label(class=errors.freguesia ? 'input state-error' : 'input')
+                                            input(type='text' name='freguesia' placeholder='Freguesia' value=user.freguesia)
+                                            if errors.freguesia
+                                                div(class="note note-error")=errors.freguesia.message
+                                
+                                section
+                                    label(class=errors.morada ? 'input state-error' : 'input')
+                                        input(type='text' name='morada' placeholder='Morada' value=user.morada)
+                                        if errors.morada
+                                            div(class="note note-error")=errors.morada.message
+                                
+                                section
+                                    label(class=errors.info ? 'textarea state-error' : 'textarea')
+                                        textarea(rows='3' name='info' placeholder='Informação Adicional')= user.info
+                                        if errors.info
+                                            div(class="note note-error")=errors.info.message
+                                section
+                                    section
+                                        input(type="submit" class='btn btn-base pull-right' value='Guardar alterações')
+
