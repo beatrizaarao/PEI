@@ -3,7 +3,23 @@ var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
+var methodOverride = require('method-override');
+var nodemailer = require('nodemailer');
+var app = express();
+
+
+var router = express.Router();
+
+var transporter = nodemailer.createTransport({
+    service: 'Gmail',
+    auth: {
+        user: 'encomenda.uniline@gmail.com', // Your email id
+        pass: 'pei123456' // Your password
+        }
+});
+
+
 
 var mysql      = require('mysql');
 var connection = mysql.createConnection({
@@ -29,11 +45,14 @@ connection.connect(function(err){
 var index = require('./routes/index');
 var users = require('./routes/users');
 var clients = require('./routes/clients');
-var gestaoclients = require('./routes/gestaoclientes');
 var tasks = require('./routes/tasks');
 var message = require('./routes/message');
+var clientInf = require('./routes/clientInfo');
+var taskInf = require('./routes/taskDescription');
+var order = require('./routes/orders');
+var comp = require('./routes/compose');
 
-var app = express();
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -44,21 +63,38 @@ app.set('view engine', 'pug');
 //app.use(logger('dev'));
 //app.use(bodyParser.json());
 //app.use(bodyParser.urlencoded({ extended: false }));
+
+connection.query("SELECT COUNT(ID_TASK) AS tamanho FROM Task WHERE STATE=0", function (error, result, client){
+    app.locals.missedMenu = result[0].tamanho;
+});
+
+connection.query("SELECT COUNT(ID_ORDER) AS ord FROM ORDEM WHERE STATUS=0", function (error, result, client){
+    app.locals.missedOrders = result[0].ord;
+});
+
+app.use(methodOverride('_method'));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(function(req,res,next){
     req.connection = connection;
     next();
 });
+app.use(function(req,res,next){
+    req.transporter = transporter;
+    next();
+});
+
 
 app.use('/', index);
 app.use('/users', users);
 app.use('/clients', clients);
 app.use('/tasks', tasks);
-app.use('/gesclients', gestaoclients);
 app.use('/messages', message);
-
-
+app.use('/taskDescription', taskInf);
+app.use('/clientInfo', clientInf);
+app.use('/orders', order);
+app.use('/compose', comp);
 
 
 // catch 404 and forward to error handler

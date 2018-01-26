@@ -16,7 +16,7 @@ router.get('/', function(req, res, next) {
         // console.log('Data received from Db:\n');
 
         var data = rows;
-        console.log(data);
+        //console.log(data);
         res.render('clients', { title: 'Clientes', dataGet: data });
 
     });
