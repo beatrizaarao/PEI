@@ -10,7 +10,9 @@ router.get('/', function (req, res, next) {
 
   var nif = req.cookies.online;
 
-  user.find({'nif': nif}, function (error, user) {
+  var db = req.connection;
+
+  db.query('SELECT * FROM CLIENT WHERE NIF =' + nif, function (error, user) {
 
     if(!error && user.length > 0) {
       res.render('account', { countries: countries, user: user[0], errors: false });

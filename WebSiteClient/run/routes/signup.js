@@ -22,7 +22,9 @@ router.post('/',function(req,res,next) {
       db.query('SELECT * FROM CLIENT WHERE NIF ='+ fields.nif ,function(err2,docs){
         if(!err2){
           if(docs.length === 0){
-            if(fields.pass!=fields.cpassword){
+            console.log(fields.pass)
+            console.log(fields.cpassword)
+            if(fields.pass != fields.cpassword){
               status="Erro na confirmação de password"
               res.render('lr',{ title: 'Signup' , status: status  });
             }
@@ -35,7 +37,7 @@ router.post('/',function(req,res,next) {
                     if(!err3){
                       status="Registo Efetuado com sucesso."
                         console.log("Registo Efetuado com sucesso")
-                      res.redirect("/signin", {status:status})
+                      res.redirect("/signin")
                     }
                     else{
                       console.log("Erro ao efetuar o registo:\r\n" + err3 +"\r\n\r\n");

@@ -30,6 +30,7 @@ var account = require('./routes/account')
 var signin = require('./routes/signin')
 var prodef = require('./routes/prodef')
 var encsuc = require('./routes/encsuc')
+var home = require('./routes/home')
 
 
 var app = express();
@@ -55,6 +56,7 @@ app.use(function(req,res,next){
 
 app.use('/', index)
 app.use('/order', order)
+app.use('/home', home)
 app.use('/signup',signup)
 app.use('/signin', signin)
 app.use('/account', account)

@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
     res.redirect('/signin')
   }
   else{
-    res.redirect('/prodef')
+    res.redirect('/home')
   }
 });
 

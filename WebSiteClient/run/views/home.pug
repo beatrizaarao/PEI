@@ -1,0 +1,62 @@
+extend layout
+
+block content
+
+	body 
+		div(class='pg-opt')
+			div(class='container')
+				div(class='row')
+					div(class='col-md-6')
+						h2 Home
+					div(class='col-md-6')
+						ol(class='breadcrumb')
+							li
+								a(href='/account') O meu perfil
+							li
+								a(href='/logout') Logout
+		section(class='slice bg-white')
+			div(class='wp-section')
+				div(class='container')
+					table(class="w3-table-all w3-card-4" style="align:center")
+						tr 
+							td 
+								h3 ID
+							td 
+								h3 Data Inicio
+							td
+								h3 Data Fim	
+							td
+								h3 Estado			
+						if encomendas 
+							each encomenda in encomendas
+								tr
+									td 
+										a(href="/editar/"+ encomenda.ID_ORDER) 
+											p=encomenda.ID_ORDER
+									td
+										a(href="/editar/"+ encomenda.ID_ORDER)  
+											p=encomenda.BEGIN_DATE
+									td 
+										a(href="/editar/"+ encomenda.ID_ORDER)
+											p=encomenda.CLOSE_DATE
+									if (encomenda.STATUS == 0)
+										td
+											a(href="/editar/"+ encomenda.ID_ORDER) 
+												p Não aprovado
+									else if (encomenda.STATUS == 1)
+										td
+											a(href="/editar/"+ encomenda.ID_ORDER) 
+												p Em processamento
+									else
+										td
+											a(href="/editar/"+ encomenda.ID_ORDER) 
+												p Cancelado			 			 		 
+					p
+					input(type="button" class='btn btn-base btn-icon btn-icon-right pull-right' style='width: 150px;' value='Nova Encomenda')
+
+					script.
+						function formata(data){
+							var datainicio = data.split(" ")
+							var forminicio = datainicio[0]+" "+datainicio[1]+" "+datainicio[2]+" "+datainicio[3]
+							return forminicio
+						}
