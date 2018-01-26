@@ -9,15 +9,15 @@ var logger = require('morgan');
 
 var connection = mysql.createConnection({
     hostname : 'localhost',
-    port: '3307',
+    port: '3306',
     user     : 'root',
-    password : '',
+    password : 'root',
     database : 'mydb'
 });
 
 connection.connect(function(err){
     if(err){
-        console.log('Error connecting to Db');
+        console.log('Error connecting to Db '+ err);
         return;
     }
     console.log('Connection established');

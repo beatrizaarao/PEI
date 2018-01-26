@@ -22,23 +22,24 @@ router.post('/',function(req,res,next) {
       db.query('SELECT * FROM CLIENT WHERE NIF ='+ fields.nif ,function(err2,docs){
         if(!err2){
           if(docs.length === 0){
-            if(fields.password!=fields.cpassword){
+            if(fields.pass!=fields.cpassword){
               status="Erro na confirmação de password"
               res.render('lr',{ title: 'Signup' , status: status  });
             }
             else{
-                db.query('INSERT INTO CLIENT(NAME,NIF,EMAIL,PHONE,STREET,DOOR_NUMBER,CITY,COUNTRY,ZIP_CODE,PASS,IS_BLOCKED) VALUES('
-                + fields.fname + ' ' + fields.lname + ','
-                + fields.nif + ','
-                + fields.email + ','
-                + fields.phone + ','
-                + fields.street + ','
-                + fields.door_number + ','
-                + fields.city + ','
-                + fields.country + ','
-                + fields.zip_code + ','
-                + fields.password + ','
-                + fields.is_blocked + ')', function(err3, doc){
+                fields.name = fields.fname + ' ' + fields.lname ;
+                db.query('INSERT INTO CLIENT(NAME,NIF,EMAIL,PHONE,STREET,DOOR_NUMBER,CITY,COUNTRY,ZIP_CODE,PASS,IS_BLOCKED) VALUES("'
+                + fields.name + '","'
+                + fields.nif + '","'
+                + fields.email + '","'
+                + fields.phone + '","'
+                + fields.nrua + '","'
+                + fields.numerop + '","'
+                + fields.city + '","'
+                + fields.country + '","'
+                + fields.zip + '","'
+                + fields.pass + '","'
+                + '1)', function(err3, doc){
                     if(!err3){
                       status="Registo Efetuado com sucesso."
                       res.redirect("/order")
