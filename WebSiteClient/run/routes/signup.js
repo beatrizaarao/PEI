@@ -35,7 +35,7 @@ router.post('/',function(req,res,next) {
                     if(!err3){
                       status="Registo Efetuado com sucesso."
                         console.log("Registo Efetuado com sucesso")
-                      res.redirect("/signin", {status:status})
+                      res.redirect("/signin")
                     }
                     else{
                       console.log("Erro ao efetuar o registo:\r\n" + err3 +"\r\n\r\n");
