@@ -22,6 +22,10 @@ SET time_zone = "+00:00";
 -- Database: `id4056546_uniline`
 --
 
+
+CREATE SCHEMA IF NOT EXISTS id4056546_uniline DEFAULT CHARACTER SET utf8 ;
+USE id4056546_uniline ;
+
 -- --------------------------------------------------------
 
 --
@@ -53,8 +57,8 @@ CREATE TABLE `CLIENT` (
   `ZIP_CODE` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
   `PASS` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
   `IS_BLOCKED` int(1) NOT NULL,
-  `img_path` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `IS_APPROVED` int(3) NOT NULL,
+  `img_path` varchar(45) COLLATE utf8_unicode_ci default null,
+   `IS_APPROVED` int(3) NOT NULL,
   `data_registo` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 

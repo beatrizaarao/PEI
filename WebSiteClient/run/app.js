@@ -12,7 +12,7 @@ var connection = mysql.createConnection({
     port: '3306',
     user     : 'root',
     password : 'root',
-    database : 'mydb'
+    database : 'id4056546_uniline'
 });
 
 connection.connect(function(err){
@@ -25,6 +25,7 @@ connection.connect(function(err){
 var index = require('./routes/index')
 var order = require('./routes/order')
 var signup = require('./routes/signup')
+var logout = require('./routes/logout')
 var account = require('./routes/account')
 var signin = require('./routes/signin')
 var prodef = require('./routes/prodef')
@@ -58,6 +59,7 @@ app.use('/signup',signup)
 app.use('/signin', signin)
 app.use('/account', account)
 app.use('/prodef', prodef)
+app.use('/logout', logout)
 app.use('/encsuc', encsuc)
 
 // catch 404 and forward to error handler

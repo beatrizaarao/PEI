@@ -24,7 +24,9 @@ router.post('/',function(req,res,next) {
       if(!err2){
         if(docs.length>0){
           // nao é suposto haver mais do que um resultado
-          if(docs[0].password === fields.password){
+            console.log("NIF => " + fields.nif)
+            console.log("PASS => " + docs[0].PASS + " TENTATIVA => " + fields.password)
+          if(docs[0].PASS === fields.password){
             res.cookie('online', fields.nif)
             res.redirect('/order')
           }

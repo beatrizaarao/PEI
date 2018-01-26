@@ -27,22 +27,15 @@ router.post('/',function(req,res,next) {
               res.render('lr',{ title: 'Signup' , status: status  });
             }
             else{
-                fields.name = fields.fname + ' ' + fields.lname ;
-                db.query('INSERT INTO CLIENT(NAME,NIF,EMAIL,PHONE,STREET,DOOR_NUMBER,CITY,COUNTRY,ZIP_CODE,PASS,IS_BLOCKED) VALUES("'
-                + fields.name + '","'
-                + fields.nif + '","'
-                + fields.email + '","'
-                + fields.phone + '","'
-                + fields.nrua + '","'
-                + fields.numerop + '","'
-                + fields.city + '","'
-                + fields.country + '","'
-                + fields.zip + '","'
-                + fields.pass + '","'
-                + '1)', function(err3, doc){
+                fields.name = fields.fname + " " + fields.lname
+
+                var querysql = "INSERT INTO `CLIENT` (`NAME`, `NIF`, `EMAIL`, `PHONE`, `STREET`, `DOOR_NUMBER`, `CITY`, `COUNTRY`, `ZIP_CODE`, `PASS`, `IS_BLOCKED`, `img_path`, `IS_APPROVED`, `data_registo`) VALUES('"+ fields.name +"',"+ fields.nif + ",'" + fields.email + "','" + fields.phone + "','" + fields.rua + "'," + fields.porta + ",'" + fields.city + "','" + fields.country + "','" + fields.zip + "','" + fields.pass + "',1,NULL,0,CURDATE())"
+
+                db.query(querysql, function(err3, result, clint){
                     if(!err3){
                       status="Registo Efetuado com sucesso."
-                      res.redirect("/order")
+                        console.log("Registo Efetuado com sucesso")
+                      res.redirect("/signin", {status:status})
                     }
                     else{
                       console.log("Erro ao efetuar o registo:\r\n" + err3 +"\r\n\r\n");
