@@ -51,6 +51,7 @@ var clientInf = require('./routes/clientInfo');
 var taskInf = require('./routes/taskDescription');
 var order = require('./routes/orders');
 var comp = require('./routes/compose');
+var messInf = require('./routes/messageInfo');
 
 
 
@@ -71,6 +72,11 @@ connection.query("SELECT COUNT(ID_TASK) AS tamanho FROM Task WHERE STATE=0", fun
 connection.query("SELECT COUNT(ID_ORDER) AS ord FROM ORDEM WHERE STATUS=0", function (error, result, client){
     app.locals.missedOrders = result[0].ord;
 });
+
+connection.query("SELECT COUNT(idMESSAGES) AS mg FROM ADMIN_MESSAGE WHERE Tipo=0", function (error, result, client){
+    app.locals.inbox = result[0].mg;
+});
+
 
 app.use(methodOverride('_method'));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -95,6 +101,7 @@ app.use('/taskDescription', taskInf);
 app.use('/clientInfo', clientInf);
 app.use('/orders', order);
 app.use('/compose', comp);
+app.use('/messageInfo', messInf);
 
 
 // catch 404 and forward to error handler

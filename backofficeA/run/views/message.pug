@@ -1,6 +1,12 @@
 extends layout
 block content
-                    .span9
+    style.
+        [type=checkbox] { display: none; }
+        label { cursor: pointer; }
+        [class*=icon-].icon-fixed-width { text-align: left; }
+
+
+    .span9
                         .content
                             .module.message
                                 .module-head
@@ -9,257 +15,269 @@ block content
                                 .module-option.clearfix
                                     .pull-left
                                         .btn-group
-                                            button.btn
-                                                | Inbox
-                                            button.btn.dropdown-toggle(data-toggle="dropdown")
+                                            button.btn.btn-info
+                                                | Inbox(#{inbox})
+                                            button.btn.btn-info.dropdown-toggle(data-toggle="dropdown")
                                                 span.caret
                                             ul.dropdown-menu
                                                 li
-                                                    a(href="#") Inbox(11)
+                                                    a(name="drop" value="1") Inbox(#{inbox})
                                                 li
-                                                    a(href="#") Sent
+                                                    a(name="drop" value="2") Sent
                                                 li
-                                                    a(href="#") Draft(2)
+                                                    a(name="drop" value="3") Favorites
                                                 li
-                                                    a(href="#") Trash
-                                                li.divider
-                                                li
-                                                    a(href="#") Settings
+                                                    a(name="drop" value="4") Trash
                                     .pull-right
-                                        a.btn.btn-primary(href="/compose") Compose
-                                .module-body.table
-                                    table.table.table-message
-                                        tbody
-                                            tr.heading
-                                                td.cell-check
-                                                    input.inbox-checkbox(type="checkbox")
-                                                td.cell-icon
-                                                td.cell-author.hidden-phone.hidden-tablet
-                                                    | Sender
-                                                td.cell-title
-                                                    | Subject
-                                                td.cell-icon.hidden-phone.hidden-tablet
-                                                td.cell-time.align-right
-                                                    | Date
-                                            tr.unread
-                                                td.cell-check
-                                                    input.inbox-checkbox(type="checkbox")
-                                                td.cell-icon
-                                                    i.icon-star
-                                                td.cell-author.hidden-phone.hidden-tablet
-                                                    | John Donga
-                                                td.cell-title
-                                                    | Sample Work
-                                                td.cell-icon.hidden-phone.hidden-tablet
-                                                    i.icon-paper-clip
-                                                td.cell-time.align-right
-                                                    | 18:24
-                                            tr.unread.starred
-                                                td.cell-check
-                                                    input.inbox-checkbox(type="checkbox")
-                                                td.cell-icon
-                                                    i.icon-star
-                                                td.cell-author.hidden-phone.hidden-tablet
-                                                    | John Donga
-                                                td.cell-title
-                                                    | Test Title
-                                                td.cell-icon.hidden-phone.hidden-tablet
-                                                    i.icon-paper-clip-no
-                                                td.cell-time.align-right
-                                                    | 18:01
-                                            tr.unread
-                                                td.cell-check
-                                                    input.inbox-checkbox(type="checkbox")
-                                                td.cell-icon
-                                                    i.icon-star
-                                                td.cell-author.hidden-phone.hidden-tablet
-                                                    | Facebook
-                                                td.cell-title
-                                                    | Dongi sents you a friend request!
-                                                td.cell-icon.hidden-phone.hidden-tablet
-                                                    i.icon-paper-clip
-                                                td.cell-time.align-right
-                                                    | 23:58
-                                            tr.unread
-                                                td.cell-check
-                                                    input.inbox-checkbox(type="checkbox")
-                                                td.cell-icon
-                                                    i.icon-star
-                                                td.cell-author.hidden-phone.hidden-tablet
-                                                    | John Donga
-                                                td.cell-title
-                                                    | Something
-                                                td.cell-icon.hidden-phone.hidden-tablet
-                                                    i.icon-paper-clip
-                                                td.cell-time.align-right
-                                                    | 22:17
-                                            tr.read.starred
-                                                td.cell-check
-                                                    input.inbox-checkbox(type="checkbox")
-                                                td.cell-icon
-                                                    i.icon-star
-                                                td.cell-author.hidden-phone.hidden-tablet
-                                                    | John Donga
-                                                td.cell-title
-                                                    | Someone wants to talk to you!
-                                                td.cell-icon.hidden-phone.hidden-tablet
-                                                    i.icon-paper-clip-no
-                                                td.cell-time.align-right
-                                                    | May 21
-                                            tr.read
-                                                td.cell-check
-                                                    input.inbox-checkbox(type="checkbox")
-                                                td.cell-icon
-                                                    i.icon-star
-                                                td.cell-author.hidden-phone.hidden-tablet
-                                                    | John Doe
-                                                td.cell-title
-                                                    | Doe wants to talk to you!
-                                                td.cell-icon.hidden-phone.hidden-tablet
-                                                    i.icon-paper-clip
-                                                td.cell-time.align-right
-                                                    | May 15
-                                            tr.read.starred
-                                                td.cell-check
-                                                    input.inbox-checkbox(type="checkbox")
-                                                td.cell-icon
-                                                    i.icon-star
-                                                td.cell-author.hidden-phone.hidden-tablet
-                                                    | Social Network
-                                                td.cell-title
-                                                    | An example message from a social network
-                                                td.cell-icon.hidden-phone.hidden-tablet
-                                                    i.icon-paper-clip
-                                                td.cell-time.align-right
-                                                    | May 15
-                                            tr.unread
-                                                td.cell-check
-                                                    input.inbox-checkbox(type="checkbox")
-                                                td.cell-icon
-                                                    i.icon-star
-                                                td.cell-author.hidden-phone.hidden-tablet
-                                                    | John Donga
-                                                td.cell-title
-                                                    | Sample Work
-                                                td.cell-icon.hidden-phone.hidden-tablet
-                                                    i.icon-paper-clip
-                                                td.cell-time.align-right
-                                                    | 18:24
-                                            tr.unread.starred
-                                                td.cell-check
-                                                    input.inbox-checkbox(type="checkbox")
-                                                td.cell-icon
-                                                    i.icon-star
-                                                td.cell-author.hidden-phone.hidden-tablet
-                                                    | John Donga
-                                                td.cell-title
-                                                    | Test Title
-                                                td.cell-icon.hidden-phone.hidden-tablet
-                                                    i.icon-paper-clip-no
-                                                td.cell-time.align-right
-                                                    | 18:01
-                                            tr.unread
-                                                td.cell-check
-                                                    input.inbox-checkbox(type="checkbox")
-                                                td.cell-icon
-                                                    i.icon-star
-                                                td.cell-author.hidden-phone.hidden-tablet
-                                                    | Facebook
-                                                td.cell-title
-                                                    | Dongi sents you a friend request!
-                                                td.cell-icon.hidden-phone.hidden-tablet
-                                                    i.icon-paper-clip
-                                                td.cell-time.align-right
-                                                    | 23:58
-                                            tr.unread
-                                                td.cell-check
-                                                    input.inbox-checkbox(type="checkbox")
-                                                td.cell-icon
-                                                    i.icon-star
-                                                td.cell-author.hidden-phone.hidden-tablet
-                                                    | John Donga
-                                                td.cell-title
-                                                    | Something
-                                                td.cell-icon.hidden-phone.hidden-tablet
-                                                    i.icon-paper-clip
-                                                td.cell-time.align-right
-                                                    | 22:17
-                                            tr.read.starred
-                                                td.cell-check
-                                                    input.inbox-checkbox(type="checkbox")
-                                                td.cell-icon
-                                                    i.icon-star
-                                                td.cell-author.hidden-phone.hidden-tablet
-                                                    | John Donga
-                                                td.cell-title
-                                                    | Someone wants to talk to you!
-                                                td.cell-icon.hidden-phone.hidden-tablet
-                                                    i.icon-paper-clip-no
-                                                td.cell-time.align-right
-                                                    | May 21
-                                            tr.read
-                                                td.cell-check
-                                                    input.inbox-checkbox(type="checkbox")
-                                                td.cell-icon
-                                                    i.icon-star
-                                                td.cell-author.hidden-phone.hidden-tablet
-                                                    | John Doe
-                                                td.cell-title
-                                                    | Doe wants to talk to you!
-                                                td.cell-icon.hidden-phone.hidden-tablet
-                                                    i.icon-paper-clip
-                                                td.cell-time.align-right
-                                                    | May 15
-                                            tr.read.starred
-                                                td.cell-check
-                                                    input.inbox-checkbox(type="checkbox")
-                                                td.cell-icon
-                                                    i.icon-star
-                                                td.cell-author.hidden-phone.hidden-tablet
-                                                    | Social Network
-                                                td.cell-title
-                                                    | An example message from a social network
-                                                td.cell-icon.hidden-phone.hidden-tablet
-                                                    i.icon-paper-clip
-                                                td.cell-time.align-right
-                                                    | May 15
-                                            tr.read
-                                                td.cell-check
-                                                    input.inbox-checkbox(type="checkbox")
-                                                td.cell-icon
-                                                    i.icon-star
-                                                td.cell-author.hidden-phone.hidden-tablet
-                                                    | Greepit.com
-                                                td.cell-title
-                                                    | An email from Greepit.com
-                                                td.cell-icon.hidden-phone.hidden-tablet
-                                                    i.icon-paper-clip-no
-                                                td.cell-time.align-right
-                                                    | Jan 12
-                                            tr.read.starred
-                                                td.cell-check
-                                                    input.inbox-checkbox(type="checkbox")
-                                                td.cell-icon
-                                                    i.icon-star
-                                                td.cell-author.hidden-phone.hidden-tablet
-                                                    | EGrappler.com
-                                                td.cell-title
-                                                    | An email from EGrappler.com
-                                                td.cell-icon.hidden-phone.hidden-tablet
-                                                    i.icon-paper-clip
-                                                td.cell-time.align-right
-                                                    | Jan 11
-                                            tr.read
-                                                td.cell-check
-                                                    input.inbox-checkbox(type="checkbox")
-                                                td.cell-icon
-                                                    i.icon-star
-                                                td.cell-author.hidden-phone.hidden-tablet
-                                                    | An unread message
-                                                td.cell-title
-                                                    | This is how an unread message looks alike.
-                                                td.cell-icon.hidden-phone.hidden-tablet
-                                                    i.icon-paper-clip-no
-                                                td.cell-time.align-right
-                                                    | Jan 10
+                                        a(href="/compose")
+                                            button.btn.btn-primary Compose
+
+                                div.groupe.d1
+                                    .module-body.table
+                                        table.table.table-message
+                                            tbody
+                                                tr.heading
+                                                    td.cell-check
+                                                        input.inbox-checkbox(type="checkbox")
+                                                    td.cell-icon
+                                                    td.cell-author.hidden-phone.hidden-tablet
+                                                        | Sender
+                                                    td.cell-title
+                                                        | Subject
+                                                    td.cell-time.align-right
+                                                        | Date
+
+                                                -for(var y=0; y<inbox_msm.length;y++)
+                                                    -if(inbox_msm[y].IS_READ==0)
+                                                        tr.unread
+                                                            td.cell-icon
+                                                                form(action="/messages/" + inbox_msm[y].idMESSAGES, method = "post", style="display:inline; margin:0px; padding:0px;")
+                                                                    button(type="submit" style="padding: 0; border: none; background: none;")
+                                                                        i.icon-trash
+                                                            td.cell-icon
+                                                                label
+                                                                    form(action="/messages/favorite/" + inbox_msm[y].idMESSAGES, method = "post", style="display:inline; margin:0px; padding:0px;")
+                                                                        button(type="submit" style="padding: 0; border: none; background: none;")
+                                                                            -if(inbox_msm[y].IS_FAVORITE==1)
+                                                                                input(type="checkbox")
+                                                                                i.icon-fixed-width.icon-star(style="color:orange")
+                                                                            -else
+                                                                                input(type="checkbox")
+                                                                                i.icon-fixed-width.icon-star-empty(style="color:orange")
+                                                            td.cell-author.hidden-phone.hidden-tablet
+                                                                | #{inbox_msm[y].client_mail}
+                                                            td.cell-title
+                                                                | #{inbox_msm[y].SUBJECT}
+                                                            td.cell-time.align-right
+                                                                | #{(inbox_msm[y].Data)}
+                                                    -else
+                                                        tr.read
+                                                            td.cell-icon
+                                                                form(action="/messages/" + inbox_msm[y].idMESSAGES, method = "post", style="display:inline; margin:0px; padding:0px;")
+                                                                    button(type="submit" style="padding: 0; border: none; background: none;")
+                                                                        i.icon-trash
+                                                            td.cell-icon
+                                                                label
+                                                                    form(action="/messages/favorite/" + inbox_msm[y].idMESSAGES, method = "post", style="display:inline; margin:0px; padding:0px;")
+                                                                        button(type="submit" style="padding: 0; border: none; background: none;")
+                                                                            -if(inbox_msm[y].IS_FAVORITE==1)
+                                                                                input(type="checkbox")
+                                                                                i.icon-fixed-width.icon-star(style="color:orange")
+                                                                            -else
+                                                                                input(type="checkbox")
+                                                                                i.icon-fixed-width.icon-star-empty(style="color:orange")
+                                                            td.cell-author.hidden-phone.hidden-tablet
+                                                                | #{inbox_msm[y].client_mail}
+                                                            td.cell-title
+                                                                | #{inbox_msm[y].SUBJECT}
+                                                            td.cell-time.align-right
+                                                                | #{(inbox_msm[y].Data)}
+
+                                div.groupe.d2
+                                    .module-body.table
+                                        table.table.table-message
+                                            tbody
+                                                tr.heading
+                                                    td.cell-check
+                                                        input.inbox-checkbox(type="checkbox")
+                                                    td.cell-icon
+                                                    td.cell-author.hidden-phone.hidden-tablet
+                                                        | Sender
+                                                    td.cell-title
+                                                        | Subject
+                                                    td.cell-time.align-right
+                                                        | Date
+
+                                                -for(var l=0; l<sent_msm.length;l++)
+                                                    -if(sent_msm[l].IS_READ==0)
+                                                        tr.unread
+                                                            td.cell-icon
+                                                                form(action="/messages/" + sent_msm[l].idMESSAGES, method = "post", style="display:inline; margin:0px; padding:0px;")
+                                                                    button(type="submit" style="padding: 0; border: none; background: none;")
+                                                                        i.icon-trash
+                                                            td.cell-icon
+                                                                label
+                                                                    form(action="/messages/favorite/" + sent_msm[l].idMESSAGES, method = "post", style="display:inline; margin:0px; padding:0px;")
+                                                                        button(type="submit" style="padding: 0; border: none; background: none;")
+                                                                            -if(sent_msm[l].IS_FAVORITE==1)
+                                                                                input(type="checkbox")
+                                                                                i.icon-fixed-width.icon-star(style="color:orange")
+                                                                            -else
+                                                                                input(type="checkbox")
+                                                                                i.icon-fixed-width.icon-star-empty(style="color:orange")
+                                                            td.cell-author.hidden-phone.hidden-tablet
+                                                                | #{sent_msm[l].client_mail}
+                                                            td.cell-title
+                                                                | #{sent_msm[l].SUBJECT}
+                                                            td.cell-time.align-right
+                                                                | #{(sent_msm[l].Data)}
+                                                    -else
+                                                        tr.read
+                                                            td.cell-icon
+                                                                form(action="/messages/" + sent_msm[l].idMESSAGES, method = "post", style="display:inline; margin:0px; padding:0px;")
+                                                                    button(type="submit" style="padding: 0; border: none; background: none;")
+                                                                        i.icon-trash
+                                                            td.cell-icon
+                                                                label
+                                                                    form(action="/messages/favorite/" + sent_msm[l].idMESSAGES, method = "post", style="display:inline; margin:0px; padding:0px;")
+                                                                        button(type="submit" style="padding: 0; border: none; background: none;")
+                                                                            -if(sent_msm[l].IS_FAVORITE==1)
+                                                                                input(type="checkbox")
+                                                                                i.icon-fixed-width.icon-star(style="color:orange")
+                                                                            -else
+                                                                                input(type="checkbox")
+                                                                                i.icon-fixed-width.icon-star-empty(style="color:orange")
+                                                            td.cell-author.hidden-phone.hidden-tablet
+                                                                | #{sent_msm[l].client_mail}
+                                                            td.cell-title
+                                                                | #{sent_msm[l].SUBJECT}
+                                                            td.cell-time.align-right
+                                                                | #{(sent_msm[l].Data)}
+
+                                div.groupe.d3
+                                    .module-body.table
+                                        table.table.table-message
+                                            tbody
+                                                tr.heading
+                                                    td.cell-check
+                                                        input.inbox-checkbox(type="checkbox")
+                                                    td.cell-icon
+                                                    td.cell-author.hidden-phone.hidden-tablet
+                                                        | Sender
+                                                    td.cell-title
+                                                        | Subject
+                                                    td.cell-time.align-right
+                                                        | Date
+
+                                                -for(var k=0; k<favorites_msm.length;k++)
+                                                    -if(favorites_msm[k].IS_READ==0)
+                                                        tr.unread
+                                                            td.cell-icon
+                                                                form(action="/messages/" + favorites_msm[k].idMESSAGES, method = "post", style="display:inline; margin:0px; padding:0px;")
+                                                                    button(type="submit" style="padding: 0; border: none; background: none;")
+                                                                        i.icon-trash
+                                                            td.cell-icon
+                                                                label
+                                                                    form(action="/messages/favorite/" + favorites_msm[k].idMESSAGES, method = "post", style="display:inline; margin:0px; padding:0px;")
+                                                                        button(type="submit" style="padding: 0; border: none; background: none;")
+                                                                            -if(favorites_msm[k].IS_FAVORITE==1)
+                                                                                input(type="checkbox")
+                                                                                i.icon-fixed-width.icon-star(style="color:orange")
+                                                                            -else
+                                                                                input(type="checkbox")
+                                                                                i.icon-fixed-width.icon-star-empty(style="color:orange")
+                                                            td.cell-author.hidden-phone.hidden-tablet
+                                                                | #{favorites_msm[k].client_mail}
+                                                            td.cell-title
+                                                                | #{favorites_msm[k].SUBJECT}
+                                                            td.cell-time.align-right
+                                                                | #{(favorites_msm[k].Data)}
+                                                    -else
+                                                        tr.read
+                                                            td.cell-icon
+                                                                form(action="/messages/" + favorites_msm[k].idMESSAGES, method = "post", style="display:inline; margin:0px; padding:0px;")
+                                                                    button(type="submit" style="padding: 0; border: none; background: none;")
+                                                                        i.icon-trash
+                                                            td.cell-icon
+                                                                label
+                                                                    form(action="/messages/favorite/" + favorites_msm[k].idMESSAGES, method = "post", style="display:inline; margin:0px; padding:0px;")
+                                                                        button(type="submit" style="padding: 0; border: none; background: none;")
+                                                                            -if(favorites_msm[k].IS_FAVORITE==1)
+                                                                                input(type="checkbox")
+                                                                                i.icon-fixed-width.icon-star(style="color:orange")
+                                                                            -else
+                                                                                input(type="checkbox")
+                                                                                i.icon-fixed-width.icon-star-empty(style="color:orange")
+                                                            td.cell-author.hidden-phone.hidden-tablet
+                                                                | #{favorites_msm[k].client_mail}
+                                                            td.cell-title
+                                                                | #{favorites_msm[k].SUBJECT}
+                                                            td.cell-time.align-right
+                                                                | #{(favorites_msm[k].Data)}
+
+                                div.groupe.d4
+                                    .module-body.table
+                                        table.table.table-message
+                                            tbody
+                                                tr.heading
+                                                    td.cell-check
+                                                        input.inbox-checkbox(type="checkbox")
+                                                    td.cell-icon
+                                                    td.cell-author.hidden-phone.hidden-tablet
+                                                        | Sender
+                                                    td.cell-title
+                                                        | Subject
+                                                    td.cell-time.align-right
+                                                        | Date
+
+                                                -for(var r=0; r<trash_msm.length;r++)
+                                                    -if(trash_msm[r].IS_READ==0)
+                                                        tr.unread
+                                                            td.cell-icon
+                                                            td.cell-icon
+                                                            td.cell-author.hidden-phone.hidden-tablet
+                                                                | #{trash_msm[r].client_mail}
+                                                            td.cell-title
+                                                                | #{trash_msm[r].SUBJECT}
+                                                            td.cell-time.align-right
+                                                                | #{(trash_msm[r].Data)}
+                                                    -else
+                                                        tr.read
+                                                            td.cell-icon
+                                                            td.cell-icon
+                                                            td.cell-author.hidden-phone.hidden-tablet
+                                                                | #{trash_msm[r].client_mail}
+                                                            td.cell-title
+                                                                | #{trash_msm[r].SUBJECT}
+                                                            td.cell-time.align-right
+                                                                | #{(trash_msm[r].Data)}
+
                                 .module-foot
+                                script.
+                                    $(function(){
+                                            $(".dropdown-menu").on('click', 'li a', function(){
+                                                $(".btn.btn-info:first-child").text($(this).text());
+                                                $(".btn.btn-info:first-child").val($(this).text());
+                                            });
+                                    });
+
+                                    $("[type=checkbox]").change(function () {
+                                        $checkbox = $(this)
+                                        $icon = $checkbox.siblings("[class*=icon-]")
+
+                                        checked = $checkbox.is(":checked")
+
+                                        $icon.toggleClass('icon-star-empty', !checked)
+                                            .toggleClass('icon-star', checked)
+                                    });
+
+                                    $(function () {
+                                        $('.groupe').hide();
+                                        $('.d1').show();
+
+                                        $('.dropdown-menu').on('click', 'li a', function () {
+                                            $('.groupe').hide();
+                                            console.log(('.d' + $(this).attr("value")));
+                                            $('.d' + $(this).attr("value")).show();
+                                        })
+                                    });

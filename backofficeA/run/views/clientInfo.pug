@@ -53,7 +53,7 @@ block content
                                 p.profile-brief.strong
                                     |Data da Ultima Encomenda Efetuada:
                                     | #{prettyDate(uOrder[0].BEGIN_DATE)}
-                                    form(action="/orders/" + user[0].NIF, method="post")
+                                    form(action="/orders/" + user[0].NIF, method="post" style="display:inline; margin:0px; padding:0px;")
                                         button(class="btn btn-large btn-info pull-right" type="submit") Ver encomendas
                             -else
                                 p.profile-brief.strong
