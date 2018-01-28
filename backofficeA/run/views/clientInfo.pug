@@ -7,14 +7,6 @@ block content
                     h3 Informação do Cliente
                 .module-body
                     .profile-head.media
-                        -function prettyDate(date){
-                            //if it's already a date object and not a string you don't need this line:
-                            -var d = date.getDate();
-                            -var monthNames = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
-                            -var m = monthNames[date.getMonth()];
-                            -var y = date.getFullYear();
-                            -return d+' '+m+' '+y;
-                        -}
                         a.media-avatar.pull-left(href='#')
                             if(user[0].img_path != null)
                                 img(src='/images/users/' + user[0].img_path)

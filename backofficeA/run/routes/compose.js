@@ -51,4 +51,8 @@ router.post('/clientInfo/:nif', function(req, res, next) {
         res.render('compose', { title: 'Compor', emailDefault: email[0].EMAIL, assunto: "Inserir assunto...", mensagem: "Inserir mensagem..."});
     });
 });
+
+router.post('/clientInfo/bymail/:mail', function(req, res, next) {
+    res.render('compose', { title: 'Compor', emailDefault: req.params.mail, assunto: "Inserir assunto...", mensagem: "Inserir mensagem..."});
+});
 module.exports = router;

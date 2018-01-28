@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: 24-Jan-2018 às 19:31
+-- Generation Time: 28-Jan-2018 às 22:49
 -- Versão do servidor: 10.1.29-MariaDB
 -- PHP Version: 7.2.0
 
@@ -22,11 +22,6 @@ SET time_zone = "+00:00";
 -- Database: `id4056546_uniline`
 --
 
-
-
-CREATE SCHEMA IF NOT EXISTS id4056546_uniline DEFAULT CHARACTER SET utf8 ;
-USE id4056546_uniline ;
-
 -- --------------------------------------------------------
 
 --
@@ -39,6 +34,38 @@ CREATE TABLE `ADMINISTRATOR` (
   `PASSWORD` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
   `COMPANY_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `ADMIN_MESSAGE`
+--
+
+CREATE TABLE `ADMIN_MESSAGE` (
+  `idMESSAGES` int(11) NOT NULL,
+  `SUBJECT` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `CONTENT` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
+  `Tipo` int(11) NOT NULL,
+  `client_mail` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `IS_READ` int(11) NOT NULL,
+  `IS_FAVORITE` int(11) NOT NULL,
+  `Data` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Extraindo dados da tabela `ADMIN_MESSAGE`
+--
+
+INSERT INTO `ADMIN_MESSAGE` (`idMESSAGES`, `SUBJECT`, `CONTENT`, `Tipo`, `client_mail`, `IS_READ`, `IS_FAVORITE`, `Data`) VALUES
+(0, 'ewec', 'wecec', 2, 'dddd', 1, 0, '2018-01-02'),
+(4, 'ff', 'ff', 2, 'beatrizaarao@gmail.com', 1, 0, '2018-01-09'),
+(5, 'testeinbox', 'ola mundo', 2, 'bea', 0, 1, '2018-01-17'),
+(6, 'coisa1', 'olq', 2, 'beq', 0, 1, '2018-01-03'),
+(7, 'Avaliação entre pares', 'Boa noite,\r\nComo requerido envio em anexo a avaliação entre pares.\r\nCumprimentos,\r\nBeatriz Aarão', 0, 'beatrizaarao@gmail.com', 1, 1, '2018-01-01'),
+(9, 'wewec', 'wcwec', 2, 'ddd', 0, 0, '2018-01-10'),
+(10, 'ola', 'bea', 1, 'bea2', 0, 1, '2018-01-28'),
+(11, 'teste', 'teste1', 1, 'teste2', 0, 0, '2018-01-28'),
+(12, 'ss', 'ssss', 1, 'bea@mail.com', 1, 0, '2018-01-28');
 
 -- --------------------------------------------------------
 
@@ -58,8 +85,8 @@ CREATE TABLE `CLIENT` (
   `ZIP_CODE` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
   `PASS` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
   `IS_BLOCKED` int(1) NOT NULL,
-  `img_path` varchar(45) COLLATE utf8_unicode_ci default null,
-   `IS_APPROVED` int(3) NOT NULL,
+  `img_path` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `IS_APPROVED` int(3) NOT NULL,
   `data_registo` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -106,31 +133,10 @@ CREATE TABLE `Incompatibilities` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `MESSAGE`
+-- Estrutura da tabela `OPCAO`
 --
 
-CREATE TABLE `MESSAGE` (
-  `idMESSAGES` int(11) NOT NULL,
-  `SUBJECT` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `CONTENT` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
-  `Tipo` int(11) NOT NULL,
-  `client_mail` varchar(45) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Extraindo dados da tabela `MESSAGE`
---
-
-INSERT INTO `MESSAGE` (`idMESSAGES`, `SUBJECT`, `CONTENT`, `Tipo`, `client_mail`) VALUES
-(4, 'ff', 'ff', 1, 'beatrizaarao@gmail.com');
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `OPTION`
---
-
-CREATE TABLE `OPTION` (
+CREATE TABLE `OPCAO` (
   `id_OPTION` int(11) NOT NULL,
   `DESCRIPTION` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
   `TYPE` binary(1) NOT NULL,
@@ -138,10 +144,10 @@ CREATE TABLE `OPTION` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Extraindo dados da tabela `OPTION`
+-- Extraindo dados da tabela `OPCAO`
 --
 
-INSERT INTO `OPTION` (`id_OPTION`, `DESCRIPTION`, `TYPE`, `SERVICE_id_SERVICE`) VALUES
+INSERT INTO `OPCAO` (`id_OPTION`, `DESCRIPTION`, `TYPE`, `SERVICE_id_SERVICE`) VALUES
 (1, 'Q', 0x00, 16),
 (2, 'F', 0x00, 16),
 (3, 'EM', 0x00, 19),
@@ -255,6 +261,19 @@ INSERT INTO `ORDEM_STEP` (`ORDEM_id_ordem`, `STEP_id_step`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `ORDER_STEP_SERVICE_OPTION`
+--
+
+CREATE TABLE `ORDER_STEP_SERVICE_OPTION` (
+  `ID_ORDER` int(11) NOT NULL,
+  `id_STEP` int(11) NOT NULL,
+  `id_SERVICE` int(11) NOT NULL,
+  `id_OPTION` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `SERVICE`
 --
 
@@ -334,7 +353,7 @@ CREATE TABLE `Task` (
 
 INSERT INTO `Task` (`ID_TASK`, `DESCRIPTION`, `STATE`, `Client_NIF`, `Tipo`, `dataPedido`, `Ordem_ID`) VALUES
 (2, 'O cliente Caganita4 pretende registar-se na aplicação', 1, 45645456, 0, '2018-01-10', NULL),
-(3, 'Tarefa2', 1, 3454567, 0, '2018-01-04', NULL),
+(3, 'Tarefa2', 0, 3454567, 0, '2018-01-04', NULL),
 (4, 'Tarefa3', 0, 45645456, 2, '2018-02-22', 1),
 (6, 'O cliente Caganita2 pretende cancelar a encomenda 1', 1, 2343456, 1, '2018-01-12', 1);
 
@@ -348,6 +367,12 @@ INSERT INTO `Task` (`ID_TASK`, `DESCRIPTION`, `STATE`, `Client_NIF`, `Tipo`, `da
 ALTER TABLE `ADMINISTRATOR`
   ADD PRIMARY KEY (`id_ADMINISTRATOR`),
   ADD KEY `fk_ADMINISTRATOR_COMPANY1_idx` (`COMPANY_id`);
+
+--
+-- Indexes for table `ADMIN_MESSAGE`
+--
+ALTER TABLE `ADMIN_MESSAGE`
+  ADD PRIMARY KEY (`idMESSAGES`);
 
 --
 -- Indexes for table `CLIENT`
@@ -368,15 +393,9 @@ ALTER TABLE `Incompatibilities`
   ADD PRIMARY KEY (`idIncompatibilities`);
 
 --
--- Indexes for table `MESSAGE`
+-- Indexes for table `OPCAO`
 --
-ALTER TABLE `MESSAGE`
-  ADD PRIMARY KEY (`idMESSAGES`);
-
---
--- Indexes for table `OPTION`
---
-ALTER TABLE `OPTION`
+ALTER TABLE `OPCAO`
   ADD PRIMARY KEY (`id_OPTION`),
   ADD KEY `fk_OPTION_SERVICE1_idx` (`SERVICE_id_SERVICE`);
 
@@ -419,6 +438,15 @@ ALTER TABLE `ORDEM_STEP`
   ADD KEY `STEP_id_step` (`STEP_id_step`);
 
 --
+-- Indexes for table `ORDER_STEP_SERVICE_OPTION`
+--
+ALTER TABLE `ORDER_STEP_SERVICE_OPTION`
+  ADD PRIMARY KEY (`ID_ORDER`,`id_STEP`,`id_SERVICE`,`id_OPTION`),
+  ADD KEY `id_STEP` (`id_STEP`),
+  ADD KEY `id_SERVICE` (`id_SERVICE`),
+  ADD KEY `id_OPTION` (`id_OPTION`);
+
+--
 -- Indexes for table `SERVICE`
 --
 ALTER TABLE `SERVICE`
@@ -450,15 +478,15 @@ ALTER TABLE `ADMINISTRATOR`
   MODIFY `id_ADMINISTRATOR` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `MESSAGE`
+-- AUTO_INCREMENT for table `ADMIN_MESSAGE`
 --
-ALTER TABLE `MESSAGE`
-  MODIFY `idMESSAGES` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+ALTER TABLE `ADMIN_MESSAGE`
+  MODIFY `idMESSAGES` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT for table `OPTION`
+-- AUTO_INCREMENT for table `OPCAO`
 --
-ALTER TABLE `OPTION`
+ALTER TABLE `OPCAO`
   MODIFY `id_OPTION` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
@@ -496,16 +524,16 @@ ALTER TABLE `ADMINISTRATOR`
   ADD CONSTRAINT `fk_ADMINISTRATOR_COMPANY1` FOREIGN KEY (`COMPANY_id`) REFERENCES `COMPANY` (`id_COMPANY`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Limitadores para a tabela `OPTION`
+-- Limitadores para a tabela `OPCAO`
 --
-ALTER TABLE `OPTION`
+ALTER TABLE `OPCAO`
   ADD CONSTRAINT `fk_OPTION_SERVICE1` FOREIGN KEY (`SERVICE_id_SERVICE`) REFERENCES `SERVICE` (`id_SERVICE`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Limitadores para a tabela `OPTION_has_Incompatibilities`
 --
 ALTER TABLE `OPTION_has_Incompatibilities`
-  ADD CONSTRAINT `fk_INC_option` FOREIGN KEY (`OPTION_id_option`) REFERENCES `OPTION` (`id_OPTION`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_INC_option` FOREIGN KEY (`OPTION_id_option`) REFERENCES `opcao` (`id_OPTION`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_OPTION_has_Incompatibilities_Incompatibilities1` FOREIGN KEY (`Incompatibilities_idIncompatibilities`) REFERENCES `Incompatibilities` (`idIncompatibilities`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_OPTION_has_Incompatibilities_SERVICE1` FOREIGN KEY (`SERVICE_id_SERVICE`) REFERENCES `SERVICE` (`id_SERVICE`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
@@ -521,7 +549,7 @@ ALTER TABLE `ORDEM`
 ALTER TABLE `ORDEM_OPTION`
   ADD CONSTRAINT `fk_ORDEM_OPTION` FOREIGN KEY (`ORDEM_id_ordem`) REFERENCES `ORDEM` (`ID_ORDER`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `ordem_option_ibfk_1` FOREIGN KEY (`ORDEM_id_ordem`) REFERENCES `ORDEM` (`ID_ORDER`),
-  ADD CONSTRAINT `ordem_option_ibfk_2` FOREIGN KEY (`OPTION_id_option`) REFERENCES `OPTION` (`id_OPTION`);
+  ADD CONSTRAINT `ordem_option_ibfk_2` FOREIGN KEY (`OPTION_id_option`) REFERENCES `opcao` (`id_OPTION`);
 
 --
 -- Limitadores para a tabela `ORDEM_SERVICE`
@@ -537,6 +565,15 @@ ALTER TABLE `ORDEM_STEP`
   ADD CONSTRAINT `fk_ORDEM_STEP` FOREIGN KEY (`ORDEM_id_ordem`) REFERENCES `ORDEM` (`ID_ORDER`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `ordem_step_ibfk_1` FOREIGN KEY (`ORDEM_id_ordem`) REFERENCES `ORDEM` (`ID_ORDER`),
   ADD CONSTRAINT `ordem_step_ibfk_2` FOREIGN KEY (`STEP_id_step`) REFERENCES `STEP` (`id_STEP`);
+
+--
+-- Limitadores para a tabela `ORDER_STEP_SERVICE_OPTION`
+--
+ALTER TABLE `ORDER_STEP_SERVICE_OPTION`
+  ADD CONSTRAINT `order_step_service_option_ibfk_1` FOREIGN KEY (`ID_ORDER`) REFERENCES `ordem` (`ID_ORDER`),
+  ADD CONSTRAINT `order_step_service_option_ibfk_2` FOREIGN KEY (`id_STEP`) REFERENCES `step` (`id_STEP`),
+  ADD CONSTRAINT `order_step_service_option_ibfk_3` FOREIGN KEY (`id_SERVICE`) REFERENCES `service` (`id_SERVICE`),
+  ADD CONSTRAINT `order_step_service_option_ibfk_4` FOREIGN KEY (`id_OPTION`) REFERENCES `opcao` (`id_OPTION`);
 
 --
 -- Limitadores para a tabela `SERVICE`

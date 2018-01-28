@@ -65,11 +65,14 @@ block content
                                                                                 input(type="checkbox")
                                                                                 i.icon-fixed-width.icon-star-empty(style="color:orange")
                                                             td.cell-author.hidden-phone.hidden-tablet
-                                                                | #{inbox_msm[y].client_mail}
+                                                                a(href = "/messageInfo/" + inbox_msm[y].idMESSAGES style = "display:block; width:100%; height:100%; border:none; outline:none; text-decoration:none; color:inherit;")
+                                                                    | #{inbox_msm[y].client_mail}
                                                             td.cell-title
-                                                                | #{inbox_msm[y].SUBJECT}
+                                                                a(href = "/messageInfo/" + inbox_msm[y].idMESSAGES style = "display:block; width:100%; height:100%; border:none; outline:none; text-decoration:none; color:inherit;")
+                                                                    | #{inbox_msm[y].SUBJECT}
                                                             td.cell-time.align-right
-                                                                | #{(inbox_msm[y].Data)}
+                                                                a(href = "/messageInfo/" + inbox_msm[y].idMESSAGES style = "display:block; width:100%; height:100%; border:none; outline:none; text-decoration:none; color:inherit;")
+                                                                    | #{prettyDate(inbox_msm[y].Data)}
                                                     -else
                                                         tr.read
                                                             td.cell-icon
@@ -87,11 +90,14 @@ block content
                                                                                 input(type="checkbox")
                                                                                 i.icon-fixed-width.icon-star-empty(style="color:orange")
                                                             td.cell-author.hidden-phone.hidden-tablet
-                                                                | #{inbox_msm[y].client_mail}
+                                                                a(href = "/messageInfo/" + inbox_msm[y].idMESSAGES style = "display:block; width:100%; height:100%; border:none; outline:none; text-decoration:none; color:inherit;")
+                                                                    | #{inbox_msm[y].client_mail}
                                                             td.cell-title
-                                                                | #{inbox_msm[y].SUBJECT}
+                                                                a(href = "/messageInfo/" + inbox_msm[y].idMESSAGES style = "display:block; width:100%; height:100%; border:none; outline:none; text-decoration:none; color:inherit;")
+                                                                    | #{inbox_msm[y].SUBJECT}
                                                             td.cell-time.align-right
-                                                                | #{(inbox_msm[y].Data)}
+                                                                a(href = "/messageInfo/" + inbox_msm[y].idMESSAGES style = "display:block; width:100%; height:100%; border:none; outline:none; text-decoration:none; color:inherit;")
+                                                                    | #{prettyDate(inbox_msm[y].Data)}
 
                                 div.groupe.d2
                                     .module-body.table
@@ -126,11 +132,14 @@ block content
                                                                                 input(type="checkbox")
                                                                                 i.icon-fixed-width.icon-star-empty(style="color:orange")
                                                             td.cell-author.hidden-phone.hidden-tablet
-                                                                | #{sent_msm[l].client_mail}
+                                                                a(href = "/messageInfo/" + sent_msm[l].idMESSAGES style = "display:block; width:100%; height:100%; border:none; outline:none; text-decoration:none; color:inherit;")
+                                                                    | #{sent_msm[l].client_mail}
                                                             td.cell-title
-                                                                | #{sent_msm[l].SUBJECT}
+                                                                a(href = "/messageInfo/" + sent_msm[l].idMESSAGES style = "display:block; width:100%; height:100%; border:none; outline:none; text-decoration:none; color:inherit;")
+                                                                    | #{sent_msm[l].SUBJECT}
                                                             td.cell-time.align-right
-                                                                | #{(sent_msm[l].Data)}
+                                                                a(href = "/messageInfo/" + sent_msm[l].idMESSAGES style = "display:block; width:100%; height:100%; border:none; outline:none; text-decoration:none; color:inherit;")
+                                                                    | #{prettyDate(sent_msm[l].Data)}
                                                     -else
                                                         tr.read
                                                             td.cell-icon
@@ -148,11 +157,14 @@ block content
                                                                                 input(type="checkbox")
                                                                                 i.icon-fixed-width.icon-star-empty(style="color:orange")
                                                             td.cell-author.hidden-phone.hidden-tablet
-                                                                | #{sent_msm[l].client_mail}
+                                                                a(href = "/messageInfo/" + sent_msm[l].idMESSAGES style = "display:block; width:100%; height:100%; border:none; outline:none; text-decoration:none; color:inherit;")
+                                                                    | #{sent_msm[l].client_mail}
                                                             td.cell-title
-                                                                | #{sent_msm[l].SUBJECT}
+                                                                a(href = "/messageInfo/" + sent_msm[l].idMESSAGES style = "display:block; width:100%; height:100%; border:none; outline:none; text-decoration:none; color:inherit;")
+                                                                    | #{sent_msm[l].SUBJECT}
                                                             td.cell-time.align-right
-                                                                | #{(sent_msm[l].Data)}
+                                                                a(href = "/messageInfo/" + sent_msm[l].idMESSAGES style = "display:block; width:100%; height:100%; border:none; outline:none; text-decoration:none; color:inherit;")
+                                                                    | #{prettyDate(sent_msm[l].Data)}
 
                                 div.groupe.d3
                                     .module-body.table
@@ -187,11 +199,14 @@ block content
                                                                                 input(type="checkbox")
                                                                                 i.icon-fixed-width.icon-star-empty(style="color:orange")
                                                             td.cell-author.hidden-phone.hidden-tablet
-                                                                | #{favorites_msm[k].client_mail}
+                                                                a(href = "/messageInfo/" + favorites_msm[k].idMESSAGES style = "display:block; width:100%; height:100%; border:none; outline:none; text-decoration:none; color:inherit;")
+                                                                    | #{favorites_msm[k].client_mail}
                                                             td.cell-title
-                                                                | #{favorites_msm[k].SUBJECT}
+                                                                a(href = "/messageInfo/" + favorites_msm[k].idMESSAGES style = "display:block; width:100%; height:100%; border:none; outline:none; text-decoration:none; color:inherit;")
+                                                                    | #{favorites_msm[k].SUBJECT}
                                                             td.cell-time.align-right
-                                                                | #{(favorites_msm[k].Data)}
+                                                                a(href = "/messageInfo/" + favorites_msm[k].idMESSAGES style = "display:block; width:100%; height:100%; border:none; outline:none; text-decoration:none; color:inherit;")
+                                                                    | #{prettyDate(favorites_msm[k].Data)}
                                                     -else
                                                         tr.read
                                                             td.cell-icon
@@ -209,11 +224,14 @@ block content
                                                                                 input(type="checkbox")
                                                                                 i.icon-fixed-width.icon-star-empty(style="color:orange")
                                                             td.cell-author.hidden-phone.hidden-tablet
-                                                                | #{favorites_msm[k].client_mail}
+                                                                a(href = "/messageInfo/" + favorites_msm[k].idMESSAGES style = "display:block; width:100%; height:100%; border:none; outline:none; text-decoration:none; color:inherit;")
+                                                                    | #{favorites_msm[k].client_mail}
                                                             td.cell-title
-                                                                | #{favorites_msm[k].SUBJECT}
+                                                                a(href = "/messageInfo/" + favorites_msm[k].idMESSAGES style = "display:block; width:100%; height:100%; border:none; outline:none; text-decoration:none; color:inherit;")
+                                                                    | #{favorites_msm[k].SUBJECT}
                                                             td.cell-time.align-right
-                                                                | #{(favorites_msm[k].Data)}
+                                                                a(href = "/messageInfo/" + favorites_msm[k].idMESSAGES style = "display:block; width:100%; height:100%; border:none; outline:none; text-decoration:none; color:inherit;")
+                                                                    | #{prettyDate(favorites_msm[k].Data)}
 
                                 div.groupe.d4
                                     .module-body.table
@@ -236,21 +254,27 @@ block content
                                                             td.cell-icon
                                                             td.cell-icon
                                                             td.cell-author.hidden-phone.hidden-tablet
-                                                                | #{trash_msm[r].client_mail}
+                                                                a(href = "/messageInfo/" + trash_msm[r].idMESSAGES style = "display:block; width:100%; height:100%; border:none; outline:none; text-decoration:none; color:inherit;")
+                                                                    | #{trash_msm[r].client_mail}
                                                             td.cell-title
-                                                                | #{trash_msm[r].SUBJECT}
+                                                                a(href = "/messageInfo/" + trash_msm[r].idMESSAGES style = "display:block; width:100%; height:100%; border:none; outline:none; text-decoration:none; color:inherit;")
+                                                                    | #{trash_msm[r].SUBJECT}
                                                             td.cell-time.align-right
-                                                                | #{(trash_msm[r].Data)}
+                                                                a(href = "/messageInfo/" + trash_msm[r].idMESSAGES style = "display:block; width:100%; height:100%; border:none; outline:none; text-decoration:none; color:inherit;")
+                                                                    | #{prettyDate(trash_msm[r].Data)}
                                                     -else
                                                         tr.read
                                                             td.cell-icon
                                                             td.cell-icon
                                                             td.cell-author.hidden-phone.hidden-tablet
-                                                                | #{trash_msm[r].client_mail}
+                                                                a(href = "/messageInfo/" + trash_msm[r].idMESSAGES style = "display:block; width:100%; height:100%; border:none; outline:none; text-decoration:none; color:inherit;")
+                                                                    | #{trash_msm[r].client_mail}
                                                             td.cell-title
-                                                                | #{trash_msm[r].SUBJECT}
+                                                                a(href = "/messageInfo/" + trash_msm[r].idMESSAGES style = "display:block; width:100%; height:100%; border:none; outline:none; text-decoration:none; color:inherit;")
+                                                                    | #{trash_msm[r].SUBJECT}
                                                             td.cell-time.align-right
-                                                                | #{(trash_msm[r].Data)}
+                                                                a(href = "/messageInfo/" + trash_msm[r].idMESSAGES style = "display:block; width:100%; height:100%; border:none; outline:none; text-decoration:none; color:inherit;")
+                                                                    | #{prettyDate(trash_msm[r].Data)}
 
                                 .module-foot
                                 script.

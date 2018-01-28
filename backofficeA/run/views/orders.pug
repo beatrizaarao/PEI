@@ -15,14 +15,6 @@ block content
                             th Prazo de Entrega
                             th.cell-status.hidden-phone.hidden-tablet Estado
                     tbody
-                        -function prettyDate(date){
-                            //if it's already a date object and not a string you don't need this line:
-                            -var d = date.getDate();
-                            -var monthNames = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
-                            -var m = monthNames[date.getMonth()];
-                            -var y = date.getFullYear();
-                            -return d+' '+m+' '+y;
-                        -}
                         if(ordersMiss!=null)
                             -for(var i=0;i<ordersMiss.length;i++)
                                     tr.task

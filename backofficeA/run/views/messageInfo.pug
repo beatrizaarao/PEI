@@ -6,16 +6,28 @@ block content
                 .module-head
                     h3 Mensagem
                 .module-body
-                    button(class="btn" type="submit")
-                        i.icon-star
+                    form(action="/messages/" + mensagem[0].idMESSAGES, method = "post", style="display:inline; margin:0px; padding:0px;")
+                        button(class="btn" type="submit")
+                            i.icon-trash
                     div(style="width:8px; height:auto; display:inline-block;")
-                    button(class="btn" type="submit")
-                        i.icon-trash
+                    form(action="/messages/favorite/" + mensagem[0].idMESSAGES, method = "post", style="display:inline; margin:0px; padding:0px;")
+                        button(class="btn" type="submit")
+                            i.icon-star
                     div(style="width:8px; height:auto; display:inline-block;")
-                    button(class="btn" type="submit")
-                        i.icon-share-alt
+                    form(action="/compose/clientInfo/bymail/" + mensagem[0].client_mail, method="post", style="display:inline; margin:0px; padding:0px;")
+                        button(class="btn" type="submit")
+                            i.icon-share-alt
                     br
                     br
-                    p ASSUNTO
-                    p EMAIL DATA
-                    p TEXTO
+                    p.pull-left
+                        font(size = "4")
+                            b #{mensagem[0].SUBJECT}
+                    p.pull-right
+                        | #{prettyDate(mensagem[0].Data)}
+                    hr(style="margin-top: 40px")
+                    p
+                        font(size = "3")
+                            b Remetente:
+                        |#{ mensagem[0].client_mail}
+                    br
+                    p #{mensagem[0].CONTENT}

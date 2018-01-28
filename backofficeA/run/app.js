@@ -77,6 +77,14 @@ connection.query("SELECT COUNT(idMESSAGES) AS mg FROM ADMIN_MESSAGE WHERE Tipo=0
     app.locals.inbox = result[0].mg;
 });
 
+app.locals.prettyDate = function(date)
+                            {
+                                var d = date.getDate();
+                                var monthNames = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
+                                var m = monthNames[date.getMonth()];
+                                var y = date.getFullYear();
+                                return d+' '+m+' '+y;
+                            }
 
 app.use(methodOverride('_method'));
 app.use(bodyParser.urlencoded({ extended: true }));
