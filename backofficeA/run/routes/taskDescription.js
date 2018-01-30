@@ -4,17 +4,20 @@ var app = express();
 
 /* GET home page. */
 router.get('/:taskID', function(req, res, next) {
-    var db = req.connection;
-    db.query("SELECT * FROM Task WHERE ID_TASK=?",req.params.taskID, function (error, result, client) {
-        var tarefa = result
-        db.query("SELECT * FROM CLIENT INNER JOIN Task ON Task.Client_NIF=CLIENT.NIF WHERE ID_TASK=?",req.params.taskID, function (error, result, client) {
-            var cliente = result
-            db.query("SELECT * FROM ORDEM INNER JOIN Task ON Task.Ordem_ID=ORDEM.ID_ORDER WHERE ID_TASK=?",req.params.taskID, function (error, result, client) {
-                var encomenda = result;
-                res.render('taskDescription', {title: 'Tasks', task:tarefa, client:cliente, order: encomenda});
+    if(req.app.locals.admin.IS_LOGGED==1){
+        var db = req.connection;
+        db.query("SELECT * FROM Task WHERE ID_TASK=?",req.params.taskID, function (error, result, client) {
+            var tarefa = result
+            db.query("SELECT * FROM CLIENT INNER JOIN Task ON Task.Client_NIF=CLIENT.NIF WHERE ID_TASK=?",req.params.taskID, function (error, result, client) {
+                var cliente = result
+                db.query("SELECT * FROM ORDEM INNER JOIN Task ON Task.Ordem_ID=ORDEM.ID_ORDER WHERE ID_TASK=?",req.params.taskID, function (error, result, client) {
+                    var encomenda = result;
+                    res.render('taskDescription', {title: 'Tasks', task:tarefa, client:cliente, order: encomenda});
+                });
             });
         });
-    });
+    }
+    else {res.redirect('/')}
 });
 
 router.put('/porra/:id', function (req, res) {

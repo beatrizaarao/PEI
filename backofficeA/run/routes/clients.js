@@ -7,20 +7,21 @@ var url = require('url');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+    if(req.app.locals.admin.IS_LOGGED==1){
+        var db = req.connection;
+        var data = "";
+        db.query('SELECT * FROM CLIENT',function(err,rows){
+            //if(err) throw err;
 
-    var db = req.connection;
-    var data = "";
-    db.query('SELECT * FROM CLIENT',function(err,rows){
-        //if(err) throw err;
+            // console.log('Data received from Db:\n');
 
-        // console.log('Data received from Db:\n');
+            var data = rows;
+            //console.log(data);
+            res.render('clients', { title: 'Clientes', dataGet: data });
 
-        var data = rows;
-        //console.log(data);
-        res.render('clients', { title: 'Clientes', dataGet: data });
-
-    });
-
+        });
+    }
+    else {res.redirect('/')}
 
 });
 

@@ -9,9 +9,9 @@ var logger = require('morgan');
 
 var connection = mysql.createConnection({
     hostname : 'localhost',
-    port: '3306',
+    port: '3307',
     user     : 'root',
-    password : 'root',
+    password : '',
     database : 'id4056546_uniline'
 });
 
@@ -70,6 +70,15 @@ app.use(function(req, res, next) {
   err.status = 404;
   next(err);
 });
+
+app.locals.prettyDate = function(date)
+{
+    var d = date.getDate();
+    var monthNames = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
+    var m = monthNames[date.getMonth()];
+    var y = date.getFullYear();
+    return d+' '+m+' '+y;
+}
 
 // error handler
 app.use(function(err, req, res, next) {

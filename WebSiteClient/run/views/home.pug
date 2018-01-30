@@ -1,8 +1,7 @@
 extend layout
 
 block content
-
-	body 
+	body
 		div(class='pg-opt')
 			div(class='container')
 				div(class='row')
@@ -35,10 +34,10 @@ block content
 											p=encomenda.ID_ORDER
 									td
 										a(href="/editar/"+ encomenda.ID_ORDER)  
-											p=encomenda.BEGIN_DATE
+											p=prettyDate(encomenda.BEGIN_DATE)
 									td 
 										a(href="/editar/"+ encomenda.ID_ORDER)
-											p=encomenda.CLOSE_DATE
+											p=prettyDate(encomenda.CLOSE_DATE)
 									if (encomenda.STATUS == 0)
 										td
 											a(href="/editar/"+ encomenda.ID_ORDER) 
@@ -51,8 +50,9 @@ block content
 										td
 											a(href="/editar/"+ encomenda.ID_ORDER) 
 												p Cancelado			 			 		 
-					p
-					input(type="button" class='btn btn-base btn-icon btn-icon-right pull-right' style='width: 150px;' value='Nova Encomenda')
+					br
+					a(href="/prodef")
+						input(type="button" class='btn btn-base btn-icon btn-icon-right pull-right' style='width: 150px;' value='Nova Encomenda')
 
 					script.
 						function formata(data){

@@ -3,26 +3,29 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/:userID', function(req, res, next) {
+    if(req.app.locals.admin.IS_LOGGED==1){
+        var db = req.connection;
+        //console.log(req.params.userID);
+        db.query("SELECT * FROM CLIENT WHERE NIF=?", req.params.userID, function (error, result, client) {
+            userInfo = result;
+            db.query("SELECT * FROM `ORDEM` WHERE Client_NIF= ?", req.params.userID, function (error, result, client) {
+                numeroEncomendas = result;
+                //console.log(numeroEncomendas[0]);
+                db.query("SELECT BEGIN_DATE FROM `ORDEM` WHERE Client_NIF =? ORDER BY BEGIN_DATE LIMIT 1", req.params.userID, function (error, result, client) {
+                    ultimaEncomenda = result;
 
-    var db = req.connection;
-    //console.log(req.params.userID);
-    db.query("SELECT * FROM CLIENT WHERE NIF=?", req.params.userID, function (error, result, client) {
-        userInfo = result;
-        db.query("SELECT * FROM `ORDEM` WHERE Client_NIF= ?", req.params.userID, function (error, result, client) {
-            numeroEncomendas = result;
-            //console.log(numeroEncomendas[0]);
-            db.query("SELECT BEGIN_DATE FROM `ORDEM` WHERE Client_NIF =? ORDER BY BEGIN_DATE LIMIT 1", req.params.userID, function (error, result, client) {
-                ultimaEncomenda = result;
-
-                res.render('clientInfo', {
-                    title: 'ClientInfo',
-                    user: userInfo,
-                    nOrder: numeroEncomendas,
-                    uOrder: ultimaEncomenda
+                    res.render('clientInfo', {
+                        title: 'ClientInfo',
+                        user: userInfo,
+                        nOrder: numeroEncomendas,
+                        uOrder: ultimaEncomenda
+                    });
                 });
             });
         });
-    });
+    }
+    else {res.redirect('/')}
+
 })
 
 router.post('/:id', function (req, res) {

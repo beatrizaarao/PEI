@@ -5,7 +5,10 @@ var app = express();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    res.render('compose', { title: 'Compor', email: "example@email.com...", assunto: "Inserir assunto...", mensagem: "Inserir mensagem..."});
+    if(req.app.locals.admin.IS_LOGGED==1){
+        res.render('compose', { title: 'Compor', email: "example@email.com...", assunto: "Inserir assunto...", mensagem: "Inserir mensagem..."});
+    }
+    else {res.redirect('/')}
 });
 
 router.post('/', function(req, res, next){

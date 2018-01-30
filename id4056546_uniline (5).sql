@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: 28-Jan-2018 às 22:49
+-- Generation Time: 30-Jan-2018 às 13:03
 -- Versão do servidor: 10.1.29-MariaDB
 -- PHP Version: 7.2.0
 
@@ -32,8 +32,16 @@ CREATE TABLE `ADMINISTRATOR` (
   `id_ADMINISTRATOR` int(11) NOT NULL,
   `EMAIL` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
   `PASSWORD` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
-  `COMPANY_id` int(11) NOT NULL
+  `COMPANY_id` int(11) NOT NULL,
+  `IS_LOGGED` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Extraindo dados da tabela `ADMINISTRATOR`
+--
+
+INSERT INTO `ADMINISTRATOR` (`id_ADMINISTRATOR`, `EMAIL`, `PASSWORD`, `COMPANY_id`, `IS_LOGGED`) VALUES
+(1, 'encomenda.uniline@gmail.com', 'admin123', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -100,11 +108,12 @@ INSERT INTO `CLIENT` (`NAME`, `NIF`, `EMAIL`, `PHONE`, `STREET`, `DOOR_NUMBER`, 
 ('joaquina', 3333, 'dddd', 'ddd', 'ddd', 3, 'ddd', 'dd', 'ss', 'ss', 0, NULL, 1, '2017-12-06'),
 ('blcaganita', 3523, 'dsdfsdf', '23333', 'rrr', 3, 'rrr', 'rr', 'rr', 'ola', 1, NULL, 1, '2017-12-06'),
 ('João', 123123, 'wdwd', '123123', 'sqs', 33, 'qdd', 'dqd', 'qdqd', 'qdq', 0, NULL, 1, '2018-01-15'),
-('Caganita', 1234567, 'caganita@email.com', '123456789', 'Rua das Flores', 3, 'Guimarães', 'Portugal', '1234-123', '123456', 0, NULL, 1, '2017-11-08'),
 ('CAGANITA2', 2343456, 'caganita2@email.com', '1232345', 'Rua das Joaquinas', 9, 'Braga', 'Espanha', '1234-123', '234566', 0, NULL, 1, '2017-10-10'),
 ('Caganita3', 3454567, 'caganita3@email.com', '123234345', 'Rua das Madalenas', 4, 'Coimbra', 'França', '1234-234', '12312323', 0, NULL, 1, '2018-01-18'),
 ('Caganita5', 4565677, 'caganita5@email.com', '123123123', 'Rua das Cecilias', 5, 'Fafe', 'Inglaterra', '123-123', 'ddddddd', 0, NULL, 1, '2017-11-08'),
-('CAGANITA4', 45645456, 'caganita4@email.com', '123234234', 'Rua das Beatrizes', 8, 'Braga', 'Luxemburgo', '2345-234', '234234234', 0, '45645456.jpg', 1, '2017-12-20');
+('CAGANITA4', 45645456, 'caganita4@email.com', '123234234', 'Rua das Beatrizes', 8, 'Braga', 'Luxemburgo', '2345-234', '234234234', 0, '45645456.jpg', 1, '2017-12-20'),
+('bea joaquina', 111111111, 'bea@ola', '123111111', 'Rua Teixeira Pascoais-229', 3, 'Guimarães', 'PT', '4810-073', '123', 1, NULL, 0, '2018-01-30'),
+('Caganita', 123456789, 'caganita@email.com', '123456789', 'Rua das Flores', 3, 'Guimarães', 'Portugal', '1234-123', '123456', 0, NULL, 1, '2017-11-08');
 
 -- --------------------------------------------------------
 
@@ -119,6 +128,14 @@ CREATE TABLE `COMPANY` (
   `CITY` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
   `COUNTRY` varchar(45) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Extraindo dados da tabela `COMPANY`
+--
+
+INSERT INTO `COMPANY` (`id_COMPANY`, `PHONE`, `STREET`, `CITY`, `COUNTRY`) VALUES
+(0, '1232345', 'wedwed', 'wedwed', 'weded'),
+(1, 'wsqsw', 'qwsqws', 'qws', 'qws');
 
 -- --------------------------------------------------------
 
@@ -139,7 +156,7 @@ CREATE TABLE `Incompatibilities` (
 CREATE TABLE `OPCAO` (
   `id_OPTION` int(11) NOT NULL,
   `DESCRIPTION` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
-  `TYPE` binary(1) NOT NULL,
+  `TYPE` int(1) NOT NULL,
   `SERVICE_id_SERVICE` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -148,10 +165,10 @@ CREATE TABLE `OPCAO` (
 --
 
 INSERT INTO `OPCAO` (`id_OPTION`, `DESCRIPTION`, `TYPE`, `SERVICE_id_SERVICE`) VALUES
-(1, 'Q', 0x00, 16),
-(2, 'F', 0x00, 16),
-(3, 'EM', 0x00, 19),
-(4, 'EI', 0x00, 19);
+(1, 'Q', 0, 16),
+(2, 'F', 0, 16),
+(3, 'EM', 0, 19),
+(4, 'EI', 0, 19);
 
 -- --------------------------------------------------------
 
@@ -186,7 +203,7 @@ CREATE TABLE `ORDEM` (
 
 INSERT INTO `ORDEM` (`ID_ORDER`, `BEGIN_DATE`, `CLOSE_DATE`, `Client_NIF`, `ASKED_DELIVERY_DATE`, `STATUS`) VALUES
 (1, '2018-01-10', '2018-01-27', 2343456, '2018-01-27', 2),
-(2, '2018-01-17', NULL, 2343456, '2018-01-09', 0),
+(2, '2018-01-17', NULL, 2343456, '2018-01-09', 1),
 (3, '2018-02-09', NULL, 4565677, '2018-01-03', 0),
 (4, '2017-01-05', NULL, 2343456, '2018-01-10', 0),
 (5, '2017-01-11', NULL, 45645456, '2018-01-24', 0),
@@ -355,7 +372,8 @@ INSERT INTO `Task` (`ID_TASK`, `DESCRIPTION`, `STATE`, `Client_NIF`, `Tipo`, `da
 (2, 'O cliente Caganita4 pretende registar-se na aplicação', 1, 45645456, 0, '2018-01-10', NULL),
 (3, 'Tarefa2', 0, 3454567, 0, '2018-01-04', NULL),
 (4, 'Tarefa3', 0, 45645456, 2, '2018-02-22', 1),
-(6, 'O cliente Caganita2 pretende cancelar a encomenda 1', 1, 2343456, 1, '2018-01-12', 1);
+(6, 'O cliente Caganita2 pretende cancelar a encomenda 1', 1, 2343456, 1, '2018-01-12', 1),
+(8, 'O cliente com o NIF=123 pretende registar-se na aplicação', 0, 123, 0, '2018-01-30', NULL);
 
 --
 -- Indexes for dumped tables
@@ -475,7 +493,7 @@ ALTER TABLE `Task`
 -- AUTO_INCREMENT for table `ADMINISTRATOR`
 --
 ALTER TABLE `ADMINISTRATOR`
-  MODIFY `id_ADMINISTRATOR` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_ADMINISTRATOR` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `ADMIN_MESSAGE`
@@ -511,7 +529,7 @@ ALTER TABLE `STEP`
 -- AUTO_INCREMENT for table `Task`
 --
 ALTER TABLE `Task`
-  MODIFY `ID_TASK` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `ID_TASK` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables
@@ -533,7 +551,7 @@ ALTER TABLE `OPCAO`
 -- Limitadores para a tabela `OPTION_has_Incompatibilities`
 --
 ALTER TABLE `OPTION_has_Incompatibilities`
-  ADD CONSTRAINT `fk_INC_option` FOREIGN KEY (`OPTION_id_option`) REFERENCES `opcao` (`id_OPTION`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_INC_option` FOREIGN KEY (`OPTION_id_option`) REFERENCES `OPTION` (`id_OPTION`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_OPTION_has_Incompatibilities_Incompatibilities1` FOREIGN KEY (`Incompatibilities_idIncompatibilities`) REFERENCES `Incompatibilities` (`idIncompatibilities`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_OPTION_has_Incompatibilities_SERVICE1` FOREIGN KEY (`SERVICE_id_SERVICE`) REFERENCES `SERVICE` (`id_SERVICE`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
@@ -549,7 +567,7 @@ ALTER TABLE `ORDEM`
 ALTER TABLE `ORDEM_OPTION`
   ADD CONSTRAINT `fk_ORDEM_OPTION` FOREIGN KEY (`ORDEM_id_ordem`) REFERENCES `ORDEM` (`ID_ORDER`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `ordem_option_ibfk_1` FOREIGN KEY (`ORDEM_id_ordem`) REFERENCES `ORDEM` (`ID_ORDER`),
-  ADD CONSTRAINT `ordem_option_ibfk_2` FOREIGN KEY (`OPTION_id_option`) REFERENCES `opcao` (`id_OPTION`);
+  ADD CONSTRAINT `ordem_option_ibfk_2` FOREIGN KEY (`OPTION_id_option`) REFERENCES `OPTION` (`id_OPTION`);
 
 --
 -- Limitadores para a tabela `ORDEM_SERVICE`

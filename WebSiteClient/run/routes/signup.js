@@ -32,20 +32,22 @@ router.post('/',function(req,res,next) {
                 fields.name = fields.fname + " " + fields.lname
 
                 var querysql = "INSERT INTO `CLIENT` (`NAME`, `NIF`, `EMAIL`, `PHONE`, `STREET`, `DOOR_NUMBER`, `CITY`, `COUNTRY`, `ZIP_CODE`, `PASS`, `IS_BLOCKED`, `img_path`, `IS_APPROVED`, `data_registo`) VALUES('"+ fields.name +"',"+ fields.nif + ",'" + fields.email + "','" + fields.phone + "','" + fields.rua + "'," + fields.porta + ",'" + fields.city + "','" + fields.country + "','" + fields.zip + "','" + fields.pass + "',1,NULL,0,CURDATE())"
+                db.query("INSERT INTO Task (DESCRIPTION, STATE, Client_NIF, Tipo, dataPedido, Ordem_ID) VALUES('O cliente com o NIF=? pretende registar-se na aplicação',0,?,0,CURDATE(),null)",fields.nif, function(err3, result, clint){
+                    db.query(querysql, function(err3, result, clint){
+                        if(!err3){
+                            status="Registo Efetuado com sucesso."
+                            console.log("Registo Efetuado com sucesso")
+                            res.redirect("/signin")
+                        }
+                        else{
+                            console.log("Erro ao efetuar o registo:\r\n" + err3 +"\r\n\r\n");
+                            status=" Ocorreu um erro: "+err3
+                            res.render('lr',{ title: 'Signup' , status: status  });
+                        }
+                        res.render('lr',{ title: 'Signup' , status: status  });
+                    })
+                });
 
-                db.query(querysql, function(err3, result, clint){
-                    if(!err3){
-                      status="Registo Efetuado com sucesso."
-                        console.log("Registo Efetuado com sucesso")
-                      res.redirect("/signin")
-                    }
-                    else{
-                      console.log("Erro ao efetuar o registo:\r\n" + err3 +"\r\n\r\n");
-                      status=" Ocorreu um erro: "+err3
-                      res.render('lr',{ title: 'Signup' , status: status  });
-                    }
-                res.render('lr',{ title: 'Signup' , status: status  });
-              })
             }
           }
           else{

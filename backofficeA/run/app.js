@@ -3,10 +3,11 @@ var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
-const bodyParser = require('body-parser');
+var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var nodemailer = require('nodemailer');
 var app = express();
+
 
 
 var router = express.Router();
@@ -40,10 +41,9 @@ connection.connect(function(err){
 });
 
 
-
-
+var login = require('./routes/login');
 var index = require('./routes/index');
-var users = require('./routes/users');
+//var users = require('./routes/users');
 var clients = require('./routes/clients');
 var tasks = require('./routes/tasks');
 var message = require('./routes/message');
@@ -77,6 +77,10 @@ connection.query("SELECT COUNT(idMESSAGES) AS mg FROM ADMIN_MESSAGE WHERE Tipo=0
     app.locals.inbox = result[0].mg;
 });
 
+connection.query("SELECT * from ADMINISTRATOR where id_ADMINISTRATOR=1", function (error, result, client){
+    app.locals.admin = result[0];
+});
+
 app.locals.prettyDate = function(date)
                             {
                                 var d = date.getDate();
@@ -85,6 +89,7 @@ app.locals.prettyDate = function(date)
                                 var y = date.getFullYear();
                                 return d+' '+m+' '+y;
                             }
+
 
 app.use(methodOverride('_method'));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -99,9 +104,9 @@ app.use(function(req,res,next){
     next();
 });
 
-
-app.use('/', index);
-app.use('/users', users);
+//app.use('/logout', logout);
+app.use('/', login);
+app.use('/index', index);
 app.use('/clients', clients);
 app.use('/tasks', tasks);
 app.use('/messages', message);

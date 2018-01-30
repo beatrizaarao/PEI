@@ -3,21 +3,24 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    var db = req.connection;
-    db.query('SELECT * FROM ADMIN_MESSAGE where tipo = 0 ORDER by Data',function (error, result, client){
-       var inbox_msm = result;
-        db.query('SELECT * FROM ADMIN_MESSAGE where tipo = 1 ORDER by Data',function (error, result, client){
-            var sent_msm = result;
-            db.query('SELECT * FROM ADMIN_MESSAGE where tipo = 2 ORDER by Data',function (error, result, client){
-               var  trash_msm = result;
-                db.query('SELECT * FROM ADMIN_MESSAGE where IS_FAVORITE=1 ORDER by Data',function (error, result, client){
-                    var favorites_msm = result;
-                    res.render('message', { title: 'Mensagens', inbox_msm: inbox_msm, sent_msm: sent_msm, trash_msm: trash_msm, favorites_msm: favorites_msm });
+    if(req.app.locals.admin.IS_LOGGED==1){
+        var db = req.connection;
+        db.query('SELECT * FROM ADMIN_MESSAGE where tipo = 0 ORDER by Data',function (error, result, client){
+            var inbox_msm = result;
+            db.query('SELECT * FROM ADMIN_MESSAGE where tipo = 1 ORDER by Data',function (error, result, client){
+                var sent_msm = result;
+                db.query('SELECT * FROM ADMIN_MESSAGE where tipo = 2 ORDER by Data',function (error, result, client){
+                    var  trash_msm = result;
+                    db.query('SELECT * FROM ADMIN_MESSAGE where IS_FAVORITE=1 ORDER by Data',function (error, result, client){
+                        var favorites_msm = result;
+                        res.render('message', { title: 'Mensagens', inbox_msm: inbox_msm, sent_msm: sent_msm, trash_msm: trash_msm, favorites_msm: favorites_msm });
+                    });
                 });
             });
-        });
 
-    });
+        });
+    }
+    else {res.redirect('/')}
 });
 
 router.post('/:mailID', function (req, res) {
