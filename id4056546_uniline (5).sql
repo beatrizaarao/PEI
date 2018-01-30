@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: 30-Jan-2018 às 13:03
+-- Generation Time: 30-Jan-2018 às 13:18
 -- Versão do servidor: 10.1.29-MariaDB
 -- PHP Version: 7.2.0
 
@@ -156,7 +156,7 @@ CREATE TABLE `Incompatibilities` (
 CREATE TABLE `OPCAO` (
   `id_OPTION` int(11) NOT NULL,
   `DESCRIPTION` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
-  `TYPE` int(1) NOT NULL,
+  `TYPE` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
   `SERVICE_id_SERVICE` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -165,10 +165,10 @@ CREATE TABLE `OPCAO` (
 --
 
 INSERT INTO `OPCAO` (`id_OPTION`, `DESCRIPTION`, `TYPE`, `SERVICE_id_SERVICE`) VALUES
-(1, 'Q', 0, 16),
-(2, 'F', 0, 16),
-(3, 'EM', 0, 19),
-(4, 'EI', 0, 19);
+(1, 'Q', '0', 16),
+(2, 'F', '0', 16),
+(3, 'EM', '0', 19),
+(4, 'EI', '0', 19);
 
 -- --------------------------------------------------------
 
@@ -209,71 +209,6 @@ INSERT INTO `ORDEM` (`ID_ORDER`, `BEGIN_DATE`, `CLOSE_DATE`, `Client_NIF`, `ASKE
 (5, '2017-01-11', NULL, 45645456, '2018-01-24', 0),
 (6, '2017-01-28', NULL, 45645456, '2018-01-03', 0),
 (7, '2018-01-20', NULL, 3454567, '2018-01-10', 0);
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `ORDEM_OPTION`
---
-
-CREATE TABLE `ORDEM_OPTION` (
-  `ORDEM_id_ordem` int(11) NOT NULL,
-  `OPTION_id_option` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Extraindo dados da tabela `ORDEM_OPTION`
---
-
-INSERT INTO `ORDEM_OPTION` (`ORDEM_id_ordem`, `OPTION_id_option`) VALUES
-(1, 3);
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `ORDEM_SERVICE`
---
-
-CREATE TABLE `ORDEM_SERVICE` (
-  `ORDEM_ID_ORDEM` int(11) NOT NULL,
-  `SERVICE_id_SERVICE` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Extraindo dados da tabela `ORDEM_SERVICE`
---
-
-INSERT INTO `ORDEM_SERVICE` (`ORDEM_ID_ORDEM`, `SERVICE_id_SERVICE`) VALUES
-(1, 1),
-(1, 2),
-(1, 3),
-(1, 4),
-(1, 5),
-(1, 9),
-(1, 14),
-(1, 19);
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `ORDEM_STEP`
---
-
-CREATE TABLE `ORDEM_STEP` (
-  `ORDEM_id_ordem` int(11) NOT NULL,
-  `STEP_id_step` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Extraindo dados da tabela `ORDEM_STEP`
---
-
-INSERT INTO `ORDEM_STEP` (`ORDEM_id_ordem`, `STEP_id_step`) VALUES
-(1, 1),
-(1, 2),
-(1, 3),
-(1, 4),
-(1, 5);
 
 -- --------------------------------------------------------
 
@@ -434,28 +369,6 @@ ALTER TABLE `ORDEM`
   ADD KEY `fk_ORDER_Client1` (`Client_NIF`);
 
 --
--- Indexes for table `ORDEM_OPTION`
---
-ALTER TABLE `ORDEM_OPTION`
-  ADD PRIMARY KEY (`ORDEM_id_ordem`,`OPTION_id_option`),
-  ADD KEY `ordem_option_ibfk_2` (`OPTION_id_option`);
-
---
--- Indexes for table `ORDEM_SERVICE`
---
-ALTER TABLE `ORDEM_SERVICE`
-  ADD PRIMARY KEY (`ORDEM_ID_ORDEM`,`SERVICE_id_SERVICE`),
-  ADD KEY `ORDEM_id_ORDEM` (`ORDEM_ID_ORDEM`),
-  ADD KEY `fk_ORDEM_SERVICE_ORDER` (`SERVICE_id_SERVICE`);
-
---
--- Indexes for table `ORDEM_STEP`
---
-ALTER TABLE `ORDEM_STEP`
-  ADD PRIMARY KEY (`ORDEM_id_ordem`,`STEP_id_step`),
-  ADD KEY `STEP_id_step` (`STEP_id_step`);
-
---
 -- Indexes for table `ORDER_STEP_SERVICE_OPTION`
 --
 ALTER TABLE `ORDER_STEP_SERVICE_OPTION`
@@ -560,29 +473,6 @@ ALTER TABLE `OPTION_has_Incompatibilities`
 --
 ALTER TABLE `ORDEM`
   ADD CONSTRAINT `fk_ORDER_Client1` FOREIGN KEY (`Client_NIF`) REFERENCES `CLIENT` (`NIF`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Limitadores para a tabela `ORDEM_OPTION`
---
-ALTER TABLE `ORDEM_OPTION`
-  ADD CONSTRAINT `fk_ORDEM_OPTION` FOREIGN KEY (`ORDEM_id_ordem`) REFERENCES `ORDEM` (`ID_ORDER`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `ordem_option_ibfk_1` FOREIGN KEY (`ORDEM_id_ordem`) REFERENCES `ORDEM` (`ID_ORDER`),
-  ADD CONSTRAINT `ordem_option_ibfk_2` FOREIGN KEY (`OPTION_id_option`) REFERENCES `OPTION` (`id_OPTION`);
-
---
--- Limitadores para a tabela `ORDEM_SERVICE`
---
-ALTER TABLE `ORDEM_SERVICE`
-  ADD CONSTRAINT `fk_ORDEM_SERVICE_ORDER` FOREIGN KEY (`SERVICE_id_SERVICE`) REFERENCES `SERVICE` (`id_SERVICE`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_ORDEM_SERVICE_SERVICE` FOREIGN KEY (`ORDEM_ID_ORDEM`) REFERENCES `ORDEM` (`ID_ORDER`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Limitadores para a tabela `ORDEM_STEP`
---
-ALTER TABLE `ORDEM_STEP`
-  ADD CONSTRAINT `fk_ORDEM_STEP` FOREIGN KEY (`ORDEM_id_ordem`) REFERENCES `ORDEM` (`ID_ORDER`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `ordem_step_ibfk_1` FOREIGN KEY (`ORDEM_id_ordem`) REFERENCES `ORDEM` (`ID_ORDER`),
-  ADD CONSTRAINT `ordem_step_ibfk_2` FOREIGN KEY (`STEP_id_step`) REFERENCES `STEP` (`id_STEP`);
 
 --
 -- Limitadores para a tabela `ORDER_STEP_SERVICE_OPTION`
