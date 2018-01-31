@@ -5,9 +5,10 @@ var bodyParser = require('body-parser');
 var mysql      = require('mysql');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
-
+var nodemailer = require('nodemailer');
 
 var connection = mysql.createConnection({
+    multipleStatements: true,
     hostname : 'localhost',
     port: '3307',
     user     : 'root',
@@ -22,6 +23,17 @@ connection.connect(function(err){
     }
     console.log('Connection established');
 });
+
+var transporter = nodemailer.createTransport({
+    service: 'Gmail',
+    auth: {
+        user: 'encomenda.uniline@gmail.com', // Your email id
+        pass: 'pei123456' // Your password
+    }
+});
+
+var contact = require('./routes/contactForm')
+var about = require('./routes/about-us')
 var index = require('./routes/index')
 var order = require('./routes/order')
 var signup = require('./routes/signup')
@@ -42,18 +54,23 @@ app.set('view engine', 'pug');
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 //app.use(bodyParser.json());
-//app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(function(req,res,next){
     req.connection = connection;
     next();
 });
+app.use(function(req,res,next){
+    req.transporter = transporter;
+    next();
+});
 
+app.use('/contact', contact)
+app.use('/aboutUs', about)
 app.use('/', index)
 app.use('/order', order)
 app.use('/home', home)
