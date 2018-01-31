@@ -37,7 +37,8 @@ block content
 											p=prettyDate(encomenda.BEGIN_DATE)
 									td 
 										a(href="/editar/"+ encomenda.ID_ORDER)
-											p=prettyDate(encomenda.CLOSE_DATE)
+											-if(encomenda.CLOSE_DATE!=null)
+												p=prettyDate(encomenda.CLOSE_DATE)
 									if (encomenda.STATUS == 0)
 										td
 											a(href="/editar/"+ encomenda.ID_ORDER) 

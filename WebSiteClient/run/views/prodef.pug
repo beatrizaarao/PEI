@@ -113,8 +113,8 @@ block content
                                             div(class='col-xs-6')
                                                 div(class='form-group')
                                                     label(class='select')
-                                                        select(name='CompComp' id='CompComp' onchange='containsPoli()')
-                                                            option(value='0' selected='' disabled='') Composiçã
+                                                        select(name='composicao' id='CompComp' onchange='containsPoli()')
+                                                            option(value='0' selected='' disabled='') Composição
                                         hr
                                         hr
                                         h2 Ponto
@@ -122,31 +122,31 @@ block content
                                             div(class='col-md-6')
                                                 div(class='form-group')
                                                     label(class='select')
-                                                        select(name='OpPonto' id='OpPonto')
+                                                        select(name='ponto' id='OpPonto')
                                                             option(value='0' selected='' disabled='') Ponto
                                         hr
                                         hr
                                         h2 Peso, Lagura e Quantidade
                                         div(class='row')
                                             section(class='col-xs-2')
-                                                label Peso do tecido
-                                                label(class='input')
-                                                    input(type='number' name='peso' placeholder='Peso' min='50' max='500')
+                                                label(class='input') Peso do tecido
+                                                    input(type='number' name='peso' placeholder='Peso')
                                                     p g/m
+
                                             section(class='col-xs-2')
-                                                label largura inicial do tecido
-                                                label(class='input')
+                                                label(class='input') Largura inicial do tecido
+                                                    //min= larguraii max=larguraif(passar para int) vem da tabela opcao
                                                     input(type='number' name='largurai' placeholder='Largura Inicial' min='50' max='380')
                                                     p m2
+
                                             section(class='col-xs-2')
-                                                label largura final do tecido
-                                                label(class='input')
+                                                label(class='input') Largura final do tecido
                                                     input(type='number' name='larguraf' placeholder='Largura Final' min='50' max='380')
                                                     p m2
+
                                             section(class='col-xs-4')
-                                                label Quantidade de Tecido a Trabalhar
-                                                label(class='input')
-                                                    input(type='text' name='qunatidade' placeholder='Quantidade'  onchange='updateStepone()')
+                                                label(class='input') Quantidade de Tecido a Trabalhar
+                                                    input(type='text' name='quantidade' placeholder='Quantidade'  onchange='updateStepone()')
                                             section(class='col-xs-1')
                                                 label
                                                 label(class='select')
@@ -161,95 +161,96 @@ block content
                                         div(class='row')
                                             section(class='textarea')
                                                 label(class='textarea')
-                                                    textarea(rows='3' name='info' placeholder='Informação Adicional')
+                                                    textarea(rows='3' name='caderno' placeholder='Informação Adicional')
                                         hr
                                         hr
                                         h2 Preparação
                                         div(class='row')
                                             div(class='col-xs-3')
-                                                label(class='checkbox')
+                                                label(class='checkbox') Gazar
                                                     input(type='checkbox' name='gazar'  onchange='updateSteptwo()')
                                                     i
-                                                    p Gazar
+
                                             div(class='col-xs-3' id='branquearg')
-                                                label(class='checkbox')
+                                                label(class='checkbox') Branquear
                                                     input(type='checkbox' name='branquear' id='branquear' onchange='changeOpone(), updateSteptwo()')
                                                     i
-                                                    p Branquear
+
                                             div(class='col-xs-3')
-                                                label(class='checkbox')
+                                                label(class='checkbox') Lavar
                                                     input(type='checkbox' name='lavar' id='lavar' onchange='changeOponed(), updateSteptwo()')
                                                     i
-                                                    p Lavar
+
                                             div(class='col-xs-3')
-                                                label(class='checkbox')
+                                                label(class='checkbox') Mercerizar
                                                     input(type='checkbox' name='mercerizar' id='mercerizar' onchange='updateSteptwo()')
                                                     i
-                                                    p Mercerizar
+
                                         hr
                                         hr
                                         h2 Tinturaria
                                         div(class='row' id='tintasg')
                                             div(class='col-xs-3' )
-                                                label(class='checkbox')
-                                                    input(type='checkbox' name='Reativos' id='Reativos'  onchange='updateSteptree(), changetintd()')
+                                                label(class='checkbox') Reativo
+                                                    input(type='checkbox' name='reativos' id='Reativos'  onchange='updateSteptree(), changetintd()')
                                                     i
-                                                    p Reativo
+
                                             div(class='col-xs-3')
-                                                label(class='checkbox')
-                                                    input(type='checkbox' name='Cubas' id='Cubas' onchange='changetintdd(), updateSteptree()')
+                                                label(class='checkbox') Cuba
+                                                    input(type='checkbox' name='cubas' id='Cubas' onchange='changetintdd(), updateSteptree()')
                                                     i
-                                                    p Cuba
+
                                             div(class='col-xs-3')
-                                                label(class='checkbox')
-                                                    input(type='checkbox' name='Pigmentos' id='Pigmentos' onchange='updateSteptree(), changetintddd()')
+                                                label(class='checkbox') Pigmentos
+                                                    input(type='checkbox' name='pigmentos' id='Pigmentos' onchange='updateSteptree(), changetintddd()')
                                                     i
-                                                    p Pigmentos
+
                                         div(class='row')
                                             section(class='col-xs-5')
-                                                label Panton
-                                                label(class='input')
-                                                    input(type='text' name='pantone' placeholder='Inisira aqui o codigo do Pantone que quer aplicar como cor' onchange='updateSteptree')
+                                                label(class='input') Panton
+                                                    input(type='text' name='pantone' placeholder='Insira aqui o codigo do Pantone que quer aplicar como cor' onchange='updateSteptree')
                                         hr
                                         hr
                                         h2 Acabamentos
                                             div(class='row')
                                                 div(class='col-xs-2')
-                                                    label(class='checkbox')
+                                                    label(class='checkbox') Secar
                                                         input(type='checkbox' name='secar' id='secar' onchange='updateStepfor(), changeacab()')
                                                         i
-                                                        p Secar
+
                                                 div(class='col-xs-2')
-                                                    label(class='checkbox')
+                                                    label(class='checkbox') Acabar
                                                         input(type='checkbox' name='acabar' id='acabar' onchange='updateStepfor(), changeacabz()')
                                                         i
-                                                        p Acabar
+
                                                 div(class='col-xs-2')
-                                                    label(class='checkbox')
+                                                    label(class='checkbox') Largura
                                                         input(type='checkbox' name='largura' onchange='updateStepfor()')
                                                         i
-                                                        p Largura
+
                                                 div(class='col-xs-2')
-                                                    label(class='checkbox')
-                                                        input(type='checkbox' name='calandar' id='calandar' onchange='updateStepfor()')
-                                                        i
-                                                        p Calandar
-                                                        input(type='checkbox' name='calandq' id='calandq' onchange='changecaland(), updateStepfor()')
-                                                        i
-                                                        p Q
-                                                        input(type='checkbox' name='calandf' id='calandf' onchange='changecaland(), updateStepfor()')
-                                                        i
-                                                        p F
+                                                        label(class='checkbox') Calandar
+                                                            input(type='checkbox' name='calandar' id='calandar' onchange='updateStepfor()')
+                                                            i
+
+                                                        label(class='checkbox') Q
+                                                            input( type='checkbox' name='q' id='q' onchange='changecaland(), updateStepfor()')
+                                                            i
+
+                                                        label(class='checkbox') F
+                                                            input(type='checkbox' name='f' id='f' onchange='changecaland(), updateStepfor()')
+                                                            i
+
                                                 div(class='col-xs-2')
-                                                    label(class='checkbox')
-                                                        input(type='checkbox' name='sanf' id='sanf' onchange='updateStepfor()')
+                                                    label(class='checkbox') Sanfonizar
+                                                        input(type='checkbox' name='sanforizar' id='sanforizar' onchange='updateStepfor()')
                                                         i
-                                                        p Sanfonizar
+
                                                 div(class='col-xs-2')
-                                                    label(class='checkbox')
-                                                        input(type='checkbox' name='tumb' id='tumb' onchange='updateStepfor()')
+                                                    label(class='checkbox') Tumbler
+                                                        input(type='checkbox' name='tumbler' id='tumbler' onchange='updateStepfor()')
                                                         i
-                                                        p Tumbler
+
 
                                             hr
                                             hr
@@ -257,20 +258,20 @@ block content
                                             h4 Enfestar
                                             div(class='row')
                                                 div(class='col-xs-2')
-                                                    label(class='checkbox')
+                                                    label(class='checkbox') EM
                                                         input(type='checkbox' name='em' id='em' onchange='updateStepfiv()')
                                                         i
-                                                        p EM
+
                                                 div(class='col-xs-2')
-                                                    label(class='checkbox')
+                                                    label(class='checkbox') Ei
                                                         input(type='checkbox' name='ei' id='ei' onchange='updateStepfiv()')
                                                         i
-                                                        p Ei
+
                                                 div(class='col-xs-2')
-                                                    label(class='checkbox')
+                                                    label(class='checkbox') RM
                                                         input(type='checkbox' name='rm' id='rm' onchange='updateStepfiv()')
                                                         i
-                                                        RM
+
                                                 section(class='col-xs-4')
                                                     label(class='input')
                                                         input(type='number' name='quantenf' placeholder='metros por peça'  min='1' onchange='updateStepfiv()')

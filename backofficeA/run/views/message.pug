@@ -11,26 +11,26 @@ block content
                             .module.message
                                 .module-head
                                     h3
-                                        | Message
+                                        | Mensagems
                                 .module-option.clearfix
                                     .pull-left
                                         .btn-group
                                             button.btn.btn-info
-                                                | Inbox(#{inbox})
+                                                | Caixa de Entrada(#{inbox})
                                             button.btn.btn-info.dropdown-toggle(data-toggle="dropdown")
                                                 span.caret
                                             ul.dropdown-menu
                                                 li
-                                                    a(name="drop" value="1") Inbox(#{inbox})
+                                                    a(name="drop" value="1") Caixa de Entrada(#{inbox})
                                                 li
-                                                    a(name="drop" value="2") Sent
+                                                    a(name="drop" value="2") Enviadas
                                                 li
-                                                    a(name="drop" value="3") Favorites
+                                                    a(name="drop" value="3") Favoritos
                                                 li
-                                                    a(name="drop" value="4") Trash
+                                                    a(name="drop" value="4") Lixo
                                     .pull-right
                                         a(href="/compose")
-                                            button.btn.btn-primary Compose
+                                            button.btn.btn-primary Compor
 
                                 div.groupe.d1
                                     .module-body.table
@@ -41,11 +41,11 @@ block content
                                                         input.inbox-checkbox(type="checkbox")
                                                     td.cell-icon
                                                     td.cell-author.hidden-phone.hidden-tablet
-                                                        | Sender
+                                                        | Remetente
                                                     td.cell-title
-                                                        | Subject
+                                                        | Assunto
                                                     td.cell-time.align-right
-                                                        | Date
+                                                        | Data
 
                                                 -for(var y=0; y<inbox_msm.length;y++)
                                                     -if(inbox_msm[y].IS_READ==0)
@@ -108,9 +108,9 @@ block content
                                                         input.inbox-checkbox(type="checkbox")
                                                     td.cell-icon
                                                     td.cell-author.hidden-phone.hidden-tablet
-                                                        | Sender
+                                                        | Remetente
                                                     td.cell-title
-                                                        | Subject
+                                                        | Assunto
                                                     td.cell-time.align-right
                                                         | Date
 
@@ -175,11 +175,11 @@ block content
                                                         input.inbox-checkbox(type="checkbox")
                                                     td.cell-icon
                                                     td.cell-author.hidden-phone.hidden-tablet
-                                                        | Sender
+                                                        | Remetente
                                                     td.cell-title
-                                                        | Subject
+                                                        | Assunto
                                                     td.cell-time.align-right
-                                                        | Date
+                                                        | Data
 
                                                 -for(var k=0; k<favorites_msm.length;k++)
                                                     -if(favorites_msm[k].IS_READ==0)
@@ -242,11 +242,11 @@ block content
                                                         input.inbox-checkbox(type="checkbox")
                                                     td.cell-icon
                                                     td.cell-author.hidden-phone.hidden-tablet
-                                                        | Sender
+                                                        | Remetente
                                                     td.cell-title
-                                                        | Subject
+                                                        | Assunto
                                                     td.cell-time.align-right
-                                                        | Date
+                                                        | Data
 
                                                 -for(var r=0; r<trash_msm.length;r++)
                                                     -if(trash_msm[r].IS_READ==0)
