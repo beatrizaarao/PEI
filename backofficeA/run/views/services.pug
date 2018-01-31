@@ -1,0 +1,533 @@
+extends layout
+block content
+    div(class="span9")
+        .module
+            .module-head
+                h3
+                    | Gestor de Serviços
+            .module-body.table
+                table.table(cellpadding='0', cellspacing='0', border='0', width='100%', aria-describedby='DataTables_Table_0_info', style='width: 100%;')
+                    col(width="50%")
+                    col(width="50%")
+                    thead
+                        tr
+                            th Etapas
+                            th Serviços
+                            th
+                    tbody
+                        tr
+                            td oi gato
+                        tr
+                            td oi tuxo
+                        tr
+                            td tudo dji bom
+                        tr
+                            td que pasa
+                        tr
+                            td mÔ
+                        tr
+                            td nao me responde
+                        tr
+                            td tji amo
+                        tr
+                            td tenho saudades suas
+                        tr
+                            td que voce esta fazendo
+                        tr
+                            td que se acha
+
+            hr
+            button(type="button" class="btn btn-default icon-plus-sign" data-toggle="modal" data-target="#myModelDefinicao") Adicionar Serviço
+            -if (dataSteps.length>0)
+                button(type="button" class="btn btn-default icon-plus-sign" data-toggle="modal" data-target="#restricoes") Alterar Restrição
+
+
+            div(class="modal hide fade" id="confirmar" role="dialog")
+                div(class="modal-dialog")
+                    div(class="modal-content")
+                        div(class="modal-header")
+                            ol(class='progtrckr' data-progtrckr-steps='6')
+                                li(class='progtrckr-done') Definição do Produto
+                                li(class='progtrckr-done') Preparação
+                                li(class='progtrckr-done') Tinturaria
+                                li(class='progtrckr-done') Acabamento
+                                li(class='progtrckr-done') Embalagem
+                                li(class='progtrckr-done') Confirmar
+                        div(class="modal-body")
+                            h4(style='padding-left:20px; padding-top:25px') Deseja confirmar os serviços?
+                        div(class="modal-footer")
+                            button.btn.btn-primary(type="button" class="btn btn-default" data-dismiss="modal" id="but") Sim
+                            button.btn.btn-primary(type="button" class="btn btn-default" data-dismiss="modal") Não
+
+
+            div(class="modal fade" id="myModelEmbalagem" role="dialog")
+                div(class="modal-dialog")
+                    div(class="modal-content")
+                        div(class="modal-header")
+                            ol(class='progtrckr' data-progtrckr-steps='6')
+                                li(class='progtrckr-done') Definição do Produto
+                                li(class='progtrckr-done') Preparação
+                                li(class='progtrckr-done') Tinturaria
+                                li(class='progtrckr-done') Acabamento
+                                li(class='progtrckr-todo') Embalagem
+                                li(class='progtrckr-todo') Confirmar
+                        div(class="modal-body")
+                            form(method='POST' action='/tinturaria' style='margin-left:1%' )
+                                h4(style='padding-left:20px; padding-top:25px') Embalagem
+                                div.form-inline
+                                    div.checkbox
+                                        label(style='padding-left:25px; padding-top:10px;font-size: 20px;' for='enfestar') Enfestar
+                                            input(type='checkbox' name='enfestar' id='enfestar')
+                                        label(style='padding-left:25px; padding-top:10px;font-size: 20px;display:none' id="lem" for='em') EM
+                                            input(style='display:none' type='checkbox' name='em' id='em')
+                                        label(style='padding-left:25px; padding-top:10px;font-size: 20px;display:none' id="lei" for='ei') EI
+                                            input(style='display:none' type='checkbox' name='ei' id='ei')
+                                        label(style='padding-left:25px; padding-top:10px;font-size: 20px;display:none' id="lrm" for='rm') RM
+                                            input(style='display:none' type='checkbox' name='rm' id='rm')
+                                        label(style='padding-left:25px; padding-top:10px;font-size: 20px;display:none' id="lnr" for='nr') Nºmetros/Peça
+                                            input(style='display:none' type='checkbox' name='nr' id='nr')
+                                div.form-inline
+                                    div.checkbox
+                                        label(style='padding-left:25px; padding-top:10px; padding-bottom:25px;font-size: 20px' for='enrolar') Enrolar
+                                            input(type='checkbox' name='enrolar' id='enrolar')
+                                        label(style='padding-left:25px; padding-top:10px;  font-size: 20px;display:none' id="lnren" for='nren') Nºpeças/metro
+                                            input(style='display:none' type='checkbox' name='nren' id='nren')
+                        div(class="modal-footer")
+                            button.btn.btn-primary(type="button" class="btn btn-default" data-dismiss="modal" data-toggle="modal" data-target="#myModelAcabamento") Anterior
+                            button.btn.btn-primary(type="button" class="btn btn-default" data-dismiss="modal" data-toggle="modal" data-target="#confirmar") Próximo
+                            button.btn.btn-primary(type="button" class="btn btn-default" data-dismiss="modal") Cancelar
+
+
+
+            div(class="modal fade" id="myModelAcabamento" role="dialog")
+                div(class="modal-dialog")
+                    div(class="modal-content")
+                        div(class="modal-header")
+                            ol(class='progtrckr' data-progtrckr-steps='6')
+                                li(class='progtrckr-done') Definição do Produto
+                                li(class='progtrckr-done') Preparação
+                                li(class='progtrckr-done') Tinturaria
+                                li(class='progtrckr-todo') Acabamento
+                                li(class='progtrckr-todo') Embalagem
+                                li(class='progtrckr-todo') Confirmar
+                        div(class="modal-body")
+                            form(method='POST' action='/tinturaria')
+                                h4(style='padding-left:20px; padding-top:25px') Acabamento
+                                div.form-inline
+                                    div.checkbox
+                                        label(style='padding-left:25px; padding-top:px;font-size: 20px;' for='secar') Secar
+                                            input(type='checkbox' name='secar' id='secar')
+                                        br
+                                        label(style='padding-left:25px; padding-top:10px;font-size: 20px;' for='acabar') Acabar
+                                            input(type='checkbox' name='acabar' id='acabar')
+                                        br
+                                        label(style='padding-left:25px; padding-top:10px;font-size: 20px;' for='largura') Largura
+                                            input(type='checkbox' name='largura' id='largura')
+                                        br
+                                        label(style='padding-left:25px; padding-top:10px;font-size: 20px;' for='sanforizar') Sanforizar
+                                            input(type='checkbox' name='sanforizar' id='sanforizar')
+                                        br
+                                        label(style='padding-left:25px; padding-top:10px;font-size: 20px;' for='tumbler') Tumbler
+                                            input(type='checkbox' name='tumbler' id='tumbler')
+                                        br
+                                        label(style='padding-left:25px; padding-top:10px; padding-bottom:25px;font-size: 20px;' for='calandar') Calandar
+                                            input(type='checkbox' name='secar' id='calandar')
+                                        label(style='padding-left:25px; padding-top:10px;font-size: 20px;display:none' id="cq" for='q') Q
+                                            input(style='display:none' type='checkbox' name='q' id='q')
+                                        label(style='padding-left:25px; padding-top:10px;font-size: 20px;display:none' id="cf" for='f') F
+                                            input(style='display:none' type='checkbox' name='f' id='f')
+                        div(class="modal-footer")
+                            button.btn.btn-primary(type="button" class="btn btn-default" data-dismiss="modal" data-toggle="modal" data-target="#myModelTinturaria") Anterior
+                            button.btn.btn-primary(type="button" class="btn btn-default" data-dismiss="modal" data-toggle="modal" data-target="#myModelEmbalagem") Próximo
+                            button.btn.btn-primary(type="button" class="btn btn-default" data-dismiss="modal") Cancelar
+
+
+            div(class="modal fade" id="myModelTinturaria" role="dialog")
+                div(class="modal-dialog")
+                    div(class="modal-content")
+                        div(class="modal-header")
+                            ol(class='progtrckr' data-progtrckr-steps='6')
+                                li(class='progtrckr-done') Definição do Produto
+                                li(class='progtrckr-done') Preparação
+                                li(class='progtrckr-todo') Tinturaria
+                                li(class='progtrckr-todo') Acabamento
+                                li(class='progtrckr-todo') Embalagem
+                                li(class='progtrckr-todo') Confirmar
+                        div(class="modal-body")
+                            form(method='POST' action='/tinturaria')
+                                h4(style='padding-left:20px; padding-top:25px') Tinturaria
+                                    p(style='padding-top:10px;' ) No caso dos não poliésters
+                                    div.form-inline
+                                        div.checkbox
+                                            label(style='padding-left:25px; padding-top:5px;font-size: 20px;' for='reativos') Reativos
+                                                input(type='checkbox' name='reativos' id='reativos')
+                                            br
+                                            label(style='padding-left:25px; padding-top:10px;font-size: 20px;' for='cubas') Cubas
+                                                input(type='checkbox' name='cubas' id='cubas')
+                                            br
+                                            label(style='padding-left:25px; padding-top:10px;font-size: 20px;' for='pigmentos') Pigmentos
+                                                input(type='checkbox' name='pigmentos' id='pigmentos')
+                                    p(style='padding-top:15px;') No caso dos poliésters
+                                    div.form-inline
+                                        div.checkbox
+                                            label(style='padding-left:25px; padding-top:5px;font-size: 20px;' for='reativosP') Reativos
+                                                input(type='checkbox' name='reativosP' id='reativosP')
+                                            br
+                                            label(style='padding-left:25px; padding-top:10px;font-size: 20px;' for='cubasP') Cubas
+                                                input(type='checkbox' name='cubasP' id='cubasP')
+                                            br
+                                            label(style='padding-left:25px; padding-top:10px;font-size: 20px;' for='pigmentosP') Pigmentos
+                                                input(type='checkbox' name='pigmentosP' id='pigmentosP')
+                                            br
+                                            label(style='padding-left:25px; padding-top:10px; padding-bottom: 25px; font-size: 20px;' for='dispersosP') Dispersos
+                                                input(type='checkbox' name='dispersosP' id='dispersosP')
+                        div(class="modal-footer")
+                            button.btn.btn-primary(type="button" class="btn btn-default" data-dismiss="modal" data-toggle="modal" data-target="#myModelPreparacao") Anterior
+                            button.btn.btn-primary(type="button" class="btn btn-default" data-dismiss="modal" data-toggle="modal" data-target="#myModelAcabamento") Próximo
+                            button.btn.btn-primary(type="button" class="btn btn-default" data-dismiss="modal") Cancelar
+            div(class="modal fade" id="myModelPreparacao" role="dialog")
+                div(class="modal-dialog")
+                    div(class="modal-content")
+                        div(class="modal-header")
+                            ol(class='progtrckr' data-progtrckr-steps='6')
+                                li(class='progtrckr-done') Definição do Produto
+                                li(class='progtrckr-todo') Preparação
+                                li(class='progtrckr-todo') Tinturaria
+                                li(class='progtrckr-todo') Acabamento
+                                li(class='progtrckr-todo') Embalagem
+                                li(class='progtrckr-todo') Confirmar
+                        div(class="modal-body")
+                            form(method='POST' action='/preparacao')
+                                h4(style='padding-left:20px; padding-top:25px') Preparação
+                                div.form-inline
+                                    div.checkbox
+                                        label(style='padding-left:25px; padding-top:10px; font-size: 20px;' for='gasar') Gasar
+                                            input(type='checkbox' name='gasar' id='gasar')
+                                        br
+                                        label(style='padding-left:25px; padding-top:10px;font-size: 20px;' for='lavar') Lavar
+                                            input(type='checkbox' name='lavar' id='lavar')
+                                        br
+                                        label(style='padding-left:25px; padding-top:10px;font-size: 20px;' for='mercerizar') Mercerizar
+                                            input(type='checkbox' name='mercerizar' id='mercerizar')
+                                        br
+                                        label(style='padding-left:25px; padding-top:10px; padding-bottom:25px; font-size: 20px;' for='branquear') Branquear
+                                            input(type='checkbox' name='branquear' id='branquear')
+                                        label(style='padding-left:25px; padding-top:10px;font-size: 20px;display:none' id="mb" for='meiobranco') Meio Branco
+                                            input(style='display:none' type='checkbox' name='meiobranco' id='meiobranco' min="1")
+                                        label(style='padding-left:25px; padding-top:10px;font-size: 20px;display:none' id="b" for='branco') Branco
+                                            input(style='display:none' type='checkbox' name='branco' id='branco')
+                                        label(style='padding-left:25px; padding-top:10px; font-size: 20px;display:none' id="lbe" for='be') BE
+                                            input(style='display:none' type='checkbox' name='be' id='be')
+                        div(class="modal-footer")
+                            button.btn.btn-primary(type="button" class="btn btn-default" data-dismiss="modal" data-toggle="modal" data-target="#myModelDefinicao") Anterior
+                            button.btn.btn-primary(type="button" class="btn btn-default" data-dismiss="modal" data-toggle="modal" data-target="#myModelTinturaria") Próximo
+                            button.btn.btn-primary(type="button" class="btn btn-default" data-dismiss="modal") Cancelar
+
+            div(class="modal fade" id="myModelDefinicao" role="dialog" )
+                div(class="modal-dialog")
+                    div(class="modal-content")
+                        div(class="modal-header")
+                            ol(class='progtrckr' data-progtrckr-steps='6')
+                                li(class='progtrckr-todo') Definição do Produto
+                                li(class='progtrckr-todo') Preparação
+                                li(class='progtrckr-todo') Tinturaria
+                                li(class='progtrckr-todo') Acabamento
+                                li(class='progtrckr-todo') Embalagem
+                                li(class='progtrckr-todo') Confirmar
+                        div(class="modal-body")
+                            form(method='POST' action='/definicao')
+                                h4(style='padding-left:20px; padding-top:25px') Definição do Produto
+                                div.form-inline
+                                    div.checkbox
+                                        label(style='padding-left:25px; padding-top:10px; font-size: 20px;' for='composicao') Composição
+                                            input(type='checkbox' name='composicao' id='composicao')
+                                        br
+                                        label(style='padding-left:25px; padding-top:10px; font-size: 20px;' for='ponto') Ponto
+                                            input(type='checkbox' name='ponto' id='ponto')
+                                        br
+                                        label(style='padding-left:25px; padding-top:10px; font-size: 20px;' for='largini') Largura Inicial
+                                            input(type='checkbox' name='largini' id='largini')
+                                        label(style='padding-left:25px; padding-top:10px; font-size: 20px;display:none' id="liII" for='numlariniII') Intervalo de Valores
+                                            input(style='margin-left:15px; width: 50px; display:none' type='number' name='numlariniII' id='numlariniII' min="1")
+                                        label(style='font-size: 20px; margin-left:5px;display:none' id="liFF" for='numlariniFF') a
+                                            input(style='margin-left:5px; width: 50px;display:none' type='number' name='numlariniFF' id='numlariniFF' min="1")
+                                        br
+                                        label(style='padding-left:25px; padding-top:10px; font-size: 20px;' for='largfin') Largura Final
+                                            input(type='checkbox' name='largfin' id='largfin')
+                                        label(style='padding-left:25px; padding-top:10px; font-size: 20px;display:none' id="lfII" for='numlarfinII') Intervalo de Valores
+                                            input(style='margin-left:15px; width: 50px; display:none' type='number' name='numlarfinII' id='numlarfinII' min="1")
+                                        label(style='font-size: 20px; margin-left:5px;display:none' id="lfFF" for='numlarfinFF') a
+                                            input(style='margin-left:5px; width: 50px;display:none' type='number' name='numlarfinFF' id='numlarfinFF' min="1")
+                                        br
+                                        label(style='padding-left:25px; padding-top:10px;font-size: 20px;' for='quantidade') Quantidade
+                                            input(type='checkbox' name='quantidade' id='quantidade')
+                                        br
+                                        label(style='padding-left:25px; padding-top:10px; padding-bottom:25px;font-size: 20px;' for='caderno') Caderno de Encargos
+                                            input(type='checkbox' name='caderno' id='caderno')
+                        div(class="modal-footer")
+                            button.btn.btn-primary(type="button" class="btn btn-default" data-dismiss="modal" data-toggle="modal" data-target="#myModelPreparacao") Próximo
+                            button.btn.btn-primary(type="button" class="btn btn-default" data-dismiss="modal") Cancelar
+
+
+            div(style="display:none")
+                form(method='post' action='services/serv')
+                    input(type='number' name='definicao' id='definicao' value='0')
+                    input(type='number' name='composicao2' id='composicao2' value='0')
+                    input(type='number' name='ponto2' id='ponto2' value='0')
+                    input(type='number' name='largini2' id='largini2' value='0')
+                    input(type='number' name='numlariniII2' id='numlariniII2' value='0')
+                    input(type='number' name='numlariniFF2' id='numlariniFF2' value='0')
+                    input(type='number' name='largfin2' id='largfin2' value='0')
+                    input(type='number' name='numlarfinII2' id='numlarfinII2' value='0')
+                    input(type='number' name='numlarfinFF2' id='numlarfinFF2' value='0')
+                    input(type='number' name='quantidade2' id='quantidade2' value='0')
+                    input(type='number' name='caderno2' id='caderno2' value='0')
+                    input(type='number' name='preparacao' id='preparacao' value='0')
+                    input(type='number' name='gasar2' id='gasar2' value='0')
+                    input(type='number' name='lavar2' id='lavar2' value='0')
+                    input(type='number' name='mercerizar2' id='mercerizar2' value='0')
+                    input(type='number' name='branquear2' id='branquear2' value='0')
+                    input(type='number' name='meiobranco2' id='meiobranco2' value='0')
+                    input(type='number' name='branco2' id='branco2' value='0')
+                    input(type='number' name='be2' id='be2' value='0')
+                    input(type='number' name='tinturaria' id='tinturaria' value='0')
+                    input(type='number' name='reativos2' id='reativos2' value='0')
+                    input(type='number' name='cubas2' id='cubas2' value='0')
+                    input(type='number' name='pigmentos2' id='pigmentos2' value='0')
+                    input(type='number' name='reativosP2' id='reativosP2' value='0')
+                    input(type='number' name='cubasP2' id='cubasP2' value='0')
+                    input(type='number' name='pigmentosP2' id='pigmentosP2' value='0')
+                    input(type='number' name='dispersosP2' id='dispersosP2' value='0')
+                    input(type='number' name='acabamentos' id='acabamentos' value='0')
+                    input(type='number' name='secar2' id='secar2' value='0')
+                    input(type='number' name='acabar2' id='acabar2' value='0')
+                    input(type='number' name='largura2' id='largura2' value='0')
+                    input(type='number' name='sanforizar2' id='sanforizar2' value='0')
+                    input(type='number' name='tumbler2' id='tumbler2' value='0')
+                    input(type='number' name='calandar2' id='calandar2' value='0')
+                    input(type='number' name='q2' id='q2' value='0')
+                    input(type='number' name='f2' id='f2' value='0')
+                    input(type='number' name='embalagem' id='embalagem' value='0')
+                    input(type='number' name='enfestar2' id='enfestar2' value='0')
+                    input(type='number' name='em2' id='em2' value='0')
+                    input(type='number' name='ei2' id='ei2' value='0')
+                    input(type='number' name='rm2' id='rm2' value='0')
+                    input(type='number' name='nr2' id='nr2' value='0')
+                    input(type='number' name='enrolar2' id='enrolar2' value='0')
+                    input(type='number' name='nren2' id='nren2' value='0')
+                    button(class="btn btn-primary" id="butsubmeter" type='submit')
+
+
+
+
+            script.
+                $(function () {
+                    $('#largini').click(function () {
+                        console.log("foda-se");
+                        $('#liII').toggle();
+                        $('#liFF').toggle();
+                        $('#numlariniII').toggle();
+                        $('#numlariniFF').toggle();
+                    });
+                    $('#largfin').click(function () {
+                        $('#lfII').toggle();
+                        $('#lfFF').toggle();
+                        $('#numlarfinII').toggle();
+                        $('#numlarfinFF').toggle();
+                    });
+                    $('#branquear').click(function () {
+                        $('#mb').toggle();
+                        $('#meiobranco').toggle();
+                        $('#b').toggle();
+                        $('#branco').toggle();
+                        $('#lbe').toggle();
+                        $('#be').toggle();
+                    });
+                    $('#calandar').click(function () {
+                        $('#cq').toggle();
+                        $('#q').toggle();
+                        $('#cf').toggle();
+                        $('#f').toggle();
+                    });
+                    $('#enfestar').click(function () {
+                        $('#lem').toggle();
+                        $('#em').toggle();
+                        $('#lei').toggle();
+                        $('#ei').toggle();
+                        $('#lnr').toggle();
+                        $('#nr').toggle();
+                        $('#lrm').toggle();
+                        $('#rm').toggle();
+                    });
+                    $('#enrolar').click(function () {
+                        $('#lnren').toggle();
+                        $('#nren').toggle();
+                    });
+                });
+                $('#but').on('click', function () {
+                    if (($('#largfin').is(':checked') && (($('#numlarfinII').val().length === 0) || ($('#numlarfinFF').val().length === 0))) || ($('#largini').is(':checked') && (($('#numlariniII').val().length === 0) || ($('#numlariniFF').val().length === 0)))) {
+                        alert('Intervalo de valores errado, retorne à Definição do Produto e corrija.');
+                    }
+                    else {
+                        if ($('#composicao').is(':checked')) {
+                            $('#composicao2').val('1');
+                            $('#definicao').val('1');
+                        }
+                        if ($('#ponto').is(':checked')) {
+                            $('#ponto2').val('1');
+                            $('#definicao').val('1');
+                        }
+                        if ($('#largini').is(':checked')) {
+                            $('#largini2').val('1');
+                            $('#numlariniII2').val($('#numlariniII').val());
+                            $('#numlariniFF2').val($('#numlariniFF').val());
+                            $('#definicao').val('1');
+                        }
+                        if ($('#largfin').is(':checked')) {
+                            $('#largfin2').val('1');
+                            $('#numlarfinII2').val($('#numlarfinII').val());
+                            $('#numlarfinFF2').val($('#numlarfinFF').val());
+                            $('#definicao').val('1');
+                        }
+                        if ($('#caderno').is(':checked')) {
+                            $('#caderno2').val('1');
+                            $('#definicao').val('1');
+                        }
+                        if ($('#gasar').is(':checked')) {
+                            $('#gasar2').val('1');
+                            $('#preparacao').val('1');
+                        }
+                        if ($('#lavar').is(':checked')) {
+                            $('#lavar2').val('1');
+                            $('#preparacao').val('1');
+                        }
+                        if ($('#mercerizar').is(':checked')) {
+                            $('#mercerizar2').val('1');
+                            $('#preparacao').val('1');
+                        }
+                        if ($('#branquear').is(':checked')) {
+                            $('#branquear2').val('1');
+                            $('#preparacao').val('1');
+                        }
+                        if ($('#meiobranco').is(':checked')) {
+                            $('#meiobranco2').val('1');
+                            $('#preparacao').val('1');
+                        }
+                        if ($('#branco').is(':checked')) {
+                            $('#branco2').val('1');
+                            $('#preparacao').val('1');
+                        }
+                        if ($('#be').is(':checked')) {
+                            $('#be2').val('1');
+                            $('#preparacao').val('1');
+                        }
+                        if ($('#reativos').is(':checked')) {
+                            $('#reativos2').val('1');
+                            $('#tinturaria').val('1');
+                        }
+                        if ($('#cubas').is(':checked')) {
+                            $('#cubas2').val('1');
+                            $('#tinturaria').val('1');
+                        }
+                        if ($('#pigmentos').is(':checked')) {
+                            $('#pigmentos2').val('1');
+                            $('#tinturaria').val('1');
+                        }
+                        if ($('#reativosP').is(':checked')) {
+                            $('#reativosP2').val('1');
+                            $('#tinturaria').val('1');
+                        }
+                        if ($('#cubasP').is(':checked')) {
+                            $('#cubasP2').val('1');
+                            $('#tinturaria').val('1');
+                        }
+                        if ($('#pigmentosP').is(':checked')) {
+                            $('#pigmentosP2').val('1');
+                            $('#tinturaria').val('1');
+                        }
+                        if ($('#dispersosP').is(':checked')) {
+                            $('#dispersosP2').val('1');
+                            $('#tinturaria').val('1');
+                        }
+                        if ($('#secar').is(':checked')) {
+                            $('#secar2').val('1');
+                            $('#tinturaria').val('1');
+                        }
+                        if ($('#acabar').is(':checked')) {
+                            $('#acabar2').val('1');
+                            $('#tinturaria').val('1');
+                        }
+                        if ($('#largura').is(':checked')) {
+                            $('#largura2').val('1');
+                            $('#tinturaria').val('1');
+                        }
+                        if ($('#sanforizar').is(':checked')) {
+                            $('#sanforizar2').val('1');
+                            $('#tinturaria').val('1');
+                        }
+                        if ($('#tumbler').is(':checked')) {
+                            $('#tumbler2').val('1');
+                            $('#tinturaria').val('1');
+                        }
+                        if ($('#calandar').is(':checked')) {
+                            $('#calandar2').val('1');
+                            $('#tinturaria').val('1');
+                        }
+                        if ($('#q').is(':checked')) {
+                            $('#q2').val('1');
+                            $('#tinturaria').val('1');
+                        }
+                        if ($('#f').is(':checked')) {
+                            $('#f2').val('1');
+                            $('#tinturaria').val('1');
+                        }
+                        if ($('#enfestar').is(':checked')) {
+                            $('#enfestar2').val('1');
+                            $('#embalagem').val('1');
+                        }
+                        if ($('#em').is(':checked')) {
+                            $('#em2').val('1');
+                            $('#embalagem').val('1');
+                        }
+                        if ($('#ei').is(':checked')) {
+                            $('#ei2').val('1');
+                            $('#embalagem').val('1');
+                        }
+                        if ($('#rm').is(':checked')) {
+                            $('#rm2').val('1');
+                            $('#embalagem').val('1');
+                        }
+                        if ($('#nr').is(':checked')) {
+                            $('#nr2').val('1');
+                            $('#embalagem').val('1');
+                        }
+                        if ($('#enrolar').is(':checked')) {
+                            $('#enrolar2').val('1');
+                            $('#embalagem').val('1');
+                        }
+                        if ($('#nren').is(':checked')) {
+                            $('#nren2').val('1');
+                            $('#embalagem').val('1');
+                        }
+
+                        if ($('#branquear2').val() == 1 && $('#meiobranco2').val() == 0 && $('#branco2').val() == 0 && $('#be2').val() == 0) {
+                            alert('Tem de selecionar um método de Branqueamento. Volte ao método Preparação.');
+                        }
+                        else if ($('#calandar2').val() == 1 && $('#q2').val() == 0 && $('#f2').val() == 0) {
+                            alert('Tem de selecionar um método de Calandar. Volte ao método Acabamento.');
+                        }
+                        else if ($('#enfestar2').val() == 1 && $('#em2').val() == 0 && $('#ei2').val() == 0 && $('#rm2').val() == 0 && $('#nr2').val() == 0) {
+                            alert('Tem de selecionar um método de Enfestar. Volte ao método Embalagem.');
+                        }
+                        else if ($('#enrolar2').val() == 1 && $('#nren2').val() == 0) {
+                            alert('Tem de selecionar um método de Enrolar. Volte ao método Embalagem.');
+                        }
+                        else {
+                            console.log("foda se no submeter");
+                            $('#butsubmeter').click();
+                            $('input:checkbox').prop('checked', false);
+                            //$(':input[type="number"]').val('0');
+                        }
+                    }
+                });
+

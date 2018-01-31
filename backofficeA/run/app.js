@@ -24,6 +24,7 @@ var transporter = nodemailer.createTransport({
 
 var mysql      = require('mysql');
 var connection = mysql.createConnection({
+    multipleStatements: true,
     hostname : 'localhost',
     port: '3307',
     user     : 'root',
@@ -47,6 +48,7 @@ var index = require('./routes/index');
 var clients = require('./routes/clients');
 var tasks = require('./routes/tasks');
 var message = require('./routes/message');
+var services = require('./routes/services');
 var clientInf = require('./routes/clientInfo');
 var taskInf = require('./routes/taskDescription');
 var order = require('./routes/orders');
@@ -112,17 +114,17 @@ app.use('/tasks', tasks);
 app.use('/messages', message);
 app.use('/taskDescription', taskInf);
 app.use('/clientInfo', clientInf);
+app.use('/services', services);
+//app.use('/steps', steps);
+//app.use(f1);
 app.use('/orders', order);
 app.use('/compose', comp);
 app.use('/messageInfo', messInf);
 
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
-});
+
+
+
 
 // error handler
 app.use(function(err, req, res, next) {

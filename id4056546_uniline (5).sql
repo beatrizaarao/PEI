@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: 30-Jan-2018 às 13:18
+-- Generation Time: 30-Jan-2018 às 13:03
 -- Versão do servidor: 10.1.29-MariaDB
 -- PHP Version: 7.2.0
 
@@ -22,7 +22,8 @@ SET time_zone = "+00:00";
 -- Database: `id4056546_uniline`
 --
 
--- --------------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `id4056546_uniline` DEFAULT CHARACTER SET utf8 ;
+USE `id4056546_uniline` ;
 
 --
 -- Estrutura da tabela `ADMINISTRATOR`
@@ -156,7 +157,7 @@ CREATE TABLE `Incompatibilities` (
 CREATE TABLE `OPCAO` (
   `id_OPTION` int(11) NOT NULL,
   `DESCRIPTION` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
-  `TYPE` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `VALOR` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
   `SERVICE_id_SERVICE` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -368,6 +369,7 @@ ALTER TABLE `ORDEM`
   ADD PRIMARY KEY (`ID_ORDER`),
   ADD KEY `fk_ORDER_Client1` (`Client_NIF`);
 
+
 --
 -- Indexes for table `ORDER_STEP_SERVICE_OPTION`
 --
@@ -473,6 +475,7 @@ ALTER TABLE `OPTION_has_Incompatibilities`
 --
 ALTER TABLE `ORDEM`
   ADD CONSTRAINT `fk_ORDER_Client1` FOREIGN KEY (`Client_NIF`) REFERENCES `CLIENT` (`NIF`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
 
 --
 -- Limitadores para a tabela `ORDER_STEP_SERVICE_OPTION`

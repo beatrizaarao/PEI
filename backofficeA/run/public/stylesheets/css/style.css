@@ -1,0 +1,26 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.modal {
+  margin: 30px;
+  position: absolute;
+  top: 0;
+  left: 10%;
+  width: 70%;
+}
+
+.pad {
+  padding: 15px;
+}
+
+.padlef {
+  padding-left: 15px;
+  padding-top: 15px;
+}
+
