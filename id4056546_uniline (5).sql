@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: 30-Jan-2018 às 13:03
+-- Generation Time: 31-Jan-2018 às 15:28
 -- Versão do servidor: 10.1.29-MariaDB
 -- PHP Version: 7.2.0
 
@@ -22,8 +22,7 @@ SET time_zone = "+00:00";
 -- Database: `id4056546_uniline`
 --
 
-CREATE SCHEMA IF NOT EXISTS `id4056546_uniline` DEFAULT CHARACTER SET utf8 ;
-USE `id4056546_uniline` ;
+-- --------------------------------------------------------
 
 --
 -- Estrutura da tabela `ADMINISTRATOR`
@@ -61,21 +60,6 @@ CREATE TABLE `ADMIN_MESSAGE` (
   `Data` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- Extraindo dados da tabela `ADMIN_MESSAGE`
---
-
-INSERT INTO `ADMIN_MESSAGE` (`idMESSAGES`, `SUBJECT`, `CONTENT`, `Tipo`, `client_mail`, `IS_READ`, `IS_FAVORITE`, `Data`) VALUES
-(0, 'ewec', 'wecec', 2, 'dddd', 1, 0, '2018-01-02'),
-(4, 'ff', 'ff', 2, 'beatrizaarao@gmail.com', 1, 0, '2018-01-09'),
-(5, 'testeinbox', 'ola mundo', 2, 'bea', 0, 1, '2018-01-17'),
-(6, 'coisa1', 'olq', 2, 'beq', 0, 1, '2018-01-03'),
-(7, 'Avaliação entre pares', 'Boa noite,\r\nComo requerido envio em anexo a avaliação entre pares.\r\nCumprimentos,\r\nBeatriz Aarão', 0, 'beatrizaarao@gmail.com', 1, 1, '2018-01-01'),
-(9, 'wewec', 'wcwec', 2, 'ddd', 0, 0, '2018-01-10'),
-(10, 'ola', 'bea', 1, 'bea2', 0, 1, '2018-01-28'),
-(11, 'teste', 'teste1', 1, 'teste2', 0, 0, '2018-01-28'),
-(12, 'ss', 'ssss', 1, 'bea@mail.com', 1, 0, '2018-01-28');
-
 -- --------------------------------------------------------
 
 --
@@ -84,7 +68,7 @@ INSERT INTO `ADMIN_MESSAGE` (`idMESSAGES`, `SUBJECT`, `CONTENT`, `Tipo`, `client
 
 CREATE TABLE `CLIENT` (
   `NAME` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
-  `NIF` int(11) NOT NULL,
+  `NIF` varchar(11) COLLATE utf8_unicode_ci NOT NULL,
   `EMAIL` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
   `PHONE` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
   `STREET` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
@@ -104,17 +88,7 @@ CREATE TABLE `CLIENT` (
 --
 
 INSERT INTO `CLIENT` (`NAME`, `NIF`, `EMAIL`, `PHONE`, `STREET`, `DOOR_NUMBER`, `CITY`, `COUNTRY`, `ZIP_CODE`, `PASS`, `IS_BLOCKED`, `img_path`, `IS_APPROVED`, `data_registo`) VALUES
-('teste', 123, 'teste@', '123', 'ddfdfdf', 11, 'port', 'hu', '123123', 'dkdkfndf', 0, '123', 0, '2018-01-10'),
-('Maria', 1233, 'qwdqdqwd', 'qwd', 'qwd', 2, 'qwd', 'qwd', 'qwd', 'qwd', 0, NULL, 1, '2018-01-20'),
-('joaquina', 3333, 'dddd', 'ddd', 'ddd', 3, 'ddd', 'dd', 'ss', 'ss', 0, NULL, 1, '2017-12-06'),
-('blcaganita', 3523, 'dsdfsdf', '23333', 'rrr', 3, 'rrr', 'rr', 'rr', 'ola', 1, NULL, 1, '2017-12-06'),
-('João', 123123, 'wdwd', '123123', 'sqs', 33, 'qdd', 'dqd', 'qdqd', 'qdq', 0, NULL, 1, '2018-01-15'),
-('CAGANITA2', 2343456, 'caganita2@email.com', '1232345', 'Rua das Joaquinas', 9, 'Braga', 'Espanha', '1234-123', '234566', 0, NULL, 1, '2017-10-10'),
-('Caganita3', 3454567, 'caganita3@email.com', '123234345', 'Rua das Madalenas', 4, 'Coimbra', 'França', '1234-234', '12312323', 0, NULL, 1, '2018-01-18'),
-('Caganita5', 4565677, 'caganita5@email.com', '123123123', 'Rua das Cecilias', 5, 'Fafe', 'Inglaterra', '123-123', 'ddddddd', 0, NULL, 1, '2017-11-08'),
-('CAGANITA4', 45645456, 'caganita4@email.com', '123234234', 'Rua das Beatrizes', 8, 'Braga', 'Luxemburgo', '2345-234', '234234234', 0, '45645456.jpg', 1, '2017-12-20'),
-('bea joaquina', 111111111, 'bea@ola', '123111111', 'Rua Teixeira Pascoais-229', 3, 'Guimarães', 'PT', '4810-073', '123', 1, NULL, 0, '2018-01-30'),
-('Caganita', 123456789, 'caganita@email.com', '123456789', 'Rua das Flores', 3, 'Guimarães', 'Portugal', '1234-123', '123456', 0, NULL, 1, '2017-11-08');
+('Beatriz Aarão', '123456789', 'beatrizaarao@gmail.com', '919999999', 'Rua Teixeira Pascoais-229', 2, 'Guimarães', 'PT', '4810-073', 'bea123', 1, NULL, 1, '2018-01-31');
 
 -- --------------------------------------------------------
 
@@ -158,19 +132,10 @@ CREATE TABLE `OPCAO` (
   `id_OPTION` int(11) NOT NULL,
   `DESCRIPTION` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
   `VALOR` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `SERVICE_id_SERVICE` int(11) NOT NULL
+  `SERVICE_id_SERVICE` int(11) NOT NULL,
+  `IS_CHECKBOX` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- Extraindo dados da tabela `OPCAO`
---
-
-/*INSERT INTO `OPCAO` (`id_OPTION`, `DESCRIPTION`, `TYPE`, `SERVICE_id_SERVICE`) VALUES
-(1, 'Q', '0', 16),
-(2, 'F', '0', 16),
-(3, 'EM', '0', 19),
-(4, 'EI', '0', 19);
-*/
 -- --------------------------------------------------------
 
 --
@@ -193,24 +158,11 @@ CREATE TABLE `ORDEM` (
   `ID_ORDER` int(11) NOT NULL,
   `BEGIN_DATE` date NOT NULL,
   `CLOSE_DATE` date DEFAULT NULL,
-  `Client_NIF` int(11) NOT NULL,
+  `Client_NIF` varchar(11) COLLATE utf8_unicode_ci NOT NULL,
   `ASKED_DELIVERY_DATE` date NOT NULL,
   `STATUS` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- Extraindo dados da tabela `ORDEM`
---
-
-/*INSERT INTO `ORDEM` (`ID_ORDER`, `BEGIN_DATE`, `CLOSE_DATE`, `Client_NIF`, `ASKED_DELIVERY_DATE`, `STATUS`) VALUES
-(1, '2018-01-10', '2018-01-27', 2343456, '2018-01-27', 2),
-(2, '2018-01-17', NULL, 2343456, '2018-01-09', 1),
-(3, '2018-02-09', NULL, 4565677, '2018-01-03', 0),
-(4, '2017-01-05', NULL, 2343456, '2018-01-10', 0),
-(5, '2017-01-11', NULL, 45645456, '2018-01-24', 0),
-(6, '2017-01-28', NULL, 45645456, '2018-01-03', 0),
-(7, '2018-01-20', NULL, 3454567, '2018-01-10', 0);
-*/
 -- --------------------------------------------------------
 
 --
@@ -221,7 +173,7 @@ CREATE TABLE `ORDER_STEP_SERVICE_OPTION` (
   `ID_ORDER` int(11) NOT NULL,
   `id_STEP` int(11) NOT NULL,
   `id_SERVICE` int(11) NOT NULL,
-  `id_OPTION` int(11) NOT NULL
+  `id_OPTION` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -234,34 +186,10 @@ CREATE TABLE `SERVICE` (
   `id_SERVICE` int(11) NOT NULL,
   `DESCRIPTION` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
   `STEP_id_step` int(11) DEFAULT NULL,
-  `VALOR` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL
+  `VALOR` text COLLATE utf8_unicode_ci,
+  `IS_CHECKBOX` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- Extraindo dados da tabela `SERVICE`
---
-
-/*INSERT INTO `SERVICE` (`id_SERVICE`, `DESCRIPTION`, `STEP_id_step`, `VALOR`) VALUES
-(1, 'Composição', 1, 'CETIM'),
-(2, 'Ponto', 1, 'Ponto Pequinez'),
-(3, 'Peso, Largura e Quantidade', 1, NULL),
-(4, 'Caderno de Encargos', 1, 'O tecido é muito lindo'),
-(5, 'Gazar', 2, NULL),
-(6, 'Branquear', 2, NULL),
-(7, 'Lavar', 2, NULL),
-(8, 'Mercerizar', 2, NULL),
-(9, 'Reativo', 3, NULL),
-(10, 'Cuba', 3, NULL),
-(11, 'Pigmentos', 3, NULL),
-(12, 'Panton', 3, NULL),
-(13, 'Secar', 4, NULL),
-(14, 'Acabar', 4, NULL),
-(15, 'Largura', 4, NULL),
-(16, 'Calandar', 4, NULL),
-(17, 'Sanfonizar', 4, NULL),
-(18, 'Tumbler', 4, NULL),
-(19, 'Enfestar', 5, NULL);
-*/
 -- --------------------------------------------------------
 
 --
@@ -273,17 +201,6 @@ CREATE TABLE `STEP` (
   `DESCRIPTION` varchar(45) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- Extraindo dados da tabela `STEP`
---
-
-/*INSERT INTO `STEP` (`id_STEP`, `DESCRIPTION`) VALUES
-(1, 'Definição do Produto'),
-(2, 'Preparação'),
-(3, 'Tinturaria'),
-(4, 'Acabamento'),
-(5, 'Embalagem');
-*/
 -- --------------------------------------------------------
 
 --
@@ -294,7 +211,7 @@ CREATE TABLE `Task` (
   `ID_TASK` int(11) NOT NULL,
   `DESCRIPTION` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `STATE` int(1) NOT NULL,
-  `Client_NIF` int(11) DEFAULT NULL,
+  `Client_NIF` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL,
   `Tipo` int(2) NOT NULL,
   `dataPedido` date NOT NULL,
   `Ordem_ID` int(11) DEFAULT NULL
@@ -305,11 +222,7 @@ CREATE TABLE `Task` (
 --
 
 INSERT INTO `Task` (`ID_TASK`, `DESCRIPTION`, `STATE`, `Client_NIF`, `Tipo`, `dataPedido`, `Ordem_ID`) VALUES
-(2, 'O cliente Caganita4 pretende registar-se na aplicação', 1, 45645456, 0, '2018-01-10', NULL),
-(3, 'Tarefa2', 0, 3454567, 0, '2018-01-04', NULL),
-(4, 'Tarefa3', 0, 45645456, 2, '2018-02-22', 1),
-(6, 'O cliente Caganita2 pretende cancelar a encomenda 1', 1, 2343456, 1, '2018-01-12', 1),
-(8, 'O cliente com o NIF=123 pretende registar-se na aplicação', 0, 123, 0, '2018-01-30', NULL);
+(10, 'O cliente com o NIF=123456789pretende registar-se na aplicação', 1, '123456789', 0, '2018-01-31', NULL);
 
 --
 -- Indexes for dumped tables
@@ -369,12 +282,11 @@ ALTER TABLE `ORDEM`
   ADD PRIMARY KEY (`ID_ORDER`),
   ADD KEY `fk_ORDER_Client1` (`Client_NIF`);
 
-
 --
 -- Indexes for table `ORDER_STEP_SERVICE_OPTION`
 --
 ALTER TABLE `ORDER_STEP_SERVICE_OPTION`
-  ADD PRIMARY KEY (`ID_ORDER`,`id_STEP`,`id_SERVICE`,`id_OPTION`),
+  ADD PRIMARY KEY (`ID_ORDER`,`id_STEP`,`id_SERVICE`),
   ADD KEY `id_STEP` (`id_STEP`),
   ADD KEY `id_SERVICE` (`id_SERVICE`),
   ADD KEY `id_OPTION` (`id_OPTION`);
@@ -414,25 +326,25 @@ ALTER TABLE `ADMINISTRATOR`
 -- AUTO_INCREMENT for table `ADMIN_MESSAGE`
 --
 ALTER TABLE `ADMIN_MESSAGE`
-  MODIFY `idMESSAGES` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `idMESSAGES` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `OPCAO`
 --
 ALTER TABLE `OPCAO`
-  MODIFY `id_OPTION` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_OPTION` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `ORDEM`
 --
 ALTER TABLE `ORDEM`
-  MODIFY `ID_ORDER` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `ID_ORDER` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT for table `SERVICE`
 --
 ALTER TABLE `SERVICE`
-  MODIFY `id_SERVICE` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_SERVICE` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `STEP`
@@ -444,7 +356,7 @@ ALTER TABLE `STEP`
 -- AUTO_INCREMENT for table `Task`
 --
 ALTER TABLE `Task`
-  MODIFY `ID_TASK` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `ID_TASK` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Constraints for dumped tables
@@ -475,7 +387,6 @@ ALTER TABLE `OPTION_has_Incompatibilities`
 --
 ALTER TABLE `ORDEM`
   ADD CONSTRAINT `fk_ORDER_Client1` FOREIGN KEY (`Client_NIF`) REFERENCES `CLIENT` (`NIF`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
 
 --
 -- Limitadores para a tabela `ORDER_STEP_SERVICE_OPTION`
