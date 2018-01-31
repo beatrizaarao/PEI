@@ -165,12 +165,12 @@ CREATE TABLE `OPCAO` (
 -- Extraindo dados da tabela `OPCAO`
 --
 
-INSERT INTO `OPCAO` (`id_OPTION`, `DESCRIPTION`, `TYPE`, `SERVICE_id_SERVICE`) VALUES
+/*INSERT INTO `OPCAO` (`id_OPTION`, `DESCRIPTION`, `TYPE`, `SERVICE_id_SERVICE`) VALUES
 (1, 'Q', '0', 16),
 (2, 'F', '0', 16),
 (3, 'EM', '0', 19),
 (4, 'EI', '0', 19);
-
+*/
 -- --------------------------------------------------------
 
 --
@@ -202,7 +202,7 @@ CREATE TABLE `ORDEM` (
 -- Extraindo dados da tabela `ORDEM`
 --
 
-INSERT INTO `ORDEM` (`ID_ORDER`, `BEGIN_DATE`, `CLOSE_DATE`, `Client_NIF`, `ASKED_DELIVERY_DATE`, `STATUS`) VALUES
+/*INSERT INTO `ORDEM` (`ID_ORDER`, `BEGIN_DATE`, `CLOSE_DATE`, `Client_NIF`, `ASKED_DELIVERY_DATE`, `STATUS`) VALUES
 (1, '2018-01-10', '2018-01-27', 2343456, '2018-01-27', 2),
 (2, '2018-01-17', NULL, 2343456, '2018-01-09', 1),
 (3, '2018-02-09', NULL, 4565677, '2018-01-03', 0),
@@ -210,7 +210,7 @@ INSERT INTO `ORDEM` (`ID_ORDER`, `BEGIN_DATE`, `CLOSE_DATE`, `Client_NIF`, `ASKE
 (5, '2017-01-11', NULL, 45645456, '2018-01-24', 0),
 (6, '2017-01-28', NULL, 45645456, '2018-01-03', 0),
 (7, '2018-01-20', NULL, 3454567, '2018-01-10', 0);
-
+*/
 -- --------------------------------------------------------
 
 --
@@ -241,7 +241,7 @@ CREATE TABLE `SERVICE` (
 -- Extraindo dados da tabela `SERVICE`
 --
 
-INSERT INTO `SERVICE` (`id_SERVICE`, `DESCRIPTION`, `STEP_id_step`, `VALOR`) VALUES
+/*INSERT INTO `SERVICE` (`id_SERVICE`, `DESCRIPTION`, `STEP_id_step`, `VALOR`) VALUES
 (1, 'Composição', 1, 'CETIM'),
 (2, 'Ponto', 1, 'Ponto Pequinez'),
 (3, 'Peso, Largura e Quantidade', 1, NULL),
@@ -261,7 +261,7 @@ INSERT INTO `SERVICE` (`id_SERVICE`, `DESCRIPTION`, `STEP_id_step`, `VALOR`) VAL
 (17, 'Sanfonizar', 4, NULL),
 (18, 'Tumbler', 4, NULL),
 (19, 'Enfestar', 5, NULL);
-
+*/
 -- --------------------------------------------------------
 
 --
@@ -277,13 +277,13 @@ CREATE TABLE `STEP` (
 -- Extraindo dados da tabela `STEP`
 --
 
-INSERT INTO `STEP` (`id_STEP`, `DESCRIPTION`) VALUES
+/*INSERT INTO `STEP` (`id_STEP`, `DESCRIPTION`) VALUES
 (1, 'Definição do Produto'),
 (2, 'Preparação'),
 (3, 'Tinturaria'),
 (4, 'Acabamento'),
 (5, 'Embalagem');
-
+*/
 -- --------------------------------------------------------
 
 --
