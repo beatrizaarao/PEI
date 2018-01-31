@@ -30,36 +30,26 @@ router.post('/',function(req,res,next) {
                             db.query('SELECT * FROM OPCAO', function (error, result, client) {
                                 var opcao = result;
                                 for (var i = 0; i < steps.length; i++) {
-                                   // console.log("PUTA QUE PARIU3" + steps[i].DESCRIPTION + i)
                                     for (var k = 0; k < service.length; k++) {
                                         has_option=0;
                                         if(service[k].STEP_id_step==steps[i].id_STEP)
                                         {
-                                            //console.log("PUTA QUE PARIU2" + service[k].DESCRIPTION + k)
                                             for (var a = 0; a < opcao.length; a++){
                                                 if(opcao[a].SERVICE_id_SERVICE==service[k].id_SERVICE){
-                                                    //console.log("PUTA QUE PARIU" + opcao[a].DESCRIPTION + a)
                                                     var pilas = opcao[a].DESCRIPTION;
+                                                    console.log("nao ENTREI na opcao" + opcao[a].DESCRIPTION);
                                                     if ((opcao[a].IS_CHECKBOX == 1 && fields[pilas] == 'on')||(opcao[a].IS_CHECKBOX == 0 && fields[pilas]!=null)) {
-                                                        //console.log("ENTREI na opcao" + opcao[a].DESCRIPTION);
+                                                        console.log("ENTREI na opcao" + opcao[a].DESCRIPTION);
 
                                                             has_option=1;
-                                                            //console.log("DENTRO" + opcao[a].DESCRIPTION);
-                                                            //console.log(steps[i]);
-                                                            //var params2 = [idorder,steps[i].id_STEP,service[k].id_SERVICE,opcao[a].id_OPTION];
                                                             queries[queries.length] = "INSERT INTO ORDER_STEP_SERVICE_OPTION (ID_ORDER, id_STEP, id_SERVICE, id_OPTION) VALUES(" +idorder+","+steps[i].id_STEP +","+service[k].id_SERVICE+","+opcao[a].id_OPTION+"); "
-                                                            /*
-                                                            db.query('INSERT INTO ORDER_STEP_SERVICE_OPTION (ID_ORDER, id_STEP, id_SERVICE, id_OPTION) VALUES(?,?,?,?)',params2, function (err, result) {
-                                                                if (err) throw err;
-                                                                console.log("1 record inserted");
-                                                            });
-                                                            */
 
                                                     }
                                                 }
                                             }
                                             if (has_option==0) {
                                                 if ((service[k].IS_CHECKBOX == 1 && fields[service[k].DESCRIPTION] == 'on')||(service[k].IS_CHECKBOX == 0 && fields[service[k].DESCRIPTION]!=null)) {
+
                                                     //var params3 = [idorder,steps[i].id_STEP,service[k].id_SERVICE];
                                                     queries[queries.length] = "INSERT INTO ORDER_STEP_SERVICE_OPTION (ID_ORDER, id_STEP, id_SERVICE) VALUES(" +idorder+","+steps[i].id_STEP +","+service[k].id_SERVICE+"); "
                                                 }
@@ -74,9 +64,6 @@ router.post('/',function(req,res,next) {
                                 }
                                 //console.log("po" + que);
                                 db.query(que, function (error, result, client) {
-                                    console.log(error);
-                                    console.log(result);
-                                    console.log(que);
                                     res.redirect("/home");
                                 });
                             });

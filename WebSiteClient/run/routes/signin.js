@@ -27,8 +27,16 @@ router.post('/',function(req,res,next) {
             console.log("NIF => " + fields.nif)
             console.log("PASS => " + docs[0].PASS + " TENTATIVA => " + fields.password)
           if(docs[0].PASS === fields.password){
-            res.cookie('online', fields.nif)
-            res.redirect('/order')
+                if(docs[0].IS_APPROVED)
+                {
+                    res.cookie('online', fields.nif)
+                    res.redirect('/order')
+                }
+                else{res.render('lr', { title: 'Login' , status: 'Conta ainda não aprovada'});}
+                if(docs[0].IS_BLOCKED)
+                {
+                    res.render('lr', { title: 'Login' , status: 'Conta bloqueada'});
+                }
           }
           else{
             res.render('lr', { title: 'Login' , status: 'Password errada para o utilizador inserido'});
