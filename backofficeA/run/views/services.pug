@@ -9,32 +9,28 @@ block content
                 table.table(cellpadding='0', cellspacing='0', border='0', width='100%', aria-describedby='DataTables_Table_0_info', style='width: 100%;')
                     col(width="50%")
                     col(width="50%")
-                    thead
-                        tr
-                            th Etapas
-                            th Serviços
-                            th
-                    tbody
-                        tr
-                            td oi gato
-                        tr
-                            td oi tuxo
-                        tr
-                            td tudo dji bom
-                        tr
-                            td que pasa
-                        tr
-                            td mÔ
-                        tr
-                            td nao me responde
-                        tr
-                            td tji amo
-                        tr
-                            td tenho saudades suas
-                        tr
-                            td que voce esta fazendo
-                        tr
-                            td que se acha
+                    -if (dataSteps.length==0)
+                        p Sem serviços
+                        div(style="height:300px")
+                    -else
+                        thead
+                            tr
+                                th Etapas
+                                th Serviços
+                                th
+                        tbody
+                            -for(var j=0; j<dataSteps.length;j++)
+                                tr
+                                    td
+                                        p=dataSteps[j].DESCRIPTION
+                                    td
+                                        -for(var i=0; i<dataServs.length;i++)
+                                            -if(dataServs[i].STEP_id_step == dataSteps[j].id_STEP)
+                                                h7=dataServs[i].DESCRIPTION
+                                                br
+                                    td
+                                        button(type="button" class="btn btn btn-success" data-toggle="modal" data-target="#") Alterar
+                                        button(type="button" class="btn btn-danger" data-toggle="modal" data-target="#") Remover
 
             hr
             button(type="button" class="btn btn-default icon-plus-sign" data-toggle="modal" data-target="#myModelDefinicao") Adicionar Serviço

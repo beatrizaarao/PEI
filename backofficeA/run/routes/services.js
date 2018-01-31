@@ -60,8 +60,8 @@ router.post('/serv', function(req, res) {
             larguraf="INSERT INTO SERVICE (id_SERVICE, DESCRIPTION, STEP_id_step, VALOR) VALUES (5, 'larguraf', 1, null);";
 
             if (parseInt(req.body.numlarfinII2)>0) {
-                largurafi= "INSERT INTO OPCAO (id_OPTION, DESCRIPTION, VALOR, SERVICE_id_SERVICE) VALUES (3, 'largurafi', " + req.body.numlarfinII2 + "?, 5);";
-                larguraff= "INSERT INTO OPCAO (id_OPTION, DESCRIPTION, VALOR, SERVICE_id_SERVICE) VALUES (4, 'larguraff', " + req.body.numlarfinFF2 +" ?, 5);";
+                largurafi= "INSERT INTO OPCAO (id_OPTION, DESCRIPTION, VALOR, SERVICE_id_SERVICE) VALUES (3, 'largurafi', " + req.body.numlarfinII2 + ", 5);";
+                larguraff= "INSERT INTO OPCAO (id_OPTION, DESCRIPTION, VALOR, SERVICE_id_SERVICE) VALUES (4, 'larguraff', " + req.body.numlarfinFF2 +" , 5);";
             }
         }
         if (req.body.quantidade2 == "1") {
