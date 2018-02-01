@@ -5,10 +5,20 @@ var app = express();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    if(req.app.locals.admin.IS_LOGGED==1){
-        res.render('compose', { title: 'Compor', email: "example@email.com...", assunto: "Inserir assunto...", mensagem: "Inserir mensagem..."});
-    }
-    else {res.redirect('/')}
+    var db = req.connection;
+    db.query("SELECT COUNT(idMESSAGES) AS mg FROM ADMIN_MESSAGE WHERE Tipo=0 and IS_READ=1", function (error, result, client) {
+        req.app.locals.inbox = result[0].mg;
+        db.query("SELECT COUNT(ID_ORDER) AS ord FROM ORDEM WHERE STATUS=0", function (error, result, client) {
+            req.app.locals.missedOrders = result[0].ord;
+            db.query("SELECT COUNT(ID_TASK) AS tamanho FROM Task WHERE STATE=0", function (error, result, client) {
+                req.app.locals.missedMenu = result[0].tamanho;
+                if(req.app.locals.admin.IS_LOGGED==1){
+                    res.render('compose', { title: 'Compor', email: "example@email.com...", assunto: "Inserir assunto...", mensagem: "Inserir mensagem..."});
+                }
+                else {res.redirect('/')}
+            });
+        });
+    });
 });
 
 router.post('/', function(req, res, next){
@@ -38,7 +48,7 @@ router.post('/', function(req, res, next){
             };
         });
             var params=[assunto, mensagem,email]
-            db.query("INSERT INTO ADMIN_MESSAGE (SUBJECT, CONTENT, client_mail, Tipo, IS_READ, IS_FAVORITE, Data) VALUES (?,?, ?, 1,0,0,CURRENT_DATE)",params, function (error, result, client) {
+            db.query("INSERT INTO ADMIN_MESSAGE (SUBJECT, CONTENT, client_mail, Tipo, IS_READ, IS_FAVORITE, Data) VALUES (?,?, ?, 1,1,0,CURRENT_DATE)",params, function (error, result, client) {
                 console.log("ENTREI");
                 res.redirect('/messages');
             });
@@ -55,7 +65,16 @@ router.post('/clientInfo/:nif', function(req, res, next) {
     });
 });
 
-router.post('/clientInfo/bymail/:mail', function(req, res, next) {
-    res.render('compose', { title: 'Compor', emailDefault: req.params.mail, assunto: "Inserir assunto...", mensagem: "Inserir mensagem..."});
+router.post('/clientInfo/bymail/:mail/:idmessage', function(req, res, next) {
+    var db = req.connection;
+    db.query("select IS_READ FROM ADMIN_MESSAGE WHERE idMESSAGES=?",req.params.idmessage, function (error, result, client) {
+       if(result[0].IS_READ==1){
+           req.app.locals.inbox --;
+           db.query("UPDATE ADMIN_MESSAGE SET IS_READ=0 WHERE idMESSAGES=?",req.params.idmessage, function (error, result, client) {
+               res.render('compose', { title: 'Compor', emailDefault: req.params.mail, assunto: "Inserir assunto...", mensagem: "Inserir mensagem..."});
+           });
+       }
+       else{res.render('compose', { title: 'Compor', emailDefault: req.params.mail, assunto: "Inserir assunto...", mensagem: "Inserir mensagem..."});}
+    });
 });
 module.exports = router;

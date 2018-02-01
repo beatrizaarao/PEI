@@ -37,7 +37,7 @@ router.post('/', function(req, res, next) {
             };
         });
         var params=[assunto, mensagem,email]
-        db.query("INSERT INTO ADMIN_MESSAGE (SUBJECT, CONTENT, client_mail, Tipo, IS_READ, IS_FAVORITE, Data) VALUES (?,?, ?, 0,0,0,CURRENT_DATE)",params, function (error, result, client) {
+        db.query("INSERT INTO ADMIN_MESSAGE (SUBJECT, CONTENT, client_mail, Tipo, IS_READ, IS_FAVORITE, Data) VALUES (?,?, ?, 0,1,0,CURRENT_DATE)",params, function (error, result, client) {
             console.log("ENTREI");
             res.redirect('/contact');
         });

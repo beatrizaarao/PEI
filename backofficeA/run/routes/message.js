@@ -3,24 +3,33 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    if(req.app.locals.admin.IS_LOGGED==1){
-        var db = req.connection;
-        db.query('SELECT * FROM ADMIN_MESSAGE where tipo = 0 ORDER by Data',function (error, result, client){
-            var inbox_msm = result;
-            db.query('SELECT * FROM ADMIN_MESSAGE where tipo = 1 ORDER by Data',function (error, result, client){
-                var sent_msm = result;
-                db.query('SELECT * FROM ADMIN_MESSAGE where tipo = 2 ORDER by Data',function (error, result, client){
-                    var  trash_msm = result;
-                    db.query('SELECT * FROM ADMIN_MESSAGE where IS_FAVORITE=1 ORDER by Data',function (error, result, client){
-                        var favorites_msm = result;
-                        res.render('message', { title: 'Mensagens', inbox_msm: inbox_msm, sent_msm: sent_msm, trash_msm: trash_msm, favorites_msm: favorites_msm });
-                    });
-                });
-            });
+    var db = req.connection;
+    db.query("SELECT COUNT(idMESSAGES) AS mg FROM ADMIN_MESSAGE WHERE Tipo=0 and IS_READ=1", function (error, result, client) {
+        req.app.locals.inbox = result[0].mg;
+        db.query("SELECT COUNT(ID_ORDER) AS ord FROM ORDEM WHERE STATUS=0", function (error, result, client) {
+            req.app.locals.missedOrders = result[0].ord;
+            db.query("SELECT COUNT(ID_TASK) AS tamanho FROM Task WHERE STATE=0", function (error, result, client) {
+                req.app.locals.missedMenu = result[0].tamanho;
+                if(req.app.locals.admin.IS_LOGGED==1){
+                    db.query('SELECT * FROM ADMIN_MESSAGE where tipo = 0 ORDER by Data',function (error, result, client){
+                        var inbox_msm = result;
+                        db.query('SELECT * FROM ADMIN_MESSAGE where tipo = 1 ORDER by Data',function (error, result, client){
+                            var sent_msm = result;
+                            db.query('SELECT * FROM ADMIN_MESSAGE where tipo = 2 ORDER by Data',function (error, result, client){
+                                var  trash_msm = result;
+                                db.query('SELECT * FROM ADMIN_MESSAGE where IS_FAVORITE=1 ORDER by Data',function (error, result, client){
+                                    var favorites_msm = result;
+                                    res.render('message', { title: 'Mensagens', inbox_msm: inbox_msm, sent_msm: sent_msm, trash_msm: trash_msm, favorites_msm: favorites_msm });
+                                });
+                            });
+                        });
 
+                    });
+                }
+                else {res.redirect('/')}
+            });
         });
-    }
-    else {res.redirect('/')}
+    });
 });
 
 router.post('/:mailID', function (req, res) {

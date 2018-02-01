@@ -48,7 +48,7 @@ block content
                                                         | Data
 
                                                 -for(var y=0; y<inbox_msm.length;y++)
-                                                    -if(inbox_msm[y].IS_READ==0)
+                                                    -if(inbox_msm[y].IS_READ==1)
                                                         tr.unread
                                                             td.cell-icon
                                                                 form(action="/messages/" + inbox_msm[y].idMESSAGES, method = "post", style="display:inline; margin:0px; padding:0px;")
@@ -115,7 +115,7 @@ block content
                                                         | Date
 
                                                 -for(var l=0; l<sent_msm.length;l++)
-                                                    -if(sent_msm[l].IS_READ==0)
+                                                    -if(sent_msm[l].IS_READ==1)
                                                         tr.unread
                                                             td.cell-icon
                                                                 form(action="/messages/" + sent_msm[l].idMESSAGES, method = "post", style="display:inline; margin:0px; padding:0px;")
@@ -182,7 +182,7 @@ block content
                                                         | Data
 
                                                 -for(var k=0; k<favorites_msm.length;k++)
-                                                    -if(favorites_msm[k].IS_READ==0)
+                                                    -if(favorites_msm[k].IS_READ==1)
                                                         tr.unread
                                                             td.cell-icon
                                                                 form(action="/messages/" + favorites_msm[k].idMESSAGES, method = "post", style="display:inline; margin:0px; padding:0px;")
@@ -249,7 +249,7 @@ block content
                                                         | Data
 
                                                 -for(var r=0; r<trash_msm.length;r++)
-                                                    -if(trash_msm[r].IS_READ==0)
+                                                    -if(trash_msm[r].IS_READ==1)
                                                         tr.unread
                                                             td.cell-icon
                                                             td.cell-icon
