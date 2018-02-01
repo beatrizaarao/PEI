@@ -37,7 +37,7 @@ router.post('/',function(req,res,next) {
                                             for (var a = 0; a < opcao.length; a++){
                                                 if(opcao[a].SERVICE_id_SERVICE==service[k].id_SERVICE){
                                                     var pilas = opcao[a].DESCRIPTION;
-                                                    console.log("nao ENTREI na opcao" + opcao[a].DESCRIPTION);
+                                                    console.log("ENTREI na opcao" + opcao[a].DESCRIPTION);
                                                     if ((opcao[a].IS_CHECKBOX == 1 && fields[pilas] == 'on')||(opcao[a].IS_CHECKBOX == 0 && fields[pilas]!=null)) {
                                                         console.log("ENTREI na opcao" + opcao[a].DESCRIPTION);
 

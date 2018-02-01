@@ -11,17 +11,34 @@ var cookieParser = require("cookie-parser")
 router.get('/', function(req, res, next) {
 
     var db = req.connection;
-    var data = "";
-    var steps;
-    var servs;
-    var opts;
-    db.query('SELECT * FROM STEP',function(err,rows){
-        steps  = rows;
-        db.query('SELECT * FROM SERVICE',function(err,rows){
-            servs  = rows;
-            db.query('SELECT * FROM OPCAO',function(err,rows){
-                opts  = rows;
-                res.render('services', { title: 'Services', dataSteps: steps, dataServs: servs, dataOpts: opts });
+    db.query("SELECT COUNT(idMESSAGES) AS mg FROM ADMIN_MESSAGE WHERE Tipo=0 and IS_READ=1", function (error, result, client) {
+        req.app.locals.inbox = result[0].mg;
+        db.query("SELECT COUNT(ID_ORDER) AS ord FROM ORDEM WHERE STATUS=0", function (error, result, client) {
+            req.app.locals.missedOrders = result[0].ord;
+            db.query("SELECT COUNT(ID_TASK) AS tamanho FROM Task WHERE STATE=0", function (error, result, client) {
+                req.app.locals.missedMenu = result[0].tamanho;
+                var data = "";
+                var steps;
+                var servs;
+                var opts;
+                if(req.app.locals.admin.IS_LOGGED==1) {
+                    db.query('SELECT * FROM STEP', function (err, rows) {
+                        steps = rows;
+                        db.query('SELECT * FROM SERVICE', function (err, rows) {
+                            servs = rows;
+                            db.query('SELECT * FROM OPCAO', function (err, rows) {
+                                opts = rows;
+                                res.render('services', {
+                                    title: 'Services',
+                                    dataSteps: steps,
+                                    dataServs: servs,
+                                    dataOpts: opts
+                                });
+                            });
+                        });
+                    });
+                }
+                else{res.redirect('/')}
             });
         });
     });

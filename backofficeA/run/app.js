@@ -75,7 +75,7 @@ connection.query("SELECT COUNT(ID_ORDER) AS ord FROM ORDEM WHERE STATUS=0", func
     app.locals.missedOrders = result[0].ord;
 });
 
-connection.query("SELECT COUNT(idMESSAGES) AS mg FROM ADMIN_MESSAGE WHERE Tipo=0", function (error, result, client){
+connection.query("SELECT COUNT(idMESSAGES) AS mg FROM ADMIN_MESSAGE WHERE Tipo=0 and IS_READ=1", function (error, result, client){
     app.locals.inbox = result[0].mg;
 });
 

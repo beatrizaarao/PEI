@@ -14,9 +14,12 @@ block content
                         button(class="btn" type="submit")
                             i.icon-star
                     div(style="width:8px; height:auto; display:inline-block;")
-                    form(action="/compose/clientInfo/bymail/" + mensagem[0].client_mail, method="post", style="display:inline; margin:0px; padding:0px;")
+                    form(action="/compose/clientInfo/bymail/" + mensagem[0].client_mail + "/" +mensagem[0].idMESSAGES, method="post", style="display:inline; margin:0px; padding:0px;")
                         button(class="btn" type="submit")
                             i.icon-share-alt
+                    div(style="width:8px; height:auto; display:inline-block;")
+                    form(action="/messageInfo/lida/" + mensagem[0].idMESSAGES, method="post", style="display:inline; margin:0px; padding:0px;")
+                            button(class="btn" type="submit") Marcar como Lida
                     br
                     br
                     p.pull-left
