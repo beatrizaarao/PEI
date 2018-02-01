@@ -26,9 +26,9 @@ var mysql      = require('mysql');
 var connection = mysql.createConnection({
     multipleStatements: true,
     hostname : 'localhost',
-    port: '3307',
+    port: '3306',
     user     : 'root',
-    password : '',
+    password : 'root',
     database : 'id4056546_uniline'
 
 });
@@ -52,6 +52,7 @@ var services = require('./routes/services');
 var clientInf = require('./routes/clientInfo');
 var taskInf = require('./routes/taskDescription');
 var order = require('./routes/orders');
+var importar = require('./routes/deploy')
 var comp = require('./routes/compose');
 var messInf = require('./routes/messageInfo');
 
@@ -119,6 +120,7 @@ app.use('/services', services);
 //app.use(f1);
 app.use('/orders', order);
 app.use('/compose', comp);
+app.use('/importar',importar)
 app.use('/messageInfo', messInf);
 
 
