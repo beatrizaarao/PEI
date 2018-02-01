@@ -97,11 +97,11 @@ CREATE TABLE `DEPLOY` (
   `NAME` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
   `EMAIL` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
   `PHONE` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
-  `ADRESS` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
-  `WEBPAGE_LINK` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `URL_ICON` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
-  `FACEBOOK_LINK` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `TWEETER_LINK` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `ADRESS` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+  `WEBPAGE_LINK` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `URL_ICON` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+  `FACEBOOK_LINK` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `TWEETER_LINK` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 
