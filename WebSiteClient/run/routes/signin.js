@@ -12,7 +12,7 @@ var url = require('url');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    if (req.cookies.deploy != 2){
+    if (req.cookies.deploy ==  undefined){
         res.redirect('/indisponivel')
     }
     else {

@@ -6,7 +6,7 @@ var formidable = require("formidable")
 var fs = require('fs')
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    if (req.cookies.deploy != 2){
+    if (req.cookies.deploy == undefined){
         res.redirect('/indisponivel')
     }
     else {
@@ -38,9 +38,24 @@ router.post('/',function(req,res,next) {
                             res.render('lr', {title: 'Signup', status: status});
                         }
                         else {
+                            if(files.foto1.name != ""){
+                                var extension = files.foto1.name.split(".")
+                                extension = extension[extension.length-1]
+                                fields.fotografia = fields.nif + "." + extension
+
+                                fs.rename(files.foto1.path, './public/images/upload/' + fields.fotografia, function(err1){
+                                    if(!err1){
+                                        console.log("Ficheiro recebido e guardado com sucesso")
+                                    }
+                                    else{
+                                        console.log("Ocorreram erros na gravação do ficheiro enviado")
+                                    }
+                                })
+                            }
+
                             fields.name = fields.fname + " " + fields.lname
 
-                            var querysql = "INSERT INTO `CLIENT` (`NAME`, `NIF`, `EMAIL`, `PHONE`, `STREET`, `DOOR_NUMBER`, `CITY`, `COUNTRY`, `ZIP_CODE`, `PASS`, `IS_BLOCKED`, `img_path`, `IS_APPROVED`, `data_registo`) VALUES('" + fields.name + "'," + fields.nif + ",'" + fields.email + "','" + fields.phone + "','" + fields.rua + "'," + fields.porta + ",'" + fields.city + "','" + fields.country + "','" + fields.zip + "','" + fields.pass + "',1,NULL,0,CURDATE())"
+                            var querysql = "INSERT INTO `CLIENT` (`NAME`, `NIF`, `EMAIL`, `PHONE`, `STREET`, `DOOR_NUMBER`, `CITY`, `COUNTRY`, `ZIP_CODE`, `PASS`, `IS_BLOCKED`, `img_path`, `IS_APPROVED`, `data_registo`) VALUES('" + fields.name + "'," + fields.nif + ",'" + fields.email + "','" + fields.phone + "','" + fields.rua + "'," + fields.porta + ",'" + fields.city + "','" + fields.country + "','" + fields.zip + "','" + fields.pass + "',1,'"+fields.fotografia +"',0,CURDATE())"
                             db.query(querysql, function (err3, result, clint) {
                                 db.query("INSERT INTO Task (DESCRIPTION, STATE, Client_NIF, Tipo, dataPedido, Ordem_ID) VALUES('O cliente com o NIF=" + fields.nif + "pretende registar-se na aplicação',0,?,0,CURDATE(),null)", fields.nif, function (err1, result, clint) {
                                     if (!err3) {
@@ -53,8 +68,6 @@ router.post('/',function(req,res,next) {
                                         status = " Ocorreu um erro: " + err3
                                         res.render('lr', {title: 'Signup', status: status});
                                     }
-                                    console.log(err1);
-                                    res.render('lr', {title: 'Signup', status: status});
                                 });
                             });
 

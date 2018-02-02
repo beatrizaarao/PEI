@@ -389,6 +389,13 @@ block content
                                                 section(class='col-xs-7')
                                                     label(class='input')
                                                         input(type='text' name='city' placeholder='Cidade')
+                                            div(class='row')
+                                                        figure(class="myfigure")
+                                                            img(class="joint-img" id="img1" name="img1" src="/images/avatar.png" alt="your image")
+                                                            figcaption
+                                                                label(class="custom-file-upload")
+                                                                    input(class="joint" type='file' id="foto1" name="foto1")
+                                                                    p Mudar Imagem
                                             section
                                                 section
                                                     input(type="submit" class='btn btn-base btn-icon btn-icon-right pull-right' style='width: 150px;' value='Registar Agora')
@@ -396,4 +403,18 @@ block content
                                 div(class='form-footer')
                                     p Porque é que preciso de uma conta?
                                         a(href='#') Clique aqui para descobrir.
+
+                                script.
+                                    function readURL(input) {
+                                        if (input.files && input.files[0]) {
+                                            var reader = new FileReader();
+                                            reader.onload = function (e) {
+                                                $('#img1').attr('src', e.target.result)
+                                            }
+                                            reader.readAsDataURL(input.files[0]);
+                                        }
+                                    }
+                                    $(".joint").change(function () {
+                                        readURL(this);
+                                    })
 

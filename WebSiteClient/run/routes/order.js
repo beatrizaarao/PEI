@@ -8,18 +8,17 @@ router.get('/', function(req, res, next) {
         if (result.length != 0){
             console.log(result.length)
             res.cookie('deploy', 1)
+            if(req.cookies.onlineC === undefined){
+                res.redirect('/signin')
+            }
+            else{
+                res.redirect('/home')
+            }
+        }
+        else{
+            res.redirect('/indisponivel')
         }
     })
-
-    if (req.cookies.deploy == undefined){
-      res.redirect('/indisponivel')
-    }
-    else if(req.cookies.onlineC === undefined){
-      res.redirect('/signin')
-    }
-    else{
-      res.redirect('/home')
-    }
 })
 
 module.exports = router;
