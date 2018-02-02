@@ -9,6 +9,9 @@ router.get('/', function(req, res, next) {
     if(req.cookies.deploy === undefined){
         res.redirect('/')
     }
+    else if (req.cookies.online === undefined){
+        res.redirect('/')
+    }
     else{
     var db = req.connection;
     db.query("SELECT COUNT(idMESSAGES) AS mg FROM ADMIN_MESSAGE WHERE Tipo=0 and IS_READ=1", function (error, result, client) {
@@ -17,10 +20,7 @@ router.get('/', function(req, res, next) {
             req.app.locals.missedOrders = result[0].ord;
             db.query("SELECT COUNT(ID_TASK) AS tamanho FROM Task WHERE STATE=0", function (error, result, client) {
                 req.app.locals.missedMenu = result[0].tamanho;
-                if(req.app.locals.admin.IS_LOGGED==1){
                     res.render('compose', { title: 'Compor', email: "example@email.com...", assunto: "Inserir assunto...", mensagem: "Inserir mensagem..."});
-                }
-                else {res.redirect('/')}
             });
         });
     });}
@@ -29,6 +29,9 @@ router.get('/', function(req, res, next) {
 router.post('/', function(req, res, next){
 
     if(req.cookies.deploy === undefined){
+        res.redirect('/')
+    }
+    else if (req.cookies.online === undefined){
         res.redirect('/')
     }
     else {
@@ -78,6 +81,8 @@ router.post('/clientInfo/:nif', function(req, res, next) {
 
     if(req.cookies.deploy === undefined){
         res.redirect('/')
+    }else if (req.cookies.online === undefined){
+        res.redirect('/')
     }
     else{
     var db = req.connection;
@@ -90,6 +95,9 @@ router.post('/clientInfo/:nif', function(req, res, next) {
 router.post('/clientInfo/bymail/:mail/:idmessage', function(req, res, next) {
 
     if(req.cookies.deploy === undefined){
+        res.redirect('/')
+    }
+    else if (req.cookies.online === undefined){
         res.redirect('/')
     }
     else{

@@ -6,6 +6,8 @@ var app = express();
 router.get('/:taskID', function(req, res, next) {
     if(req.cookies.deploy === undefined){
         res.redirect('/')
+    }    else if (req.cookies.online === undefined){
+        res.redirect('/')
     }
     else {
         var db = req.connection;
@@ -15,7 +17,6 @@ router.get('/:taskID', function(req, res, next) {
                 req.app.locals.missedOrders = result[0].ord;
                 db.query("SELECT COUNT(ID_TASK) AS tamanho FROM Task WHERE STATE=0", function (error, result, client) {
                     req.app.locals.missedMenu = result[0].tamanho;
-                    if (req.app.locals.admin.IS_LOGGED == 1) {
                         db.query("SELECT * FROM Task WHERE ID_TASK=?", req.params.taskID, function (error, result, client) {
                             var tarefa = result
                             db.query("SELECT * FROM CLIENT INNER JOIN Task ON Task.Client_NIF=CLIENT.NIF WHERE ID_TASK=?", req.params.taskID, function (error, result, client) {
@@ -31,10 +32,6 @@ router.get('/:taskID', function(req, res, next) {
                                 });
                             });
                         });
-                    }
-                    else {
-                        res.redirect('/')
-                    }
                 });
             });
         });
@@ -43,6 +40,8 @@ router.get('/:taskID', function(req, res, next) {
 
 router.put('/porra/:id', function (req, res) {
     if(req.cookies.deploy === undefined){
+        res.redirect('/')
+    }    else if (req.cookies.online === undefined){
         res.redirect('/')
     }
     else {
@@ -73,6 +72,8 @@ router.put('/porra/:id', function (req, res) {
 
 router.put('/encomendas/:id', function (req, res) {
     if(req.cookies.deploy === undefined){
+        res.redirect('/')
+    }    else if (req.cookies.online === undefined){
         res.redirect('/')
     }
     else {

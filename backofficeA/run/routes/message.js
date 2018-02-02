@@ -85,6 +85,9 @@ router.post('/favorite/:mailID', function (req, res) {
     if(req.cookies.deploy === undefined){
         res.redirect('/')
     }
+    else if (req.cookies.online === undefined){
+        res.redirect('/')
+    }
     else {
         var db = req.connection;
         db.query('SELECT IS_FAVORITE FROM ADMIN_MESSAGE where idMESSAGES=?', req.params.mailID, function (error, result, client) {

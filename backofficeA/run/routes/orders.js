@@ -6,6 +6,9 @@ router.get('/', function(req, res, next) {
     if(req.cookies.deploy === undefined){
         res.redirect('/')
     }
+    else if (req.cookies.online === undefined){
+        res.redirect('/')
+    }
     else {
         var db = req.connection;
         db.query("SELECT COUNT(idMESSAGES) AS mg FROM ADMIN_MESSAGE WHERE Tipo=0 and IS_READ=1", function (error, result, client) {
@@ -14,7 +17,6 @@ router.get('/', function(req, res, next) {
                 req.app.locals.missedOrders = result[0].ord;
                 db.query("SELECT COUNT(ID_TASK) AS tamanho FROM Task WHERE STATE=0", function (error, result, client) {
                     req.app.locals.missedMenu = result[0].tamanho;
-                    if (req.app.locals.admin.IS_LOGGED == 1) {
                         db.query("SELECT * from ORDEM WHERE STATUS=0", function (error, result, client) {
                             ordersListMiss = result;
                             db.query("SELECT * from ORDEM WHERE STATUS!=0", function (error, result, client) {
@@ -26,10 +28,6 @@ router.get('/', function(req, res, next) {
                                 });
                             });
                         });
-                    }
-                    else {
-                        res.redirect('/')
-                    }
                 });
             });
         });
@@ -38,6 +36,8 @@ router.get('/', function(req, res, next) {
 
 router.post("/:userID", function(req, res, next){
     if(req.cookies.deploy === undefined){
+        res.redirect('/')
+    }    else if (req.cookies.online === undefined){
         res.redirect('/')
     }
     else {

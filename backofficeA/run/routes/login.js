@@ -28,7 +28,7 @@ router.post('/', function(req, res){
             if (result.length != 0) {
                 if (result[0].PASSWORD == req.body.password) {
                     db.query('UPDATE ADMINISTRATOR SET IS_LOGGED=1 WHERE EMAIL=?', req.body.email, function (error, result, client) {
-                        res.app.locals.admin.IS_LOGGED = 1;
+                        res.cookie('online', req.body.email)
                         res.redirect('/index');
                     });
                 }
@@ -43,14 +43,13 @@ router.post('/', function(req, res){
     }
 })
 
-router.post('/logout', function(req, res){
+router.get('/logout', function(req, res){
 
     if(req.cookies.deploy === undefined){
         res.redirect('/')
     }
     else {
-
-        res.app.locals.admin.IS_LOGGED = 0;
+        res.clearCookie("online")
         res.redirect('/');
     }
 })

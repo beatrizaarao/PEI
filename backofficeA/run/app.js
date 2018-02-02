@@ -68,6 +68,7 @@ app.set('view engine', 'pug');
 //app.use(bodyParser.json());
 //app.use(bodyParser.urlencoded({ extended: false }));
 
+
 connection.query("SELECT COUNT(ID_TASK) AS tamanho FROM Task WHERE STATE=0", function (error, result, client){
     app.locals.missedMenu = result[0].tamanho;
 });
@@ -80,9 +81,6 @@ connection.query("SELECT COUNT(idMESSAGES) AS mg FROM ADMIN_MESSAGE WHERE Tipo=0
     app.locals.inbox = result[0].mg;
 });
 
-connection.query("SELECT * from ADMINISTRATOR where id_ADMINISTRATOR=1", function (error, result, client){
-    app.locals.admin = result[0];
-});
 
 app.locals.prettyDate = function(date)
                             {

@@ -11,6 +11,8 @@ var cookieParser = require("cookie-parser")
 router.get('/', function(req, res, next) {
     if(req.cookies.deploy === undefined){
         res.redirect('/')
+    }    else if (req.cookies.online === undefined){
+        res.redirect('/')
     }
     else {
 
@@ -25,7 +27,6 @@ router.get('/', function(req, res, next) {
                     var steps;
                     var servs;
                     var opts;
-                    if (req.app.locals.admin.IS_LOGGED == 1) {
                         db.query('SELECT * FROM STEP', function (err, rows) {
                             steps = rows;
                             db.query('SELECT * FROM SERVICE', function (err, rows) {
@@ -41,10 +42,6 @@ router.get('/', function(req, res, next) {
                                 });
                             });
                         });
-                    }
-                    else {
-                        res.redirect('/')
-                    }
                 });
             });
         });
@@ -54,6 +51,9 @@ router.get('/', function(req, res, next) {
 
 router.post('/serv', function(req, res) {
     if(req.cookies.deploy === undefined){
+        res.redirect('/')
+    }
+    else if (req.cookies.online === undefined){
         res.redirect('/')
     }
     else {

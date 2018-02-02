@@ -5,6 +5,8 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
     if(req.cookies.deploy === undefined){
         res.redirect('/')
+    }    else if (req.cookies.online === undefined){
+        res.redirect('/')
     }
     else {
         var db = req.connection;
@@ -14,7 +16,6 @@ router.get('/', function(req, res, next) {
                 req.app.locals.missedOrders = result[0].ord;
                 db.query("SELECT COUNT(ID_TASK) AS tamanho FROM Task WHERE STATE=0", function (error, result, client) {
                     req.app.locals.missedMenu = result[0].tamanho;
-                    if (req.app.locals.admin.IS_LOGGED == 1) {
                         db.query("SELECT * FROM Task WHERE STATE=0", function (error, result, client) {
                             var missed = result;
                             db.query("SELECT * FROM Task WHERE STATE=1", function (error, result, client) {
@@ -23,10 +24,6 @@ router.get('/', function(req, res, next) {
                             });
 
                         })
-                    }
-                    else {
-                        res.redirect('/')
-                    }
                 });
             });
         });

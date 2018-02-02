@@ -7,6 +7,8 @@ router.get('/:userID', function(req, res, next) {
 
     if(req.cookies.deploy === undefined){
         res.redirect('/')
+    }else if (req.cookies.online === undefined){
+        res.redirect('/')
     }
 else {
         db.query("SELECT COUNT(idMESSAGES) AS mg FROM ADMIN_MESSAGE WHERE Tipo=0 and IS_READ=1", function (error, result, client) {
@@ -15,7 +17,6 @@ else {
                 req.app.locals.missedOrders = result[0].ord;
                 db.query("SELECT COUNT(ID_TASK) AS tamanho FROM Task WHERE STATE=0", function (error, result, client) {
                     req.app.locals.missedMenu = result[0].tamanho;
-                    if (req.app.locals.admin.IS_LOGGED == 1) {
                         //console.log(req.params.userID);
                         db.query("SELECT * FROM CLIENT WHERE NIF=?", req.params.userID, function (error, result, client) {
                             userInfo = result;
@@ -34,10 +35,6 @@ else {
                                 });
                             });
                         });
-                    }
-                    else {
-                        res.redirect('/')
-                    }
                 });
             });
         });
@@ -49,7 +46,9 @@ router.post('/:id', function (req, res) {
     if(req.cookies.deploy === undefined){
         res.redirect('/')
     }
-
+    else if (req.cookies.online === undefined){
+        res.redirect('/')
+    }
     else {
         var db = req.connection;
         db.query("SELECT IS_BLOCKED FROM CLIENT WHERE NIF=?", req.params.id, function (error, result, client) {
