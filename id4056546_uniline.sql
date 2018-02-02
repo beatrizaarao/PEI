@@ -96,7 +96,7 @@ CREATE TABLE `DEPLOY` (
   `WEBPAGE_LINK` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
   `URL_ICON` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `FACEBOOK_LINK` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `TWEETER_LINK` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL
+  `TWITTER_LINK` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 
