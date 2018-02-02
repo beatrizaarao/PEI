@@ -27,21 +27,30 @@ router.get('/', function(req, res, next) {
                     var steps;
                     var servs;
                     var opts;
-                        db.query('SELECT * FROM STEP', function (err, rows) {
-                            steps = rows;
-                            db.query('SELECT * FROM SERVICE', function (err, rows) {
-                                servs = rows;
-                                db.query('SELECT * FROM OPCAO', function (err, rows) {
-                                    opts = rows;
-                                    res.render('services', {
-                                        title: 'Services',
-                                        dataSteps: steps,
-                                        dataServs: servs,
-                                        dataOpts: opts
+                    var inc;
+                    db.query('SELECT * FROM STEP', function (err, rows) {
+                        steps = rows;
+                        db.query('SELECT * FROM SERVICE', function (err, rows) {
+                            servs = rows;
+                            db.query('SELECT * FROM OPCAO', function (err, rows) {
+                                opts = rows;
+                                db.query('SELECT * FROM Incompatibilities' , function (err, rows) {
+                                    inc = rows;
+                                    db.query('SELECT * FROM OPTION_has_Incompatibilities', function (err, rows) {
+                                        optres = rows;
+                                        res.render('services', {
+                                            title: 'Services',
+                                            dataSteps: steps,
+                                            dataServs: servs,
+                                            dataOpts: opts,
+                                            dataRes: inc,
+                                            dataOptRes: optres,
+                                        });
                                     });
                                 });
                             });
                         });
+                    });
                 });
             });
         });
@@ -92,10 +101,10 @@ router.post('/serv', function(req, res) {
                 }
             }
             if (req.body.quantidade2 == "1") {
-                quantidade = "INSERT INTO SERVICE (id_SERVICE, NAME, DESCRIPTION, STEP_id_step, VALOR, IS_CHECKBOX) VALUES (8, 'Quantidade', 'quantidade', 1, null, 0);";
+                quantidade = "INSERT INTO SERVICE (id_SERVICE, NAME, DESCRIPTION, STEP_id_step, VALOR, IS_CHECKBOX) VALUES (6, 'Quantidade', 'quantidade', 1, null, 0);";
             }
             if (req.body.caderno2 == "1") {
-                caderno = "INSERT INTO SERVICE (id_SERVICE, NAME, DESCRIPTION, STEP_id_step, VALOR, IS_CHECKBOX) VALUES (9, 'Caderno de Encargos', 'caderno', 1, null, 0);";
+                caderno = "INSERT INTO SERVICE (id_SERVICE, NAME, DESCRIPTION, STEP_id_step, VALOR, IS_CHECKBOX) VALUES (7, 'Caderno de Encargos', 'caderno', 1, null, 0);";
             }
 
         }
@@ -104,78 +113,78 @@ router.post('/serv', function(req, res) {
             preparacao = "INSERT INTO STEP (id_STEP, NAME, DESCRIPTION) VALUES (2, 'Preparação', 'preparacao');";
 
             if (req.body.gasar2 == "1") {
-                gasar = "INSERT INTO SERVICE (id_SERVICE, NAME, DESCRIPTION, STEP_id_step, VALOR, IS_CHECKBOX) VALUES (10, 'Gasar', 'gasar', 2, null, 1);";
+                gasar = "INSERT INTO SERVICE (id_SERVICE, NAME, DESCRIPTION, STEP_id_step, VALOR, IS_CHECKBOX) VALUES (8, 'Gasar', 'gasar', 2, null, 1);";
             }
             if (req.body.branquear2 == "1") {
-                branquear = "INSERT INTO SERVICE (id_SERVICE, NAME, DESCRIPTION, STEP_id_step, VALOR, IS_CHECKBOX) VALUES (11, 'Branquear', 'branquear', 2, null, 1);";
+                branquear = "INSERT INTO SERVICE (id_SERVICE, NAME, DESCRIPTION, STEP_id_step, VALOR, IS_CHECKBOX) VALUES (9, 'Branquear', 'branquear', 2, null, 1);";
                 if (req.body.meiobranco2 == "1") {
-                    meiobranco = "INSERT INTO OPCAO (id_OPTION, NAME, DESCRIPTION, VALOR, SERVICE_id_SERVICE, IS_CHECKBOX) VALUES (5, 'Meio Branco', 'meiobranco', null, 11, 1);";
+                    meiobranco = "INSERT INTO OPCAO (id_OPTION, NAME, DESCRIPTION, VALOR, SERVICE_id_SERVICE, IS_CHECKBOX) VALUES (5, 'Meio Branco', 'meiobranco', null, 9, 1);";
                 }
                 if (req.body.branco2 == "1") {
-                    branco = "INSERT INTO OPCAO (id_OPTION, NAME, DESCRIPTION, VALOR, SERVICE_id_SERVICE, IS_CHECKBOX) VALUES (6, 'Branco', 'branco', null, 11, 1);";
+                    branco = "INSERT INTO OPCAO (id_OPTION, NAME, DESCRIPTION, VALOR, SERVICE_id_SERVICE, IS_CHECKBOX) VALUES (6, 'Branco', 'branco', null, 9, 1);";
                 }
                 if (req.body.be2 == "1") {
-                    be = "INSERT INTO OPCAO (id_OPTION, NAME, DESCRIPTION, VALOR, SERVICE_id_SERVICE, IS_CHECKBOX) VALUES (7, 'BE', 'be', null, 11, 1);";
+                    be = "INSERT INTO OPCAO (id_OPTION, NAME, DESCRIPTION, VALOR, SERVICE_id_SERVICE, IS_CHECKBOX) VALUES (7, 'BE', 'be', null, 9, 1);";
                 }
             }
             if (req.body.lavar2 == "1") {
-                lavar = "INSERT INTO SERVICE (id_SERVICE, NAME, DESCRIPTION, STEP_id_step, VALOR, IS_CHECKBOX) VALUES (12, 'Lavar', 'lavar', 2, null, 1);";
+                lavar = "INSERT INTO SERVICE (id_SERVICE, NAME, DESCRIPTION, STEP_id_step, VALOR, IS_CHECKBOX) VALUES (10, 'Lavar', 'lavar', 2, null, 1);";
             }
             if (req.body.mercerizar2 == "1") {
-                mercerizar = "INSERT INTO SERVICE (id_SERVICE, NAME, DESCRIPTION, STEP_id_step, VALOR, IS_CHECKBOX) VALUES (13, 'Mercerizar', 'mercerizar', 2, null, 1);";
+                mercerizar = "INSERT INTO SERVICE (id_SERVICE, NAME, DESCRIPTION, STEP_id_step, VALOR, IS_CHECKBOX) VALUES (11, 'Mercerizar', 'mercerizar', 2, null, 1);";
             }
         }
 
         if (req.body.tinturaria == "1") {
             tinturaria = "INSERT INTO STEP (id_STEP, NAME, DESCRIPTION) VALUES (3, 'Tinturaria', 'tinturaria');";
             if (req.body.reativos2 == "1") {
-                reativos = "INSERT INTO SERVICE (id_SERVICE, NAME, DESCRIPTION, STEP_id_step, VALOR, IS_CHECKBOX) VALUES (14, 'Reativos', 'reativos', 3, null, 1);";
+                reativos = "INSERT INTO SERVICE (id_SERVICE, NAME, DESCRIPTION, STEP_id_step, VALOR, IS_CHECKBOX) VALUES (12, 'Reativos', 'reativos', 3, null, 1);";
             }
             if (req.body.cubas2 == "1") {
-                cubas = "INSERT INTO SERVICE (id_SERVICE, NAME, DESCRIPTION, STEP_id_step, VALOR, IS_CHECKBOX) VALUES (15, 'Cubas', 'cubas', 3, null, 1);";
+                cubas = "INSERT INTO SERVICE (id_SERVICE, NAME, DESCRIPTION, STEP_id_step, VALOR, IS_CHECKBOX) VALUES (13, 'Cubas', 'cubas', 3, null, 1);";
             }
             if (req.body.pigmentos2 == "1") {
-                pigmentos = "INSERT INTO SERVICE (id_SERVICE, NAME, DESCRIPTION, STEP_id_step, VALOR, IS_CHECKBOX) VALUES (16, 'Pigmentos', 'pigmentos', 3, null, 1);";
+                pigmentos = "INSERT INTO SERVICE (id_SERVICE, NAME, DESCRIPTION, STEP_id_step, VALOR, IS_CHECKBOX) VALUES (14, 'Pigmentos', 'pigmentos', 3, null, 1);";
             }
             if (req.body.reativosP2 == "1") {
-                reativosP = "INSERT INTO SERVICE (id_SERVICE, NAME, DESCRIPTION, STEP_id_step, VALOR, IS_CHECKBOX) VALUES (17, 'Reativos', 'reativosP', 3, null, 1);";
+                reativosP = "INSERT INTO SERVICE (id_SERVICE, NAME, DESCRIPTION, STEP_id_step, VALOR, IS_CHECKBOX) VALUES (15, 'Reativos', 'reativosP', 3, null, 1);";
             }
             if (req.body.cubasP2 == "1") {
-                cubasP = "INSERT INTO SERVICE (id_SERVICE, NAME, DESCRIPTION, STEP_id_step, VALOR, IS_CHECKBOX) VALUES (18, 'Cubas', 'cubasP', 3, null, 1);";
+                cubasP = "INSERT INTO SERVICE (id_SERVICE, NAME, DESCRIPTION, STEP_id_step, VALOR, IS_CHECKBOX) VALUES (16, 'Cubas', 'cubasP', 3, null, 1);";
             }
             if (req.body.dispersosP2 == "1") {
-                dispersosP = "INSERT INTO SERVICE (id_SERVICE, NAME, DESCRIPTION, STEP_id_step, VALOR, IS_CHECKBOX) VALUES (19, 'Dispersos', 'dispersosP', 3, null, 1);";
+                dispersosP = "INSERT INTO SERVICE (id_SERVICE, NAME, DESCRIPTION, STEP_id_step, VALOR, IS_CHECKBOX) VALUES (17, 'Dispersos', 'dispersosP', 3, null, 1);";
             }
             if (req.body.pigmentosP2 == "1") {
-                pigmentosP = "INSERT INTO SERVICE (id_SERVICE, NAME, DESCRIPTION, STEP_id_step, VALOR, IS_CHECKBOX) VALUES (20, 'Pigmentos', 'pigmentosP', 3, null, 1);";
+                pigmentosP = "INSERT INTO SERVICE (id_SERVICE, NAME, DESCRIPTION, STEP_id_step, VALOR, IS_CHECKBOX) VALUES (18, 'Pigmentos', 'pigmentosP', 3, null, 1);";
             }
         }
 
         if (req.body.acabamentos == "1") {
             acabamentos = "INSERT INTO STEP (id_STEP, NAME, DESCRIPTION) VALUES (4, 'Acabamento', 'acabamentos');";
             if (req.body.secar2 == "1") {
-                secar = "INSERT INTO SERVICE (id_SERVICE, NAME, DESCRIPTION, STEP_id_step, VALOR, IS_CHECKBOX) VALUES (21, 'Secar', 'secar', 4, null, 1);";
+                secar = "INSERT INTO SERVICE (id_SERVICE, NAME, DESCRIPTION, STEP_id_step, VALOR, IS_CHECKBOX) VALUES (19, 'Secar', 'secar', 4, null, 1);";
             }
             if (req.body.acabar2 == "1") {
-                acabar = "INSERT INTO SERVICE (id_SERVICE, NAME, DESCRIPTION, STEP_id_step, VALOR, IS_CHECKBOX) VALUES (22, 'Acabar', 'acabar', 4, null, 1);";
+                acabar = "INSERT INTO SERVICE (id_SERVICE, NAME, DESCRIPTION, STEP_id_step, VALOR, IS_CHECKBOX) VALUES (20, 'Acabar', 'acabar', 4, null, 1);";
             }
             if (req.body.largura2 == "1") {
-                largura = "INSERT INTO SERVICE (id_SERVICE, NAME, DESCRIPTION, STEP_id_step, VALOR, IS_CHECKBOX) VALUES (23, 'Largura', 'largura', 4, null, 1);";
+                largura = "INSERT INTO SERVICE (id_SERVICE, NAME, DESCRIPTION, STEP_id_step, VALOR, IS_CHECKBOX) VALUES (21, 'Largura', 'largura', 4, null, 1);";
             }
             if (req.body.calandar2 == "1") {
-                calandar = "INSERT INTO SERVICE (id_SERVICE, NAME, DESCRIPTION, STEP_id_step, VALOR, IS_CHECKBOX) VALUES (24, 'Calandar', 'calandar', 4, null, 1);";
+                calandar = "INSERT INTO SERVICE (id_SERVICE, NAME, DESCRIPTION, STEP_id_step, VALOR, IS_CHECKBOX) VALUES (22, 'Calandar', 'calandar', 4, null, 1);";
                 if (req.body.q2 == "1") {
-                    q = "INSERT INTO OPCAO (id_OPTION, NAME, DESCRIPTION, VALOR, SERVICE_id_SERVICE, IS_CHECKBOX) VALUES (8, 'Q', 'q', null, 24, 1);";
+                    q = "INSERT INTO OPCAO (id_OPTION, NAME, DESCRIPTION, VALOR, SERVICE_id_SERVICE, IS_CHECKBOX) VALUES (8, 'Q', 'q', null, 22, 1);";
                 }
                 if (req.body.f2 == "1") {
-                    f = "INSERT INTO OPCAO (id_OPTION, NAME, DESCRIPTION, VALOR, SERVICE_id_SERVICE, IS_CHECKBOX) VALUES (9, 'F', 'f', null, 24, 1);";
+                    f = "INSERT INTO OPCAO (id_OPTION, NAME, DESCRIPTION, VALOR, SERVICE_id_SERVICE, IS_CHECKBOX) VALUES (9, 'F', 'f', null, 22, 1);";
                 }
             }
             if (req.body.sanforizar2 == "1") {
-                sanforizar = "INSERT INTO SERVICE (id_SERVICE, NAME, DESCRIPTION, STEP_id_step, VALOR, IS_CHECKBOX) VALUES (25, 'Sanforizar', 'sanforizar', 4, null, 1);";
+                sanforizar = "INSERT INTO SERVICE (id_SERVICE, NAME, DESCRIPTION, STEP_id_step, VALOR, IS_CHECKBOX) VALUES (23, 'Sanforizar', 'sanforizar', 4, null, 1);";
             }
             if (req.body.tumbler2 == "1") {
-                tumbler = "INSERT INTO SERVICE (id_SERVICE, NAME, DESCRIPTION, STEP_id_step, VALOR, IS_CHECKBOX) VALUES (26, 'Tumbler','tumbler', 4, null, 1);";
+                tumbler = "INSERT INTO SERVICE (id_SERVICE, NAME, DESCRIPTION, STEP_id_step, VALOR, IS_CHECKBOX) VALUES (24, 'Tumbler','tumbler', 4, null, 1);";
             }
 
         }
@@ -184,24 +193,24 @@ router.post('/serv', function(req, res) {
         if (req.body.embalagem == "1") {
             embalagem = "INSERT INTO STEP (id_STEP, NAME, DESCRIPTION) VALUES (5, 'Embalagem', 'embalagem');";
             if (req.body.enfestar2 == "1") {
-                enfestar = "INSERT INTO SERVICE (id_SERVICE, NAME, DESCRIPTION, STEP_id_step, VALOR, IS_CHECKBOX) VALUES (27, 'Enfestar', 'enfestar', 5, null, 1);";
+                enfestar = "INSERT INTO SERVICE (id_SERVICE, NAME, DESCRIPTION, STEP_id_step, VALOR, IS_CHECKBOX) VALUES (25, 'Enfestar', 'enfestar', 5, null, 1);";
                 if (req.body.em2 == "1") {
-                    em = "INSERT INTO OPCAO (id_OPTION, NAME, DESCRIPTION, VALOR, SERVICE_id_SERVICE, IS_CHECKBOX) VALUES (10, 'EM', 'em', null, 27, 1);";
+                    em = "INSERT INTO OPCAO (id_OPTION, NAME, DESCRIPTION, VALOR, SERVICE_id_SERVICE, IS_CHECKBOX) VALUES (10, 'EM', 'em', null, 25, 1);";
                 }
                 if (req.body.ei2 == "1") {
-                    ei = "INSERT INTO OPCAO (id_OPTION, NAME, DESCRIPTION, VALOR, SERVICE_id_SERVICE, IS_CHECKBOX) VALUES (11, 'EI', 'ei', null, 27, 1);";
+                    ei = "INSERT INTO OPCAO (id_OPTION, NAME, DESCRIPTION, VALOR, SERVICE_id_SERVICE, IS_CHECKBOX) VALUES (11, 'EI', 'ei', null, 25, 1);";
                 }
                 if (req.body.rm2 == "1") {
-                    rm = "INSERT INTO OPCAO (id_OPTION, NAME, DESCRIPTION, VALOR, SERVICE_id_SERVICE, IS_CHECKBOX) VALUES (12, 'RM', 'rm', null, 27, 1);";
+                    rm = "INSERT INTO OPCAO (id_OPTION, NAME, DESCRIPTION, VALOR, SERVICE_id_SERVICE, IS_CHECKBOX) VALUES (12, 'RM', 'rm', null, 25, 1);";
                 }
                 if (req.body.nr2 > 0 == "1") {
-                    nr = "INSERT INTO OPCAO (id_OPTION, NAME, DESCRIPTION, VALOR, SERVICE_id_SERVICE, IS_CHECKBOX) VALUES (13, 'Nº/peça', 'quantenf', null, 27, 0);";
+                    nr = "INSERT INTO OPCAO (id_OPTION, NAME, DESCRIPTION, VALOR, SERVICE_id_SERVICE, IS_CHECKBOX) VALUES (13, 'Nº/peça', 'quantenf', null, 25, 0);";
                 }
             }
             if (req.body.enrolar2 == "1") {
-                enrolar = "INSERT INTO SERVICE (id_SERVICE, NAME, DESCRIPTION, STEP_id_step, VALOR, IS_CHECKBOX) VALUES (28, 'Enrolar', 'enrolar', 5, null, 1);";
+                enrolar = "INSERT INTO SERVICE (id_SERVICE, NAME, DESCRIPTION, STEP_id_step, VALOR, IS_CHECKBOX) VALUES (26, 'Enrolar', 'enrolar', 5, null, 1);";
                 if (req.body.nren2 == "1") {
-                    nren = "INSERT INTO OPCAO (id_OPTION, NAME, DESCRIPTION, VALOR, SERVICE_id_SERVICE, IS_CHECKBOX) VALUES (9, 'Nº/peça', 'quantenr', null, 28, 0);";
+                    nren = "INSERT INTO OPCAO (id_OPTION, NAME, DESCRIPTION, VALOR, SERVICE_id_SERVICE, IS_CHECKBOX) VALUES (14, 'Nº/peça', 'quantenr', null, 26, 0);";
                 }
             }
         }

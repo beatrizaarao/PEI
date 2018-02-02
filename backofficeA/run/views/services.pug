@@ -10,10 +10,18 @@ block content
                     col(width="50%")
                     col(width="50%")
                     -if (dataSteps.length==0)
-                        p Sem serviços
-                        div(style="height:300px")
+                        thead
+                            tr
+                                th Serviços
+                        tbody
+                            tr
+                                td
+                                    p Sem serviços
+                                    div(style="height:300px")
                     -else
                         thead
+                            tr
+                                th Serviços
                             tr
                                 th Etapas
                                 th Serviços
@@ -22,33 +30,120 @@ block content
                             -for(var j=0; j<dataSteps.length;j++)
                                 tr
                                     td
-                                        p=dataSteps[j].DESCRIPTION
+                                        p=dataSteps[j].NAME
                                     td
                                         -for(var i=0; i<dataServs.length;i++)
                                             -if(dataServs[i].STEP_id_step == dataSteps[j].id_STEP)
-                                                h7=dataServs[i].DESCRIPTION
+                                                h7=dataServs[i].NAME
                                                 br
                                     td
                                         button(type="button" class="btn btn btn-success" data-toggle="modal" data-target="#") Alterar
                                         button(type="button" class="btn btn-danger" data-toggle="modal" data-target="#") Remover
+                hr
+                button(type="button" class="btn btn-default icon-plus-sign" data-toggle="modal" data-target="#myModelDefinicao") Adicionar Serviço
+                hr
+
+                table.table(cellpadding='0', cellspacing='0', border='0', width='100%', aria-describedby='DataTables_Table_0_info', style='width: 100%;')
+                    col(width="50%")
+                    col(width="50%")
+                    -if (dataRes.length==0)
+                        thead
+                            tr
+                                th Restrições
+                        tbody
+                            tr
+                                td
+                                    p Sem restrições
+                    -else
+                        thead
+                            tr
+                                th Restrições
+                            tr
+                                th Serviços
+                                th Opções
+                                th
+                        tbody
+                            -for(var j=0; j<dataRes.length;j++)
+                                -for(var i=0; j<dataOptRes.length;i++)
+                                    -if(dataRes[j]==dataOptRes[i])
+                                        tr
+                                            td
+                                                p=dataOptRes[j].SERVICE_NAME
+                                            td
+                                                p=dataOptRes[j].OPTION_NAME
+                                            td
+                                                button(type="button" class="btn btn btn-success" data-toggle="modal" data-target="#") Alterar
+                                                button(type="button" class="btn btn-danger" data-toggle="modal" data-target="#") Remover
 
             hr
-            button(type="button" class="btn btn-default icon-plus-sign" data-toggle="modal" data-target="#myModelDefinicao") Adicionar Serviço
             -if (dataSteps.length>0)
                 button(type="button" class="btn btn-default icon-plus-sign" data-toggle="modal" data-target="#restricoes") Alterar Restrição
 
 
-            div(class="modal hide fade" id="confirmar" role="dialog")
+            //div(class="modal hide fade" id="restricoes" role="dialog")
                 div(class="modal-dialog")
                     div(class="modal-content")
                         div(class="modal-header")
-                            ol(class='progtrckr' data-progtrckr-steps='6')
+                            ol(class='progtrckr' data-progtrckr-steps='7')
                                 li(class='progtrckr-done') Definição do Produto
                                 li(class='progtrckr-done') Preparação
                                 li(class='progtrckr-done') Tinturaria
                                 li(class='progtrckr-done') Acabamento
                                 li(class='progtrckr-done') Embalagem
                                 li(class='progtrckr-done') Confirmar
+                                li(class='progtrckr-todo') Restrições
+                        div(class="modal-body")
+                            h4(style='padding-left:20px; padding-top:25px') Restrições
+                            div.form-inline
+                                div.checkbox
+                                    -for(var k=0; k<dataSteps.length;k++)
+                                        label(style='padding-left:25px; padding-top:10px;font-size: 20px;' for='opts' + dataSteps[k].DESCRIPTION)=dataSteps[k].NAME
+                                            input(type='checkbox' name="" + dataSteps[k].DESCRIPTION id='opts' + dataSteps[k].DESCRIPTION)
+                                        br
+                                        -for(var j=0; j<dataServs.length;j++)
+                                            -if(dataServs[j].STEP_id_step == dataSteps[k].id_STEP)
+                                                label(style='padding-left:25px; padding-top:10px;font-size: 20px; ' for='opts' + dataServs[j].DESCRIPTION)=dataServs[j].NAME
+                                                    input(type='checkbox' name=""+dataServs[j].DESCRIPTION id='opts' + dataServs[j].DESCRIPTION)
+                                            //-for(var i=0; i<dataOpts.length;i++)
+                                                -if(dataOpts[i].SERVICE_id_SERVICE == dataServs[j].id_SERVICE)
+                                                    label(style='padding-left:25px; padding-top:10px;font-size: 20px; ' for='opts'+dataOpts[i].DESCRIPTION)=dataOpts[i].NAME
+                                                        input(type='checkbox' name=dataOpts[i].DESCRIPTION id='opts'+dataOpts[i].DESCRIPTION)
+                                    label(style='padding-left:25px; padding-top:10px;font-size: 20px;' for='opts') Options
+                                        input(type='checkbox' name='opts' id='opts')
+                        div(class="modal-footer")
+                            button.btn.btn-primary(type="button" class="btn btn-default" data-dismiss="modal" data-toggle="modal" data-target="#adicionarRestricoes") Sim
+                            button.btn.btn-primary(type="button" class="btn btn-default" data-dismiss="modal") Não
+
+            //div(class="modal hide fade" id="adicionarRestricoes" role="dialog")
+                div(class="modal-dialog")
+                    div(class="modal-content")
+                        div(class="modal-header")
+                            ol(class='progtrckr' data-progtrckr-steps='7')
+                                li(class='progtrckr-done') Definição do Produto
+                                li(class='progtrckr-done') Preparação
+                                li(class='progtrckr-done') Tinturaria
+                                li(class='progtrckr-done') Acabamento
+                                li(class='progtrckr-done') Embalagem
+                                li(class='progtrckr-done') Confirmar
+                                li(class='progtrckr-todo') Restrições
+                        div(class="modal-body")
+                            h4(style='padding-left:20px; padding-top:25px') Deseja adicionar restrições?
+                        div(class="modal-footer")
+                            button.btn.btn-primary(type="button" class="btn btn-default" data-dismiss="modal" data-toggle="modal" data-target="#restricoes") Sim
+                            button.btn.btn-primary(type="button" class="btn btn-default" data-dismiss="modal") Não
+
+            div(class="modal hide fade" id="confirmar" role="dialog")
+                div(class="modal-dialog")
+                    div(class="modal-content")
+                        div(class="modal-header")
+                            ol(class='progtrckr' data-progtrckr-steps='7')
+                                li(class='progtrckr-done') Definição do Produto
+                                li(class='progtrckr-done') Preparação
+                                li(class='progtrckr-done') Tinturaria
+                                li(class='progtrckr-done') Acabamento
+                                li(class='progtrckr-done') Embalagem
+                                li(class='progtrckr-done') Confirmar
+                                li(class='progtrckr-todo') Restrições
                         div(class="modal-body")
                             h4(style='padding-left:20px; padding-top:25px') Deseja confirmar os serviços?
                         div(class="modal-footer")
@@ -60,13 +155,14 @@ block content
                 div(class="modal-dialog")
                     div(class="modal-content")
                         div(class="modal-header")
-                            ol(class='progtrckr' data-progtrckr-steps='6')
+                            ol(class='progtrckr' data-progtrckr-steps='7')
                                 li(class='progtrckr-done') Definição do Produto
                                 li(class='progtrckr-done') Preparação
                                 li(class='progtrckr-done') Tinturaria
                                 li(class='progtrckr-done') Acabamento
                                 li(class='progtrckr-todo') Embalagem
                                 li(class='progtrckr-todo') Confirmar
+                                li(class='progtrckr-todo') Restrições
                         div(class="modal-body")
                             form(method='POST' action='/tinturaria' style='margin-left:1%' )
                                 h4(style='padding-left:20px; padding-top:25px') Embalagem
@@ -99,13 +195,14 @@ block content
                 div(class="modal-dialog")
                     div(class="modal-content")
                         div(class="modal-header")
-                            ol(class='progtrckr' data-progtrckr-steps='6')
+                            ol(class='progtrckr' data-progtrckr-steps='7')
                                 li(class='progtrckr-done') Definição do Produto
                                 li(class='progtrckr-done') Preparação
                                 li(class='progtrckr-done') Tinturaria
                                 li(class='progtrckr-todo') Acabamento
                                 li(class='progtrckr-todo') Embalagem
                                 li(class='progtrckr-todo') Confirmar
+                                li(class='progtrckr-todo') Restrições
                         div(class="modal-body")
                             form(method='POST' action='/tinturaria')
                                 h4(style='padding-left:20px; padding-top:25px') Acabamento
@@ -142,13 +239,14 @@ block content
                 div(class="modal-dialog")
                     div(class="modal-content")
                         div(class="modal-header")
-                            ol(class='progtrckr' data-progtrckr-steps='6')
+                            ol(class='progtrckr' data-progtrckr-steps='7')
                                 li(class='progtrckr-done') Definição do Produto
                                 li(class='progtrckr-done') Preparação
                                 li(class='progtrckr-todo') Tinturaria
                                 li(class='progtrckr-todo') Acabamento
                                 li(class='progtrckr-todo') Embalagem
                                 li(class='progtrckr-todo') Confirmar
+                                li(class='progtrckr-todo') Restrições
                         div(class="modal-body")
                             form(method='POST' action='/tinturaria')
                                 h4(style='padding-left:20px; padding-top:25px') Tinturaria
@@ -185,13 +283,14 @@ block content
                 div(class="modal-dialog")
                     div(class="modal-content")
                         div(class="modal-header")
-                            ol(class='progtrckr' data-progtrckr-steps='6')
+                            ol(class='progtrckr' data-progtrckr-steps='7')
                                 li(class='progtrckr-done') Definição do Produto
                                 li(class='progtrckr-todo') Preparação
                                 li(class='progtrckr-todo') Tinturaria
                                 li(class='progtrckr-todo') Acabamento
                                 li(class='progtrckr-todo') Embalagem
                                 li(class='progtrckr-todo') Confirmar
+                                li(class='progtrckr-todo') Restrições
                         div(class="modal-body")
                             form(method='POST' action='/preparacao')
                                 h4(style='padding-left:20px; padding-top:25px') Preparação
@@ -223,13 +322,14 @@ block content
                 div(class="modal-dialog")
                     div(class="modal-content")
                         div(class="modal-header")
-                            ol(class='progtrckr' data-progtrckr-steps='6')
+                            ol(class='progtrckr' data-progtrckr-steps='7')
                                 li(class='progtrckr-todo') Definição do Produto
                                 li(class='progtrckr-todo') Preparação
                                 li(class='progtrckr-todo') Tinturaria
                                 li(class='progtrckr-todo') Acabamento
                                 li(class='progtrckr-todo') Embalagem
                                 li(class='progtrckr-todo') Confirmar
+                                li(class='progtrckr-todo') Restrições
                         div(class="modal-body")
                             form(method='POST' action='/definicao')
                                 h4(style='padding-left:20px; padding-top:25px') Definição do Produto
@@ -240,6 +340,9 @@ block content
                                         br
                                         label(style='padding-left:25px; padding-top:10px; font-size: 20px;' for='ponto') Ponto
                                             input(type='checkbox' name='ponto' id='ponto')
+                                        br
+                                        label(style='padding-left:25px; padding-top:10px; font-size: 20px;' for='peso') Peso
+                                            input(type='checkbox' name='peso' id='peso')
                                         br
                                         label(style='padding-left:25px; padding-top:10px; font-size: 20px;' for='largini') Largura Inicial
                                             input(type='checkbox' name='largini' id='largini')
@@ -270,6 +373,7 @@ block content
                     input(type='number' name='definicao' id='definicao' value='0')
                     input(type='number' name='composicao2' id='composicao2' value='0')
                     input(type='number' name='ponto2' id='ponto2' value='0')
+                    input(type='number' name='peso2' id='peso2' value='0')
                     input(type='number' name='largini2' id='largini2' value='0')
                     input(type='number' name='numlariniII2' id='numlariniII2' value='0')
                     input(type='number' name='numlariniFF2' id='numlariniFF2' value='0')
@@ -360,6 +464,19 @@ block content
                         $('#nren').toggle();
                     });
                 });
+                /*$(function () {
+                    $('#opts').click(function () {
+                        opts2 = dataOpts
+                        servs = dataServs
+                        steps = dataSteps
+                        console.log(steps)
+                        //for (var k = 0; k < steps.length; k++)
+                        //for (var j = 0; j < dataServs.length; j++)
+                        //if (dataServs[j].STEP_id_step == dataSteps[k].id_STEP)
+                        //  for(var i=0; i<dataOpts.length;i++)
+                        //    if (dataOpts[i].SERVICE_id_SERVICE == dataServs[j].id_SERVICE)
+                    });
+                });*/
                 $('#but').on('click', function () {
                     if (($('#largfin').is(':checked') && (($('#numlarfinII').val().length === 0) || ($('#numlarfinFF').val().length === 0))) || ($('#largini').is(':checked') && (($('#numlariniII').val().length === 0) || ($('#numlariniFF').val().length === 0)))) {
                         alert('Intervalo de valores errado, retorne à Definição do Produto e corrija.');
@@ -371,6 +488,10 @@ block content
                         }
                         if ($('#ponto').is(':checked')) {
                             $('#ponto2').val('1');
+                            $('#definicao').val('1');
+                        }
+                        if ($('#peso').is(':checked')) {
+                            $('#peso2').val('1');
                             $('#definicao').val('1');
                         }
                         if ($('#largini').is(':checked')) {
@@ -447,35 +568,35 @@ block content
                         }
                         if ($('#secar').is(':checked')) {
                             $('#secar2').val('1');
-                            $('#tinturaria').val('1');
+                            $('#acabamentos').val('1');
                         }
                         if ($('#acabar').is(':checked')) {
                             $('#acabar2').val('1');
-                            $('#tinturaria').val('1');
+                            $('#acabamentos').val('1');
                         }
                         if ($('#largura').is(':checked')) {
                             $('#largura2').val('1');
-                            $('#tinturaria').val('1');
+                            $('#acabamentos').val('1');
                         }
                         if ($('#sanforizar').is(':checked')) {
                             $('#sanforizar2').val('1');
-                            $('#tinturaria').val('1');
+                            $('#acabamentos').val('1');
                         }
                         if ($('#tumbler').is(':checked')) {
                             $('#tumbler2').val('1');
-                            $('#tinturaria').val('1');
+                            $('#acabamentos').val('1');
                         }
                         if ($('#calandar').is(':checked')) {
                             $('#calandar2').val('1');
-                            $('#tinturaria').val('1');
+                            $('#acabamentos').val('1');
                         }
                         if ($('#q').is(':checked')) {
                             $('#q2').val('1');
-                            $('#tinturaria').val('1');
+                            $('#acabamentos').val('1');
                         }
                         if ($('#f').is(':checked')) {
                             $('#f2').val('1');
-                            $('#tinturaria').val('1');
+                            $('#acabamentos').val('1');
                         }
                         if ($('#enfestar').is(':checked')) {
                             $('#enfestar2').val('1');
@@ -519,10 +640,9 @@ block content
                             alert('Tem de selecionar um método de Enrolar. Volte ao método Embalagem.');
                         }
                         else {
-                            console.log("foda se no submeter");
                             $('#butsubmeter').click();
                             $('input:checkbox').prop('checked', false);
-                            //$(':input[type="number"]').val('0');
+                            $(':input[type="number"]').val('0');
                         }
                     }
                 });
