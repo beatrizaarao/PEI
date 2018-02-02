@@ -22,7 +22,7 @@ router.post('/', function(req, res){
         db.query('SELECT * FROM ADMINISTRATOR WHERE EMAIL=?',req.body.email, function(error, result, client){
             if (result.length!=0){
                 if(result[0].PASSWORD==req.body.password){
-                    db.query('UPDATE ADMINISTRATOR SET IS_LOGGED=1 WHERE id_ADMINISTRATOR=1', function(error, result, client){
+                    db.query('UPDATE ADMINISTRATOR SET IS_LOGGED=1 WHERE EMAIL=?',req.body.email, function(error, result, client){
                         res.app.locals.admin.IS_LOGGED=1;
                         res.redirect('/index');
                     });
