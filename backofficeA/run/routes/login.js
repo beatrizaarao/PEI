@@ -10,33 +10,49 @@ router.get('/', function(req, res) {
             res.redirect('/importar')
         }
         else {
-    res.render('login')
+            res.cookie('deploy', 1)
+            res.render('login')
         }
     })
 })
 
 router.post('/', function(req, res){
 
+    if(req.cookies.deploy === undefined){
+        res.redirect('/')
+    }
+    else {
 
         var db = req.connection;
-        db.query('SELECT * FROM ADMINISTRATOR WHERE EMAIL=?',req.body.email, function(error, result, client){
-            if (result.length!=0){
-                if(result[0].PASSWORD==req.body.password){
-                    db.query('UPDATE ADMINISTRATOR SET IS_LOGGED=1 WHERE EMAIL=?',req.body.email, function(error, result, client){
-                        res.app.locals.admin.IS_LOGGED=1;
+        db.query('SELECT * FROM ADMINISTRATOR WHERE EMAIL=?', req.body.email, function (error, result, client) {
+            if (result.length != 0) {
+                if (result[0].PASSWORD == req.body.password) {
+                    db.query('UPDATE ADMINISTRATOR SET IS_LOGGED=1 WHERE EMAIL=?', req.body.email, function (error, result, client) {
+                        res.app.locals.admin.IS_LOGGED = 1;
                         res.redirect('/index');
                     });
                 }
-                else{res.render('login', {flash: "Password errada"})}
+                else {
+                    res.render('login', {flash: "Password errada"})
+                }
             }
-            else{res.render('login', {flash: "O utilizador inserido não existe"})}
+            else {
+                res.render('login', {flash: "O utilizador inserido não existe"})
+            }
         })
-        })
+    }
+})
 
 router.post('/logout', function(req, res){
 
-    res.app.locals.admin.IS_LOGGED=0;
-    res.redirect('/');
+    if(req.cookies.deploy === undefined){
+        res.redirect('/')
+    }
+    else {
+
+        res.app.locals.admin.IS_LOGGED = 0;
+        res.redirect('/');
+    }
 })
 
 

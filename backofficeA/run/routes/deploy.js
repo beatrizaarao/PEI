@@ -5,6 +5,7 @@ var fs = require('fs')
 var formidable = require("formidable")
 
 router.get('/', function(req, res, next) {
+
     res.render("importar")
 });
 
@@ -66,6 +67,7 @@ router.post('/',function(req,res,next){
                         })
                         status = "Deploy feito com sucesso."
                         console.log("Deploy efectuado com sucesso")
+                        res.cookie('deploy', 1)
                         res.redirect("/")
                     }
                     else{
