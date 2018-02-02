@@ -33,16 +33,10 @@ CREATE TABLE `ADMINISTRATOR` (
   `id_ADMINISTRATOR` int(11) NOT NULL,
   `EMAIL` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
   `PASSWORD` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
-  `COMPANY_id` int(11) NOT NULL,
+  `deploy` int(11) NOT NULL,
   `IS_LOGGED` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- Extraindo dados da tabela `ADMINISTRATOR`
---
-
-INSERT INTO `ADMINISTRATOR` (`id_ADMINISTRATOR`, `EMAIL`, `PASSWORD`, `COMPANY_id`, `IS_LOGGED`) VALUES
-(1, 'encomenda.uniline@gmail.com', 'admin123', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -95,39 +89,17 @@ INSERT INTO `CLIENT` (`NAME`, `NIF`, `EMAIL`, `PHONE`, `STREET`, `DOOR_NUMBER`, 
 
 CREATE TABLE `DEPLOY` (
   `NAME` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `ID` int(11) NOT NULL,
   `EMAIL` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
   `PHONE` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
   `ADRESS` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `WEBPAGE_LINK` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
   `URL_ICON` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `FACEBOOK_LINK` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `TWEETER_LINK` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `TWEETER_LINK` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 
-------------------------------------------------------------
-
---
--- Estrutura da tabela `COMPANY`
---
-
-CREATE TABLE `COMPANY` (
-  `id_COMPANY` int(11) NOT NULL,
-  `PHONE` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
-  `STREET` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
-  `CITY` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
-  `COUNTRY` varchar(45) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Extraindo dados da tabela `COMPANY`
---
-
-INSERT INTO `COMPANY` (`id_COMPANY`, `PHONE`, `STREET`, `CITY`, `COUNTRY`) VALUES
-(0, '1232345', 'wedwed', 'wedwed', 'weded'),
-(1, 'wsqsw', 'qwsqws', 'qws', 'qws');
-
--- --------------------------------------------------------
 
 --
 -- Estrutura da tabela `Incompatibilities`
@@ -253,13 +225,17 @@ INSERT INTO `Task` (`ID_TASK`, `DESCRIPTION`, `STATE`, `Client_NIF`, `Tipo`, `da
 --
 ALTER TABLE `ADMINISTRATOR`
   ADD PRIMARY KEY (`id_ADMINISTRATOR`),
-  ADD KEY `fk_ADMINISTRATOR_COMPANY1_idx` (`COMPANY_id`);
+  ADD KEY `fk_ADMINISTRATOR_DEPLOY_idx` (`deploy`);
 
 --
 -- Indexes for table `ADMIN_MESSAGE`
 --
 ALTER TABLE `ADMIN_MESSAGE`
   ADD PRIMARY KEY (`idMESSAGES`);
+  
+  
+ALTER TABLE `DEPLOY`
+  ADD PRIMARY KEY (`ID`);
 
 --
 -- Indexes for table `CLIENT`
@@ -267,11 +243,6 @@ ALTER TABLE `ADMIN_MESSAGE`
 ALTER TABLE `CLIENT`
   ADD PRIMARY KEY (`NIF`);
 
---
--- Indexes for table `COMPANY`
---
-ALTER TABLE `COMPANY`
-  ADD PRIMARY KEY (`id_COMPANY`);
 
 --
 -- Indexes for table `Incompatibilities`
@@ -386,7 +357,7 @@ ALTER TABLE `Task`
 -- Limitadores para a tabela `ADMINISTRATOR`
 --
 ALTER TABLE `ADMINISTRATOR`
-  ADD CONSTRAINT `fk_ADMINISTRATOR_COMPANY1` FOREIGN KEY (`COMPANY_id`) REFERENCES `COMPANY` (`id_COMPANY`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_ADMINISTRATOR_deploy1` FOREIGN KEY (`deploy`) REFERENCES `Deploy` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Limitadores para a tabela `OPCAO`
