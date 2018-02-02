@@ -7,22 +7,37 @@ var formidable = require("formidable")
 
 
 router.get('/', function(req, res, next) {
-    res.render('prodef', { title: 'Encomenda'});
+    if (req.cookies.deploy == undefined){
+        res.redirect('/indisponivel')
+    }
+    else if(req.cookies.onlineC === undefined){
+        res.redirect('/signin')
+    }
+    else {
+        res.render('prodef', {title: 'Encomenda'});
+    }
 });
 
 router.post('/',function(req,res,next) {
+    if (req.cookies.deploy == undefined){
+        res.redirect('/indisponivel')
+    }
+    else if(req.cookies.onlineC === undefined){
+        res.redirect('/signin')
+    }
+    else {
         var db = req.connection;
         var queries = [];
         var has_option = 0;
-        var form= new formidable.IncomingForm();
-        form.parse(req,function(err,fields,files){
-            console.log("NIF" + req.cookies.online);
+        var form = new formidable.IncomingForm();
+        form.parse(req, function (err, fields, files) {
+            console.log("NIF" + req.cookies.onlineC);
             console.log("Data" + fields.dataentrega)
 
-            var params1 = [req.cookies.online, fields.dataentrega];
-            db.query('INSERT INTO ORDEM (BEGIN_DATE, CLOSE_DATE, Client_NIF, ASKED_DELIVERY_DATE, STATUS) VALUES (CURDATE(),null,?,?,0)',params1,function(error, result, client) {
+            var params1 = [req.cookies.onlineC, fields.dataentrega];
+            db.query('INSERT INTO ORDEM (BEGIN_DATE, CLOSE_DATE, Client_NIF, ASKED_DELIVERY_DATE, STATUS) VALUES (CURDATE(),null,?,?,0)', params1, function (error, result, client) {
                 db.query('SELECT MAX(ID_ORDER) as max FROM ORDEM', function (error, result, client) {
-                    var idorder= result[0].max;
+                    var idorder = result[0].max;
                     db.query('SELECT * FROM STEP', function (error, result, client) {
                         var steps = result;
                         db.query('SELECT * FROM SERVICE', function (error, result, client) {
@@ -31,36 +46,35 @@ router.post('/',function(req,res,next) {
                                 var opcao = result;
                                 for (var i = 0; i < steps.length; i++) {
                                     for (var k = 0; k < service.length; k++) {
-                                        has_option=0;
-                                        if(service[k].STEP_id_step==steps[i].id_STEP)
-                                        {
-                                            for (var a = 0; a < opcao.length; a++){
-                                                if(opcao[a].SERVICE_id_SERVICE==service[k].id_SERVICE){
+                                        has_option = 0;
+                                        if (service[k].STEP_id_step == steps[i].id_STEP) {
+                                            for (var a = 0; a < opcao.length; a++) {
+                                                if (opcao[a].SERVICE_id_SERVICE == service[k].id_SERVICE) {
                                                     var pilas = opcao[a].DESCRIPTION;
                                                     console.log("ENTREI na opcao" + opcao[a].DESCRIPTION);
-                                                    if ((opcao[a].IS_CHECKBOX == 1 && fields[pilas] == 'on')||(opcao[a].IS_CHECKBOX == 0 && fields[pilas]!=null)) {
+                                                    if ((opcao[a].IS_CHECKBOX == 1 && fields[pilas] == 'on') || (opcao[a].IS_CHECKBOX == 0 && fields[pilas] != null)) {
                                                         console.log("ENTREI na opcao" + opcao[a].DESCRIPTION);
 
-                                                            has_option=1;
-                                                            queries[queries.length] = "INSERT INTO ORDER_STEP_SERVICE_OPTION (ID_ORDER, id_STEP, id_SERVICE, id_OPTION) VALUES(" +idorder+","+steps[i].id_STEP +","+service[k].id_SERVICE+","+opcao[a].id_OPTION+"); "
+                                                        has_option = 1;
+                                                        queries[queries.length] = "INSERT INTO ORDER_STEP_SERVICE_OPTION (ID_ORDER, id_STEP, id_SERVICE, id_OPTION) VALUES(" + idorder + "," + steps[i].id_STEP + "," + service[k].id_SERVICE + "," + opcao[a].id_OPTION + "); "
 
                                                     }
                                                 }
                                             }
-                                            if (has_option==0) {
-                                                if ((service[k].IS_CHECKBOX == 1 && fields[service[k].DESCRIPTION] == 'on')||(service[k].IS_CHECKBOX == 0 && fields[service[k].DESCRIPTION]!=null)) {
+                                            if (has_option == 0) {
+                                                if ((service[k].IS_CHECKBOX == 1 && fields[service[k].DESCRIPTION] == 'on') || (service[k].IS_CHECKBOX == 0 && fields[service[k].DESCRIPTION] != null)) {
 
                                                     //var params3 = [idorder,steps[i].id_STEP,service[k].id_SERVICE];
-                                                    queries[queries.length] = "INSERT INTO ORDER_STEP_SERVICE_OPTION (ID_ORDER, id_STEP, id_SERVICE) VALUES(" +idorder+","+steps[i].id_STEP +","+service[k].id_SERVICE+"); "
+                                                    queries[queries.length] = "INSERT INTO ORDER_STEP_SERVICE_OPTION (ID_ORDER, id_STEP, id_SERVICE) VALUES(" + idorder + "," + steps[i].id_STEP + "," + service[k].id_SERVICE + "); "
                                                 }
                                             }
                                         }
                                     }
                                 }
                                 var que = "";
-                                for(var o=0;o<queries.length;o++){
+                                for (var o = 0; o < queries.length; o++) {
                                     //console.log("que" + queries[o]);
-                                    que= que + queries[o];
+                                    que = que + queries[o];
                                 }
                                 //console.log("po" + que);
                                 db.query(que, function (error, result, client) {
@@ -72,6 +86,6 @@ router.post('/',function(req,res,next) {
                 });
             });
         });
-
+    }
 });
 module.exports = router;

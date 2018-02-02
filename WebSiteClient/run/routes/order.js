@@ -3,13 +3,23 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  console.log(req.cookies)
-  if(req.cookies.online === undefined){
-    res.redirect('/signin')
-  }
-  else{
-    res.redirect('/home')
-  }
-});
+    var db = req.connection;
+    db.query('SELECT * FROM DEPLOY' , function(error, result, client){
+        if (result.length != 0){
+            console.log(result.length)
+            res.cookie('deploy', 1)
+        }
+    })
+
+    if (req.cookies.deploy == undefined){
+      res.redirect('/indisponivel')
+    }
+    else if(req.cookies.onlineC === undefined){
+      res.redirect('/signin')
+    }
+    else{
+      res.redirect('/home')
+    }
+})
 
 module.exports = router;

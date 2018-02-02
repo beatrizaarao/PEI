@@ -43,6 +43,7 @@ var signin = require('./routes/signin')
 var prodef = require('./routes/prodef')
 var encsuc = require('./routes/encsuc')
 var home = require('./routes/home')
+var indisponivel = require('./routes/indisponivel')
 
 
 var app = express();
@@ -74,6 +75,7 @@ app.use('/aboutUs', about)
 app.use('/', index)
 app.use('/order', order)
 app.use('/home', home)
+app.use('/indisponivel', indisponivel)
 app.use('/signup',signup)
 app.use('/signin', signin)
 app.use('/account', account)

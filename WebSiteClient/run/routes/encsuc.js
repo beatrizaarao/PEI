@@ -10,7 +10,15 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/',function(req,res,next) {
-    res.redirect('/')
+    if (req.cookies.deploy == undefined){
+        res.redirect('/indisponivel')
+    }
+    else if(req.cookies.onlineC === undefined){
+        res.redirect('/signin')
+    }
+    else {
+        res.redirect('/')
+    }
 })
 
 module.exports = router;
