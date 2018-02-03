@@ -41,11 +41,11 @@ router.post('/',function(req,res,next) {
                                 res.cookie('onlineC', fields.nif)
                                 res.redirect('/order')
                             }
+                            else if (docs[0].IS_BLOCKED) {
+                                res.render('lr', {title: 'Login', status: 'Conta bloqueada'});
+                            }
                             else {
                                 res.render('lr', {title: 'Login', status: 'Conta ainda não aprovada'});
-                            }
-                            if (docs[0].IS_BLOCKED) {
-                                res.render('lr', {title: 'Login', status: 'Conta bloqueada'});
                             }
                         }
                         else {

@@ -14,7 +14,7 @@ router.get('/', function(req, res, next) {
 
         var nif = req.cookies.onlineC;
         var db = req.connection
-        db.query('SELECT * FROM ORDEM WHERE client_NIF =' + nif, function (err2, docs) {
+        db.query('SELECT * FROM ordem', function (err2, docs) {
             if (!err2) {
                 res.render('home', {title: 'Home', encomendas: docs});
             }

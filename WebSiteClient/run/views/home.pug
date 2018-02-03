@@ -17,7 +17,7 @@ block content
 			div(class='wp-section')
 				div(class='container')
 					table(class="w3-table-all w3-card-4" style="align:center")
-						if encomendas
+						if !encomendas
 							tr
 								td
 									h3 Não existem encomendas
@@ -34,26 +34,26 @@ block content
 							each encomenda in encomendas
 								tr
 									td
-										a(href="/editar/"+ encomenda.ID_ORDER)
+										a(href="/orderInfo/"+ encomenda.ID_ORDER)
 											p=encomenda.ID_ORDER
 									td
-										a(href="/editar/"+ encomenda.ID_ORDER)
+										a(href="/orderInfo/"+ encomenda.ID_ORDER)
 											p=prettyDate(encomenda.BEGIN_DATE)
 									td
-										a(href="/editar/"+ encomenda.ID_ORDER)
+										a(href="/orderInfo/"+ encomenda.ID_ORDER)
 											-if(encomenda.CLOSE_DATE!=null)
 												p=prettyDate(encomenda.CLOSE_DATE)
 									if (encomenda.STATUS == 0)
 										td
-											a(href="/editar/"+ encomenda.ID_ORDER)
+											a(href="/orderInfo/"+ encomenda.ID_ORDER)
 												p Não aprovado
 									else if (encomenda.STATUS == 1)
 										td
-											a(href="/editar/"+ encomenda.ID_ORDER)
+											a(href="/orderInfo/"+ encomenda.ID_ORDER)
 												p Em processamento
 									else
 										td
-											a(href="/editar/"+ encomenda.ID_ORDER)
+											a(href="/orderInfo/"+ encomenda.ID_ORDER)
 												p Cancelado
 					br
 					a(href="/prodef")
