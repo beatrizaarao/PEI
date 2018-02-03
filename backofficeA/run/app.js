@@ -41,7 +41,7 @@ connection.connect(function(err){
     console.log('Connection established');
 });
 
-
+var orderInfo = require('./routes/orderInfo');
 var login = require('./routes/login');
 var index = require('./routes/index');
 //var users = require('./routes/users');
@@ -106,6 +106,7 @@ app.use(function(req,res,next){
 });
 
 //app.use('/logout', logout);
+app.use('/orderInfo', orderInfo);
 app.use('/', login);
 app.use('/index', index);
 app.use('/clients', clients);

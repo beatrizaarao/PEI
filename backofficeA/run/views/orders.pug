@@ -19,16 +19,16 @@ block content
                             -for(var i=0;i<ordersMiss.length;i++)
                                     tr.task
                                         td
-                                            a(href="#" style = "display:block; width:100%; height:100%; border:none; outline:none; text-decoration:none; color:inherit;")
+                                            a(href="/orderInfo/" + ordersMiss[i].ID_ORDER  style = "display:block; width:100%; height:100%; border:none; outline:none; text-decoration:none; color:inherit;")
                                                 |#{ordersMiss[i].ID_ORDER}
                                         td
-                                            a(href="#" style = "display:block; width:100%; height:100%; border:none; outline:none; text-decoration:none; color:inherit;")
+                                            a(href="/orderInfo/" + ordersMiss[i].ID_ORDER style = "display:block; width:100%; height:100%; border:none; outline:none; text-decoration:none; color:inherit;")
                                                 | #{ordersMiss[i].Client_NIF}
                                         td
-                                            a(href="#" style = "display:block; width:100%; height:100%; border:none; outline:none; text-decoration:none; color:inherit;")
+                                            a(href="/orderInfo/" + ordersMiss[i].ID_ORDER style = "display:block; width:100%; height:100%; border:none; outline:none; text-decoration:none; color:inherit;")
                                                 | #{prettyDate(ordersMiss[i].BEGIN_DATE)}
                                         td
-                                            a(href="#" style = "display:block; width:100%; height:100%; border:none; outline:none; text-decoration:none; color:inherit;")
+                                            a(href="/orderInfo/" + ordersMiss[i].ID_ORDER style = "display:block; width:100%; height:100%; border:none; outline:none; text-decoration:none; color:inherit;")
                                                 | #{prettyDate(ordersMiss[i].ASKED_DELIVERY_DATE)}
                                         td.cell-status.hidden-phone.hidden-tablet
                                                 b.due Não Aprovada
