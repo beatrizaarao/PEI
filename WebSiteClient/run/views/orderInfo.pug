@@ -1,0 +1,42 @@
+extends layout
+block content
+    .span9
+        .content
+            .module
+                .module-head
+                    h3 Informação Encomenda
+                .module-body
+                    .profile-tab-content.tab-content(style="margin-top: 20px")
+                        -var array = [];
+                        -var array2 = [];
+                        -for(var i=0; i<steps.length; i++)
+                            h5 #{steps[i]}
+
+                            hr
+                            -array = stepService.get(steps[i]);
+                            -for(var k=0; k<array.length;k++)
+                                p(class = "profile-brief") #{array[k]}
+                                -var option
+                                -if(array[k].indexOf(':')!=-1)
+                                    -service = array[k].slice(0,array[k].indexOf(':'))
+                                    -array2 = serviceOption.get(service);
+                                    -if(array2!=null)
+                                        -for(var j=0; j<array2.length;j++)
+                                            p #{array2[j]}
+                                -else
+                                    -service = array[k];
+                                    -array2 = serviceOption.get(service);
+                                    -if(array2!=null)
+                                        -for(var j=0; j<array2.length;j++)
+                                            ul
+                                                li
+                                                    p(style="text-indent:35px; ")
+                                                        |&rarr; #{array2[j]}
+                        -if(ordem[0].STATUS==0)
+                            form(action="/orderInfo/exportar/" + ordem[0].ID_ORDER, method="post", style="display:inline; margin:0px; padding:0px;")
+                                button(class="btn btn-large btn-success pull-right" type="submit") Aprovar/Exportar
+                            div(style="width:8px; height:auto; display:inline-block;")
+                        form(action="/orderInfo/pdf/" + ordem[0].ID_ORDER, method="post" style="display:inline; margin:0px; padding:0px;")
+                            button(class="btn btn-large pull-right" type="submit") Gerar PDF
+                        br
+                        br

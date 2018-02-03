@@ -20,6 +20,9 @@ SET time_zone = "+00:00";
 
 --
 -- Database: `id4056546_uniline`
+
+CREATE SCHEMA IF NOT EXISTS id4056546_uniline DEFAULT CHARACTER SET utf8 ;
+USE id4056546_uniline ;
 --
 
 -- --------------------------------------------------------
@@ -117,15 +120,16 @@ CREATE TABLE `DEPLOY` (
   `WEBPAGE_LINK` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
   `URL_ICON` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `FACEBOOK_LINK` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `TWITTER_LINK` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL
+  `TWITTER_LINK` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `STATISTICS` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Extraindo dados da tabela `DEPLOY`
 --
 
-INSERT INTO `DEPLOY` (`NAME`, `ID`, `EMAIL`, `PHONE`, `ADRESS`, `WEBPAGE_LINK`, `URL_ICON`, `FACEBOOK_LINK`, `TWITTER_LINK`) VALUES
-('PeugasLDA.', 1, 'peugas@teste.com', '253000000', 'Rua da Travessa_4000-300_Guimarães_Portugal', 'http://www.etpeugas.com/pt/', 'https://icon-icons.com/icons2/390/PNG/512/socks_39463.png', 'https://www.facebook.com/peugas.co/', 'https://twitter.com/PeugasFilisa');
+INSERT INTO `DEPLOY` (`NAME`, `ID`, `EMAIL`, `PHONE`, `ADRESS`, `WEBPAGE_LINK`, `URL_ICON`, `FACEBOOK_LINK`, `TWITTER_LINK`, `STATISTICS`) VALUES
+('PeugasLDA.', 1, 'peugas@teste.com', '253000000', 'Rua da Travessa_4000-300_Guimarães_Portugal', 'http://www.etpeugas.com/pt/', 'https://icon-icons.com/icons2/390/PNG/512/socks_39463.png', 'https://www.facebook.com/peugas.co/', 'https://twitter.com/PeugasFilisa', '10000');
 
 -- --------------------------------------------------------
 

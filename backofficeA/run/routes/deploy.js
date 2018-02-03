@@ -41,7 +41,7 @@ router.post('/',function(req,res,next){
                                 lista = '{"list":'+lista+'}'
                                 lista = JSON.parse(lista).list
                                 for(elem in lista){
-                                    querysql += "INSERT INTO `DEPLOY` (`NAME`, `ID`, `EMAIL`, `PHONE`, `ADRESS`, `WEBPAGE_LINK`, `URL_ICON`, `FACEBOOK_LINK`, `TWITTER_LINK`) VALUES('"+ lista[elem].name +"',1,'"+ lista[elem].email + "','" + lista[elem].phone + "','" + lista[elem].adress + "','" + lista[elem].webpage_link + "','" + lista[elem].url_icon + "','" + lista[elem].facebook_link + "','" + lista[elem].twitter_link + "');"
+                                    querysql += "INSERT INTO `DEPLOY` (`NAME`, `ID`, `EMAIL`, `PHONE`, `ADRESS`, `WEBPAGE_LINK`, `URL_ICON`, `FACEBOOK_LINK`, `TWITTER_LINK`, `STATISTICS`) VALUES('"+ lista[elem].name +"',1,'"+ lista[elem].email + "','" + lista[elem].phone + "','" + lista[elem].adress + "','" + lista[elem].webpage_link + "','" + lista[elem].url_icon + "','" + lista[elem].facebook_link + "','" + lista[elem].twitter_link + "','" + lista[elem].statistics + "');"
                                 }
                             }
 
