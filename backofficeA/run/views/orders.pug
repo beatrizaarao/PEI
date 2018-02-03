@@ -36,13 +36,17 @@ block content
                             -for(var i=0;i<otherOrders.length;i++)
                                     tr.task.resolved
                                         td
-                                            |#{otherOrders[i].ID_ORDER}
+                                            a(href="/orderInfo/" + otherOrders[i].ID_ORDER  style = "display:block; width:100%; height:100%; border:none; outline:none; text-decoration:none; color:inherit;")
+                                                |#{otherOrders[i].ID_ORDER}
                                         td
-                                            | #{otherOrders[i].Client_NIF}
+                                            a(href="/orderInfo/" + otherOrders[i].ID_ORDER  style = "display:block; width:100%; height:100%; border:none; outline:none; text-decoration:none; color:inherit;")
+                                                | #{otherOrders[i].Client_NIF}
                                         td
-                                            | #{prettyDate(otherOrders[i].BEGIN_DATE)}
+                                            a(href="/orderInfo/" + otherOrders[i].ID_ORDER  style = "display:block; width:100%; height:100%; border:none; outline:none; text-decoration:none; color:inherit;")
+                                                | #{prettyDate(otherOrders[i].BEGIN_DATE)}
                                         td
-                                            | #{prettyDate(otherOrders[i].ASKED_DELIVERY_DATE)}
+                                            a(href="/orderInfo/" + otherOrders[i].ID_ORDER  style = "display:block; width:100%; height:100%; border:none; outline:none; text-decoration:none; color:inherit;")
+                                                | #{prettyDate(otherOrders[i].ASKED_DELIVERY_DATE)}
                                         td.cell-status.hidden-phone.hidden-tablet
                                             -if(otherOrders[i].STATUS==1)
                                                  | Em Processamento

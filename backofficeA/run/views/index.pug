@@ -7,6 +7,8 @@ block content
                             div( class="btn-box-row row-fluid")
                                 a(class="btn-box big span4")
                                     i(class="icon-random")
+                                    -console.log("MESES" + monthOrders)
+                                    -console.log("YEAR" + lastYearOrders)
                                     b #{((monthOrders-lastYearOrders)/lastYearOrders)*100}%
                                     p(class="text-muted") Crescimento
                                 a(class="btn-box big span4")
