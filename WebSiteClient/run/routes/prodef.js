@@ -14,7 +14,30 @@ router.get('/', function(req, res, next) {
         res.redirect('/signin')
     }
     else {
-        res.render('prodef', {title: 'Encomenda'});
+        var db = req.connection;
+        db.query('SELECT * FROM STEP', function (err, rows) {
+            steps = rows;
+            db.query('SELECT * FROM SERVICE', function (err, rows) {
+                servs = rows;
+                db.query('SELECT * FROM OPCAO', function (err, rows) {
+                    opts = rows;
+                    db.query('SELECT * FROM Incompatibilities' , function (err, rows) {
+                        inc = rows;
+                        db.query('SELECT * FROM OPTION_has_Incompatibilities', function (err, rows) {
+                            optres = rows;
+                            res.render('prodef', {
+                                title: 'Encomenda',
+                                dataSteps: steps,
+                                dataServs: servs,
+                                dataOpts: opts,
+                                dataRes: inc,
+                                dataOptRes: optres,
+                            });
+                        });
+                    });
+                });
+            });
+        });
     }
 });
 

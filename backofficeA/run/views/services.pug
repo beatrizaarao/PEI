@@ -78,10 +78,11 @@ block content
 
             hr
             -if (dataSteps.length>0)
-                button(type="button" class="btn btn-default icon-plus-sign" data-toggle="modal" data-target="#restricoes") Alterar Restrição
+                button(type="button" class="btn btn-default" data-toggle="modal" data-target="#restricoes")
+                    i(class = "icon-plus-sign") Alterar Restrição
 
 
-            //div(class="modal hide fade" id="restricoes" role="dialog")
+            div(class="modal hide fade" id="restricoes" role="dialog")
                 div(class="modal-dialog")
                     div(class="modal-content")
                         div(class="modal-header")
@@ -98,17 +99,18 @@ block content
                             div.form-inline
                                 div.checkbox
                                     -for(var k=0; k<dataSteps.length;k++)
-                                        label(style='padding-left:25px; padding-top:10px;font-size: 20px;' for='opts' + dataSteps[k].DESCRIPTION)=dataSteps[k].NAME
-                                            input(type='checkbox' name="" + dataSteps[k].DESCRIPTION id='opts' + dataSteps[k].DESCRIPTION)
                                         br
+                                        label(style='padding-left:25px; padding-top:10px;font-size: 20px;' for='steps' + dataSteps[k].DESCRIPTION)=dataSteps[k].NAME
+                                            input(type='checkbox' name='steps' + dataSteps[k].DESCRIPTION id='steps' + dataSteps[k].DESCRIPTION)
                                         -for(var j=0; j<dataServs.length;j++)
                                             -if(dataServs[j].STEP_id_step == dataSteps[k].id_STEP)
-                                                label(style='padding-left:25px; padding-top:10px;font-size: 20px; ' for='opts' + dataServs[j].DESCRIPTION)=dataServs[j].NAME
-                                                    input(type='checkbox' name=""+dataServs[j].DESCRIPTION id='opts' + dataServs[j].DESCRIPTION)
+                                                label(style='padding-left:25px; padding-top:10px;font-size: 20px;' for='servs'+dataServs[j].DESCRIPTION)=dataServs[j].NAME
+                                                    input(type='checkbox' name='servs'+dataServs[j].DESCRIPTION id='servs'+dataServs[j].DESCRIPTION)
                                             //-for(var i=0; i<dataOpts.length;i++)
                                                 -if(dataOpts[i].SERVICE_id_SERVICE == dataServs[j].id_SERVICE)
                                                     label(style='padding-left:25px; padding-top:10px;font-size: 20px; ' for='opts'+dataOpts[i].DESCRIPTION)=dataOpts[i].NAME
                                                         input(type='checkbox' name=dataOpts[i].DESCRIPTION id='opts'+dataOpts[i].DESCRIPTION)
+                                        br
                                     label(style='padding-left:25px; padding-top:10px;font-size: 20px;' for='opts') Options
                                         input(type='checkbox' name='opts' id='opts')
                         div(class="modal-footer")
@@ -225,7 +227,7 @@ block content
                                             input(type='checkbox' name='tumbler' id='tumbler')
                                         br
                                         label(style='padding-left:25px; padding-top:10px; padding-bottom:25px;font-size: 20px;' for='calandar') Calandar
-                                            input(type='checkbox' name='secar' id='calandar')
+                                            input(type='checkbox' name='calandar' id='calandar')
                                         label(style='padding-left:25px; padding-top:10px;font-size: 20px;display:none' id="cq" for='q') Q
                                             input(style='display:none' type='checkbox' name='q' id='q')
                                         label(style='padding-left:25px; padding-top:10px;font-size: 20px;display:none' id="cf" for='f') F
@@ -466,16 +468,14 @@ block content
                     });
                 });
                 /*$(function () {
-                    $('#opts').click(function () {
-                        opts2 = dataOpts
-                        servs = dataServs
-                        steps = dataSteps
-                        console.log(steps)
-                        //for (var k = 0; k < steps.length; k++)
-                        //for (var j = 0; j < dataServs.length; j++)
-                        //if (dataServs[j].STEP_id_step == dataSteps[k].id_STEP)
-                        //  for(var i=0; i<dataOpts.length;i++)
-                        //    if (dataOpts[i].SERVICE_id_SERVICE == dataServs[j].id_SERVICE)
+                    $('#stepsdefProduto').click(function () {
+                        $('#servscomposicao').toggle();
+                        $('#servsponto').toggle();
+                        $('#servspeso').toggle();
+                        $('#servslargurai').toggle();
+                        $('#servslarguraf').toggle();
+                        $('#servsquantidade').toggle();
+                        $('#servscaderno').toggle();
                     });
                 });*/
                 $('#but').on('click', function () {
@@ -505,6 +505,10 @@ block content
                             $('#largfin2').val('1');
                             $('#numlarfinII2').val($('#numlarfinII').val());
                             $('#numlarfinFF2').val($('#numlarfinFF').val());
+                            $('#definicao').val('1');
+                        }
+                        if ($('#quantidade').is(':checked')) {
+                            $('#quantidade2').val('1');
                             $('#definicao').val('1');
                         }
                         if ($('#caderno').is(':checked')) {
