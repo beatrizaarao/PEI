@@ -50,6 +50,13 @@ block content
                                                                         p(style="text-indent:35px; ")
                                                                             |&rarr; #{array2[j]}
                         br
+                    div(class='row')
+                        section(class='col-xs-6')
+                            button(class="btn btn-large btn-danger pull-right" style="width:100px" onclick="eliminarEvento('"+ ordem[0].ID_ORDER +"')") Editar
+                        section(class='col-xs-6')
+                            button(class="btn btn-large btn-danger pull-left" style="width:100px" onclick="editarEvento('"+ ordem[0].ID_ORDER +"')") Cancelar
+                br
+                br
                 center
                     a(class="w3-button w3-large w3-theme-d4 w3-center" href="/home" title="voltar")
                         i(class="fa fa-home")
@@ -57,3 +64,14 @@ block content
                     br
                     br
                     br
+            script.
+                function eliminarEvento(id) {
+                    if (confirm("Tem a certeza que pretende cancelar esta ordem")) {
+                        window.location.replace("/home/cancelar/" + id)
+                    }
+                }
+                function editarEvento(id) {
+                    if (confirm("Tem a certeza que pretende editar esta ordem")) {
+                        window.location.replace("/home/alterar/" + id)
+                    }
+                }

@@ -23,60 +23,24 @@ block content
                             h2 Editar Conta - #{user.NAME}
                         div(class='form-body')
                             form(action='' id='frmAccountEdit' class='sky-form' method='post')
-                                fieldset(class='no-padding')
-                                    section
-                                    section
-                                    section
-                                        div(class='row')
-                                            div(class='col-xs-6')
-                                                div(class='form-group')
-                                                    label(class='label') NIF
-                                                    label(class='input')
-                                                        i(class='icon-append fa fa-user')
-                                                        input(type='text' name='nif' placeholder='' pattern='[0-9]{9}$' value=user.NIF)
-                                                        b(class='tooltip tooltip-bottom-right') Necessario para inicar a sessão
-
-                                            div(class='col-xs-6')
-                                                div(class='form-group')
-                                                    label(class='label') E-mail
-                                                    label(class=errors.email ? 'input state-error' : 'input')
-                                                        i(class='icon-append fa fa-envelope-o')
-                                                        input(type='email' name='email' placeholder='' value=user.EMAIL)
-                                                        b(class='tooltip tooltip-bottom-right') Necessario para verificar a sua conta
-                                                        if errors.email
-                                                            div(class="note note-error")=errors.email.message
-                                    hr
-                                    section
-                                        div(class='row')
-                                            section(class='col-xs-6')
-                                                label(class='label') Primeiro Nome
-                                                label(class=errors.pnome ? 'input state-error' : 'input')
-                                                    i(class='icon-append fa fa-user')
-                                                    input(type='text' id='fname' name='fname' placeholder='')
-                                                    if errors.pnome
-                                                        div(class="note note-error")=errors.pnome.message
-                                            section(class='col-xs-6')
-                                                label(class='label') Ultimo Nome
-                                                label(class=errors.unome ? 'input state-error' : 'input')
-                                                    i(class='icon-append fa fa-user')
-                                                    input(type='text' id='lname' name='lname' placeholder='')
-                                                    if errors.unome
-                                                        div(class="note note-error")=errors.unome.message
-                                        div(class='row')
-                                            section(class='col-xs-6')
-                                                label(class='label') Empresa
-                                                label(class=errors.ename ? 'input state-error' : 'input')
-                                                    i(class='icon-append fa fa-building')
-                                                    input(type='text' name='ename' placeholder='' value=user.ename)
-                                                    if errors.ename
-                                                        div(class="note note-error")=errors.ename.message
-                                            section(class='col-xs-6')
-                                                label(class='label') Contacto Telefonico
-                                                label(class=errors.phone ? 'input state-error' : 'input')
-                                                    i(class='icon-append fa fa-phone')
-                                                    input(type='text' name='phone' placeholder='' pattern='[0-9]{9}$' value=user.PHONE)
-                                                    if errors.phone
-                                                        div(class="note note-error")=errors.phone.message
+                                section
+                                    div(class='row')
+                                        section(class='col-xs-6')
+                                            label(class='label') Primeiro Nome
+                                            label(class='input')
+                                                i(class='icon-append fa fa-user')
+                                                input(type='text' name='fname' placeholder='')
+                                        section(class='col-xs-6')
+                                            label(class='label') Ultimo Nome
+                                            label(class='input')
+                                                i(class='icon-append fa fa-user')
+                                                input(type='text' name='lname' placeholder='')
+                                    div(class='row')
+                                        section(class='col-xs-6')
+                                            label(class='label') Contacto Telefonico
+                                            label(class='input')
+                                                i(class='icon-append fa fa-phone')
+                                                input(type='text' name='phone' placeholder='' pattern='[0-9]{9}$')
                                 fieldset
                                     div(class='row')
                                         section(class='col-xs-4')
@@ -90,39 +54,27 @@ block content
                                                             option(value=value) #{name}
                                                 if errors.country
                                                     div(class="note note-error")=errors.country.message
-                                        section(class='col-xs-4')
-                                            label(class=errors.distrito ? 'input state-error' : 'input')
-                                                input(type='text' name='distrito' placeholder='Distrito' value=user.distrito)
-                                                if errors.distrito
-                                                    div(class="note note-error")=errors.distrito.message
-                                        section(class = 'col-xs-4')
-                                            label(class=errors.concelho ? 'input state-error' : 'input')
-                                                input(type='text' name='concelho' placeholder='Concelho' value=user.CITY)
-                                                if errors.concelho
-                                                    div(class="note note-error")=errors.concelho.message
-                                        section(class='col-xs-3')
-                                            label(class=errors.codpost ? 'input state-error' : 'input')
-                                                input(type='text' name='codpost' placeholder='Codigo Postal' pattern='[0-9]{4}-[0-9]{3}$' value=user.ZIP_CODE)
-                                                if errors.codpost
-                                                    div(class="note note-error")=errors.codpost.message
-                                        section(class='col-xs-7')
-                                            label(class=errors.freguesia ? 'input state-error' : 'input')
-                                                input(type='text' name='freguesia' placeholder='Freguesia' value=user.freguesia)
-                                                if errors.freguesia
-                                                    div(class="note note-error")=errors.freguesia.message
-                                    
-                                    section
-                                        label(class=errors.morada ? 'input state-error' : 'input')
-                                            input(type='text' name='morada' placeholder='Morada' value=user.STREET)
-                                            if errors.morada
-                                                div(class="note note-error")=errors.morada.message
-                                    
-                                    section
-                                        label(class=errors.info ? 'textarea state-error' : 'textarea')
-                                            textarea(rows='3' name='info' placeholder='Informação Adicional')= user.info
-                                            if errors.info
-                                                div(class="note note-error")=errors.info.message
-                                    section
+                                    section(class='col-xs-4')
+                                        label(class='input')
+                                            input(type='text' name='rua' placeholder='Rua')
+                                    section(class = 'col-xs-4')
+                                        label(class='input')
+                                            input(type='text' name='porta' placeholder='Número da Porta')
+                                    section(class='col-xs-3')
+                                        label(class='input')
+                                            input(type='text' name='zip' placeholder='Código Postal' pattern='[0-9]{4}-[0-9]{3}$')
+                                    section(class='col-xs-7')
+                                        label(class='input')
+                                            input(type='text' name='city' placeholder='Cidade')
+                                div(class='row')
+                                    figure(class="myfigure")
+                                        img(class="joint-img" id="img1" name="img1" src="/images/avatar.png" alt="your image")
+                                        figcaption
+                                            label(class="custom-file-upload")
+                                                input(class="joint" type='file' id="foto1" name="foto1")
+                                                p Mudar Imagem
+
+
                                         section
                                             input(type="submit" class='btn btn-base pull-right' value='Guardar alterações')
 
