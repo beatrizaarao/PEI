@@ -43,7 +43,8 @@ router.post('/',function(req,res,next) {
                                 extension = extension[extension.length-1]
                                 fields.fotografia = fields.nif + "." + extension
 
-                                fs.rename(files.foto1.path, './public/images/upload/' + fields.fotografia, function(err1){
+
+                                fs.rename(files.foto1.path, '~/PEI/backofficeA/run/public/images/upload/' + fields.fotografia, function(err1){
                                     if(!err1){
                                         console.log("Ficheiro recebido e guardado com sucesso")
                                     }

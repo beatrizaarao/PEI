@@ -10,9 +10,9 @@ var nodemailer = require('nodemailer');
 var connection = mysql.createConnection({
     multipleStatements: true,
     hostname : 'localhost',
-    port: '3307',
+    port: '3306',
     user     : 'root',
-    password : '',
+    password : 'root',
     database : 'id4056546_uniline'
 });
 
@@ -44,6 +44,7 @@ var prodef = require('./routes/prodef')
 var encsuc = require('./routes/encsuc')
 var home = require('./routes/home')
 var indisponivel = require('./routes/indisponivel')
+var orderInfo = require('./routes/orderInfo');
 
 
 var app = express();
@@ -75,6 +76,7 @@ app.use('/aboutUs', about)
 app.use('/', index)
 app.use('/order', order)
 app.use('/home', home)
+app.use('/orderInfo', orderInfo);
 app.use('/indisponivel', indisponivel)
 app.use('/signup',signup)
 app.use('/signin', signin)
