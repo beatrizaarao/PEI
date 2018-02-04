@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var cookieParser = require("cookie-parser")
-var user = require("../models/user")
 var countries = require("../models/countries")
-var formidable = require("formidable");
+var formidable = require("formidable")
+var fs = require('fs')
 
 /* GET */
 router.get('/', function (req, res, next) {
@@ -22,9 +22,8 @@ router.get('/', function (req, res, next) {
         db.query('SELECT * FROM CLIENT WHERE NIF =' + nif, function (error, user) {
 
             if (!error && user.length > 0) {
-                res.render('account', {countries: countries, user: user[0], errors: false,NOME: req.cookies.nome, EMAIL: req.cookies.email, PHONE: req.cookies.phone, MORADA: req.cookies.address, SITE: req.cookies.site, FACE: req.cookies.face, TWITTER: req.cookies.twitter, NIF: req.cookies.nif });
+                res.render('account', {countries: countries, user: user[0], errors: false,NAME: req.cookies.nome, EMAIL: req.cookies.email, PHONE: req.cookies.phone, MORADA: req.cookies.address, SITE: req.cookies.site, FACE: req.cookies.face, TWITTER: req.cookies.twitter, NIF: req.cookies.nif });
             }
-            res.render('account', {countries: countries, errors: false});
         });
     }
 });
@@ -41,47 +40,54 @@ router.post('/', function (req, res, next) {
     else {
         var form = new formidable.IncomingForm();
         var nif = req.cookies.onlineC;
-        var context = {
-            countries: countries,
-            errors: false
-        };
+        var images_dir = './public/images/upload/'
 
-        user.find({'nif': nif}, function (error, user) {
+        form.parse(req, function (err, fields, files){
 
-            if (!error && user.length > 0) {
-                context.user = user[0];
+            if(files.foto1.name != ""){
+                var extension = files.foto1.name.split(".")
+                extension = extension[extension.length-1]
+                fields.fotografia = nif + "." + extension
 
-                form.parse(req, function (err, fields, files) {
-                    context.user.email = fields.email;
-                    context.user.pnome = fields.fname;
-                    context.user.unome = fields.lname;
-                    context.user.ename = fields.ename;
-                    context.user.phone = fields.phone;
-                    context.user.country = fields.country;
-                    context.user.distrito = fields.distrito;
-                    context.user.concelho = fields.concelho;
-                    context.user.codpost = fields.codpost;
-                    context.user.freguesia = fields.freguesia;
-                    context.user.morada = fields.morada;
-                    context.user.info = fields.info;
+                try {
+                    curPath = images_dir + nif + "." + extension
+                    fs.unlinkSync(curPath)
+                } catch(e){
+                    console.log(e)
+                }
 
-                    context.user.save(function (errors, user) {
-                        if (errors) {
-                            context.errors = errors.errors;
-                            context.status = "Não foi possível guardar os dados";
-                        } else {
-                            context.status = "Dados guardados com sucesso";
-                        }
 
-                        res.render('account', context);
-                    });
-                });
+                fs.rename(files.foto1.path, './public/images/upload/' + fields.fotografia, function(err1){
+                    if(!err1){
+                        console.log("Ficheiro recebido e guardado com sucesso")
+                    }
+                    else{
+                        console.log("Ocorreram erros na gravação do ficheiro enviado")
+                    }
+                })
             }
-            else {
-                res.render('account', context);
+            else{
+                fields.fotografia = fields.namefoto
             }
-        });
-    }
-});
+
+
+            var db = req.connection;
+            db.query('UPDATE CLIENT SET NAME ='+ fields.fname +', NIF ='+ fields.nif +', EMAIL ='+ fields.email +', PHONE ='+ fields.phone +', STREET ='+ fields.morada +', COUNTRY ='+ fields.country +', CITY ='+ fields.city +',  ZIP_CODE ='+ fields.codpost +', img_path ='+ fields.fotografia +' WHERE NIF =' + nif, function (err2, docs) {
+                if (!err2) {
+                    if(fields.nif != nif){
+                        res.redirect("/logout")
+                    }
+                    else{
+                        res.redirect("/home")
+                    }
+                }
+                else{
+                    res.redirect("/home")
+                }
+            })
+        })
+        }
+
+})
 
 module.exports = router;
