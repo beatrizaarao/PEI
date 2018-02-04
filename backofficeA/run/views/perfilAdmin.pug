@@ -6,7 +6,7 @@ block content
                 .module-head
                     h3 Editar Contas
                 .module-body
-                    form.form-horizontal.row-fluid(action="#", method="post")
+                    form.form-horizontal.row-fluid(action="/perfilAdmin/update", method="post")
                         h3 Informação de conta - #{ADMIN.Username}
                         .control-group
                             label.control-label(for='basicinput') Username
@@ -14,14 +14,14 @@ block content
                                 .input-prepend
                                     span.add-on
                                         i.icon.icon-user
-                                input#basicinput.span7(type='text', name = user, value=ADMIN.Username)
+                                input#basicinput.span7(type='text', name = 'user', value=ADMIN.Username)
                         .control-group
                             label.control-label(for='basicinput') Password
                             .controls
                                 .input-prepend
                                     span.add-on
                                         i.icon.icon-key
-                                input#basicinput.span7(type='text', name = pass, value=ADMIN.PASSWORD)
+                                input#basicinput.span7(type='password', name = 'pass', value=ADMIN.PASSWORD)
 
                         hr(style="border-width:2px;")
                         h3 Informação de Empresa - #{nome}
@@ -31,7 +31,7 @@ block content
                                 .input-prepend
                                     span.add-on
                                         i.icon.icon-user
-                                input#basicinput.span7(type='text', value='' + NIF, name=nif)
+                                input#basicinput.span7(type='text', value=NIF, name='nif')
 
                         .control-group
                             label.control-label(for='basicinput') Nome
@@ -39,49 +39,49 @@ block content
                                 .input-prepend
                                     span.add-on
                                         i.icon.icon-user
-                                input#basicinput.span7(type='text', value=nome, name=nome)
+                                input#basicinput.span7(type='text', value=nome, name='nome')
                         .control-group
                             label.control-label(for='basicinput') Morada
                             .controls
                                 .input-prepend
                                     span.add-on
                                         i.icon.icon-home
-                                input#basicinput.span7(type='text', value=ADDRESS, name=morada)
+                                input#basicinput.span7(type='text', value=ADDRESS, name='morada')
                         .control-group
                             label.control-label(for='basicinput') Email
                             .controls
                                 .input-prepend
                                     span.add-on
                                         i.icon.icon-envelope
-                                input#basicinput.span7(type='text', value=mail, name=email)
+                                input#basicinput.span7(type='text', value=mail, name='email')
                         .control-group
                             label.control-label(for='basicinput') Telefone
                             .controls
                                 .input-prepend
                                     span.add-on
                                         i.icon.icon-phone
-                                input#basicinput.span7(type='text', value=PHONE, name=phone)
+                                input#basicinput.span7(type='text', value=PHONE, name='phone')
                         .control-group
                             label.control-label(for='basicinput') Website
                             .controls
                                 .input-prepend
                                     span.add-on
                                         i.icon.icon-globe
-                                input#basicinput.span7(type='text', value=SITE, name=site)
+                                input#basicinput.span7(type='text', value=SITE, name='site')
                         .control-group
                             label.control-label(for='basicinput') Facebook
                             .controls
                                 .input-prepend
                                     span.add-on
                                         i.fa.fa-facebook
-                                input#basicinput.span7(type='text', value=FACE, name=face)
+                                input#basicinput.span7(type='text', value=FACE, name='face')
                         .control-group
                             label.control-label(for='basicinput') Twitter
                             .controls
                                 .input-prepend
                                     span.add-on
                                         i.fa.fa-twitter
-                                input#basicinput.span7(type='text', value=TWITTER, name=twitter)
+                                input#basicinput.span7(type='text', value=TWITTER, name='twitter')
 
                         .control-group
                             .controls
