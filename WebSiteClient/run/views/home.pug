@@ -16,52 +16,49 @@ block content
 		section(class='slice bg-white')
 			div(class='wp-section')
 				div(class='container')
-					table(class="w3-table-all w3-card-4" style="align:center")
-						if encomendas
-							tr
-								td
-									h3 Não existem encomendas
-						else
-							tr
-								td
-									h3 ID
-								td
-									h3 Data Inicio
-								td
-									h3 Data Fim
-								td
-									h3 Estado
-							each encomenda in encomendas
-								tr
-									td
-										a(href="/editar/"+ encomenda.ID_ORDER)
-											p=encomenda.ID_ORDER
-									td
-										a(href="/editar/"+ encomenda.ID_ORDER)
-											p=prettyDate(encomenda.BEGIN_DATE)
-									td
-										a(href="/editar/"+ encomenda.ID_ORDER)
-											-if(encomenda.CLOSE_DATE!=null)
-												p=prettyDate(encomenda.CLOSE_DATE)
-									if (encomenda.STATUS == 0)
-										td
-											a(href="/editar/"+ encomenda.ID_ORDER)
-												p Não aprovado
-									else if (encomenda.STATUS == 1)
-										td
-											a(href="/editar/"+ encomenda.ID_ORDER)
-												p Em processamento
-									else
-										td
-											a(href="/editar/"+ encomenda.ID_ORDER)
-												p Cancelado
+					.span9
+						.content
+							.module.message
+								.module-head
+									h3 Encomendas
+								.module-body.table(style='margin-top: 20px;')
+									table#example.datatable-1.table.table-message(cellpadding='0', cellspacing='0', border='0', width='100%', aria-describedby='DataTables_Table_0_info', style='width: 100%;')
+										if encomendas
+											thead
+												tr
+													th Referência
+													th NIF Cliente
+													th Data da Encomenda
+													th Prazo de Entrega
+													th.cell-status.hidden-phone.hidden-tablet Estado
+											tbody
+												if encomendas
+													for encomenda in encomendas
+														tr.task
+															td
+																a(href="/orderInfo/" + encomenda.ID_ORDER  style = "display:block; width:100%; height:100%; border:none; outline:none; text-decoration:none; color:inherit;")
+																	| #{encomenda.ID_ORDER}
+															td
+																a(href="/orderInfo/" + encomenda.ID_ORDER style = "display:block; width:100%; height:100%; border:none; outline:none; text-decoration:none; color:inherit;")
+																	| #{encomenda.Client_NIF}
+															td
+																a(href="/orderInfo/" + encomenda.ID_ORDER style = "display:block; width:100%; height:100%; border:none; outline:none; text-decoration:none; color:inherit;")
+																	| #{prettyDate(encomenda.BEGIN_DATE)}
+															td
+																a(href="/orderInfo/" + encomenda.ID_ORDER style = "display:block; width:100%; height:100%; border:none; outline:none; text-decoration:none; color:inherit;")
+																	| #{prettyDate(encomenda.ASKED_DELIVERY_DATE)}
+															td.cell-status.hidden-phone.hidden-tablet
+																if(encomenda.STATUS == 1)
+																	p Em Processamento
+																else
+																	if(encomenda.STATUS == 2)
+																		p Cancelada
+																	else
+																		p Não Aprovada
+										else
+											thead
+												tr
+													p Ainda não foram resgistadas encomendas!!
 					br
 					a(href="/prodef")
 						input(type="button" class='btn btn-base btn-icon btn-icon-right pull-right' style='width: 150px;' value='Nova Encomenda')
-
-					script.
-						function formata(data){
-							var datainicio = data.split(" ")
-							var forminicio = datainicio[0]+" "+datainicio[1]+" "+datainicio[2]+" "+datainicio[3]
-							return forminicio
-						}

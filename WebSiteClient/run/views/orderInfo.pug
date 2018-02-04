@@ -1,0 +1,72 @@
+extends layout
+block content
+    .span9
+        .content
+            .module
+                .module-head
+                    h3 Informação Encomenda
+                .module-body
+                    .profile-head.media
+                        .media-body
+                            h4
+                                |Referência: #{ordem[0].ID_ORDER}
+                            p.profile-brief.strong
+                                | NIF Cliente: #{ordem[0].Client_NIF}
+                            p.profile-brief.strong
+                                | Data Encomenda: #{prettyDate(ordem[0].BEGIN_DATE)}
+                            p.profile-brief.strong
+                                | Data Entrega Requerida: #{prettyDate(ordem[0].ASKED_DELIVERY_DATE)}
+                            -var estado
+
+                            -if(ordem[0].STATUS==0)
+                                -estado = "Não Aprovada"
+                            -if(ordem[0].STATUS==1)
+                                -estado = "Em processamento"
+                            -else
+                                -estado = "Cancelada"
+                            p.profile-brief.strong
+                                | Estado: #{estado}
+
+                            .profile-details.muted
+                                form(action="/compose/clientInfo/" + ordem[0].Client_NIF, method="post")
+                                    button(class="btn" type="submit")
+                                        i.icon-envelope-alt.shaded
+                                        |    Enviar Mensagem
+
+                    .profile-tab-content.tab-content(style="margin-top: 20px")
+                        -var array = [];
+                        -var array2 = [];
+                        -for(var i=0; i<steps.length; i++)
+                            h5 #{steps[i]}
+
+                            hr
+                            -array = stepService.get(steps[i]);
+                            -for(var k=0; k<array.length;k++)
+                                p(class = "profile-brief") #{array[k]}
+                                -var option
+                                -if(array[k].indexOf(':')!=-1)
+                                    -service = array[k].slice(0,array[k].indexOf(':'))
+                                    -array2 = serviceOption.get(service);
+                                    -if(array2!=null)
+                                        -for(var j=0; j<array2.length;j++)
+                                            p #{array2[j]}
+                                -else
+                                    -service = array[k];
+                                    -array2 = serviceOption.get(service);
+                                    -if(array2!=null)
+                                        -for(var j=0; j<array2.length;j++)
+                                            ul
+                                                li
+                                                    p(style="text-indent:35px; ")
+                                                        |&rarr; #{array2[j]}
+
+                        form(action="/orderInfo/pdf/" + ordem[0].ID_ORDER, method="post" style="display:inline; margin:0px; padding:0px;")
+                            button(class="btn btn-large pull-right" type="submit") Gerar PDF
+                        -if(ordem[0].STATUS!=2)
+                            form(action="/orderInfo/encomendas/" + ordem[0].ID_ORDER+"?_method=PUT", method="post", style="display:inline; margin:0px; padding:0px;")
+                                button(class="btn btn-large btn-danger pull-right" type="submit") Cancelar Encomenda
+                        -if(ordem[0].STATUS==0)
+                            form(action="/orderInfo/exportar/" + ordem[0].ID_ORDER, method="post", style="display:inline; margin:0px; padding:0px;")
+                                button(class="btn btn-large btn-success pull-right" type="submit") Aprovar/Exportar
+                        br
+                        br
