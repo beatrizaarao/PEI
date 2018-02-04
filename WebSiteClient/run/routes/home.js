@@ -16,7 +16,7 @@ router.get('/', function(req, res, next) {
         var db = req.connection
         db.query('SELECT * FROM ORDEM WHERE client_NIF =' + nif, function (err2, docs) {
             if (!err2) {
-                res.render('home', {title: 'Home', encomendas: docs});
+                res.render('home', {title: 'Home', encomendas: docs,NOME: req.cookies.nome, EMAIL: req.cookies.email, PHONE: req.cookies.phone, MORADA: req.cookies.address, SITE: req.cookies.site, FACE: req.cookies.face, TWITTER: req.cookies.twitter, NIF: req.cookies.nif});
             }
             else {
                 console.log("Ocorreu um erro ao carregar a pagina home")
