@@ -14,6 +14,7 @@ router.get('/', function(req, res, next) {
         res.redirect('/signin')
     }
     else {
+        res.render('prodef', {title: 'Encomenda', NOME: req.cookies.nome, EMAIL: req.cookies.email, PHONE: req.cookies.phone, MORADA: req.cookies.address, SITE: req.cookies.site, FACE: req.cookies.face, TWITTER: req.cookies.twitter, NIF: req.cookies.nif});
         var db = req.connection;
         db.query('SELECT * FROM STEP', function (err, rows) {
             steps = rows;

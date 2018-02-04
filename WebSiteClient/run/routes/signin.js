@@ -16,7 +16,7 @@ router.get('/', function(req, res, next) {
         res.redirect('/indisponivel')
     }
     else {
-        res.render('lr', {title: 'Login'});
+        res.render('lr', {title: 'Login', NOME: req.cookies.nome, EMAIL: req.cookies.email, PHONE: req.cookies.phone, MORADA: req.cookies.address, SITE: req.cookies.site, FACE: req.cookies.face, TWITTER: req.cookies.twitter, NIF: req.cookies.nif});
     }
 });
 
@@ -42,24 +42,24 @@ router.post('/',function(req,res,next) {
                                 res.redirect('/order')
                             }
                             else {
-                                res.render('lr', {title: 'Login', status: 'Conta ainda não aprovada'});
+                                res.render('lr', {title: 'Login', status: 'Conta ainda não aprovada', NOME: req.cookies.nome, EMAIL: req.cookies.email, PHONE: req.cookies.phone, MORADA: req.cookies.address, SITE: req.cookies.site, FACE: req.cookies.face, TWITTER: req.cookies.twitter, NIF: req.cookies.nif});
                             }
                             if (docs[0].IS_BLOCKED) {
-                                res.render('lr', {title: 'Login', status: 'Conta bloqueada'});
+                                res.render('lr', {title: 'Login', status: 'Conta bloqueada', NOME: req.cookies.nome, EMAIL: req.cookies.email, PHONE: req.cookies.phone, MORADA: req.cookies.address, SITE: req.cookies.site, FACE: req.cookies.face, TWITTER: req.cookies.twitter, NIF: req.cookies.nif});
                             }
                         }
                         else {
-                            res.render('lr', {title: 'Login', status: 'Password errada para o utilizador inserido'});
+                            res.render('lr', {title: 'Login', status: 'Password errada para o utilizador inserido', NOME: req.cookies.nome, EMAIL: req.cookies.email, PHONE: req.cookies.phone, MORADA: req.cookies.address, SITE: req.cookies.site, FACE: req.cookies.face, TWITTER: req.cookies.twitter, NIF: req.cookies.nif});
                         }
                     }
                     else {
-                        res.render('lr', {title: 'Login', status: 'Não existe nenhum utilizador com esse nome'});
+                        res.render('lr', {title: 'Login', status: 'Não existe nenhum utilizador com esse nome', NOME: req.cookies.nome, EMAIL: req.cookies.email, PHONE: req.cookies.phone, MORADA: req.cookies.address, SITE: req.cookies.site, FACE: req.cookies.face, TWITTER: req.cookies.twitter, NIF: req.cookies.nif});
                     }
 
                 }
                 else {
                     console.log("Occoreu um erro ao fazer o login do user " + fields.nif + " : \r\n" + err2 + "\r\n\r\n")
-                    res.render('lr', {title: 'Login', status: 'Ocorreu um erro, por favor tente novamente'});
+                    res.render('lr', {title: 'Login', status: 'Ocorreu um erro, por favor tente novamente', NOME: req.cookies.nome, EMAIL: req.cookies.email, PHONE: req.cookies.phone, MORADA: req.cookies.address, SITE: req.cookies.site, FACE: req.cookies.face, TWITTER: req.cookies.twitter, NIF: req.cookies.nif});
                 }
 
             })

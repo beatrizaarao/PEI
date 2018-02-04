@@ -10,7 +10,7 @@ router.get('/', function(req, res, next) {
         res.redirect('/indisponivel')
     }
     else {
-        res.render('lr', {title: 'Signup'});
+        res.render('lr', {title: 'Signup', NOME: req.cookies.nome, EMAIL: req.cookies.email, PHONE: req.cookies.phone, MORADA: req.cookies.address, SITE: req.cookies.site, FACE: req.cookies.face, TWITTER: req.cookies.twitter, NIF: req.cookies.nif});
     }
   
 });
@@ -35,7 +35,7 @@ router.post('/',function(req,res,next) {
                         console.log(fields.cpassword)
                         if (fields.pass != fields.cpassword) {
                             status = "Erro na confirmação de password"
-                            res.render('lr', {title: 'Signup', status: status});
+                            res.render('lr', {title: 'Signup', status: status, NOME: req.cookies.nome, EMAIL: req.cookies.email, PHONE: req.cookies.phone, MORADA: req.cookies.address, SITE: req.cookies.site, FACE: req.cookies.face, TWITTER: req.cookies.twitter, NIF: req.cookies.nif});
                         }
                         else {
                             if(files.foto1.name != ""){
@@ -67,7 +67,7 @@ router.post('/',function(req,res,next) {
                                     else {
                                         console.log("Erro ao efetuar o registo:\r\n" + err3 + "\r\n\r\n");
                                         status = " Ocorreu um erro: " + err3
-                                        res.render('lr', {title: 'Signup', status: status});
+                                        res.render('lr', {title: 'Signup', status: status, NOME: req.cookies.nome, EMAIL: req.cookies.email, PHONE: req.cookies.phone, MORADA: req.cookies.address, SITE: req.cookies.site, FACE: req.cookies.face, TWITTER: req.cookies.twitter, NIF: req.cookies.nif});
                                     }
                                 });
                             });
@@ -75,12 +75,12 @@ router.post('/',function(req,res,next) {
                         }
                     }
                     else {
-                        res.render('lr', {title: 'Signup', status: 'Já existe um utilizador com esse nif'})
+                        res.render('lr', {title: 'Signup', status: 'Já existe um utilizador com esse nif', NOME: req.cookies.nome, EMAIL: req.cookies.email, PHONE: req.cookies.phone, MORADA: req.cookies.address, SITE: req.cookies.site, FACE: req.cookies.face, TWITTER: req.cookies.twitter, NIF: req.cookies.nif})
                     }
                 }
                 else {
                     console.log("Erro a adicionar utilizador: " + err2)
-                    res.render('lr', {title: 'Signup', status: 'Ocorreu um erro, por favor tente novamente'})
+                    res.render('lr', {title: 'Signup', status: 'Ocorreu um erro, por favor tente novamente', NOME: req.cookies.nome, EMAIL: req.cookies.email, PHONE: req.cookies.phone, MORADA: req.cookies.address, SITE: req.cookies.site, FACE: req.cookies.face, TWITTER: req.cookies.twitter, NIF: req.cookies.nif})
                 }
             })
 

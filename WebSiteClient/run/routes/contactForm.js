@@ -17,7 +17,15 @@ router.get('/', function(req, res, next) {
             email: "example@email.com...",
             nome: "Inserir Nome...",
             assunto: "Inserir assunto...",
-            mensagem: "Inserir mensagem..."
+            mensagem: "Inserir mensagem...",
+            NOME: req.cookies.nome,
+            EMAIL: req.cookies.email,
+            PHONE: req.cookies.phone,
+            MORADA: req.cookies.address,
+            SITE: req.cookies.site,
+            FACE: req.cookies.face,
+            TWITTER: req.cookies.twitter,
+            NIF: req.cookies.nif
         });
     }
 });
