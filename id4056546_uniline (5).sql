@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: 03-Fev-2018 às 19:36
+-- Generation Time: 04-Fev-2018 às 02:21
 -- Versão do servidor: 10.1.29-MariaDB
 -- PHP Version: 7.2.0
 
@@ -20,9 +20,6 @@ SET time_zone = "+00:00";
 
 --
 -- Database: `id4056546_uniline`
-
-CREATE SCHEMA IF NOT EXISTS id4056546_uniline DEFAULT CHARACTER SET utf8 ;
-USE id4056546_uniline ;
 --
 
 -- --------------------------------------------------------
@@ -33,7 +30,7 @@ USE id4056546_uniline ;
 
 CREATE TABLE `ADMINISTRATOR` (
   `id_ADMINISTRATOR` int(11) NOT NULL,
-  `EMAIL` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `Username` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
   `PASSWORD` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
   `deploy` int(11) NOT NULL,
   `IS_LOGGED` tinyint(4) NOT NULL
@@ -43,10 +40,10 @@ CREATE TABLE `ADMINISTRATOR` (
 -- Extraindo dados da tabela `ADMINISTRATOR`
 --
 
-INSERT INTO `ADMINISTRATOR` (`id_ADMINISTRATOR`, `EMAIL`, `PASSWORD`, `deploy`, `IS_LOGGED`) VALUES
-(1, 'encomenda.uniline@gmail.com', 'admin123', 1, 1),
-(2, 'madalenaa.castro@gmail.com', 'Teste123', 1, 0),
-(3, 'luismarques24@hotmail.com', 'olaola', 1, 0);
+INSERT INTO `ADMINISTRATOR` (`id_ADMINISTRATOR`, `Username`, `PASSWORD`, `deploy`, `IS_LOGGED`) VALUES
+(1, 'encomenda.uniline', 'admin123', 1, 1),
+(2, 'madalenaa.castro', 'Teste123', 1, 0),
+(3, 'luismarques24', 'olaola', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -129,7 +126,7 @@ CREATE TABLE `DEPLOY` (
 --
 
 INSERT INTO `DEPLOY` (`NAME`, `ID`, `EMAIL`, `PHONE`, `ADRESS`, `WEBPAGE_LINK`, `URL_ICON`, `FACEBOOK_LINK`, `TWITTER_LINK`, `STATISTICS`) VALUES
-('PeugasLDA.', 1, 'peugas@teste.com', '253000000', 'Rua da Travessa_4000-300_Guimarães_Portugal', 'http://www.etpeugas.com/pt/', 'https://icon-icons.com/icons2/390/PNG/512/socks_39463.png', 'https://www.facebook.com/peugas.co/', 'https://twitter.com/PeugasFilisa', '10000');
+('PeugasLDA.', 1, 'peugas@teste.com', '253000000', 'Rua da Travessa_4000-300_Guimarães_Portugal', 'http://www.etpeugas.com/pt/', 'https://icon-icons.com/icons2/390/PNG/512/socks_39463.png', 'https://www.facebook.com/peugas.co/', 'https://twitter.com/PeugasFilisa', '1000');
 
 -- --------------------------------------------------------
 
@@ -199,7 +196,7 @@ CREATE TABLE `ORDEM` (
 --
 
 INSERT INTO `ORDEM` (`ID_ORDER`, `BEGIN_DATE`, `CLOSE_DATE`, `Client_NIF`, `ASKED_DELIVERY_DATE`, `STATUS`) VALUES
-(1, '2018-02-07', NULL, '123456789', '2018-02-09', 1),
+(1, '2018-02-07', NULL, '123456789', '2018-02-09', 2),
 (49, '2018-02-14', NULL, '123456', '2018-02-06', 0),
 (50, '2018-03-15', NULL, '123456789', '2018-02-07', 0);
 
@@ -303,7 +300,9 @@ CREATE TABLE `Task` (
 --
 
 INSERT INTO `Task` (`ID_TASK`, `DESCRIPTION`, `STATE`, `Client_NIF`, `Tipo`, `dataPedido`, `Ordem_ID`) VALUES
-(10, 'O cliente com o NIF=123456789pretende registar-se na aplicação', 0, '123456789', 2, '2018-01-31', NULL);
+(10, 'O cliente com o NIF=123456789pretende registar-se na aplicação', 0, '123456789', 0, '2018-01-31', NULL),
+(11, 'Cancelar encomenda', 1, '123456789', 1, '2018-02-07', 1),
+(12, 'Alterar encomenda', 0, '123456', 2, '2018-02-14', 1);
 
 --
 -- Indexes for dumped tables
@@ -437,7 +436,7 @@ ALTER TABLE `STEP`
 -- AUTO_INCREMENT for table `Task`
 --
 ALTER TABLE `Task`
-  MODIFY `ID_TASK` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `ID_TASK` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Constraints for dumped tables

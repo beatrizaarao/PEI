@@ -45,6 +45,8 @@ router.get('/', function(req, res, next) {
                                             dataOpts: opts,
                                             dataRes: inc,
                                             dataOptRes: optres,
+                                            mail: req.cookies.email,
+                                            nome: req.cookies.nome
                                         });
                                     });
                                 });

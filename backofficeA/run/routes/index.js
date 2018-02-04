@@ -5,7 +5,7 @@ var app = express();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-
+    console.log("ola" + req.cookies.deploy)
     if(req.cookies.deploy === undefined){
         res.redirect('/')
     }
@@ -35,7 +35,10 @@ router.get('/', function(req, res, next) {
                                             lastYear: lastYear,
                                             lastYearOrders: lastYearOrders[0].last,
                                             monthOrders: monthOrders[0].tamanho,
-                                            monthClients: monthClients[0].cli
+                                            monthClients: monthClients[0].cli,
+                                            mail: req.cookies.email,
+                                            nome: req.cookies.nome,
+                                            stat: req.cookies.stat
                                         });
                                     });
                                 });

@@ -31,7 +31,9 @@ router.get('/', function(req, res, next) {
                                             inbox_msm: inbox_msm,
                                             sent_msm: sent_msm,
                                             trash_msm: trash_msm,
-                                            favorites_msm: favorites_msm
+                                            favorites_msm: favorites_msm,
+                                            mail: req.cookies.email,
+                                            nome: req.cookies.nome
                                         });
                                     });
                                 });

@@ -59,11 +59,14 @@ block content
                                                 li
                                                     p(style="text-indent:35px; ")
                                                         |&rarr; #{array2[j]}
+
+                        form(action="/orderInfo/pdf/" + ordem[0].ID_ORDER, method="post" style="display:inline; margin:0px; padding:0px;")
+                            button(class="btn btn-large pull-right" type="submit") Gerar PDF
+                        -if(ordem[0].STATUS!=2)
+                            form(action="/orderInfo/encomendas/" + ordem[0].ID_ORDER+"?_method=PUT", method="post", style="display:inline; margin:0px; padding:0px;")
+                                button(class="btn btn-large btn-danger pull-right" type="submit") Cancelar Encomenda
                         -if(ordem[0].STATUS==0)
                             form(action="/orderInfo/exportar/" + ordem[0].ID_ORDER, method="post", style="display:inline; margin:0px; padding:0px;")
                                 button(class="btn btn-large btn-success pull-right" type="submit") Aprovar/Exportar
-                            div(style="width:8px; height:auto; display:inline-block;")
-                        form(action="/orderInfo/pdf/" + ordem[0].ID_ORDER, method="post" style="display:inline; margin:0px; padding:0px;")
-                            button(class="btn btn-large pull-right" type="submit") Gerar PDF
                         br
                         br

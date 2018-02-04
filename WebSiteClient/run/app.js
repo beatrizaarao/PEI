@@ -5,7 +5,6 @@ var bodyParser = require('body-parser');
 var mysql      = require('mysql');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
-var orderInfo = require('./routes/orderInfo');
 var nodemailer = require('nodemailer');
 
 var connection = mysql.createConnection({
@@ -80,7 +79,6 @@ app.use('/indisponivel', indisponivel)
 app.use('/signup',signup)
 app.use('/signin', signin)
 app.use('/account', account)
-app.use('/orderInfo', orderInfo);
 app.use('/prodef', prodef)
 app.use('/logout', logout)
 app.use('/encsuc', encsuc)

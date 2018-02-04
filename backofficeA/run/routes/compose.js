@@ -20,7 +20,7 @@ router.get('/', function(req, res, next) {
             req.app.locals.missedOrders = result[0].ord;
             db.query("SELECT COUNT(ID_TASK) AS tamanho FROM Task WHERE STATE=0", function (error, result, client) {
                 req.app.locals.missedMenu = result[0].tamanho;
-                    res.render('compose', { title: 'Compor', email: "example@email.com...", assunto: "Inserir assunto...", mensagem: "Inserir mensagem..."});
+                    res.render('compose', { title: 'Compor', email: "example@email.com...", assunto: "Inserir assunto...", mensagem: "Inserir mensagem... ", mail: req.cookies.email, nome: req.cookies.nome});
             });
         });
     });}
@@ -51,7 +51,7 @@ router.post('/', function(req, res, next){
         }
         else {
             var mailOptions = {
-                from: 'encomenda.uniline@gmail.com',
+                from: req.cookies.email,
                 to: email,
                 subject: assunto,
                 text: mensagem

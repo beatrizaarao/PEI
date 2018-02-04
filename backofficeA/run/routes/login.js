@@ -24,11 +24,11 @@ router.post('/', function(req, res){
     else {
 
         var db = req.connection;
-        db.query('SELECT * FROM ADMINISTRATOR WHERE EMAIL=?', req.body.email, function (error, result, client) {
+        db.query('SELECT * FROM ADMINISTRATOR WHERE Username=?', req.body.username, function (error, result, client) {
             if (result.length != 0) {
                 if (result[0].PASSWORD == req.body.password) {
-                    db.query('UPDATE ADMINISTRATOR SET IS_LOGGED=1 WHERE EMAIL=?', req.body.email, function (error, result, client) {
-                        res.cookie('online', req.body.email)
+                    db.query('UPDATE ADMINISTRATOR SET IS_LOGGED=1 WHERE Username=?', req.body.username, function (error, result, client) {
+                        res.cookie('online', req.body.username)
                         res.redirect('/index');
                     });
                 }
@@ -40,17 +40,6 @@ router.post('/', function(req, res){
                 res.render('login', {flash: "O utilizador inserido não existe"})
             }
         })
-    }
-})
-
-router.get('/logout', function(req, res){
-
-    if(req.cookies.deploy === undefined){
-        res.redirect('/')
-    }
-    else {
-        res.clearCookie("online")
-        res.redirect('/');
     }
 })
 

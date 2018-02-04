@@ -13,7 +13,27 @@ block content
                    |#{task[0].DESCRIPTION}
 
                 -if(task[0].Tipo==1)
-                    p FAZER MOSTRAR A ENCOMENDA
+                    table.table
+                        tbody
+                            tr
+                                th: font(size="3") NIF Cliente:
+                                td #{order[0].Client_NIF}
+                                th: font(size="3") Data Encomenda:
+                                td #{prettyDate(order[0].BEGIN_DATE)}
+                            tr
+                                th: font(size="3") Data Entrega Requerida:
+                                td #{prettyDate(order[0].ASKED_DELIVERY_DATE)}
+                                -var estado
+                                -if(order[0].STATUS==0)
+                                    -estado = "Não Aprovada"
+                                -if(order[0].STATUS==1)
+                                    -estado = "Em processamento"
+                                -else
+                                    -estado = "Cancelada"
+                                th: font(size="3") Estado:
+                                td #{estado}
+                    a(href="/orderInfo/" + order[0].ID_ORDER)
+                        button(class="btn btn-large btn-info pull-right") Ver Encomenda
                     form(action="/taskDescription/encomendas/" + t+"?_method=PUT", method="post", style="display:inline; margin:0px; padding:0px;")
                         button(class="btn btn-large btn-success" type="submit" name="encomendas" value="cancelar") Cancelar Encomenda
                         div(style="width:8px; height:auto; display:inline-block;")
@@ -50,7 +70,28 @@ block content
                             div(style="width:8px; height:auto; display:inline-block;")
                             button(type="submit" class="btn btn-large btn-danger" name="porra" value="rejeitar") Cancelar Registo
                     -else if(task[0].Tipo==2)
-                        p FAZER MOSTRAR A ENCOMENDA
-                        div(style="width:8px; height:auto; display:inline-block;")
-                        form(action="/compose/clientInfo/" + task[0].Client_NIF, method="post" style="display:inline")
-                            button(class="btn btn-large" type="submit") Contactar Cliente
+                                br
+                                table.table
+                                    tbody
+                                        tr
+                                            th: font(size="3") NIF Cliente:
+                                            td #{order[0].Client_NIF}
+                                            th: font(size="3") Data Encomenda:
+                                            td #{prettyDate(order[0].BEGIN_DATE)}
+                                        tr
+                                            th: font(size="3") Data Entrega Requerida:
+                                            td #{prettyDate(order[0].ASKED_DELIVERY_DATE)}
+                                            -var estado
+                                            -if(order[0].STATUS==0)
+                                                -estado = "Não Aprovada"
+                                            -if(order[0].STATUS==1)
+                                                -estado = "Em processamento"
+                                            -else
+                                                -estado = "Cancelada"
+                                            th: font(size="3") Estado:
+                                            td #{estado}
+                                a(href="/orderInfo/" + order[0].ID_ORDER)
+                                    button(class="btn btn-large btn-info") Ver Encomenda
+                                form(action="/compose/clientInfo/" + task[0].Client_NIF, method="post" style="display:inline")
+                                    div(style="width:8px; height:auto; display:inline-block;")
+                                    button(class="btn btn-large" type="submit") Contactar Cliente

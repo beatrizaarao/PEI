@@ -26,9 +26,9 @@ var mysql      = require('mysql');
 var connection = mysql.createConnection({
     multipleStatements: true,
     hostname : 'localhost',
-    port: '3306',
+    port: '3307',
     user     : 'root',
-    password : 'root',
+    password : '',
     database : 'id4056546_uniline'
 
 });
@@ -43,8 +43,8 @@ connection.connect(function(err){
 
 var orderInfo = require('./routes/orderInfo');
 var login = require('./routes/login');
+var logout = require('./routes/logout');
 var index = require('./routes/index');
-//var users = require('./routes/users');
 var clients = require('./routes/clients');
 var tasks = require('./routes/tasks');
 var message = require('./routes/message');
@@ -105,7 +105,7 @@ app.use(function(req,res,next){
     next();
 });
 
-//app.use('/logout', logout);
+app.use('/logout', logout);
 app.use('/orderInfo', orderInfo);
 app.use('/', login);
 app.use('/index', index);

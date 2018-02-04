@@ -52,23 +52,28 @@ router.post('/',function(req,res,next){
 
                                 for(elem in lista){
                                     i++
-                                    querysql += "INSERT INTO `administrator` (`id_ADMINISTRATOR`, `EMAIL`, `PASSWORD`, `DEPLOY`, `IS_LOGGED`) VALUES("+ i +",'"+ lista[elem].email + "','" + lista[elem].password + "',1,0);"
+                                    querysql += "INSERT INTO `administrator` (`id_ADMINISTRATOR`, `Username`, `PASSWORD`, `DEPLOY`, `IS_LOGGED`) VALUES("+ i +",'"+ lista[elem].username + "','" + lista[elem].password + "',1,0);"
                                 }
                             }
                         }
                         console.log(querysql)
                         db.query(querysql, function(err3, result, clint) {
-                            if (err3) {
-                                console.log("Erro ao fazer Deploy:\r\n" + err3 + "\r\n\r\n");
-                                status = " Ocorreu um erro: " + err3
-                                res.render('importar', {title: 'Deploy', status: status});
-                            }
-
-                        })
-                        status = "Deploy feito com sucesso."
-                        console.log("Deploy efectuado com sucesso")
-                        res.cookie('deploy', 1)
-                        res.redirect("/")
+                            db.query("SELECT * FROM DEPLOY", function(err1, result1, cliente) {
+                                var dep = result1;
+                                res.cookie('deploy', 1);
+                                res.cookie('email', dep[0].EMAIL);
+                                res.cookie('stat', dep[0].STATISTICS);
+                                res.cookie('nome', dep[0].NAME);
+                                status = "Deploy feito com sucesso."
+                                console.log("Deploy efectuado com sucesso")
+                                res.redirect("/")
+                                if (err3) {
+                                    console.log("Erro ao fazer Deploy:\r\n" + err3 + "\r\n\r\n");
+                                    status = " Ocorreu um erro: " + err3
+                                    res.render('importar', {title: 'Deploy', status: status});
+                                }
+                            });
+                        });
                     }
                     else{
                         res.render("importar",{status:"Ocorreu um erro na leitura do ficheiro. Por favor tente novamente"})

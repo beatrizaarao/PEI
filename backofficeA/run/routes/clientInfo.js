@@ -30,7 +30,9 @@ else {
                                         title: 'ClientInfo',
                                         user: userInfo,
                                         nOrder: numeroEncomendas,
-                                        uOrder: ultimaEncomenda
+                                        uOrder: ultimaEncomenda,
+                                        mail: req.cookies.email,
+                                        nome: req.cookies.nome
                                     });
                                 });
                             });

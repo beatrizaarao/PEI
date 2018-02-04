@@ -19,7 +19,7 @@ router.get('/:messageID', function(req, res, next) {
                     req.app.locals.missedMenu = result[0].tamanho;
                         db.query('SELECT * FROM ADMIN_MESSAGE where idMESSAGES=?', req.params.messageID, function (error, result, client) {
                             mensagem = result;
-                            res.render('messageInfo', {title: 'Mensagem', mensagem: mensagem});
+                            res.render('messageInfo', {title: 'Mensagem', mensagem: mensagem, mail: req.cookies.email, nome: req.cookies.nome});
                         });
                 });
             });

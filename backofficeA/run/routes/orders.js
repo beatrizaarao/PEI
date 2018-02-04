@@ -24,7 +24,9 @@ router.get('/', function(req, res, next) {
                                 res.render('orders', {
                                     title: 'Encomendas',
                                     ordersMiss: ordersListMiss,
-                                    otherOrders: other
+                                    otherOrders: other,
+                                    mail: req.cookies.email,
+                                    nome: req.cookies.nome
                                 });
                             });
                         });

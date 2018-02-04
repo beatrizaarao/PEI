@@ -9,12 +9,12 @@
 	"twitter_link":"https://twitter.com/PeugasFilisa",
 	"statistics":"1000"
 }];"Admin"[{
-    "email":"encomenda.uniline@gmail.com",
+    "username":"encomenda.uniline",
       "password":"admin123"
   }-{
-      "email":"madalenaa.castro@gmail.com",
+      "username":"madalenaa.castro",
       "password":"Teste123"
   }-{
-      "email":"luismarques24@hotmail.com",
+      "username":"luismarques24",
       "password":"olaola"
   }]
