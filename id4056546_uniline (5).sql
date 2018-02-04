@@ -21,9 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `id4056546_uniline`
 --
-
--- --------------------------------------------------------
-
+CREATE SCHEMA IF NOT EXISTS `id4056546_uniline` DEFAULT CHARACTER SET utf8 ;
+USE `id4056546_uniline` ;
 --
 -- Estrutura da tabela `ADMINISTRATOR`
 --

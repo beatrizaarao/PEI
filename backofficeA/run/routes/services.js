@@ -86,18 +86,18 @@ router.post('/serv', function(req, res) {
             if (req.body.peso2 == "1") {
                 peso = "INSERT INTO SERVICE (id_SERVICE, NAME, DESCRIPTION, STEP_id_step, VALOR, IS_CHECKBOX) VALUES (3, 'Peso', 'peso', 1, null, 0);";
             }
-            if (req.body.largini2 == "1") {
+            if (req.body.largurai2 == "1") {
                 largurai = "INSERT INTO SERVICE (id_SERVICE, NAME, DESCRIPTION, STEP_id_step, VALOR, IS_CHECKBOX) VALUES (4, 'Largura Inicial', 'largurai', 1, null, 0);";
 
-                if (parseInt(req.body.numlariniII2) > 0) {
+                if (parseInt(req.body.larguraii2) > 0) {
                     larguraii = "INSERT INTO OPCAO (id_OPTION, NAME, DESCRIPTION, VALOR, SERVICE_id_SERVICE, IS_CHECKBOX) VALUES (1, 'LI intervalo inicial', 'larguraii', " + req.body.numlariniII2 + ", 4, 0);";
                     larguraif = "INSERT INTO OPCAO (id_OPTION, NAME, DESCRIPTION, VALOR, SERVICE_id_SERVICE, IS_CHECKBOX) VALUES (2, 'LI intervalo final', 'larguraif', " + req.body.numlariniFF2 + ", 4, 0);";
                 }
             }
-            if (req.body.largfin2 == "1") {
+            if (req.body.larguraf2 == "1") {
                 larguraf = "INSERT INTO SERVICE (id_SERVICE, NAME, DESCRIPTION, STEP_id_step, VALOR, IS_CHECKBOX) VALUES (5, 'Largura Final', 'larguraf', 1, null, 0);";
 
-                if (parseInt(req.body.numlarfinII2) > 0) {
+                if (parseInt(req.body.largurafi2) > 0) {
                     largurafi = "INSERT INTO OPCAO (id_OPTION, NAME, DESCRIPTION, VALOR, SERVICE_id_SERVICE, IS_CHECKBOX) VALUES (3, 'LF intervalo inicial', 'largurafi', " + req.body.numlarfinII2 + ", 5, 0);";
                     larguraff = "INSERT INTO OPCAO (id_OPTION, NAME, DESCRIPTION, VALOR, SERVICE_id_SERVICE, IS_CHECKBOX) VALUES (4, 'LF intervalo final', 'larguraff', " + req.body.numlarfinFF2 + ", 5, 0);";
                 }

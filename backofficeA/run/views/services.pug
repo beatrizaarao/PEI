@@ -21,8 +21,6 @@ block content
                     -else
                         thead
                             tr
-                                th Serviços
-                            tr
                                 th Etapas
                                 th Serviços
                                 th
@@ -36,15 +34,13 @@ block content
                                             -if(dataServs[i].STEP_id_step == dataSteps[j].id_STEP)
                                                 h7=dataServs[i].NAME
                                                 br
-                                    td
-                                        button(type="button" class="btn btn btn-success" data-toggle="modal" data-target="#") Alterar
-                                        button(type="button" class="btn btn-danger" data-toggle="modal" data-target="#") Remover
                 hr
-                button(type="button" class="btn btn-default" data-toggle="modal" data-target="#myModelDefinicao")
-                    i(class = "icon-plus-sign") Adicionar Serviço
-                hr
+                -if (dataSteps.length==0)
+                    button(type="button" class="btn btn-default" data-toggle="modal" data-target="#myModelDefinicao")
+                        i(class = "icon-plus-sign") Adicionar Serviço
 
-                table.table(cellpadding='0', cellspacing='0', border='0', width='100%', aria-describedby='DataTables_Table_0_info', style='width: 100%;')
+
+                //table.table(cellpadding='0', cellspacing='0', border='0', width='100%', aria-describedby='DataTables_Table_0_info', style='width: 100%;')
                     col(width="50%")
                     col(width="50%")
                     -if (dataRes.length==0)
@@ -76,13 +72,13 @@ block content
                                                 button(type="button" class="btn btn btn-success" data-toggle="modal" data-target="#") Alterar
                                                 button(type="button" class="btn btn-danger" data-toggle="modal" data-target="#") Remover
 
-            hr
-            -if (dataSteps.length>0)
+            //hr
+            //-if (dataSteps.length>0)
                 button(type="button" class="btn btn-default" data-toggle="modal" data-target="#restricoes")
-                    i(class = "icon-plus-sign") Alterar Restrição
+                    i(class = "icon-plus-sign") Adicionar/Alterar Restrição
 
 
-            div(class="modal hide fade" id="restricoes" role="dialog")
+            //div(class="modal hide fade" id="restricoes" role="dialog")
                 div(class="modal-dialog")
                     div(class="modal-content")
                         div(class="modal-header")
@@ -104,36 +100,18 @@ block content
                                             input(type='checkbox' name='steps' + dataSteps[k].DESCRIPTION id='steps' + dataSteps[k].DESCRIPTION)
                                         -for(var j=0; j<dataServs.length;j++)
                                             -if(dataServs[j].STEP_id_step == dataSteps[k].id_STEP)
-                                                label(style='padding-left:25px; padding-top:10px;font-size: 20px;' for='servs'+dataServs[j].DESCRIPTION)=dataServs[j].NAME
-                                                    input(type='checkbox' name='servs'+dataServs[j].DESCRIPTION id='servs'+dataServs[j].DESCRIPTION)
+                                                label(style='padding-left:25px; padding-top:10px;font-size: 20px; display:none' for='servs'+dataServs[j].DESCRIPTION)=dataServs[j].NAME
+                                                    input(style="display:none" type='checkbox' name='servs'+dataServs[j].DESCRIPTION id='servs'+dataServs[j].DESCRIPTION)
                                             //-for(var i=0; i<dataOpts.length;i++)
                                                 -if(dataOpts[i].SERVICE_id_SERVICE == dataServs[j].id_SERVICE)
                                                     label(style='padding-left:25px; padding-top:10px;font-size: 20px; ' for='opts'+dataOpts[i].DESCRIPTION)=dataOpts[i].NAME
                                                         input(type='checkbox' name=dataOpts[i].DESCRIPTION id='opts'+dataOpts[i].DESCRIPTION)
                                         br
-                                    label(style='padding-left:25px; padding-top:10px;font-size: 20px;' for='opts') Options
-                                        input(type='checkbox' name='opts' id='opts')
+
                         div(class="modal-footer")
                             button.btn.btn-primary(type="button" class="btn btn-default" data-dismiss="modal" data-toggle="modal" data-target="#adicionarRestricoes") Sim
                             button.btn.btn-primary(type="button" class="btn btn-default" data-dismiss="modal") Não
 
-            //div(class="modal hide fade" id="adicionarRestricoes" role="dialog")
-                div(class="modal-dialog")
-                    div(class="modal-content")
-                        div(class="modal-header")
-                            ol(class='progtrckr' data-progtrckr-steps='7')
-                                li(class='progtrckr-done') Definição do Produto
-                                li(class='progtrckr-done') Preparação
-                                li(class='progtrckr-done') Tinturaria
-                                li(class='progtrckr-done') Acabamento
-                                li(class='progtrckr-done') Embalagem
-                                li(class='progtrckr-done') Confirmar
-                                li(class='progtrckr-todo') Restrições
-                        div(class="modal-body")
-                            h4(style='padding-left:20px; padding-top:25px') Deseja adicionar restrições?
-                        div(class="modal-footer")
-                            button.btn.btn-primary(type="button" class="btn btn-default" data-dismiss="modal" data-toggle="modal" data-target="#restricoes") Sim
-                            button.btn.btn-primary(type="button" class="btn btn-default" data-dismiss="modal") Não
 
             div(class="modal hide fade" id="confirmar" role="dialog")
                 div(class="modal-dialog")
@@ -171,22 +149,22 @@ block content
                                 h4(style='padding-left:20px; padding-top:25px') Embalagem
                                 div.form-inline
                                     div.checkbox
-                                        label(style='padding-left:25px; padding-top:10px;font-size: 20px;' for='enfestar') Enfestar
-                                            input(type='checkbox' name='enfestar' id='enfestar')
-                                        label(style='padding-left:25px; padding-top:10px;font-size: 20px;display:none' id="lem" for='em') EM
-                                            input(style='display:none' type='checkbox' name='em' id='em')
-                                        label(style='padding-left:25px; padding-top:10px;font-size: 20px;display:none' id="lei" for='ei') EI
-                                            input(style='display:none' type='checkbox' name='ei' id='ei')
-                                        label(style='padding-left:25px; padding-top:10px;font-size: 20px;display:none' id="lrm" for='rm') RM
-                                            input(style='display:none' type='checkbox' name='rm' id='rm')
-                                        label(style='padding-left:25px; padding-top:10px;font-size: 20px;display:none' id="lnr" for='nr') Nºmetros/Peça
-                                            input(style='display:none' type='checkbox' name='nr' id='nr')
+                                        label(style='padding-left:25px; padding-top:10px;font-size: 20px;' for='enfestar' class="enfestar") Enfestar
+                                            input(type='checkbox' name='enfestar' id='enfestar' class="enfestar")
+                                        label(style='padding-left:25px; padding-top:10px;font-size: 20px;display:none' class="em" id="lem" for='em') EM
+                                            input(style='display:none' type='checkbox' name='em' id='em' class="em")
+                                        label(style='padding-left:25px; padding-top:10px;font-size: 20px;display:none' id="lei" for='ei' class="ei") EI
+                                            input(style='display:none' type='checkbox' name='ei' id='ei' class="ei")
+                                        label(style='padding-left:25px; padding-top:10px;font-size: 20px;display:none' id="lrm" for='rm' class="rm") RM
+                                            input(style='display:none' type='checkbox' name='rm' id='rm' class="rm")
+                                        label(style='padding-left:25px; padding-top:10px;font-size: 20px;display:none' id="lnr" for='nr' class="quantenf") Nºmetros/Peça
+                                            input(style='display:none' type='checkbox' name='nr' id='nr' class="quantenf")
                                 div.form-inline
                                     div.checkbox
-                                        label(style='padding-left:25px; padding-top:10px; padding-bottom:25px;font-size: 20px' for='enrolar') Enrolar
-                                            input(type='checkbox' name='enrolar' id='enrolar')
-                                        label(style='padding-left:25px; padding-top:10px;  font-size: 20px;display:none' id="lnren" for='nren') Nºpeças/metro
-                                            input(style='display:none' type='checkbox' name='nren' id='nren')
+                                        label(style='padding-left:25px; padding-top:10px; padding-bottom:25px;font-size: 20px' for='enrolar' class="enrolar") Enrolar
+                                            input(type='checkbox' name='enrolar' id='enrolar' class="enrola")
+                                        label(style='padding-left:25px; padding-top:10px;  font-size: 20px;display:none' id="lnren" for='nren' class="quantenr") Nºpeças/metro
+                                            input(style='display:none' type='checkbox' name='nren' id='nren' class="quantenr")
                         div(class="modal-footer")
                             button.btn.btn-primary(type="button" class="btn btn-default" data-dismiss="modal" data-toggle="modal" data-target="#myModelAcabamento") Anterior
                             button.btn.btn-primary(type="button" class="btn btn-default" data-dismiss="modal" data-toggle="modal" data-target="#confirmar") Próximo
@@ -211,27 +189,27 @@ block content
                                 h4(style='padding-left:20px; padding-top:25px') Acabamento
                                 div.form-inline
                                     div.checkbox
-                                        label(style='padding-left:25px; padding-top:px;font-size: 20px;' for='secar') Secar
-                                            input(type='checkbox' name='secar' id='secar')
+                                        label(style='padding-left:25px; padding-top:px;font-size: 20px;' for='secar' class="secar") Secar
+                                            input(type='checkbox' name='secar' id='secar' class="secar")
                                         br
-                                        label(style='padding-left:25px; padding-top:10px;font-size: 20px;' for='acabar') Acabar
-                                            input(type='checkbox' name='acabar' id='acabar')
+                                        label(style='padding-left:25px; padding-top:10px;font-size: 20px;' for='acabar' class="acabar") Acabar
+                                            input(type='checkbox' name='acabar' id='acabar' class="acabar")
                                         br
-                                        label(style='padding-left:25px; padding-top:10px;font-size: 20px;' for='largura') Largura
-                                            input(type='checkbox' name='largura' id='largura')
+                                        label(style='padding-left:25px; padding-top:10px;font-size: 20px;' for='largura' class="largura") Largura
+                                            input(type='checkbox' name='largura' id='largura' class="largura")
                                         br
-                                        label(style='padding-left:25px; padding-top:10px;font-size: 20px;' for='sanforizar') Sanforizar
-                                            input(type='checkbox' name='sanforizar' id='sanforizar')
+                                        label(style='padding-left:25px; padding-top:10px;font-size: 20px;' for='sanforizar' class="sanforizar") Sanforizar
+                                            input(type='checkbox' name='sanforizar' id='sanforizar' class="sanforizar")
                                         br
-                                        label(style='padding-left:25px; padding-top:10px;font-size: 20px;' for='tumbler') Tumbler
-                                            input(type='checkbox' name='tumbler' id='tumbler')
+                                        label(style='padding-left:25px; padding-top:10px;font-size: 20px;' for='tumbler' class="tumbler") Tumbler
+                                            input(type='checkbox' name='tumbler' id='tumbler' class="tumbler")
                                         br
-                                        label(style='padding-left:25px; padding-top:10px; padding-bottom:25px;font-size: 20px;' for='calandar') Calandar
-                                            input(type='checkbox' name='calandar' id='calandar')
-                                        label(style='padding-left:25px; padding-top:10px;font-size: 20px;display:none' id="cq" for='q') Q
-                                            input(style='display:none' type='checkbox' name='q' id='q')
-                                        label(style='padding-left:25px; padding-top:10px;font-size: 20px;display:none' id="cf" for='f') F
-                                            input(style='display:none' type='checkbox' name='f' id='f')
+                                        label(style='padding-left:25px; padding-top:10px; padding-bottom:25px;font-size: 20px;' for='calandar' class="calandar") Calandar
+                                            input(type='checkbox' name='calandar' id='calandar' class="calandar")
+                                        label(style='padding-left:25px; padding-top:10px;font-size: 20px;display:none' id="cq" for='q' class="q") Q
+                                            input(style='display:none' type='checkbox' name='q' id='q' class="q")
+                                        label(style='padding-left:25px; padding-top:10px;font-size: 20px;display:none' id="cf" for='f' class="f") F
+                                            input(style='display:none' type='checkbox' name='f' id='f' class="f")
                         div(class="modal-footer")
                             button.btn.btn-primary(type="button" class="btn btn-default" data-dismiss="modal" data-toggle="modal" data-target="#myModelTinturaria") Anterior
                             button.btn.btn-primary(type="button" class="btn btn-default" data-dismiss="modal" data-toggle="modal" data-target="#myModelEmbalagem") Próximo
@@ -256,21 +234,21 @@ block content
                                     p(style='padding-top:10px;' ) No caso dos não poliésters
                                     div.form-inline
                                         div.checkbox
-                                            label(style='padding-left:25px; padding-top:5px;font-size: 20px;' for='reativos') Reativos
-                                                input(type='checkbox' name='reativos' id='reativos')
+                                            label(style='padding-left:25px; padding-top:5px;font-size: 20px;' for='reativos' class="reativos") Reativos
+                                                input(type='checkbox' name='reativos' id='reativos' class="reativos")
                                             br
-                                            label(style='padding-left:25px; padding-top:10px;font-size: 20px;' for='cubas') Cubas
-                                                input(type='checkbox' name='cubas' id='cubas')
+                                            label(style='padding-left:25px; padding-top:10px;font-size: 20px;' for='cubas' class="cubas") Cubas
+                                                input(type='checkbox' name='cubas' id='cubas' class="cubas")
                                             br
-                                            label(style='padding-left:25px; padding-top:10px;font-size: 20px;' for='pigmentos') Pigmentos
-                                                input(type='checkbox' name='pigmentos' id='pigmentos')
+                                            label(style='padding-left:25px; padding-top:10px;font-size: 20px;' for='pigmentos' class="pigmentos") Pigmentos
+                                                input(type='checkbox' name='pigmentos' id='pigmentos' class="pigmentos")
                                     p(style='padding-top:15px;') No caso dos poliésters
                                     div.form-inline
                                         div.checkbox
-                                            label(style='padding-left:25px; padding-top:5px;font-size: 20px;' for='reativosP') Reativos
-                                                input(type='checkbox' name='reativosP' id='reativosP')
+                                            label(style='padding-left:25px; padding-top:5px;font-size: 20px;' for='reativosP' class="reativosP") Reativos
+                                                input(type='checkbox' name='reativosP' id='reativosP' class="reativosP")
                                             br
-                                            label(style='padding-left:25px; padding-top:10px;font-size: 20px;' for='cubasP') Cubas
+                                            label(style='padding-left:25px; padding-top:10px;font-size: 20px;' for='cubasP' ) Cubas
                                                 input(type='checkbox' name='cubasP' id='cubasP')
                                             br
                                             label(style='padding-left:25px; padding-top:10px;font-size: 20px;' for='pigmentosP') Pigmentos
@@ -347,19 +325,19 @@ block content
                                         label(style='padding-left:25px; padding-top:10px; font-size: 20px;' for='peso') Peso
                                             input(type='checkbox' name='peso' id='peso')
                                         br
-                                        label(style='padding-left:25px; padding-top:10px; font-size: 20px;' for='largini') Largura Inicial
-                                            input(type='checkbox' name='largini' id='largini')
-                                        label(style='padding-left:25px; padding-top:10px; font-size: 20px;display:none' id="liII" for='numlariniII') Intervalo de Valores
-                                            input(style='margin-left:15px; width: 50px; display:none' type='number' name='numlariniII' id='numlariniII' min="1")
-                                        label(style='font-size: 20px; margin-left:5px;display:none' id="liFF" for='numlariniFF') a
-                                            input(style='margin-left:5px; width: 50px;display:none' type='number' name='numlariniFF' id='numlariniFF' min="1")
+                                        label(style='padding-left:25px; padding-top:10px; font-size: 20px;' for='largurai') Largura Inicial
+                                            input(type='checkbox' name='largurai' id='largurai')
+                                        label(style='padding-left:25px; padding-top:10px; font-size: 20px;display:none' id="liII" for='larguraii') Intervalo de Valores
+                                            input(style='margin-left:15px; width: 50px; display:none' type='number' name='larguraii' id='larguraii' min="1")
+                                        label(style='font-size: 20px; margin-left:5px;display:none' id="liFF" for='larguraif') a
+                                            input(style='margin-left:5px; width: 50px;display:none' type='number' name='larguraif' id='larguraif' min="1")
                                         br
-                                        label(style='padding-left:25px; padding-top:10px; font-size: 20px;' for='largfin') Largura Final
-                                            input(type='checkbox' name='largfin' id='largfin')
-                                        label(style='padding-left:25px; padding-top:10px; font-size: 20px;display:none' id="lfII" for='numlarfinII') Intervalo de Valores
-                                            input(style='margin-left:15px; width: 50px; display:none' type='number' name='numlarfinII' id='numlarfinII' min="1")
-                                        label(style='font-size: 20px; margin-left:5px;display:none' id="lfFF" for='numlarfinFF') a
-                                            input(style='margin-left:5px; width: 50px;display:none' type='number' name='numlarfinFF' id='numlarfinFF' min="1")
+                                        label(style='padding-left:25px; padding-top:10px; font-size: 20px;' for='larguraf') Largura Final
+                                            input(type='checkbox' name='larguraf' id='larguraf')
+                                        label(style='padding-left:25px; padding-top:10px; font-size: 20px;display:none' id="lfII" for='largurafi') Intervalo de Valores
+                                            input(style='margin-left:15px; width: 50px; display:none' type='number' name='largurafi' id='largurafi' min="1")
+                                        label(style='font-size: 20px; margin-left:5px;display:none' id="lfFF" for='larguraff') a
+                                            input(style='margin-left:5px; width: 50px;display:none' type='number' name='larguraff' id='larguraff' min="1")
                                         br
                                         label(style='padding-left:25px; padding-top:10px;font-size: 20px;' for='quantidade') Quantidade
                                             input(type='checkbox' name='quantidade' id='quantidade')
@@ -377,12 +355,12 @@ block content
                     input(type='number' name='composicao2' id='composicao2' value='0')
                     input(type='number' name='ponto2' id='ponto2' value='0')
                     input(type='number' name='peso2' id='peso2' value='0')
-                    input(type='number' name='largini2' id='largini2' value='0')
-                    input(type='number' name='numlariniII2' id='numlariniII2' value='0')
-                    input(type='number' name='numlariniFF2' id='numlariniFF2' value='0')
-                    input(type='number' name='largfin2' id='largfin2' value='0')
-                    input(type='number' name='numlarfinII2' id='numlarfinII2' value='0')
-                    input(type='number' name='numlarfinFF2' id='numlarfinFF2' value='0')
+                    input(type='number' name='largurai2' id='largurai2' value='0')
+                    input(type='number' name='larguraii2' id='larguraii2' value='0')
+                    input(type='number' name='larguraif2' id='larguraif2' value='0')
+                    input(type='number' name='larguraf2' id='larguraf2' value='0')
+                    input(type='number' name='largurafi2' id='largurafi2' value='0')
+                    input(type='number' name='larguraff2' id='larguraff2' value='0')
                     input(type='number' name='quantidade2' id='quantidade2' value='0')
                     input(type='number' name='caderno2' id='caderno2' value='0')
                     input(type='number' name='preparacao' id='preparacao' value='0')
@@ -425,18 +403,18 @@ block content
 
             script.
                 $(function () {
-                    $('#largini').click(function () {
+                    $('#largurai').click(function () {
                         console.log("foda-se");
                         $('#liII').toggle();
                         $('#liFF').toggle();
-                        $('#numlariniII').toggle();
-                        $('#numlariniFF').toggle();
+                        $('#lrguraii').toggle();
+                        $('#larguraif').toggle();
                     });
-                    $('#largfin').click(function () {
+                    $('#larguraf').click(function () {
                         $('#lfII').toggle();
                         $('#lfFF').toggle();
-                        $('#numlarfinII').toggle();
-                        $('#numlarfinFF').toggle();
+                        $('#largurafi').toggle();
+                        $('#larguraff').toggle();
                     });
                     $('#branquear').click(function () {
                         $('#mb').toggle();
@@ -467,19 +445,8 @@ block content
                         $('#nren').toggle();
                     });
                 });
-                /*$(function () {
-                    $('#stepsdefProduto').click(function () {
-                        $('#servscomposicao').toggle();
-                        $('#servsponto').toggle();
-                        $('#servspeso').toggle();
-                        $('#servslargurai').toggle();
-                        $('#servslarguraf').toggle();
-                        $('#servsquantidade').toggle();
-                        $('#servscaderno').toggle();
-                    });
-                });*/
                 $('#but').on('click', function () {
-                    if (($('#largfin').is(':checked') && (($('#numlarfinII').val().length === 0) || ($('#numlarfinFF').val().length === 0))) || ($('#largini').is(':checked') && (($('#numlariniII').val().length === 0) || ($('#numlariniFF').val().length === 0)))) {
+                    if (($('#larguraf').is(':checked') && (($('#largurafi').val().length === 0) || ($('#larguraff').val().length === 0))) || ($('#largurai').is(':checked') && (($('#larguraii').val().length === 0) || ($('#larguraif').val().length === 0)))) {
                         alert('Intervalo de valores errado, retorne à Definição do Produto e corrija.');
                     }
                     else {
@@ -495,16 +462,16 @@ block content
                             $('#peso2').val('1');
                             $('#definicao').val('1');
                         }
-                        if ($('#largini').is(':checked')) {
-                            $('#largini2').val('1');
-                            $('#numlariniII2').val($('#numlariniII').val());
-                            $('#numlariniFF2').val($('#numlariniFF').val());
+                        if ($('#largurai').is(':checked')) {
+                            $('#largurai2').val('1');
+                            $('#larguraii2').val($('#larguraii').val());
+                            $('#laguraif2').val($('#larguraff').val());
                             $('#definicao').val('1');
                         }
-                        if ($('#largfin').is(':checked')) {
-                            $('#largfin2').val('1');
-                            $('#numlarfinII2').val($('#numlarfinII').val());
-                            $('#numlarfinFF2').val($('#numlarfinFF').val());
+                        if ($('#larguraf').is(':checked')) {
+                            $('#larguraf2').val('1');
+                            $('#largurafi2').val($('#largurafi').val());
+                            $('#larguraff2').val($('#larguraff').val());
                             $('#definicao').val('1');
                         }
                         if ($('#quantidade').is(':checked')) {
@@ -651,4 +618,3 @@ block content
                         }
                     }
                 });
-
