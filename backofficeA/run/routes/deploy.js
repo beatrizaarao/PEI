@@ -41,7 +41,7 @@ router.post('/',function(req,res,next){
                                 lista = '{"list":'+lista+'}'
                                 lista = JSON.parse(lista).list
                                 for(elem in lista){
-                                    querysql += "INSERT INTO `DEPLOY` (`NAME`, `ID`, `EMAIL`, `PHONE`, `ADRESS`, `WEBPAGE_LINK`, `URL_ICON`, `FACEBOOK_LINK`, `TWITTER_LINK`, `STATISTICS`) VALUES('"+ lista[elem].name +"',1,'"+ lista[elem].email + "','" + lista[elem].phone + "','" + lista[elem].adress + "','" + lista[elem].webpage_link + "','" + lista[elem].url_icon + "','" + lista[elem].facebook_link + "','" + lista[elem].twitter_link + "','" + lista[elem].statistics + "');"
+                                    querysql += "INSERT INTO `DEPLOY` (`NAME`, `ID`, `EMAIL`, `PHONE`, `ADRESS`, `WEBPAGE_LINK`, `URL_ICON`, `FACEBOOK_LINK`, `TWITTER_LINK`, `STATISTICS`, `NIF` ) VALUES('"+ lista[elem].name +"',1,'"+ lista[elem].email + "','" + lista[elem].phone + "','" + lista[elem].adress + "','" + lista[elem].webpage_link + "','" + lista[elem].url_icon + "','" + lista[elem].facebook_link + "','" + lista[elem].twitter_link + "','" + lista[elem].statistics + "','" + lista[elem].nif + "');"
                                 }
                             }
 
@@ -63,7 +63,12 @@ router.post('/',function(req,res,next){
                                 res.cookie('deploy', 1);
                                 res.cookie('email', dep[0].EMAIL);
                                 res.cookie('stat', dep[0].STATISTICS);
-                                res.cookie('nome', dep[0].NAME);
+                                res.cookie('phone', dep[0].PHONE);
+                                res.cookie('address', dep[0].ADRESS);
+                                res.cookie('site', dep[0].WEBPAGE_LINK);
+                                res.cookie('face', dep[0].FACEBOOK_LINK);
+                                res.cookie('twitter', dep[0].TWITTER_LINK);
+                                res.cookie('nif', dep[0].NIF);
                                 status = "Deploy feito com sucesso."
                                 console.log("Deploy efectuado com sucesso")
                                 res.redirect("/")

@@ -11,7 +11,7 @@ router.get('/', function(req, res) {
         }
         else {
             res.cookie('deploy', 1)
-            res.render('login')
+            res.render('login',{title:"Login", nome: req.cookies.nome,})
         }
     })
 })

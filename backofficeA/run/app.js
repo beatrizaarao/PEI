@@ -41,6 +41,7 @@ connection.connect(function(err){
     console.log('Connection established');
 });
 
+var perfilAdmin = require('./routes/perfilAdmin');
 var orderInfo = require('./routes/orderInfo');
 var login = require('./routes/login');
 var logout = require('./routes/logout');
@@ -92,7 +93,10 @@ app.locals.prettyDate = function(date)
                             }
 
 
+
+app.use(favicon(path.join(__dirname, 'public','images', 'favicon.ico')));
 app.use(methodOverride('_method'));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
@@ -105,6 +109,7 @@ app.use(function(req,res,next){
     next();
 });
 
+app.use('/perfilAdmin', perfilAdmin);
 app.use('/logout', logout);
 app.use('/orderInfo', orderInfo);
 app.use('/', login);

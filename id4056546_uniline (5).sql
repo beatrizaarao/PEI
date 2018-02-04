@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: 04-Fev-2018 às 02:21
+-- Generation Time: 04-Fev-2018 às 16:34
 -- Versão do servidor: 10.1.29-MariaDB
 -- PHP Version: 7.2.0
 
@@ -118,15 +118,16 @@ CREATE TABLE `DEPLOY` (
   `URL_ICON` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `FACEBOOK_LINK` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
   `TWITTER_LINK` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `STATISTICS` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL
+  `STATISTICS` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `NIF` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Extraindo dados da tabela `DEPLOY`
 --
 
-INSERT INTO `DEPLOY` (`NAME`, `ID`, `EMAIL`, `PHONE`, `ADRESS`, `WEBPAGE_LINK`, `URL_ICON`, `FACEBOOK_LINK`, `TWITTER_LINK`, `STATISTICS`) VALUES
-('PeugasLDA.', 1, 'peugas@teste.com', '253000000', 'Rua da Travessa_4000-300_Guimarães_Portugal', 'http://www.etpeugas.com/pt/', 'https://icon-icons.com/icons2/390/PNG/512/socks_39463.png', 'https://www.facebook.com/peugas.co/', 'https://twitter.com/PeugasFilisa', '1000');
+INSERT INTO `DEPLOY` (`NAME`, `ID`, `EMAIL`, `PHONE`, `ADRESS`, `WEBPAGE_LINK`, `URL_ICON`, `FACEBOOK_LINK`, `TWITTER_LINK`, `STATISTICS`, `NIF`) VALUES
+('PeugasLDA.', 1, 'peugas@teste.com', '253000000', 'Rua da Travessa_4000-300_Guimarães_Portugal', 'http://www.etpeugas.com/pt/', 'https://icon-icons.com/icons2/390/PNG/512/socks_39463.png', 'https://www.facebook.com/peugas.co/', 'https://twitter.com/PeugasFilisa', '1000', 123456789);
 
 -- --------------------------------------------------------
 
