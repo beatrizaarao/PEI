@@ -1,0 +1,68 @@
+var express = require('express');
+var router = express.Router();
+const TreeMap = require("treemap-js");
+
+/* GET home page. */
+router.get('/:orderID', function(req, res, next) {
+    var stepService = new TreeMap();
+    var serviceOption = new TreeMap();
+    var steps = [];
+    var services =  [];
+    var array = new Array();
+    //console.log(array);
+    if (req.cookies.deploy === undefined) {
+        res.redirect('/')
+    }
+    else if (req.cookies.online === undefined) {
+        res.redirect('/')
+    }
+    else {
+
+        var db = req.connection;
+        db.query("SELECT * FROM ORDER_STEP_SERVICE_OPTION WHERE ID_ORDER=?", req.params.orderID, function (error, result, client) {
+            var results = result;
+            var total = results.length;
+            var count = 0;
+            for(var i = 0; i < total; i++){
+                (function(foo) {
+                    array = [];
+                    var currentStep = results[foo].id_STEP;
+                    var currentServiceID = results[foo].id_SERVICE;
+                    db.query("SELECT NAME FROM STEP WHERE id_STEP=?", currentStep, function (error, result, client) {
+                        var stepName = result[0].NAME
+                        if(steps.includes(stepName)==false){
+                            steps.push(stepName);
+                        }
+                        db.query("SELECT NAME FROM SERVICE WHERE id_SERVICE=?", currentServiceID, function (error, result, client) {
+                            var serviceName = result[0].NAME
+                            services.push(serviceName);
+                            array = stepService.get(stepName);
+                            if (array == undefined) {
+                                if(results[foo].SERVICE_valor==null){array = [serviceName];}
+                                else{array = [serviceName + ": " + results[foo].SERVICE_valor];}
+
+                                stepService.set(stepName, array);
+                            }
+                            else {
+                                array.push(serviceName);
+                            }
+                            count++;
+                            if (count > total - 1) done();
+                        });
+                    });
+                }(i))
+            };
+            function done() {
+                //console.log(stepService.getTree());
+                res.render('orderInfo', { title: 'Informação Encomenda', stepService: stepService, steps: steps, services: services});
+            }
+
+
+
+        });
+    }
+});
+
+
+
+module.exports = router;
