@@ -10,9 +10,9 @@ var nodemailer = require('nodemailer');
 var connection = mysql.createConnection({
     multipleStatements: true,
     hostname : 'localhost',
-    port: '3307',
+    port: '3306',
     user     : 'root',
-    password : '',
+    password : 'root',
     database : 'id4056546_uniline'
 });
 

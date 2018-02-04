@@ -18,10 +18,9 @@ block content
         section(class='slice bg-white')
             div(class='wp-section')
                 div(class='container')
-
                     ol(class='progtrckr hidden-xs' data-progtrckr-steps='7')
                         li(class='progtrckr-done' id='step0') Inicio de Sessão
-                        li(class='progtrckr-todo' id='step1') Definição do Produto
+                        li(class='progtrckr-todo' id='step1') Definição
                         li(class='progtrckr-todo' id='step2') Preparação
                         li(class='progtrckr-todo' id='step3') Tinturaria
                         li(class='progtrckr-todo' id='step4') Acabamento
@@ -32,10 +31,10 @@ block content
                             div(class='form-body')
                                 form(action='/prodef' id='frmProdDef' class='sky-form' method='post' enctype='multipart/form-data')
                                     fieldset(class='no-padding')
-                                        h1 Definição do Produto
-                                        hr
-                                        h2 Composição
-                                        div(class='row')
+                                        h1(style="display: none" name='defProduto' class="defProduto") Definição do Produto
+                                        hr(style="display: none" name='defProduto' class="defProduto")
+                                        h2(style="display: none" name="composicao" class="composicao") Composição
+                                        div(style="display: none" class='row composicao' name="composicao" id="composicao")
                                             div(class='col-xs-6')
                                                 div(class='form-group')
                                                     label(class='select')
@@ -115,468 +114,237 @@ block content
                                                     label(class='select')
                                                         select(name='composicao' id='CompComp' onchange='containsPoli()')
                                                             option(value='0' selected='' disabled='') Composição
-                                        hr
-                                        hr
-                                        h2 Ponto
-                                        div(class='row')
+                                        hr(style="display: none" name='defProduto' class="defProduto")
+                                        hr(style="display: none" name="ponto" class="ponto")
+                                        h2(style="display: none" name="ponto" class="ponto") Ponto
+                                        div(style="display: none" name="ponto" class='row ponto')
                                             div(class='col-md-6')
                                                 div(class='form-group')
                                                     label(class='select')
-                                                        select(name='ponto' id='OpPonto')
+                                                        select(class="ponto" name='ponto' id='OpPonto')
                                                             option(value='0' selected='' disabled='') Ponto
-                                        hr
-                                        hr
-                                        h2 Peso, Lagura e Quantidade
-                                        div(class='row')
-                                            section(class='col-xs-2')
-                                                label(class='input') Peso do tecido
+                                        hr(style="display: none" name="ponto" class="ponto")
+                                        hr(style="display: none" name="peso")
+                                        h2(style="display: none" name="peso") Peso, Largura e Quantidade
+                                        h2(style="display: none" name="largurai") Peso, Largura e Quantidade
+                                        h2(style="display: none" name="larguraf") Peso, Largura e Quantidade
+                                        h2(style="display: none" name="quantidade") Peso, Largura e Quantidade
+                                        div(style="display: none" name="peso" class='row peso')
+                                            section(style="display: none" name="peso" class='col-xs-2 peso')
+                                                label(class='input' name="peso") Peso do tecido
                                                     input(type='number' name='peso' placeholder='Peso')
                                                     p g/m
-
-                                            section(class='col-xs-2')
-                                                label(class='input') Largura inicial do tecido
+                                            section(style="display: none" name="largurai" class='col-xs-2 largurai')
+                                                label(class='input' name="largurai") Largura inicial do tecido
                                                     //min= larguraii max=larguraif(passar para int) vem da tabela opcao
                                                     input(type='number' name='largurai' placeholder='Largura Inicial' min='50' max='380')
                                                     p m2
-
-                                            section(class='col-xs-2')
-                                                label(class='input') Largura final do tecido
+                                            section(style="display: none" name='larguraf' class='col-xs-2 larguraf')
+                                                label(class='input' name='larguraf') Largura final do tecido
                                                     input(type='number' name='larguraf' placeholder='Largura Final' min='50' max='380')
-                                                    p m2
+                                                    p(name="larguraf") m2
 
-                                            section(class='col-xs-4')
-                                                label(class='input') Quantidade de Tecido a Trabalhar
+                                            section(style="display: none" name='quantidade' class='col-xs-4 quantidade')
+                                                label(class='input' name='quantidade') Quantidade de Tecido a Trabalhar
                                                     input(type='text' name='quantidade' placeholder='Quantidade'  onchange='updateStepone()')
-                                            section(class='col-xs-1')
-                                                label
-                                                label(class='select')
-                                                select(name='QuantUnit' id='QuantUnit')
+                                            section(style="display: none" name='quantidade' class='col-xs-1 quantidade')
+                                                label(class='select' name='quantidade')
+                                                select(name='quantidade' id='QuantUnit')
                                                                     option(value='0' selected='') T
                                                                     option(value='1') K
                                                                     option(value='2') g
                                                                     option(value='3') mg
-                                        hr
-                                        hr
-                                        h2 Caderno de Encargos
-                                        div(class='row')
+                                        hr(style="display: none" name="peso" class="peso")
+                                        hr(style="display: none" name="caderno" class="caderno")
+                                        h2(style="display: none" name="caderno" class="caderno") Caderno de Encargos
+                                        div(style="display: none" class='row caderno')
                                             section(class='textarea')
                                                 label(class='textarea')
                                                     textarea(rows='3' name='caderno' placeholder='Informação Adicional')
-                                        hr
-                                        hr
-                                        h2 Preparação
-                                        div(class='row')
-                                            div(class='col-xs-3')
+                                        hr(style="display: none" name="caderno" class="caderno")
+                                        hr(style="display: none" name="preparacao" class="preparacao")
+                                        h2(style="display: none" name="preparacao" class="preparacao") Preparação
+                                        div(style="display: none" name="preparacao" class='row preparacao')
+                                            div(style="display: none" name="gasar" class='col-xs-3 gasar')
                                                 label(class='checkbox') Gazar
-                                                    input(type='checkbox' name='gazar'  onchange='updateSteptwo()')
+                                                    input(type='checkbox' name='gasar'  onchange='updateSteptwo()')
                                                     i
 
-                                            div(class='col-xs-3' id='branquearg')
+                                            div(style="display: none" name="branquear" class='col-xs-3 branquear')
                                                 label(class='checkbox') Branquear
-                                                    input(type='checkbox' name='branquear' id='branquear' onchange='changeOpone(), updateSteptwo()')
+                                                    input(type='checkbox' name='branquear' id='branquear'  onchange='updateSteptwo()')
+                                                    i
+                                                label(style="display: none" name='mb' id='mb' class='checkbox meiobranco') Meio Branco
+                                                    input(class="meiobranco" type='checkbox' name='mb' id='meiobranco' disabled onchange='updateSteptwo()')
+                                                    i
+                                                label(style="display: none" name='b' id='b' class='checkbox branco') Branco
+                                                    input(class="branco" type='checkbox' name='b' id='branco' disabled onchange='updateSteptwo()')
+                                                    i
+                                                label(style="display: none" name='lbe' id='lbe' class='checkbox be') BE
+                                                    input(class="be" type='checkbox' name='lbe' id='be' disabled onchange='updateSteptwo()')
                                                     i
 
-                                            div(class='col-xs-3')
+                                            div(style="display: none" name="lavar" class='col-xs-3 lavar')
                                                 label(class='checkbox') Lavar
-                                                    input(type='checkbox' name='lavar' id='lavar' onchange='changeOponed(), updateSteptwo()')
+                                                    input(type='checkbox' name='lavar' id='lavar' onchange='updateSteptwo()')
                                                     i
 
-                                            div(class='col-xs-3')
+                                            div(style="display: none" name="mercerizar" class='col-xs-3 mercerizar')
                                                 label(class='checkbox') Mercerizar
                                                     input(type='checkbox' name='mercerizar' id='mercerizar' onchange='updateSteptwo()')
                                                     i
 
-                                        hr
-                                        hr
-                                        h2 Tinturaria
-                                        div(class='row' id='tintasg')
-                                            div(class='col-xs-3' )
+                                        hr(style="display: none" name="preparacao" class="preparacao")
+                                        hr(style="display: none" name="tinturaria" class="tinturaria")
+                                        h2(style="display: none" name="tinturaria" class="tinturaria") Tinturaria
+                                        div(style="display: none" name="tinturaria" class='row tinturaria')
+                                            div(style="display: none" name="reativos" class='col-xs-3 reativos' )
                                                 label(class='checkbox') Reativo
-                                                    input(type='checkbox' name='reativos' id='Reativos'  onchange='updateSteptree(), changetintd()')
+                                                    input(type='checkbox' name='reativos' id='reativos'  onchange='updateSteptree()')
                                                     i
-
-                                            div(class='col-xs-3')
+                                            div(style="display: none" name="cubas" class='col-xs-3 cubas')
                                                 label(class='checkbox') Cuba
-                                                    input(type='checkbox' name='cubas' id='Cubas' onchange='changetintdd(), updateSteptree()')
+                                                    input(type='checkbox' name='cubas' id='cubas' onchange='updateSteptree()')
                                                     i
-
-                                            div(class='col-xs-3')
+                                            div(style="display: none" name="pigmentos" class='col-xs-3 pigmentos')
                                                 label(class='checkbox') Pigmentos
-                                                    input(type='checkbox' name='pigmentos' id='Pigmentos' onchange='updateSteptree(), changetintddd()')
+                                                    input(type='checkbox' name='pigmentos' id='pigmentos' onchange='updateSteptree()')
                                                     i
 
-                                        div(class='row')
+                                            div(style="display: none" name="reativosP" class='col-xs-3 reativosP' )
+                                                label(class='checkbox') Reativo
+                                                    input(type='checkbox' name='reativosP' id='reativosP'  onchange='updateSteptree()')
+                                                    i
+                                            div(style="display: none" name="cubasP" class='col-xs-3 cubasP')
+                                                label(class='checkbox') Cuba
+                                                    input(type='checkbox' name='cubasP' id='cubasP' onchange='updateSteptree()')
+                                                    i
+                                            div(style="display: none" name="pigmentosP" class='col-xs-3 pigmentosP')
+                                                label(class='checkbox') Pigmentos
+                                                    input(type='checkbox' name='pigmentosP' id='pigmentosP' onchange='updateSteptree()')
+                                                    i
+                                            div(style="display: none" name="dispersosP" class='col-xs-3 dispersosP')
+                                                label(class='checkbox') Dispersos
+                                                    input(type='checkbox' name='dispersosP' id='dispersosP' onchange='updateSteptree()')
+                                                    i
+
+                                        div(style="display: none" name="tinturaria" class='row tinturaria')
                                             section(class='col-xs-5')
                                                 label(class='input') Panton
                                                     input(type='text' name='pantone' placeholder='Insira aqui o codigo do Pantone que quer aplicar como cor' onchange='updateSteptree')
+                                        hr(style="display: none" name="tinturaria" class="tinturaria")
+                                        hr(style="display: none" name="acabamentos" class="acabamentos")
+                                        h2(style="display: none" name="acabamentos" class="acabamentos") Acabamentos
+                                        div(style="display: none" class="acabamentos" class='row')
+                                            div(style="display: none" name='secar' class='col-xs-2 secar')
+                                                label(class='checkbox') Secar
+                                                    input(type='checkbox' name='secar' id='secar' onchange='updateStepfor()')
+                                                    i
+
+                                            div(style="display: none" name='acabar' class='col-xs-2 acabar')
+                                                label(name='acabar' class='checkbox') Acabar
+                                                    input(type='checkbox' name='acabar' id='acabar' onchange='updateStepfor()')
+                                                    i
+
+                                            div(style="display: none" name='largura' class='col-xs-2 largura')
+                                                label(name='largura' class='checkbox') Largura
+                                                    input(type='checkbox' name='largura' onchange='updateStepfor()')
+                                                    i
+
+                                            div(style="display: none" name='calandar' class='col-xs-2 calandar')
+                                                    label(name='calandar' class='checkbox') Calandar
+                                                        input(type='checkbox' name='calandar' id='calandar' onchange='updateStepfor()')
+                                                        i
+
+                                                    label(style="display: none" name='q' id='cq' class='checkbox q') Q
+                                                        input(class="q" style="display: none" type='checkbox' name='q' id='q' disabled onchange='updateStepfor()')
+                                                        i
+
+                                                    label(style="display: none" name='f' id='cf' class='checkbox f') F
+                                                        input(class="f" style="display: none" type='checkbox' name='f' id='f' disabled onchange='updateStepfor()')
+                                                        i
+
+                                            div(style="display: none" name='sanforizar' class='col-xs-2 sanforizar')
+                                                label(name='sanforizar' class='checkbox') Sanfonizar
+                                                    input(type='checkbox' name='sanforizar' id='sanforizar' onchange='updateStepfor()')
+                                                    i
+
+                                            div(style="display: none" name='tumbler' class='col-xs-2 tumbler')
+                                                label(name='tumbler' class='checkbox') Tumbler
+                                                    input(type='checkbox' name='tumbler' id='tumbler' onchange='updateStepfor()')
+                                                    i
+
+
+                                        hr(style="display: none" name="acabamentos" class="acabamentos")
+                                        hr(style="display: none" name="embalagem" class="embalagem")
+                                        h2(style="display: none" name="embalagem" class="embalagem") Embalagem
+                                        h4(style="display: none" name="enfestar" class="enfestar") Enfestar
+                                        div(style="display: none" name="enfestar" class='row enfestar')
+                                            div(style="display: none" name='em' class='col-xs-2 em')
+                                                label(name='em' class='checkbox') EM
+                                                    input(type='checkbox' name='em' id='em' onchange='updateStepfiv()')
+                                                    i
+                                            div(style="display: none" name='ei' class='col-xs-2 ei')
+                                                label(name='ei' class='checkbox') Ei
+                                                    input(type='checkbox' name='ei' id='ei' onchange='updateStepfiv()')
+                                                    i
+
+                                            div(style="display: none" name='rm' class='col-xs-2 rm')
+                                                label(name='rm' class='checkbox') RM
+                                                    input(type='checkbox' name='rm' id='rm' onchange='updateStepfiv()')
+                                                    i
+
+                                            section(style="display: none" name='quantenf' class='col-xs-4 quantenf')
+                                                label(name='quantenf' class='input')
+                                                    input(type='number' name='quantenf' placeholder='metros por peça'  min='1' onchange='updateStepfiv()')
+                                                    i
+
+                                        h4(style="display: none" name="enrolar" class="enrolar") Enrolar
+                                        div(style="display: none" name="enrolar" class='row enrolar')
+                                            section(style="display: none" name='quantenr' class='col-xs-4 quantenr')
+                                                label(name='quantenr' class='input')
+                                                    input(type='number' name='quantenr' placeholder='metros por peça'  min='1' onchange='updateStepfiv()')
+                                                    i
+                                        hr(style="display: none" name="embalagem" class="embalagem")
                                         hr
+                                        h2 Prazo de Entrega
+                                        div(class='row')
+                                            section(class='col-xs-4')
+                                                label(class='input')
+                                                    input(type='date' name='dataentrega' id='dataentrega' onclick='updateStepsix()')
+                                                br
                                         hr
-                                        h2 Acabamentos
-                                            div(class='row')
-                                                div(class='col-xs-2')
-                                                    label(class='checkbox') Secar
-                                                        input(type='checkbox' name='secar' id='secar' onchange='updateStepfor(), changeacab()')
-                                                        i
+                                    section
+                                        input(type='submit' class='btn btn-base btn-icon btn-icon-right pull-right' style='width: 200px;' value='Efectuar Encomenda')
 
-                                                div(class='col-xs-2')
-                                                    label(class='checkbox') Acabar
-                                                        input(type='checkbox' name='acabar' id='acabar' onchange='updateStepfor(), changeacabz()')
-                                                        i
-
-                                                div(class='col-xs-2')
-                                                    label(class='checkbox') Largura
-                                                        input(type='checkbox' name='largura' onchange='updateStepfor()')
-                                                        i
-
-                                                div(class='col-xs-2')
-                                                        label(class='checkbox') Calandar
-                                                            input(type='checkbox' name='calandar' id='calandar' onchange='updateStepfor()')
-                                                            i
-
-                                                        label(class='checkbox') Q
-                                                            input( type='checkbox' name='q' id='q' onchange='changecaland(), updateStepfor()')
-                                                            i
-
-                                                        label(class='checkbox') F
-                                                            input(type='checkbox' name='f' id='f' onchange='changecaland(), updateStepfor()')
-                                                            i
-
-                                                div(class='col-xs-2')
-                                                    label(class='checkbox') Sanfonizar
-                                                        input(type='checkbox' name='sanforizar' id='sanforizar' onchange='updateStepfor()')
-                                                        i
-
-                                                div(class='col-xs-2')
-                                                    label(class='checkbox') Tumbler
-                                                        input(type='checkbox' name='tumbler' id='tumbler' onchange='updateStepfor()')
-                                                        i
-
-
-                                            hr
-                                            hr
-                                            h2 Embalagem
-                                            h4 Enfestar
-                                            div(class='row')
-                                                div(class='col-xs-2')
-                                                    label(class='checkbox') EM
-                                                        input(type='checkbox' name='em' id='em' onchange='updateStepfiv()')
-                                                        i
-
-                                                div(class='col-xs-2')
-                                                    label(class='checkbox') Ei
-                                                        input(type='checkbox' name='ei' id='ei' onchange='updateStepfiv()')
-                                                        i
-
-                                                div(class='col-xs-2')
-                                                    label(class='checkbox') RM
-                                                        input(type='checkbox' name='rm' id='rm' onchange='updateStepfiv()')
-                                                        i
-
-                                                section(class='col-xs-4')
-                                                    label(class='input')
-                                                        input(type='number' name='quantenf' placeholder='metros por peça'  min='1' onchange='updateStepfiv()')
-                                            h4 Enrolar
-                                            div(class='row')
-                                                section(class='col-xs-4')
-                                                    label(class='input')
-                                                        input(type='number' name='quantenr' placeholder='metros por peça'  min='1' onchange='updateStepfiv()')
-                                            hr
-                                            br
-                                            hr
-                                            h1 Morada e prazo de entrega
-                                            h2 Morada
-                                            div(class='row')
-                                                section(class='col-xs-6')
-                                                    label(class='label') Empresa
-                                                    label(class='input')
-                                                        i(class='icon-append fa fa-building')
-                                                        input(type='text' name='email' placeholder='')
-                                                section(class='col-xs-6')
-                                                    label(class='label') Contacto Telefonico
-                                                    label(class='input')
-                                                        i(class='icon-append fa fa-phone')
-                                                        input(type='tel' name='phone' placeholder='')
-                                            div(class='row')
-                                                section(class='col-xs-4')
-                                                    label(class='select')
-                                                        select(name='country')
-                                                            option(value='0' selected=' disabled=') País
-                                                            option(value='AF') Afghanistan
-                                                            option(value='AX') Åland Islands
-                                                            option(value='AL') Albania
-                                                            option(value='DZ') Algeria
-                                                            option(value='AS') American Samoa
-                                                            option(value='AD') Andorra
-                                                            option(value='AO') Angola
-                                                            option(value='AI') Anguilla
-                                                            option(value='AQ') Antarctica
-                                                            option(value='AG') Antigua and Barbuda
-                                                            option(value='AR') Argentina
-                                                            option(value='AM') Armenia
-                                                            option(value='AW') Aruba
-                                                            option(value='AU') Australia
-                                                            option(value='AT') Austria
-                                                            option(value='AZ') Azerbaijan
-                                                            option(value='BS') Bahamas
-                                                            option(value='BH') Bahrain
-                                                            option(value='BD') Bangladesh
-                                                            option(value='BB') Barbados
-                                                            option(value='BY') Belarus
-                                                            option(value='BE') Belgium
-                                                            option(value='BZ') Belize
-                                                            option(value='BJ') Benin
-                                                            option(value='BM') Bermuda
-                                                            option(value='BT') Bhutan
-                                                            option(value='BO') Bolivia, Plurinational State of
-                                                            option(value='BQ') Bonaire, Sint Eustatius and Saba
-                                                            option(value='BA') Bosnia and Herzegovina
-                                                            option(value='BW') Botswana
-                                                            option(value='BV') Bouvet Island
-                                                            option(value='BR') Brazil
-                                                            option(value='IO') British Indian Ocean Territory
-                                                            option(value='BN') Brunei Darussalam
-                                                            option(value='BG') Bulgaria
-                                                            option(value='BF') Burkina Faso
-                                                            option(value='BI') Burundi
-                                                            option(value='KH') Cambodia
-                                                            option(value='CM') Cameroon
-                                                            option(value='CA') Canada
-                                                            option(value='CV') Cape Verde
-                                                            option(value='KY') Cayman Islands
-                                                            option(value='CF') Central African Republic
-                                                            option(value='TD') Chad
-                                                            option(value='CL') Chile
-                                                            option(value='CN') China
-                                                            option(value='CX') Christmas Island
-                                                            option(value='CC') Cocos (Keeling) Islands
-                                                            option(value='CO') Colombia
-                                                            option(value='KM') Comoros
-                                                            option(value='CG') Congo
-                                                            option(value='CD') Congo, the Democratic Republic of the
-                                                            option(value='CK') Cook Islands
-                                                            option(value='CR') Costa Rica
-                                                            option(value='CI') Côte d'Ivoire
-                                                            option(value='HR') Croatia
-                                                            option(value='CU') Cuba
-                                                            option(value='CW') Curaçao
-                                                            option(value='CY') Cyprus
-                                                            option(value='CZ') Czech Republic
-                                                            option(value='DK') Denmark
-                                                            option(value='DJ') Djibouti
-                                                            option(value='DM') Dominica
-                                                            option(value='DO') Dominican Republic
-                                                            option(value='EC') Ecuador
-                                                            option(value='EG') Egypt
-                                                            option(value='SV') El Salvador
-                                                            option(value='GQ') Equatorial Guinea
-                                                            option(value='ER') Eritrea
-                                                            option(value='EE') Estonia
-                                                            option(value='ET') Ethiopia
-                                                            option(value='FK') Falkland Islands (Malvinas)
-                                                            option(value='FO') Faroe Islands
-                                                            option(value='FJ') Fiji
-                                                            option(value='FI') Finland
-                                                            option(value='FR') France
-                                                            option(value='GF') French Guiana
-                                                            option(value='PF') French Polynesia
-                                                            option(value='TF') French Southern Territories
-                                                            option(value='GA') Gabon
-                                                            option(value='GM') Gambia
-                                                            option(value='GE') Georgia
-                                                            option(value='DE') Germany
-                                                            option(value='GH') Ghana
-                                                            option(value='GI') Gibraltar
-                                                            option(value='GR') Greece
-                                                            option(value='GL') Greenland
-                                                            option(value='GD') Grenada
-                                                            option(value='GP') Guadeloupe
-                                                            option(value='GU') Guam
-                                                            option(value='GT') Guatemala
-                                                            option(value='GG') Guernsey
-                                                            option(value='GN') Guinea
-                                                            option(value='GW') Guinea-Bissau
-                                                            option(value='GY') Guyana
-                                                            option(value='HT') Haiti
-                                                            option(value='HM') Heard Island and McDonald Islands
-                                                            option(value='VA') Holy See (Vatican City State)
-                                                            option(value='HN') Honduras
-                                                            option(value='HK') Hong Kong
-                                                            option(value='HU') Hungary
-                                                            option(value='IS') Iceland
-                                                            option(value='IN') India
-                                                            option(value='ID') Indonesia
-                                                            option(value='IR') Iran, Islamic Republic of
-                                                            option(value='IQ') Iraq
-                                                            option(value='IE') Ireland
-                                                            option(value='IM') Isle of Man
-                                                            option(value='IL') Israel
-                                                            option(value='IT') Italy
-                                                            option(value='JM') Jamaica
-                                                            option(value='JP') Japan
-                                                            option(value='JE') Jersey
-                                                            option(value='JO') Jordan
-                                                            option(value='KZ') Kazakhstan
-                                                            option(value='KE') Kenya
-                                                            option(value='KI') Kiribati
-                                                            option(value='KP') Korea, Democratic People's Republic of
-                                                            option(value='KR') Korea, Republic of
-                                                            option(value='KW') Kuwait
-                                                            option(value='KG') Kyrgyzstan
-                                                            option(value='LA') Lao People's Democratic Republic
-                                                            option(value='LV') Latviach
-                                                            option(value='LB') Lebanon
-                                                            option(value='LS') Lesotho
-                                                            option(value='LR') Liberia
-                                                            option(value='LY') Libya
-                                                            option(value='LI') Liechtenstein
-                                                            option(value='LT') Lithuania
-                                                            option(value='LU') Luxembourg
-                                                            option(value='MO') Macao
-                                                            option(value='MK') Macedonia, the former Yugoslav Republic of
-                                                            option(value='MG') Madagascar
-                                                            option(value='MW') Malawi
-                                                            option(value='MY') Malaysia
-                                                            option(value='MV') Maldives
-                                                            option(value='ML') Mali
-                                                            option(value='MT') Malta
-                                                            option(value='MH') Marshall Islands
-                                                            option(value='MQ') Martinique
-                                                            option(value='MR') Mauritania
-                                                            option(value='MU') Mauritius
-                                                            option(value='YT') Mayotte
-                                                            option(value='MX') Mexico
-                                                            option(value='FM') Micronesia, Federated States of
-                                                            option(value='MD') Moldova, Republic of
-                                                            option(value='MC') Monaco
-                                                            option(value='MN') Mongolia
-                                                            option(value='ME') Montenegro
-                                                            option(value='MS') Montserrat
-                                                            option(value='MA') Morocco
-                                                            option(value='MZ') Mozambique
-                                                            option(value='MM') Myanmar
-                                                            option(value='NA') Namibia
-                                                            option(value='NR') Nauru
-                                                            option(value='NP') Nepal
-                                                            option(value='NL') Netherlands
-                                                            option(value='NC') New Caledonia
-                                                            option(value='NZ') New Zealand
-                                                            option(value='NI') Nicaragua
-                                                            option(value='NE') Niger
-                                                            option(value='NG') Nigeria
-                                                            option(value='NU') Niue
-                                                            option(value='NF') Norfolk Island
-                                                            option(value='MP') Northern Mariana Islands
-                                                            option(value='NO') Norway
-                                                            option(value='OM') Oman
-                                                            option(value='PK') Pakistan
-                                                            option(value='PW') Palau
-                                                            option(value='PS') Palestinian Territory, Occupied
-                                                            option(value='PA') Panama
-                                                            option(value='PG') Papua New Guinea
-                                                            option(value='PY') Paraguay
-                                                            option(value='PE') Peru
-                                                            option(value='PH') Philippines
-                                                            option(value='PN') Pitcairn
-                                                            option(value='PL') Poland
-                                                            option(value='PT') Portugal
-                                                            option(value='PR') Puerto Rico
-                                                            option(value='QA') Qatar
-                                                            option(value='RE') Réunion
-                                                            option(value='RO') Romania
-                                                            option(value='RU') Russian Federation
-                                                            option(value='RW') Rwanda
-                                                            option(value='BL') Saint Barthélemy
-                                                            option(value='SH') Saint Helena, Ascension and Tristan da Cunha
-                                                            option(value='KN') Saint Kitts and Nevis
-                                                            option(value='LC') Saint Lucia
-                                                            option(value='MF') Saint Martin (French part)
-                                                            option(value='PM') Saint Pierre and Miquelon
-                                                            option(value='VC') Saint Vincent and the Grenadines
-                                                            option(value='WS') Samoa
-                                                            option(value='SM') San Marino
-                                                            option(value='ST') Sao Tome and Principe
-                                                            option(value='SA') Saudi Arabia
-                                                            option(value='SN') Senegal
-                                                            option(value='RS') Serbia
-                                                            option(value='SC') Seychelles
-                                                            option(value='SL') Sierra Leone
-                                                            option(value='SG') Singapore
-                                                            option(value='SX') Sint Maarten (Dutch part)
-                                                            option(value='SK') Slovakia
-                                                            option(value='SI') Slovenia
-                                                            option(value='SB') Solomon Islands
-                                                            option(value='SO') Somalia
-                                                            option(value='ZA') South Africa
-                                                            option(value='GS') South Georgia and the South Sandwich Islands
-                                                            option(value='SS') South Sudan
-                                                            option(value='ES') Spain
-                                                            option(value='LK') Sri Lanka
-                                                            option(value='SD') Sudan
-                                                            option(value='SR') Suriname
-                                                            option(value='SJ') Svalbard and Jan Mayen
-                                                            option(value='SZ') Swaziland
-                                                            option(value='SE') Sweden
-                                                            option(value='CH') Switzerland
-                                                            option(value='SY') Syrian Arab Republic
-                                                            option(value='TW') Taiwan, Province of China
-                                                            option(value='TJ') Tajikistan
-                                                            option(value='TZ') Tanzania, United Republic of
-                                                            option(value='TH') Thailand
-                                                            option(value='TL') Timor-Leste
-                                                            option(value='TG') Togo
-                                                            option(value='TK') Tokelau
-                                                            option(value='TO') Tonga
-                                                            option(value='TT') Trinidad and Tobago
-                                                            option(value='TN') Tunisia
-                                                            option(value='TR') Turkey
-                                                            option(value='TM') Turkmenistan
-                                                            option(value='TC') Turks and Caicos Islands
-                                                            option(value='TV') Tuvalu
-                                                            option(value='UG') Uganda
-                                                            option(value='UA') Ukraine
-                                                            option(value='AE') United Arab Emirates
-                                                            option(value='GB') United Kingdom
-                                                            option(value='US') United States
-                                                            option(value='UM') United States Minor Outlying Islands
-                                                            option(value='UY') Uruguay
-                                                            option(value='UZ') Uzbekistan
-                                                            option(value='VU') Vanuatu
-                                                            option(value='VE') Venezuela, Bolivarian Republic of
-                                                            option(value='VN') Viet Nam
-                                                            option(value='VG') Virgin Islands, British
-                                                            option(value='VI') Virgin Islands, U.S.
-                                                            option(value='WF') Wallis and Futuna
-                                                            option(value='EH') Western Sahara
-                                                            option(value='YE') Yemen
-                                                            option(value='ZM') Zambia
-                                                            option(value='ZW') Zimbabwe
-                                                        i
-                                                section(class='col-xs-4')
-                                                    label(class='input')
-                                                        input(type='text' name='distrito' placeholder='Distrito')
-                                                section(class = 'col-xs-4')
-                                                    label(class='input')
-                                                        input(type='text' name='concelho' placeholder='Concelho')
-                                                section(class='col-xs-3')
-                                                    label(class='input')
-                                                        input(type='text' name='codpost' placeholder='Codigo Postal' pattern='[0-9]{4}-[0-9]{3}$')
-                                                section(class='col-xs-7')
-                                                    label(class='input')
-                                                        input(type='text' name='freguesia' placeholder='Freguesia')
-                                                section
-                                                    label(class='input')
-                                                        input(type='text' name='morada' placeholder='Morada')
-                                                section
-                                                    label(class='textarea')
-                                                        textarea(rows='3' name='info' placeholder='Informação Adicional')
-                                            hr
-                                            hr
-                                            h2 Prazo de Entrega
-                                            div(class='row')
-                                                section(class='col-xs-4')
-                                                    label(class='input')
-                                                        input(type='date' name='dataentrega' id='dataentrega' onclick='updateStepsix()')
-                                                    br
-                                            hr
-                                        section
-                                            input(type='submit' class='btn btn-base btn-icon btn-icon-right pull-right' style='width: 200px;' value='Efectuar Encomenda')
+        script.
+            $('#branquear').click(function () {
+                $('#mb').toggle();
+                $('#meiobranco').toggle();
+                $('#b').toggle();
+                $('#branco').toggle();
+                $('#lbe').toggle();
+                $('#be').toggle();
+            });
+            $('#calandar').click(function () {
+                $('#cq').toggle();
+                $('#q').toggle();
+                $('#cf').toggle();
+                $('#f').toggle();
+            });
+            $(document).ready(function () {
+                var steps = !{JSON.stringify(dataSteps)};
+                var servs = !{JSON.stringify(dataServs)};
+                var opts = !{JSON.stringify(dataOpts)};
+                for (var k=0;k<steps.length;k++)
+                    $( "."+steps[k].DESCRIPTION ).show( "fast" );
+                for (var j=0;j<servs.length;j++)
+                    $( "."+servs[j].DESCRIPTION ).show( "fast" );
+                for (var l=0;l<opts.length;l++)
+                    if ( opts[l].id_OPTION>=5 && opts[l].id_OPTION<=9) {
+                        $("." + opts[l].DESCRIPTION).removeAttr("disabled");
+                    }
+                    else  {
+                        $( "."+opts[l].DESCRIPTION ).show( "fast" );
+                    }
+            });
