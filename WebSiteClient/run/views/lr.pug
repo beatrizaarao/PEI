@@ -2,9 +2,6 @@ extends layout
 
 block content
     body
-
-        p=status
-
         <!-- MAIN CONTENT -->
         div(class='pg-opt')
             div(class='container')
@@ -14,19 +11,23 @@ block content
                     div(class='col-md-6')
                         ol(class='breadcrumb')
                             li
+                                a(href = "#")
+                                    i
+                                        img(src="../images/bandeiraP.png" style="max-width:30px; vertical-align: middle")
+                            li
+                                a(href = "#")
+                                    i
+                                        img(src="../images/bandeiraI.png" style="max-width:30px; height: 20px; vertical-align: middle")
+                            li
                                 a(href='/') Home
         section(class='slice bg-white')
             div(class='wp-section')
                 div(class='container')
-                    //!-- Checkout process - Progress bar --
-                    ol(class='progtrckr hidden-xs' data-progtrckr-steps='7')
-                        li(class='progtrckr-todo') Inicio de Sessão
-                        li(class='progtrckr-todo') Definição do Produto
-                        li(class='progtrckr-todo') Preparação
-                        li(class='progtrckr-todo') Tinturaria
-                        li(class='progtrckr-todo') Acabamentos
-                        li(class='progtrckr-todo') Embalagem
-                        li(class='progtrckr-todo') Prazos e Morada
+                    if(status != null)
+                        .alert.alert-warning
+                            button.close(type='button', data-dismiss='alert') ×
+                            strong Ups!
+                            |  #{status}
                     div(class='row')
                         div(class='col-md-4')
                             div(class='wp-block default user-form')
@@ -106,16 +107,11 @@ block content
                                             section
                                                 div(class='row')
                                                     section(class='col-xs-6')
-                                                        label(class='label') Primeiro Nome
+                                                        label(class='label') Nome Empresa
                                                         label(class='input')
                                                             i(class='icon-append fa fa-user')
                                                             input(type='text' name='fname' placeholder='')
-                                                    section(class='col-xs-6')
-                                                        label(class='label') Ultimo Nome
-                                                        label(class='input')
-                                                            i(class='icon-append fa fa-user')
-                                                            input(type='text' name='lname' placeholder='')
-                                                div(class='row')
+
                                                     section(class='col-xs-6')
                                                         label(class='label') Contacto Telefonico
                                                         label(class='input')
