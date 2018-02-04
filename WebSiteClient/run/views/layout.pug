@@ -33,27 +33,33 @@ html
                     div(class='col')
                         h4
                         ul(class="test")
-                            li(class="test") Universidade do Minho, Gualtar-Braga
-                            li(class="test") Telefone: +351 253 657 657 | Fax: +351 253 657 658
-                            li(class="test") Skype:
-                                a(href='skype:my.business?call', title='Skype us' class="test") UnilineSkype
+                            li(class="test") #{MORADA}
+                            li(class="test") Telefone: #{TELEFONE}
                             li(class="test") Gerir Encomendas é a nossa Arte.
 
                         hr
                 div(class='col-md-3')
                     div(class='col')
                         h4 Sobre Nós
-                        p(class='no-margin') Uniline - Software de Gestão de Encomendas Têxteis.
+                        p(class='no-margin') #{NOME}
                             br
                             br
-                            a(href='/aboutUs' class='btn btn-block btn-base btn-icon fa-check')
+                            a(href=SITE class='btn btn-block btn-base btn-icon fa-check')
                                 span Veja agora!
                         hr
-
-                div(class='col-md-3' style="margin-top: 70px")
-                    div(class='col')
+                div(class='col-md-3')
+                  div(class='col col-social-icons')
+                        h4 Siga-nos
+                        a(href=FACE)
+                            i(class='fa fa-facebook')
+                        a(href=TWITTER)
+                            i(class='fa fa-twitter')
+                        a(href=SITE)
+                            i(class='fa fa-globe')
+                  div(class='col')
                         a(href='/contact' class='btn btn-block btn-base btn-icon fa-phone')
                             span Contacte-nos!
+                  hr
 
 
             div(class='row' align="left")

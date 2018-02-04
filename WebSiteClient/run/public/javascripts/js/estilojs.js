@@ -111,10 +111,7 @@ function updateStepsix(){
 
 
 function  changeOpone(){
-
-
-
-    var xx = document.getElementById("lavar").checked
+     var xx = document.getElementById("lavar").checked
      if(!xx && !(document.getElementById("branquear").checked)){
             document.getElementById("branquearop1").checked = false;
             document.getElementById("branquearop2").checked = false;
@@ -128,11 +125,8 @@ function  changeOpone(){
         while (myNodea.firstChild) {
             myNodea.removeChild(myNodea.firstChild);
         }
-
-
         var aa = document.createElement('label')
         aa.setAttribute("class", "checkbox")
-
         var bb = document.createElement('input')
         bb.setAttribute("type", "checkbox")
         bb.setAttribute("name", "branquear")

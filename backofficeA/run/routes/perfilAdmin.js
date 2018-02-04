@@ -42,21 +42,30 @@ router.get('/', function(req, res, next) {
 router.post('/update', function(req, res, next) {
    var db = req.connection;
    params1 = [req.body.user, req.body.pass, req.cookies.online];
-   params2= [req.body.name, req.body.email, req.body.phone, req.body.address, req.body.site, req.body.face, req.body.twitter, req.body.nif, req.body.nif];
+   params2= [req.body.nome, req.body.email, req.body.phone, req.body.address, req.body.site, req.body.face, req.body.twitter, req.body.nif, req.body.nif];
    console.log(params1);
     console.log(params2);
 
    db.query("Update DEPLOY SET NAME=?, EMAIL=?, PHONE=?, ADRESS=?, WEBPAGE_LINK=?, FACEBOOK_LINK=?, TWITTER_LINK=?, NIF=? WHERE NIF=?", params2, function (error, result, client) {
        db.query("Update ADMINISTRATOR SET Username=?, PASSWORD=? WHERE Username=?",params1, function (error, result, client) {
-           req.cookies.email= req.body.email;
-           req.cookies.nome= req.body.name;
-           req.cookies.address= req.body.address;
-           req.cookies.phone= req.body.phone;
-           req.cookies.site= req.body.site;
-           req.cookies.face= req.body.face;
-           req.cookies.twitter= req.body.twitter;
-           req.cookies.nif= req.body.name;
-           req.cookies.online= req.body.user;
+           res.clearCookie("online");
+           res.clearCookie("nome");
+           res.clearCookie("address");
+           res.clearCookie("phone");
+           res.clearCookie("site");
+           res.clearCookie("face");
+           res.clearCookie("twitter");
+           res.clearCookie("nif");
+           res.cookie('online', req.body.user)
+           res.cookie('nome', req.body.nome)
+           res.cookie('address', req.body.email)
+           res.cookie('phone', req.body.phone)
+           res.cookie('site', req.body.address)
+           res.cookie('face', req.body.face)
+           res.cookie('twitter', req.body.twitter)
+           res.cookie('nif', req.body.nif)
+
+           console.log("teste" + req.cookies.online);
            res.redirect("/perfilAdmin");
        });
     });
