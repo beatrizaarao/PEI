@@ -1,17 +1,27 @@
 extends layout
 
 block content
-    body(onload="divideNome('"+user.NAME+"')") 
+    body
         <!-- MAIN CONTENT -->
         div(class='pg-opt')
             div(class='container')
                 div(class='row')
                     div(class='col-md-6')
-                        h2 Gestão de conta
+                        h2=NOME
                     div(class='col-md-6')
                         ol(class='breadcrumb')
                             li
+                                a(href = "#")
+                                    i
+                                        img(src="../images/bandeiraP.png" style="max-width:30px; vertical-align: middle")
+                            li
+                                a(href = "#")
+                                    i
+                                        img(src="../images/bandeiraI.png" style="max-width:30px; height: 20px; vertical-align: middle")
+                            li
                                 a(href='/home') Home
+                            li
+                                a(href='/logout') Logout
 
         section(class='slice bg-white')
             div(class='wp-section')
@@ -22,7 +32,7 @@ block content
                         div(class='form-header')
                             h2 Editar Conta - #{user.NAME}
                         div(class='form-body')
-                            form(action='' id='frmAccountEdit' class='sky-form' method='post')
+                            form(action='/account' id='frmLogin' class='sky-form' method='post' enctype='multipart/form-data')
                                 fieldset(class='no-padding')
                                     section
                                     section
@@ -49,27 +59,12 @@ block content
                                     section
                                         div(class='row')
                                             section(class='col-xs-6')
-                                                label(class='label') Primeiro Nome
+                                                label(class='label') Nome Empresa
                                                 label(class=errors.pnome ? 'input state-error' : 'input')
                                                     i(class='icon-append fa fa-user')
-                                                    input(type='text' id='fname' name='fname' placeholder='')
+                                                    input(type='text' id='fname' name='fname' placeholder='', value=user.NAME)
                                                     if errors.pnome
                                                         div(class="note note-error")=errors.pnome.message
-                                            section(class='col-xs-6')
-                                                label(class='label') Ultimo Nome
-                                                label(class=errors.unome ? 'input state-error' : 'input')
-                                                    i(class='icon-append fa fa-user')
-                                                    input(type='text' id='lname' name='lname' placeholder='')
-                                                    if errors.unome
-                                                        div(class="note note-error")=errors.unome.message
-                                        div(class='row')
-                                            section(class='col-xs-6')
-                                                label(class='label') Empresa
-                                                label(class=errors.ename ? 'input state-error' : 'input')
-                                                    i(class='icon-append fa fa-building')
-                                                    input(type='text' name='ename' placeholder='' value=user.ename)
-                                                    if errors.ename
-                                                        div(class="note note-error")=errors.ename.message
                                             section(class='col-xs-6')
                                                 label(class='label') Contacto Telefonico
                                                 label(class=errors.phone ? 'input state-error' : 'input')
@@ -77,7 +72,13 @@ block content
                                                     input(type='text' name='phone' placeholder='' pattern='[0-9]{9}$' value=user.PHONE)
                                                     if errors.phone
                                                         div(class="note note-error")=errors.phone.message
+
                                 fieldset
+                                    section
+                                        label(class=errors.morada ? 'input state-error' : 'input')
+                                            input(type='text' name='morada' placeholder='Morada' value=user.STREET)
+                                            if errors.morada
+                                                div(class="note note-error")=errors.morada.message
                                     div(class='row')
                                         section(class='col-xs-4')
                                             label(class=errors.country ? 'select state-error' : 'select')
@@ -90,14 +91,9 @@ block content
                                                             option(value=value) #{name}
                                                 if errors.country
                                                     div(class="note note-error")=errors.country.message
-                                        section(class='col-xs-4')
-                                            label(class=errors.distrito ? 'input state-error' : 'input')
-                                                input(type='text' name='distrito' placeholder='Distrito' value=user.distrito)
-                                                if errors.distrito
-                                                    div(class="note note-error")=errors.distrito.message
                                         section(class = 'col-xs-4')
                                             label(class=errors.concelho ? 'input state-error' : 'input')
-                                                input(type='text' name='concelho' placeholder='Concelho' value=user.CITY)
+                                                input(type='text' name='city' placeholder='Cidade' value=user.CITY)
                                                 if errors.concelho
                                                     div(class="note note-error")=errors.concelho.message
                                         section(class='col-xs-3')
@@ -105,30 +101,29 @@ block content
                                                 input(type='text' name='codpost' placeholder='Codigo Postal' pattern='[0-9]{4}-[0-9]{3}$' value=user.ZIP_CODE)
                                                 if errors.codpost
                                                     div(class="note note-error")=errors.codpost.message
-                                        section(class='col-xs-7')
-                                            label(class=errors.freguesia ? 'input state-error' : 'input')
-                                                input(type='text' name='freguesia' placeholder='Freguesia' value=user.freguesia)
-                                                if errors.freguesia
-                                                    div(class="note note-error")=errors.freguesia.message
-                                    
-                                    section
-                                        label(class=errors.morada ? 'input state-error' : 'input')
-                                            input(type='text' name='morada' placeholder='Morada' value=user.STREET)
-                                            if errors.morada
-                                                div(class="note note-error")=errors.morada.message
-                                    
-                                    section
-                                        label(class=errors.info ? 'textarea state-error' : 'textarea')
-                                            textarea(rows='3' name='info' placeholder='Informação Adicional')= user.info
-                                            if errors.info
-                                                div(class="note note-error")=errors.info.message
+                                div(class='row')
+                                    figure(class="myfigure")
+                                        img(class="joint-img" id="img1" name="img1" src="./public/images/upload/" + user.img_path alt="your image")
+                                        figcaption
+                                            label(class="custom-file-upload")
+                                                input(class="joint" type='file' id="foto1" name="foto1")
+                                                input(type="hidden" name="namefoto" value=user.img_path)
+                                                p Mudar Imagem
+
                                     section
                                         section
                                             input(type="submit" class='btn btn-base pull-right' value='Guardar alterações')
 
                                     script.
-                                        function divideNome(nome){
-                                            var name = nome.split(" ")
-                                            $('#fname').attr('value', name[0])
-                                            $('#lname').attr('value', name[1])
+                                        function readURL(input) {
+                                            if (input.files && input.files[0]) {
+                                                var reader = new FileReader();
+                                                reader.onload = function (e) {
+                                                    $('#img1').attr('src', e.target.result)
+                                                }
+                                                reader.readAsDataURL(input.files[0]);
+                                            }
                                         }
+                                        $(".joint").change(function () {
+                                            readURL(this);
+                                        })

@@ -14,6 +14,7 @@ router.get('/', function(req, res, next) {
         res.redirect('/signin')
     }
     else {
+        res.render('prodef', {title: 'Encomenda', NOME: req.cookies.nome, EMAIL: req.cookies.email, PHONE: req.cookies.phone, MORADA: req.cookies.address, SITE: req.cookies.site, FACE: req.cookies.face, TWITTER: req.cookies.twitter, NIF: req.cookies.nif});
         var db = req.connection;
         db.query('SELECT * FROM STEP', function (err, rows) {
             steps = rows;
@@ -109,6 +110,23 @@ router.post('/',function(req,res,next) {
                                 }
                                 //console.log("po" + que);
                                 db.query(que, function (error, result, client) {
+                                    var mailOptions = {
+                                        from: req.cookies.email,
+                                        to: req.cookies.email,
+                                        subject: "Nova Encomenda",
+                                        text: "Possui uma nova encomenda"
+                                    };
+
+                                    transp.sendMail(mailOptions, function (error, info) {
+                                        if (error) {
+                                            console.log(error);
+                                            res.json({yo: 'error'});
+                                        } else {
+                                            console.log('Message sent: ' + info.response);
+                                            res.json({yo: info.response});
+                                        }
+                                        ;
+                                    });
                                     res.redirect("/home");
                                 });
                             });
