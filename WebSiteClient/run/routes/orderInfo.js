@@ -110,14 +110,8 @@ router.get('/:orderID', function(req, res, next) {
                                 services: services,
                                 serviceOption: serviceOption,
                                 ordem: ordem,
-                                NOME: req.cookies.nome,
-                                EMAIL: req.cookies.email,
-                                PHONE: req.cookies.phone,
-                                MORADA: req.cookies.address,
-                                SITE: req.cookies.site,
-                                FACE: req.cookies.face,
-                                TWITTER: req.cookies.twitter,
-                                NIF: req.cookies.nif
+                                mail: req.cookies.email,
+                                nome: req.cookies.nome
                             });
                         }
 
