@@ -75,20 +75,28 @@ router.post('/',function(req,res,next) {
                                                 if (opcao[a].SERVICE_id_SERVICE == service[k].id_SERVICE) {
                                                     var pilas = opcao[a].DESCRIPTION;
                                                     console.log("ENTREI na opcao" + opcao[a].DESCRIPTION);
-                                                    if ((opcao[a].IS_CHECKBOX == 1 && fields[pilas] == 'on') || (opcao[a].IS_CHECKBOX == 0 && fields[pilas] != null)) {
-                                                        console.log("ENTREI na opcao" + opcao[a].DESCRIPTION);
-
+                                                    if (opcao[a].IS_CHECKBOX == 1 && fields[pilas] == 'on') {
+                                                        console.log("primeiro vou para a BD na opcao" + opcao[a].DESCRIPTION);
                                                         has_option = 1;
-                                                        queries[queries.length] = "INSERT INTO ORDER_STEP_SERVICE_OPTION (ID_ORDER, id_STEP, id_SERVICE, id_OPTION) VALUES(" + idorder + "," + steps[i].id_STEP + "," + service[k].id_SERVICE + "," + opcao[a].id_OPTION + "); "
-
+                                                        queries[queries.length] = "INSERT INTO ORDER_STEP_SERVICE_OPTION  (ID_ORDER, id_STEP, id_SERVICE, id_OPTION, insertionDate)  VALUES(" + idorder + "," + steps[i].id_STEP + "," + service[k].id_SERVICE + "," + opcao[a].id_OPTION + ", null, null,curdate()); "
+                                                    }
+                                                    if (opcao[a].IS_CHECKBOX == 0 && fields[pilas] != null) {
+                                                        console.log("vou para a BD na opcao" + opcao[a].DESCRIPTION);
+                                                        has_option = 1;
+                                                        queries[queries.length] = "INSERT INTO ORDER_STEP_SERVICE_OPTION  (ID_ORDER, id_STEP, id_SERVICE, id_OPTION, insertionDate)  VALUES(" + idorder + "," + steps[i].id_STEP + "," + service[k].id_SERVICE + "," + opcao[a].id_OPTION + ", null," + filas[pilas] + ",curdate()); "
                                                     }
                                                 }
                                             }
                                             if (has_option == 0) {
-                                                if ((service[k].IS_CHECKBOX == 1 && fields[service[k].DESCRIPTION] == 'on') || (service[k].IS_CHECKBOX == 0 && fields[service[k].DESCRIPTION] != null)) {
-
+                                                if (service[k].IS_CHECKBOX == 0 && fields[service[k].DESCRIPTION] != null) {
+                                                    console.log("vou para a BD no serviço" + service[k].DESCRIPTION);
                                                     //var params3 = [idorder,steps[i].id_STEP,service[k].id_SERVICE];
-                                                    queries[queries.length] = "INSERT INTO ORDER_STEP_SERVICE_OPTION (ID_ORDER, id_STEP, id_SERVICE) VALUES(" + idorder + "," + steps[i].id_STEP + "," + service[k].id_SERVICE + "); "
+                                                    queries[queries.length] = "INSERT INTO ORDER_STEP_SERVICE_OPTION (ID_ORDER, id_STEP, id_SERVICE, id_OPTION, insertionDate) VALUES(" + idorder + "," + steps[i].id_STEP + "," + service[k].id_SERVICE + ", null, null, null, curdate()); "
+                                                }
+                                                if (service[k].IS_CHECKBOX == 0 && fields[service[k].DESCRIPTION] != null) {
+                                                    console.log("vou para a BD no serviço" + service[k].DESCRIPTION);
+                                                    queries[queries.length] = "INSERT INTO ORDER_STEP_SERVICE_OPTION (ID_ORDER, id_STEP, id_SERVICE, id_OPTION, insertionDate) VALUES(" + idorder + "," + steps[i].id_STEP + "," + service[k].id_SERVICE + ", null," + fields[service[k].DESCRIPTION]+ ", null, curdate()); "
+
                                                 }
                                             }
                                         }

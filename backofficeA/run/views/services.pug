@@ -345,7 +345,7 @@ block content
                                         label(style='padding-left:25px; padding-top:10px; padding-bottom:25px;font-size: 20px;' for='caderno') Caderno de Encargos
                                             input(type='checkbox' name='caderno' id='caderno')
                         div(class="modal-footer")
-                            button.btn.btn-primary(type="button" class="btn btn-default" data-dismiss="modal" data-toggle="modal" data-target="#myModelPreparacao") Próximo
+                            button.btn.btn-primary(type="button" class="btn btn-default" data-dismiss="modal" data-toggle="modal" data-target="#myModelPreparacao" ) Próximo
                             button.btn.btn-primary(type="button" class="btn btn-default" data-dismiss="modal") Cancelar
 
 
@@ -448,6 +448,7 @@ block content
                 $('#but').on('click', function () {
                     if (($('#larguraf').is(':checked') && (($('#largurafi').val().length === 0) || ($('#larguraff').val().length === 0))) || ($('#largurai').is(':checked') && (($('#larguraii').val().length === 0) || ($('#larguraif').val().length === 0)))) {
                         alert('Intervalo de valores errado, retorne à Definição do Produto e corrija.');
+                        $("div").html(".alert.alert-error");
                     }
                     else {
                         if ($('#composicao').is(':checked')) {

@@ -18,18 +18,19 @@ block content
         section(class='slice bg-white')
             div(class='wp-section')
                 div(class='container')
-                    ol(class='progtrckr hidden-xs' data-progtrckr-steps='7')
-                        li(class='progtrckr-done' id='step0') Inicio de Sessão
-                        li(class='progtrckr-todo' id='step1') Definição
-                        li(class='progtrckr-todo' id='step2') Preparação
-                        li(class='progtrckr-todo' id='step3') Tinturaria
-                        li(class='progtrckr-todo' id='step4') Acabamento
-                        li(class='progtrckr-todo' id='step5') Embalagem
-                        li(class='progtrckr-todo' id='step6') Prazos e Moradas
+                    nav
+                        ol(class='progtrckr hidden-xs' data-progtrckr-steps='7')
+                            li(class='progtrckr-done' id='step0') Inicio de Sessão
+                            li(class='progtrckr-todo' id='step1') Definição
+                            li(class='progtrckr-todo' id='step2') Preparação
+                            li(class='progtrckr-todo' id='step3') Tinturaria
+                            li(class='progtrckr-todo' id='step4') Acabamento
+                            li(class='progtrckr-todo' id='step5') Embalagem
+                            li(class='progtrckr-todo' id='step6') Prazos e Moradas
                     div(class='row')
                         div(class='wp-block default user-form')
                             div(class='form-body')
-                                form(action='/prodef' id='frmProdDef' class='sky-form' method='post' enctype='multipart/form-data')
+                                form(style="position:relative;z-index: 1;" action='/prodef' id='frmProdDef' class='sky-form' method='post' enctype='multipart/form-data')
                                     fieldset(class='no-padding')
                                         h1(style="display: none" name='defProduto' class="defProduto") Definição do Produto
                                         hr(style="display: none" name='defProduto' class="defProduto")
@@ -125,23 +126,19 @@ block content
                                                             option(value='0' selected='' disabled='') Ponto
                                         hr(style="display: none" name="ponto" class="ponto")
                                         hr(style="display: none" name="peso")
-                                        h2(style="display: none" name="peso") Peso, Largura e Quantidade
-                                        h2(style="display: none" name="largurai") Peso, Largura e Quantidade
-                                        h2(style="display: none" name="larguraf") Peso, Largura e Quantidade
-                                        h2(style="display: none" name="quantidade") Peso, Largura e Quantidade
-                                        div(style="display: none" name="peso" class='row peso')
+                                        h2(style="display: none" name="largurai" class="largurai") Peso, Largura e Quantidade
+                                        div(style="display: none" name="largurai" class='row largurai')
                                             section(style="display: none" name="peso" class='col-xs-2 peso')
                                                 label(class='input' name="peso") Peso do tecido
                                                     input(type='number' name='peso' placeholder='Peso')
                                                     p g/m
                                             section(style="display: none" name="largurai" class='col-xs-2 largurai')
                                                 label(class='input' name="largurai") Largura inicial do tecido
-                                                    //min= larguraii max=larguraif(passar para int) vem da tabela opcao
-                                                    input(type='number' name='largurai' placeholder='Largura Inicial' min='50' max='380')
+                                                    input(type='number' name='largurai' placeholder='Largura Inicial' class="larguraii larguraif")
                                                     p m2
                                             section(style="display: none" name='larguraf' class='col-xs-2 larguraf')
                                                 label(class='input' name='larguraf') Largura final do tecido
-                                                    input(type='number' name='larguraf' placeholder='Largura Final' min='50' max='380')
+                                                    input(type='number' name='larguraf' placeholder='Largura Final' class="largurafi larguraff")
                                                     p(name="larguraf") m2
 
                                             section(style="display: none" name='quantidade' class='col-xs-4 quantidade')
@@ -341,7 +338,13 @@ block content
                 for (var j=0;j<servs.length;j++)
                     $( "."+servs[j].DESCRIPTION ).show( "fast" );
                 for (var l=0;l<opts.length;l++)
-                    if ( opts[l].id_OPTION>=5 && opts[l].id_OPTION<=9) {
+                    if (opts[l].id_OPTION==1 || opts[l].id_OPTION==3) {
+                        $("." + opts[l].DESCRIPTION).attr("min", opts[l].VALOR)
+                    }
+                    else if (opts[l].id_OPTION == 2 || opts[l].id_OPTION == 4) {
+                        $("." + opts[l].DESCRIPTION).attr("max", opts[l].VALOR)
+                    }
+                    else if ( opts[l].id_OPTION>=5 && opts[l].id_OPTION<=9) {
                         $("." + opts[l].DESCRIPTION).removeAttr("disabled");
                     }
                     else  {
