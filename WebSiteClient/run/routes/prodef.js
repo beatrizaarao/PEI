@@ -14,7 +14,6 @@ router.get('/', function(req, res, next) {
         res.redirect('/signin')
     }
     else {
-        res.render('prodef', {title: 'Encomenda', NOME: req.cookies.nome, EMAIL: req.cookies.email, PHONE: req.cookies.phone, MORADA: req.cookies.address, SITE: req.cookies.site, FACE: req.cookies.face, TWITTER: req.cookies.twitter, NIF: req.cookies.nif});
         var db = req.connection;
         db.query('SELECT * FROM STEP', function (err, rows) {
             steps = rows;
@@ -33,6 +32,14 @@ router.get('/', function(req, res, next) {
                                 dataOpts: opts,
                                 dataRes: inc,
                                 dataOptRes: optres,
+                                NOME: req.cookies.nome,
+                                EMAIL: req.cookies.email,
+                                PHONE: req.cookies.phone,
+                                MORADA: req.cookies.address,
+                                SITE: req.cookies.site,
+                                FACE: req.cookies.face,
+                                TWITTER: req.cookies.twitter,
+                                NIF: req.cookies.nif
                             });
                         });
                     });
@@ -79,12 +86,12 @@ router.post('/',function(req,res,next) {
                                                     if (opcao[a].IS_CHECKBOX == 1 && fields[pilas] == 'on') {
                                                         console.log("primeiro vou para a BD na opcao" + opcao[a].DESCRIPTION);
                                                         has_option = 1;
-                                                        queries[queries.length] = "INSERT INTO ORDER_STEP_SERVICE_OPTION  (ID_ORDER, id_STEP, id_SERVICE, id_OPTION, insertionDate)  VALUES(" + idorder + "," + steps[i].id_STEP + "," + service[k].id_SERVICE + "," + opcao[a].id_OPTION + ", null, null,curdate()); "
+                                                        queries[queries.length] = "INSERT INTO ORDER_STEP_SERVICE_OPTION  (ID_ORDER, id_STEP, id_SERVICE, id_OPTION, SERVICE_valor, opcao_valor, insertionDate)  VALUES(" + idorder + "," + steps[i].id_STEP + "," + service[k].id_SERVICE + "," + opcao[a].id_OPTION + ", null, null,curdate()); "
                                                     }
                                                     if (opcao[a].IS_CHECKBOX == 0 && fields[pilas] != null) {
                                                         console.log("vou para a BD na opcao" + opcao[a].DESCRIPTION);
                                                         has_option = 1;
-                                                        queries[queries.length] = "INSERT INTO ORDER_STEP_SERVICE_OPTION  (ID_ORDER, id_STEP, id_SERVICE, id_OPTION, insertionDate)  VALUES(" + idorder + "," + steps[i].id_STEP + "," + service[k].id_SERVICE + "," + opcao[a].id_OPTION + ", null," + filas[pilas] + ",curdate()); "
+                                                        queries[queries.length] = "INSERT INTO ORDER_STEP_SERVICE_OPTION  (ID_ORDER, id_STEP, id_SERVICE, id_OPTION, SERVICE_valor, opcao_valor, insertionDate)  VALUES(" + idorder + "," + steps[i].id_STEP + "," + service[k].id_SERVICE + "," + opcao[a].id_OPTION + ", null," + filas[pilas] + ",curdate()); "
                                                     }
                                                 }
                                             }
@@ -92,11 +99,11 @@ router.post('/',function(req,res,next) {
                                                 if (service[k].IS_CHECKBOX == 0 && fields[service[k].DESCRIPTION] != null) {
                                                     console.log("vou para a BD no serviço" + service[k].DESCRIPTION);
                                                     //var params3 = [idorder,steps[i].id_STEP,service[k].id_SERVICE];
-                                                    queries[queries.length] = "INSERT INTO ORDER_STEP_SERVICE_OPTION (ID_ORDER, id_STEP, id_SERVICE, id_OPTION, insertionDate) VALUES(" + idorder + "," + steps[i].id_STEP + "," + service[k].id_SERVICE + ", null, null, null, curdate()); "
+                                                    queries[queries.length] = "INSERT INTO ORDER_STEP_SERVICE_OPTION (ID_ORDER, id_STEP, id_SERVICE, id_OPTION, SERVICE_valor, opcao_valor, insertionDate) VALUES(" + idorder + "," + steps[i].id_STEP + "," + service[k].id_SERVICE + ", null, null, null, curdate()); "
                                                 }
                                                 if (service[k].IS_CHECKBOX == 0 && fields[service[k].DESCRIPTION] != null) {
                                                     console.log("vou para a BD no serviço" + service[k].DESCRIPTION);
-                                                    queries[queries.length] = "INSERT INTO ORDER_STEP_SERVICE_OPTION (ID_ORDER, id_STEP, id_SERVICE, id_OPTION, insertionDate) VALUES(" + idorder + "," + steps[i].id_STEP + "," + service[k].id_SERVICE + ", null," + fields[service[k].DESCRIPTION]+ ", null, curdate()); "
+                                                    queries[queries.length] = "INSERT INTO ORDER_STEP_SERVICE_OPTION (ID_ORDER, id_STEP, id_SERVICE, id_OPTION, SERVICE_valor, opcao_valor, insertionDate) VALUES(" + idorder + "," + steps[i].id_STEP + "," + service[k].id_SERVICE + ", null," + fields[service[k].DESCRIPTION]+ ", null, curdate()); "
 
                                                 }
                                             }
@@ -108,8 +115,9 @@ router.post('/',function(req,res,next) {
                                     //console.log("que" + queries[o]);
                                     que = que + queries[o];
                                 }
-                                //console.log("po" + que);
+                                console.log("po" + que);
                                 db.query(que, function (error, result, client) {
+                                    var transp = req.transporter;
                                     var mailOptions = {
                                         from: req.cookies.email,
                                         to: req.cookies.email,
