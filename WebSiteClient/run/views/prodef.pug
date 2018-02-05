@@ -26,9 +26,9 @@ block content
         section(class='slice bg-white')
             div(class='wp-section')
                 div(class='container')
-                    ol(class='progtrckr hidden-xs' data-progtrckr-steps=dataSteps.length+1)
+                    ol(class='progtrckr hidden-xs' data-progtrckr-steps=dataSteps.length + 1)
                         -for (var k=0;k<dataSteps.length;k++)
-                            li(class='progtrckr-todo' id='step'+dataSteps[k].id_STEP)=dataSteps[k].NAME
+                            li(class='progtrckr-todo' id='step' + dataSteps[k].id_STEP)=dataSteps[k].NAME
                         li(class='progtrckr-todo' id='step7') Prazo
                     div(class='row')
                         div(class='wp-block default user-form')
@@ -198,7 +198,6 @@ block content
                                         hr(style="display: none" name="tinturaria" class="tinturaria")
                                         h2(style="display: none" name="tinturaria" class="tinturaria") Tinturaria
                                         div(style="display: none" name="tinturaria" class='row tinturaria')
-                                            h4 Não Poliéster
                                             div(style="display: none" name="reativos" class='col-xs-3 reativos' )
                                                 label(class='checkbox') Reativo
                                                     input(type='checkbox' name='reativos' id='reativos'  onchange='updateSteptree()')
@@ -211,7 +210,7 @@ block content
                                                 label(class='checkbox') Pigmentos
                                                     input(type='checkbox' name='pigmentos' id='pigmentos' onchange='updateSteptree()')
                                                     i
-                                            h4 Poliéster
+
                                             div(style="display: none" name="reativosP" class='col-xs-3 reativosP' )
                                                 label(class='checkbox') Reativo
                                                     input(type='checkbox' name='reativosP' id='reativosP'  onchange='updateSteptree()')

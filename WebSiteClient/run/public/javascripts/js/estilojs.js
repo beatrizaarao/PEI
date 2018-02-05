@@ -89,24 +89,42 @@ function readURL(input) {
     }
 }
 
-
 function updateSteptwo(){
-    $('#step2').attr("class", "progtrckr-done")
+    if ($('#step2').hasClass("progtrckr-done")) {
+        $('#step2').attr("class", "progtrckr-todo")
+    }
+    else {$('#step2').attr("class", "progtrckr-done")}
 }
+
 function updateSteptree(){
-    $('#step3').attr("class", "progtrckr-done")
+    if ($('#step2').hasClass("progtrckr-done")) {
+        $('#step2').attr("class", "progtrckr-todo")
+    }
+    else {$('#step3').attr("class", "progtrckr-done")}
 }
 function updateStepone(){
-    $('#step1').attr("class", "progtrckr-done")
+    if ($('#step2').hasClass("progtrckr-done")) {
+        $('#step2').attr("class", "progtrckr-todo")
+    }
+    else{$('#step1').attr("class", "progtrckr-done")}
 }
 function updateStepfor(){
-    $('#step4').attr("class", "progtrckr-done")
+    if ($('#step2').hasClass("progtrckr-done")) {
+        $('#step2').attr("class", "progtrckr-todo")
+    }
+    else{$('#step4').attr("class", "progtrckr-done")}
 }
 function updateStepfiv(){
-    $('#step5').attr("class", "progtrckr-done")
+    if ($('#step2').hasClass("progtrckr-done")) {
+        $('#step2').attr("class", "progtrckr-todo")
+    }
+    else{$('#step5').attr("class", "progtrckr-done")}
 }
 function updateStepsix(){
-    $('#step6').attr("class", "progtrckr-done")
+    if ($('#step2').hasClass("progtrckr-done")) {
+        $('#step2').attr("class", "progtrckr-todo")
+    }
+    else{$('#step6').attr("class", "progtrckr-done")}
 }
 
 
@@ -312,24 +330,18 @@ function changecaland(){
 
 function containsPoli(){
 
-
-    var myNode = document.getElementById("tintasg")
-    while (myNode.firstChild) {
-        myNode.removeChild(myNode.firstChild)
-    }
-
     var a = document.getElementById("CompComp").options[document.getElementById("CompComp").selectedIndex].text
 
     if((a.indexOf("Poliéster") > -1)){
-        criaelemtinte("Reativos", true, "changetintd()")
-        criaelemtinte("Cubas", true, "changetintdd()")
-        criaelemtinte("Pigmentos", true, "changetintddd()")
-        criaelemtinte("Dispersos", false)
+        $('#reativosP').removeAttr("disabled");
+        $('#cubasP').removeAttr("disabled");
+        $('#pigmentosP').removeAttr("disabled");
+        $('#dispersosP').removeAttr("disabled");
     }
     else {
-        criaelemtinte("Reativos", true, "changetintd()")
-        criaelemtinte("Cubas", true, "changetintdd()")
-        criaelemtinte("Pigmentos", true, "changetintddd()")
+        $('#reativos').removeAttr("disabled");
+        $('#cubas').removeAttr("disabled");
+        $('#pigmentos').removeAttr("disabled");
     }
 }
 

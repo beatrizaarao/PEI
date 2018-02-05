@@ -4,9 +4,17 @@ block content
         div(class='container')
             div(class='row')
                 div(class='col-md-6')
-                    h2 Home
+                    h2 #{NOME}
                 div(class='col-md-6')
                     ol(class='breadcrumb')
+                        li
+                            a(href = "#")
+                                i
+                                    img(src="../images/bandeiraP.png" style="max-width:30px; vertical-align: middle")
+                        li
+                            a(href = "#")
+                                i
+                                    img(src="../images/bandeiraI.png" style="max-width:30px; height: 20px; vertical-align: middle")
                         li
                             a(href='/account') O meu perfil
                         li
@@ -50,10 +58,28 @@ block content
                                                                         p(style="text-indent:35px; ")
                                                                             |&rarr; #{array2[j]}
                         br
+
+                        -if(ordem[0].STATUS!=2)
+                            button(class="btn btn-info btn-lg" onclick="editarEvento('"+ ordem[0].ID_ORDER +"')") Pedir Alteração
+                            div(style="width:8px; height:auto; display:inline-block;")
+                            button(class="btn btn-info btn-lg" onclick="eliminarEvento('"+ ordem[0].ID_ORDER +"')") Pedir Cancelamento
+                br
+                br
                 center
-                    a(class="w3-button w3-large w3-theme-d4 w3-center" href="/" title="voltar")
+                    a(class="w3-button w3-large w3-theme-d4 w3-center" href="/home" title="voltar")
                         i(class="fa fa-home")
                         | Voltar
                     br
                     br
                     br
+            script.
+                function eliminarEvento(id) {
+                    if (confirm("Tem a certeza que pretende cancelar esta encomenda?")) {
+                        window.location.replace("/home/cancelar/" + id)
+                    }
+                }
+                function editarEvento(id) {
+                    if (confirm("Tem a certeza que pretende alterar esta encomenda")) {
+                        window.location.replace("/home/alterar/" + id)
+                    }
+                }
