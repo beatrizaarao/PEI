@@ -1,11 +1,12 @@
 var express = require('express');
+var bodyParser = require('body-parser');
 var path = require('path');
 var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
 var mysql      = require('mysql');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var nodemailer = require('nodemailer');
+var app = express();
 
 var connection = mysql.createConnection({
     multipleStatements: true,
@@ -47,7 +48,7 @@ var indisponivel = require('./routes/indisponivel')
 var orderInfo = require('./routes/orderInfo');
 
 
-var app = express();
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -56,11 +57,9 @@ app.set('view engine', 'pug');
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 //app.use(bodyParser.json());
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(function(req,res,next){
     req.connection = connection;

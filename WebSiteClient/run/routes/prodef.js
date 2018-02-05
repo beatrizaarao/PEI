@@ -1,8 +1,11 @@
 var express = require('express');
+var bodyParser = require('body-parser');
 var router = express.Router();
-var bodyParser = require("body-parser")
 var cookieParser = require("cookie-parser")
 var formidable = require("formidable")
+//var app = express()
+//var bodyParser = require("body-parser")
+//app.use(bodyParser.json())
 /* GET home page. */
 
 
@@ -82,29 +85,26 @@ router.post('/',function(req,res,next) {
                                             for (var a = 0; a < opcao.length; a++) {
                                                 if (opcao[a].SERVICE_id_SERVICE == service[k].id_SERVICE) {
                                                     var pilas = opcao[a].DESCRIPTION;
-                                                    console.log("ENTREI na opcao" + opcao[a].DESCRIPTION);
                                                     if (opcao[a].IS_CHECKBOX == 1 && fields[pilas] == 'on') {
-                                                        console.log("primeiro vou para a BD na opcao" + opcao[a].DESCRIPTION);
-                                                        has_option = 1;
-                                                        queries[queries.length] = "INSERT INTO ORDER_STEP_SERVICE_OPTION  (ID_ORDER, id_STEP, id_SERVICE, id_OPTION, SERVICE_valor, opcao_valor, insertionDate)  VALUES(" + idorder + "," + steps[i].id_STEP + "," + service[k].id_SERVICE + "," + opcao[a].id_OPTION + ", null, null,curdate()); "
+                                                        console.log("vou entrar na bd pela opcao 1111 "+pilas)
+                                                        has_option=1;
+                                                        queries[queries.length] = "INSERT INTO ORDER_STEP_SERVICE_OPTION (ID_ORDER, id_STEP, id_SERVICE, id_OPTION, SERVICE_valor, opcao_valor, insertionDate) VALUES(" + idorder + "," + steps[i].id_STEP + "," + service[k].id_SERVICE + "," + opcao[a].id_OPTION + ", null, null, curdate()); "
                                                     }
-                                                    if (opcao[a].IS_CHECKBOX == 0 && fields[pilas] != null) {
-                                                        console.log("vou para a BD na opcao" + opcao[a].DESCRIPTION);
-                                                        has_option = 1;
-                                                        queries[queries.length] = "INSERT INTO ORDER_STEP_SERVICE_OPTION  (ID_ORDER, id_STEP, id_SERVICE, id_OPTION, SERVICE_valor, opcao_valor, insertionDate)  VALUES(" + idorder + "," + steps[i].id_STEP + "," + service[k].id_SERVICE + "," + opcao[a].id_OPTION + ", null," + filas[pilas] + ",curdate()); "
+                                                    else if (opcao[a].IS_CHECKBOX == 0 && fields[pilas] != null) {
+                                                        has_option=1;
+                                                        console.log("vou entrar na bd pela opcao 2222 "+pilas)
+                                                        queries[queries.length] = "INSERT INTO ORDER_STEP_SERVICE_OPTION (ID_ORDER, id_STEP, id_SERVICE, id_OPTION, SERVICE_valor, opcao_valor, insertionDate) VALUES(" + idorder + "," + steps[i].id_STEP + "," + service[k].id_SERVICE + "," + opcao[a].id_OPTION + ", null," + fields[pilas]+ ", curdate()); "
                                                     }
                                                 }
                                             }
                                             if (has_option == 0) {
-                                                if (service[k].IS_CHECKBOX == 0 && fields[service[k].DESCRIPTION] != null) {
-                                                    console.log("vou para a BD no serviço" + service[k].DESCRIPTION);
-                                                    //var params3 = [idorder,steps[i].id_STEP,service[k].id_SERVICE];
+                                                if (service[k].IS_CHECKBOX == 1 && fields[service[k].DESCRIPTION] == 'on') {
+                                                    console.log("vou entrar na bd pela serviço 1111"+service[k].DESCRIPTION)
                                                     queries[queries.length] = "INSERT INTO ORDER_STEP_SERVICE_OPTION (ID_ORDER, id_STEP, id_SERVICE, id_OPTION, SERVICE_valor, opcao_valor, insertionDate) VALUES(" + idorder + "," + steps[i].id_STEP + "," + service[k].id_SERVICE + ", null, null, null, curdate()); "
                                                 }
-                                                if (service[k].IS_CHECKBOX == 0 && fields[service[k].DESCRIPTION] != null) {
-                                                    console.log("vou para a BD no serviço" + service[k].DESCRIPTION);
-                                                    queries[queries.length] = "INSERT INTO ORDER_STEP_SERVICE_OPTION (ID_ORDER, id_STEP, id_SERVICE, id_OPTION, SERVICE_valor, opcao_valor, insertionDate) VALUES(" + idorder + "," + steps[i].id_STEP + "," + service[k].id_SERVICE + ", null," + fields[service[k].DESCRIPTION]+ ", null, curdate()); "
-
+                                                else if (service[k].IS_CHECKBOX == 0 && fields[service[k].DESCRIPTION] != null) {
+                                                    console.log("vou entrar na bd pela serviço 2222"+service[k].DESCRIPTION)
+                                                    queries[queries.length] = "INSERT INTO ORDER_STEP_SERVICE_OPTION (ID_ORDER, id_STEP, id_SERVICE, id_OPTION, SERVICE_valor, opcao_valor, insertionDate) VALUES(" + idorder + "," + steps[i].id_STEP + "," + service[k].id_SERVICE + ", null," +fields[service[k].DESCRIPTION]+ ",null, curdate()); "
                                                 }
                                             }
                                         }
@@ -112,29 +112,13 @@ router.post('/',function(req,res,next) {
                                 }
                                 var que = "";
                                 for (var o = 0; o < queries.length; o++) {
-                                    //console.log("que" + queries[o]);
                                     que = que + queries[o];
                                 }
-                                console.log("po" + que);
+                                //console.log("po" + que);
                                 db.query(que, function (error, result, client) {
-                                    var transp = req.transporter;
-                                    var mailOptions = {
-                                        from: req.cookies.email,
-                                        to: req.cookies.email,
-                                        subject: "Nova Encomenda",
-                                        text: "Possui uma nova encomenda"
-                                    };
-
-                                    transp.sendMail(mailOptions, function (error, info) {
-                                        if (error) {
-                                            console.log(error);
-                                            res.json({yo: 'error'});
-                                        } else {
-                                            console.log('Message sent: ' + info.response);
-                                            res.json({yo: info.response});
-                                        }
-                                        ;
-                                    });
+                                    console.log(error);
+                                    console.log(result);
+                                    console.log(que);
                                     res.redirect("/home");
                                 });
                             });

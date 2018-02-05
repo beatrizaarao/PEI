@@ -175,13 +175,13 @@ block content
                                                     input(type='checkbox' name='branquear' id='branquear'  onchange='updateSteptwo()')
                                                     i
                                                 label(style="display: none" name='mb' id='mb' class='checkbox meiobranco') Meio Branco
-                                                    input(class="meiobranco" type='checkbox' name='mb' id='meiobranco' disabled onchange='updateSteptwo()')
+                                                    input(class="meiobranco" type='checkbox' name='meiobranco' id='meiobranco' disabled onchange='updateSteptwo()')
                                                     i
                                                 label(style="display: none" name='b' id='b' class='checkbox branco') Branco
-                                                    input(class="branco" type='checkbox' name='b' id='branco' disabled onchange='updateSteptwo()')
+                                                    input(class="branco" type='checkbox' name='branco' id='branco' disabled onchange='updateSteptwo()')
                                                     i
                                                 label(style="display: none" name='lbe' id='lbe' class='checkbox be') BE
-                                                    input(class="be" type='checkbox' name='lbe' id='be' disabled onchange='updateSteptwo()')
+                                                    input(class="be" type='checkbox' name='be' id='be' disabled onchange='updateSteptwo()')
                                                     i
 
                                             div(style="display: none" name="lavar" class='col-xs-3 lavar')
@@ -334,6 +334,11 @@ block content
             });
             $(document).ready(function () {
                 $('input:checkbox').prop('checked', false);
+                $('#largurai').attr("val",null);
+                $('#larguraf').attr("val",null);
+                $('#caderno').attr("val",null);
+                $('#quantenf').attr("val",null);
+                $('#quantenr').attr("val",null);
                 var steps = !{JSON.stringify(dataSteps)};
                 var servs = !{JSON.stringify(dataServs)};
                 var opts = !{JSON.stringify(dataOpts)};

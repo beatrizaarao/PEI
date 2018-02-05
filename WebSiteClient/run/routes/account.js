@@ -22,7 +22,7 @@ router.get('/', function (req, res, next) {
         db.query('SELECT * FROM CLIENT WHERE NIF =' + nif, function (error, user) {
 
             if (!error && user.length > 0) {
-                res.render('account', {countries: countries, user: user[0], errors: false, NAME: req.cookies.nome, EMAIL: req.cookies.email, PHONE: req.cookies.phone, MORADA: req.cookies.address, SITE: req.cookies.site, FACE: req.cookies.face, TWITTER: req.cookies.twitter, NIF: req.cookies.nif });
+                res.render('account', {countries: countries, user: user[0], errors: false, NOME: req.cookies.nome, EMAIL: req.cookies.email, PHONE: req.cookies.phone, MORADA: req.cookies.address, SITE: req.cookies.site, FACE: req.cookies.face, TWITTER: req.cookies.twitter, NIF: req.cookies.nif });
             }
         });
     }

@@ -69,7 +69,6 @@ router.post('/serv', function(req, res) {
     }
     else {
         var db = req.connection;
-        console.log(req.body.definicao);
         var definicao = "", composicao = "", ponto = "", peso = "", largurai = "", larguraii = "", larguraif = "", larguraf = "", largurafi = "", larguraff = "", quantidade = "",
             caderno = "", preparacao = "", gasar = "", branquear = "", meiobranco = "", branco = "", be = "", lavar = "", mercerizar = "",
             tinturaria = "", reativos = "", cubas = "", pigmentos = "", reativosP = "", cubasP = "", pigmentosP = "", dispersosP = "", acabamentos = "", secar = "",
