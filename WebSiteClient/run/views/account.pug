@@ -32,7 +32,7 @@ block content
                         div(class='form-header')
                             h2 Editar Conta - #{user.NAME}
                         div(class='form-body')
-                            form(action='' id='frmAccountEdit' class='sky-form' method='post')
+                            form(action='/account' id='frmLogin' class='sky-form' method='post' enctype='multipart/form-data')
                                 fieldset(class='no-padding')
                                     section
                                     section
@@ -93,7 +93,7 @@ block content
                                                     div(class="note note-error")=errors.country.message
                                         section(class = 'col-xs-4')
                                             label(class=errors.concelho ? 'input state-error' : 'input')
-                                                input(type='text' name='concelho' placeholder='Concelho' value=user.CITY)
+                                                input(type='text' name='city' placeholder='Cidade' value=user.CITY)
                                                 if errors.concelho
                                                     div(class="note note-error")=errors.concelho.message
                                         section(class='col-xs-3')
@@ -103,10 +103,11 @@ block content
                                                     div(class="note note-error")=errors.codpost.message
                                 div(class='row')
                                     figure(class="myfigure")
-                                        img(class="joint-img" id="img1" name="img1" src="/images/upload/" + user.img_path alt="your image")
+                                        img(class="joint-img" id="img1" name="img1" src="./public/images/upload/" + user.img_path alt="your image")
                                         figcaption
                                             label(class="custom-file-upload")
                                                 input(class="joint" type='file' id="foto1" name="foto1")
+                                                input(type="hidden" name="namefoto" value=user.img_path)
                                                 p Mudar Imagem
 
                                     section
