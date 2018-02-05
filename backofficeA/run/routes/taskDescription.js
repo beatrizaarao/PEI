@@ -54,7 +54,28 @@ router.put('/porra/:id', function (req, res) {
                     db.query("UPDATE TASK SET STATE=1 WHERE ID_TASK=?", req.params.id, function (error, result, client) {
                         req.app.locals.missedMenu = req.app.locals.missedMenu - 1
                         //req.app.locals.missedMenu = req.app.locals.missedMenu-1
-                        res.redirect('/tasks');
+                        db.query("Select * from CLIENT WHERE NIF=?", cliente[0].Client_NIF, function (error, result, client) {
+                            var clientss=result;
+                            var transp = req.transporter;
+                            var mailOptions = {
+                                from: req.cookies.email,
+                                to: clientss[0].EMAIL,
+                                subject: "Registo Uniline",
+                                text: "O seu registo no software de encomendas Uniline foi aprovado"
+                            };
+
+                            transp.sendMail(mailOptions, function (error, info) {
+                                if (error) {
+                                    console.log(error);
+                                    res.json({yo: 'error'});
+                                } else {
+                                    console.log('Message sent: ' + info.response);
+                                    res.json({yo: info.response});
+                                }
+                                ;
+                            });
+                            res.redirect('/tasks');
+                        });
                     });
                 });
             }

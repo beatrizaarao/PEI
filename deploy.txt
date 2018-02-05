@@ -1,6 +1,6 @@
 "Company"[{
 	"name":"PeugasLDA.",
-	"email":"peugas@teste.com",
+	"email":"encomenda.uniline@gmail.com",
 	"phone":"253000000",
 	"adress":"Rua da Travessa_4000-300_Guimarães_Portugal",
 	"webpage_link":"http://www.etpeugas.com/pt/",

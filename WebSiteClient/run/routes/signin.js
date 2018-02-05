@@ -37,15 +37,20 @@ router.post('/',function(req,res,next) {
                         console.log("NIF => " + fields.nif)
                         console.log("PASS => " + docs[0].PASS + " TENTATIVA => " + fields.password)
                         if (docs[0].PASS === fields.password) {
-                            if (docs[0].IS_APPROVED) {
-                                res.cookie('onlineC', fields.nif)
-                                res.redirect('/order')
+                            if (docs[0].IS_APPROVED==1) {
+                                if (docs[0].IS_BLOCKED==1){
+                                    res.render('lr', {title: 'Login', status: 'Conta bloqueada', NOME: req.cookies.nome, EMAIL: req.cookies.email, PHONE: req.cookies.phone, MORADA: req.cookies.address, SITE: req.cookies.site, FACE: req.cookies.face, TWITTER: req.cookies.twitter, NIF: req.cookies.nif});
+                                }
+                                else{
+                                    console.log("nif", fields.nif)
+                                    res.clearCookie("onlineC")
+                                    res.cookie('onlineC', fields.nif)
+                                    res.redirect('/order')
+                                }
+
                             }
                             else {
                                 res.render('lr', {title: 'Login', status: 'Conta ainda não aprovada', NOME: req.cookies.nome, EMAIL: req.cookies.email, PHONE: req.cookies.phone, MORADA: req.cookies.address, SITE: req.cookies.site, FACE: req.cookies.face, TWITTER: req.cookies.twitter, NIF: req.cookies.nif});
-                            }
-                            if (docs[0].IS_BLOCKED) {
-                                res.render('lr', {title: 'Login', status: 'Conta bloqueada', NOME: req.cookies.nome, EMAIL: req.cookies.email, PHONE: req.cookies.phone, MORADA: req.cookies.address, SITE: req.cookies.site, FACE: req.cookies.face, TWITTER: req.cookies.twitter, NIF: req.cookies.nif});
                             }
                         }
                         else {

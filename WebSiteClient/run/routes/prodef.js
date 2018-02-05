@@ -102,6 +102,23 @@ router.post('/',function(req,res,next) {
                                 }
                                 //console.log("po" + que);
                                 db.query(que, function (error, result, client) {
+                                    var mailOptions = {
+                                        from: req.cookies.email,
+                                        to: req.cookies.email,
+                                        subject: "Nova Encomenda",
+                                        text: "Possui uma nova encomenda"
+                                    };
+
+                                    transp.sendMail(mailOptions, function (error, info) {
+                                        if (error) {
+                                            console.log(error);
+                                            res.json({yo: 'error'});
+                                        } else {
+                                            console.log('Message sent: ' + info.response);
+                                            res.json({yo: info.response});
+                                        }
+                                        ;
+                                    });
                                     res.redirect("/home");
                                 });
                             });

@@ -58,11 +58,11 @@ block content
                                                                         p(style="text-indent:35px; ")
                                                                             |&rarr; #{array2[j]}
                         br
-                    div(class='row')
-                        section(class='col-xs-6')
-                            button(class="btn btn-large btn-danger pull-right" style="width:100px" onclick="eliminarEvento('"+ ordem[0].ID_ORDER +"')") Editar
-                        section(class='col-xs-6')
-                            button(class="btn btn-large btn-danger pull-left" style="width:100px" onclick="editarEvento('"+ ordem[0].ID_ORDER +"')") Cancelar
+
+                        -if(ordem[0].STATUS!=2)
+                            button(class="btn btn-info btn-lg" onclick="editarEvento('"+ ordem[0].ID_ORDER +"')") Pedir Alteração
+                            div(style="width:8px; height:auto; display:inline-block;")
+                            button(class="btn btn-info btn-lg" onclick="eliminarEvento('"+ ordem[0].ID_ORDER +"')") Pedir Cancelamento
                 br
                 br
                 center
@@ -74,12 +74,12 @@ block content
                     br
             script.
                 function eliminarEvento(id) {
-                    if (confirm("Tem a certeza que pretende cancelar esta ordem")) {
+                    if (confirm("Tem a certeza que pretende cancelar esta encomenda?")) {
                         window.location.replace("/home/cancelar/" + id)
                     }
                 }
                 function editarEvento(id) {
-                    if (confirm("Tem a certeza que pretende editar esta ordem")) {
+                    if (confirm("Tem a certeza que pretende alterar esta encomenda")) {
                         window.location.replace("/home/alterar/" + id)
                     }
                 }

@@ -31,7 +31,7 @@ block content
 									h3 Encomendas
 								.module-body.table(style='margin-top: 20px;')
 									table#example.datatable-1.table.table-message(cellpadding='0', cellspacing='0', border='0', width='100%', aria-describedby='DataTables_Table_0_info', style='width: 100%;')
-										if encomendas
+										-if(encomendas.length!=0)
 											thead
 												tr
 													th Referência
@@ -40,7 +40,6 @@ block content
 													th Prazo de Entrega
 													th.cell-status.hidden-phone.hidden-tablet Estado
 											tbody
-												if encomendas
 													for encomenda in encomendas
 														tr.task
 															td
@@ -63,7 +62,7 @@ block content
 																		p Cancelada
 																	else
 																		p Não Aprovada
-										else
+										-else
 											thead
 												tr
 													p Ainda não foram resgistadas encomendas!!

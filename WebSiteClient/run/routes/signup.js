@@ -54,12 +54,30 @@ router.post('/',function(req,res,next) {
                                 })
                             }
 
-                            fields.name = fields.fname + " " + fields.lname
+                            fields.name = fields.fname
 
-                            var querysql = "INSERT INTO `CLIENT` (`NAME`, `NIF`, `EMAIL`, `PHONE`, `STREET`, `DOOR_NUMBER`, `CITY`, `COUNTRY`, `ZIP_CODE`, `PASS`, `IS_BLOCKED`, `img_path`, `IS_APPROVED`, `data_registo`) VALUES('" + fields.name + "'," + fields.nif + ",'" + fields.email + "','" + fields.phone + "','" + fields.rua + "'," + fields.porta + ",'" + fields.city + "','" + fields.country + "','" + fields.zip + "','" + fields.pass + "',1,'"+fields.fotografia +"',0,CURDATE())"
+                            var querysql = "INSERT INTO `CLIENT` (`NAME`, `NIF`, `EMAIL`, `PHONE`, `STREET`, `DOOR_NUMBER`, `CITY`, `COUNTRY`, `ZIP_CODE`, `PASS`, `IS_BLOCKED`, `img_path`, `IS_APPROVED`, `data_registo`) VALUES('" + fields.name + "'," + fields.nif + ",'" + fields.email + "','" + fields.phone + "','" + fields.rua + "'," + fields.porta + ",'" + fields.city + "','" + fields.country + "','" + fields.zip + "','" + fields.pass + "',0,'"+fields.fotografia +"',0,CURDATE())"
                             db.query(querysql, function (err3, result, clint) {
                                 db.query("INSERT INTO Task (DESCRIPTION, STATE, Client_NIF, Tipo, dataPedido, Ordem_ID) VALUES('O cliente com o NIF=" + fields.nif + "pretende registar-se na aplicação',0,?,0,CURDATE(),null)", fields.nif, function (err1, result, clint) {
                                     if (!err3) {
+                                        var transp = req.transporter;
+                                        var mailOptions = {
+                                            from: req.cookies.email,
+                                            to: req.cookies.email,
+                                            subject: "Nova Tarefa",
+                                            text: "Possui uma nova tarefa relativa à aprovação de um registo"
+                                        };
+
+                                        transp.sendMail(mailOptions, function (error, info) {
+                                            if (error) {
+                                                console.log(error);
+                                                res.json({yo: 'error'});
+                                            } else {
+                                                console.log('Message sent: ' + info.response);
+                                                res.json({yo: info.response});
+                                            }
+                                            ;
+                                        });
                                         status = "Registo Efetuado com sucesso."
                                         console.log("Registo Efetuado com sucesso")
                                         res.redirect("/signin")

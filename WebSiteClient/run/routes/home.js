@@ -26,7 +26,8 @@ router.get('/', function(req, res, next) {
 })
 
 router.get('/alterar/:orderID', function(req, res, next) {
-
+    var nif = req.cookies.onlineC;
+    console.log("teste" + req.params.orderID)
     if (req.cookies.deploy == undefined){
         res.redirect('/indisponivel')
     }
@@ -34,14 +35,34 @@ router.get('/alterar/:orderID', function(req, res, next) {
         res.redirect('/signin')
     }
     else {
-        var db2 = req.connection
-        db2.query("INSERT INTO Task (DESCRIPTION, STATE, Client_NIF, Tipo, dataPedido, Ordem_ID) VALUES('O cliente com o NIF=" + req.cookie.onlineC + "pretende alterar a encomenda"+req.params.ordemID +"',0,?,2,CURDATE(),'"+req.params.ordemID+"')", req.cookie.onlineC , function (err1, result, clint) {
-                res.redirect("/home")
+        var db2 = req.connection;
+
+        console.log("what" + nif)
+        var params=[nif,req.params.orderID]
+        db2.query("INSERT INTO Task (DESCRIPTION, STATE, Client_NIF, Tipo, dataPedido, Ordem_ID) VALUES('O cliente com o NIF="+ nif+ "pretende alterar a encomenda "+req.params.orderID+"',0,?,2,CURDATE(),?)", params , function (err1, result, clint) {
+            var transp = req.transporter;
+            var mailOptions = {
+                from: req.cookies.email,
+                to: req.cookies.email,
+                subject: "Nova Tarefa",
+                text: "Possui uma nova tarefa relativa à alteração de uma encomenda"
+            };
+
+            transp.sendMail(mailOptions, function (error, info) {
+                if (error) {
+                    console.log(error);
+                    res.json({yo: 'error'});
+                } else {
+                    console.log('Message sent: ' + info.response);
+                    res.json({yo: info.response});
+                }
+                ;
+            });
+            res.redirect("/home")
         })
 
-        var nif = req.cookies.onlineC;
         var db = req.connection
-        db.query('SELECT * FROM ORDEM WHERE client_NIF =' + nif, function (err2, docs) {
+        db.query('SELECT * FROM ORDEM WHERE Client_NIF =' + nif, function (err2, docs) {
             if (!err2) {
                 res.render('home', {title: 'Home', encomendas: docs});
             }
@@ -54,6 +75,7 @@ router.get('/alterar/:orderID', function(req, res, next) {
 
 router.get('/cancelar/:orderID', function(req, res, next) {
 
+    var nif = req.cookies.onlineC;
     if (req.cookies.deploy == undefined){
         res.redirect('/indisponivel')
     }
@@ -63,11 +85,30 @@ router.get('/cancelar/:orderID', function(req, res, next) {
     else {
 
         var db2 = req.connection
-        db2.query("INSERT INTO Task (DESCRIPTION, STATE, Client_NIF, Tipo, dataPedido, Ordem_ID) VALUES('O cliente com o NIF=" + req.cookies.onlineC + "pretende cancelar a encomenda"+req.params.ordemID +"',0,?,1,CURDATE(),'"+req.params.ordemID+"')", req.cookies.onlineC , function (err1, result, clint) {
+        var params=[nif,req.params.orderID]
+        db2.query("INSERT INTO Task (DESCRIPTION, STATE, Client_NIF, Tipo, dataPedido, Ordem_ID) VALUES('O cliente com o NIF= "+nif+ "pretende cancelar a encomenda "+req.params.orderID+"',0,?,1,CURDATE(),?)", params, function (err1, result, clint) {
+            var transp = req.transporter;
+            var mailOptions = {
+                from: req.cookies.email,
+                to: req.cookies.email,
+                subject: "Nova Tarefa",
+                text: "Possui uma nova tarefa relativa ao cancelamento de uma encomenda"
+            };
+
+            transp.sendMail(mailOptions, function (error, info) {
+                if (error) {
+                    console.log(error);
+                    res.json({yo: 'error'});
+                } else {
+                    console.log('Message sent: ' + info.response);
+                    res.json({yo: info.response});
+                }
+                ;
+            });
             res.redirect("/home")
+
         })
 
-        var nif = req.cookies.onlineC;
         var db = req.connection
         db.query('SELECT * FROM ORDEM WHERE client_NIF =' + nif, function (err2, docs) {
             if (!err2) {

@@ -56,7 +56,7 @@ router.post('/', function(req, res, next) {
         }
         else {
             var mailOptions = {
-                from: 'encomenda.uniline@gmail.com',
+                from: req.cookies.email,
                 to: email,
                 subject: assunto,
                 text: mensagem

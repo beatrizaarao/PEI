@@ -132,9 +132,34 @@ router.post('/exportar/:ordemID', function(req, res, next) {
     }
     else{
         var db = req.connection;
-        db.query("UPDATE ORDEM set STATUS = 1 where ID_ORDER=?",req.params.ordemID, function (error, result, client) {
-            res.redirect('/orderInfo/' + req.params.ordemID);
-        });}
+        db.query("Select Client_NIF FROM ORDEM where ID_ORDER=?",req.params.ordemID, function (error, result, client) {
+           client_nif=result[0].Client_NIF
+            db.query("Select EMAIL FROM CLIENT where NIF=?",client_nif, function (error, result, client) {
+                var c_email = result[0].EMAIL
+                db.query("UPDATE ORDEM set STATUS = 1 where ID_ORDER=?",req.params.ordemID, function (error, result, client) {
+                    var transp = req.transporter;
+                    var mailOptions = {
+                        from: req.cookies.email,
+                        to: c_email,
+                        subject: "Encomenda Aprovada",
+                        text: "A sua encomenda foi aprovada"
+                    };
+
+                    transp.sendMail(mailOptions, function (error, info) {
+                        if (error) {
+                            console.log(error);
+                            res.json({yo: 'error'});
+                        } else {
+                            console.log('Message sent: ' + info.response);
+                            res.json({yo: info.response});
+                        }
+                        ;
+                    });
+                    res.redirect('/orderInfo/' + req.params.ordemID);
+                });
+            });
+        });
+    }
 });
 
 router.put('/encomendas/:id', function (req, res) {
