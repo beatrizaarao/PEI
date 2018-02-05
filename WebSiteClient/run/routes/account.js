@@ -22,7 +22,7 @@ router.get('/', function (req, res, next) {
         db.query('SELECT * FROM CLIENT WHERE NIF =' + nif, function (error, user) {
 
             if (!error && user.length > 0) {
-                res.render('account', {countries: countries, user: user[0], errors: false,NAME: req.cookies.nome, EMAIL: req.cookies.email, PHONE: req.cookies.phone, MORADA: req.cookies.address, SITE: req.cookies.site, FACE: req.cookies.face, TWITTER: req.cookies.twitter, NIF: req.cookies.nif });
+                res.render('account', {countries: countries, user: user[0], errors: false, NOME: req.cookies.nome, EMAIL: req.cookies.email, PHONE: req.cookies.phone, MORADA: req.cookies.address, SITE: req.cookies.site, FACE: req.cookies.face, TWITTER: req.cookies.twitter, NIF: req.cookies.nif });
             }
         });
     }
@@ -72,7 +72,10 @@ router.post('/', function (req, res, next) {
 
 
             var db = req.connection;
-            db.query('UPDATE CLIENT SET NAME ='+ fields.fname +', NIF ='+ fields.nif +', EMAIL ='+ fields.email +', PHONE ='+ fields.phone +', STREET ='+ fields.morada +', COUNTRY ='+ fields.country +', CITY ='+ fields.city +',  ZIP_CODE ='+ fields.codpost +', img_path ='+ fields.fotografia +' WHERE NIF =' + nif, function (err2, docs) {
+            var qu = "UPDATE CLIENT SET NAME='" +fields.fname +"',NIF='"+fields.nif+"',EMAIL='"+ fields.email +"',PHONE='"+fields.phone+"',STREET='"+fields.morada+"',COUNTRY='"+fields.country+"',CITY='"+fields.city+"',ZIP_CODE='"+fields.codpost+"',img_path='"+fields.fotografia+"' WHERE NIF='"+nif+"'"
+
+            console.log(qu)
+            db.query(qu, function (err2, docs) {
                 if (!err2) {
                     if(fields.nif != nif){
                         res.redirect("/logout")
