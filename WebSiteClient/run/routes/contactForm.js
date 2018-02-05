@@ -17,15 +17,7 @@ router.get('/', function(req, res, next) {
             email: "example@email.com...",
             nome: "Inserir Nome...",
             assunto: "Inserir assunto...",
-            mensagem: "Inserir mensagem...",
-            NOME: req.cookies.nome,
-            EMAIL: req.cookies.email,
-            PHONE: req.cookies.phone,
-            MORADA: req.cookies.address,
-            SITE: req.cookies.site,
-            FACE: req.cookies.face,
-            TWITTER: req.cookies.twitter,
-            NIF: req.cookies.nif
+            mensagem: "Inserir mensagem..."
         });
     }
 });
@@ -56,7 +48,7 @@ router.post('/', function(req, res, next) {
         }
         else {
             var mailOptions = {
-                from: req.cookies.email,
+                from: 'encomenda.uniline@gmail.com',
                 to: email,
                 subject: assunto,
                 text: mensagem

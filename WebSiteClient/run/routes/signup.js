@@ -10,7 +10,7 @@ router.get('/', function(req, res, next) {
         res.redirect('/indisponivel')
     }
     else {
-        res.render('lr', {title: 'Signup', NOME: req.cookies.nome, EMAIL: req.cookies.email, PHONE: req.cookies.phone, MORADA: req.cookies.address, SITE: req.cookies.site, FACE: req.cookies.face, TWITTER: req.cookies.twitter, NIF: req.cookies.nif});
+        res.render('lr', {title: 'Signup'});
     }
   
 });
@@ -35,7 +35,7 @@ router.post('/',function(req,res,next) {
                         console.log(fields.cpassword)
                         if (fields.pass != fields.cpassword) {
                             status = "Erro na confirmação de password"
-                            res.render('lr', {title: 'Signup', status: status, NOME: req.cookies.nome, EMAIL: req.cookies.email, PHONE: req.cookies.phone, MORADA: req.cookies.address, SITE: req.cookies.site, FACE: req.cookies.face, TWITTER: req.cookies.twitter, NIF: req.cookies.nif});
+                            res.render('lr', {title: 'Signup', status: status});
                         }
                         else {
                             if(files.foto1.name != ""){
@@ -44,7 +44,7 @@ router.post('/',function(req,res,next) {
                                 fields.fotografia = fields.nif + "." + extension
 
 
-                                fs.rename(files.foto1.path, './images/upload/' + fields.fotografia, function(err1){
+                                fs.rename(files.foto1.path, '~/PEI/backofficeA/run/public/images/upload/' + fields.fotografia, function(err1){
                                     if(!err1){
                                         console.log("Ficheiro recebido e guardado com sucesso")
                                     }
@@ -54,30 +54,12 @@ router.post('/',function(req,res,next) {
                                 })
                             }
 
-                            fields.name = fields.fname
+                            fields.name = fields.fname + " " + fields.lname
 
-                            var querysql = "INSERT INTO `CLIENT` (`NAME`, `NIF`, `EMAIL`, `PHONE`, `STREET`, `DOOR_NUMBER`, `CITY`, `COUNTRY`, `ZIP_CODE`, `PASS`, `IS_BLOCKED`, `img_path`, `IS_APPROVED`, `data_registo`) VALUES('" + fields.name + "'," + fields.nif + ",'" + fields.email + "','" + fields.phone + "','" + fields.rua + "'," + fields.porta + ",'" + fields.city + "','" + fields.country + "','" + fields.zip + "','" + fields.pass + "',0,'"+fields.fotografia +"',0,CURDATE())"
+                            var querysql = "INSERT INTO `CLIENT` (`NAME`, `NIF`, `EMAIL`, `PHONE`, `STREET`, `DOOR_NUMBER`, `CITY`, `COUNTRY`, `ZIP_CODE`, `PASS`, `IS_BLOCKED`, `img_path`, `IS_APPROVED`, `data_registo`) VALUES('" + fields.name + "'," + fields.nif + ",'" + fields.email + "','" + fields.phone + "','" + fields.rua + "'," + fields.porta + ",'" + fields.city + "','" + fields.country + "','" + fields.zip + "','" + fields.pass + "',1,'"+fields.fotografia +"',0,CURDATE())"
                             db.query(querysql, function (err3, result, clint) {
                                 db.query("INSERT INTO Task (DESCRIPTION, STATE, Client_NIF, Tipo, dataPedido, Ordem_ID) VALUES('O cliente com o NIF=" + fields.nif + "pretende registar-se na aplicação',0,?,0,CURDATE(),null)", fields.nif, function (err1, result, clint) {
                                     if (!err3) {
-                                        var transp = req.transporter;
-                                        var mailOptions = {
-                                            from: req.cookies.email,
-                                            to: req.cookies.email,
-                                            subject: "Nova Tarefa",
-                                            text: "Possui uma nova tarefa relativa à aprovação de um registo"
-                                        };
-
-                                        transp.sendMail(mailOptions, function (error, info) {
-                                            if (error) {
-                                                console.log(error);
-                                                res.json({yo: 'error'});
-                                            } else {
-                                                console.log('Message sent: ' + info.response);
-                                                res.json({yo: info.response});
-                                            }
-                                            ;
-                                        });
                                         status = "Registo Efetuado com sucesso."
                                         console.log("Registo Efetuado com sucesso")
                                         res.redirect("/signin")
@@ -85,7 +67,7 @@ router.post('/',function(req,res,next) {
                                     else {
                                         console.log("Erro ao efetuar o registo:\r\n" + err3 + "\r\n\r\n");
                                         status = " Ocorreu um erro: " + err3
-                                        res.render('lr', {title: 'Signup', status: status, NOME: req.cookies.nome, EMAIL: req.cookies.email, PHONE: req.cookies.phone, MORADA: req.cookies.address, SITE: req.cookies.site, FACE: req.cookies.face, TWITTER: req.cookies.twitter, NIF: req.cookies.nif});
+                                        res.render('lr', {title: 'Signup', status: status});
                                     }
                                 });
                             });
@@ -93,12 +75,12 @@ router.post('/',function(req,res,next) {
                         }
                     }
                     else {
-                        res.render('lr', {title: 'Signup', status: 'Já existe um utilizador com esse nif', NOME: req.cookies.nome, EMAIL: req.cookies.email, PHONE: req.cookies.phone, MORADA: req.cookies.address, SITE: req.cookies.site, FACE: req.cookies.face, TWITTER: req.cookies.twitter, NIF: req.cookies.nif})
+                        res.render('lr', {title: 'Signup', status: 'Já existe um utilizador com esse nif'})
                     }
                 }
                 else {
                     console.log("Erro a adicionar utilizador: " + err2)
-                    res.render('lr', {title: 'Signup', status: 'Ocorreu um erro, por favor tente novamente', NOME: req.cookies.nome, EMAIL: req.cookies.email, PHONE: req.cookies.phone, MORADA: req.cookies.address, SITE: req.cookies.site, FACE: req.cookies.face, TWITTER: req.cookies.twitter, NIF: req.cookies.nif})
+                    res.render('lr', {title: 'Signup', status: 'Ocorreu um erro, por favor tente novamente'})
                 }
             })
 

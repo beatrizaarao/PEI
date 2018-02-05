@@ -10,9 +10,8 @@ router.get('/', function(req, res, next) {
         if (dep.length != 0){
             console.log(result.length)
             res.cookie('deploy', 1)
-            res.cookie('nome', dep[0].NAME);
-            console.log("merda" + req.cookies.nome);
             res.cookie('email', dep[0].EMAIL);
+            res.cookie('stat', dep[0].STATISTICS);
             res.cookie('phone', dep[0].PHONE);
             res.cookie('address', dep[0].ADRESS);
             res.cookie('site', dep[0].WEBPAGE_LINK);

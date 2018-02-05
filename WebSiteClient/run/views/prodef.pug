@@ -26,15 +26,10 @@ block content
         section(class='slice bg-white')
             div(class='wp-section')
                 div(class='container')
-                    nav
-                        ol(class='progtrckr hidden-xs' data-progtrckr-steps='7')
-                            li(class='progtrckr-done' id='step0') Inicio de Sessão
-                            li(class='progtrckr-todo' id='step1') Definição
-                            li(class='progtrckr-todo' id='step2') Preparação
-                            li(class='progtrckr-todo' id='step3') Tinturaria
-                            li(class='progtrckr-todo' id='step4') Acabamento
-                            li(class='progtrckr-todo' id='step5') Embalagem
-                            li(class='progtrckr-todo' id='step6') Prazos e Moradas
+                    ol(class='progtrckr hidden-xs' data-progtrckr-steps=dataSteps.length+1)
+                        -for (var k=0;k<dataSteps.length;k++)
+                            li(class='progtrckr-done')=dataSteps[k].NAME
+                        li(class='progtrckr-done') Prazo
                     div(class='row')
                         div(class='wp-block default user-form')
                             div(class='form-body')
@@ -203,6 +198,7 @@ block content
                                         hr(style="display: none" name="tinturaria" class="tinturaria")
                                         h2(style="display: none" name="tinturaria" class="tinturaria") Tinturaria
                                         div(style="display: none" name="tinturaria" class='row tinturaria')
+                                            h4 Não Poliéster
                                             div(style="display: none" name="reativos" class='col-xs-3 reativos' )
                                                 label(class='checkbox') Reativo
                                                     input(type='checkbox' name='reativos' id='reativos'  onchange='updateSteptree()')
@@ -215,7 +211,7 @@ block content
                                                 label(class='checkbox') Pigmentos
                                                     input(type='checkbox' name='pigmentos' id='pigmentos' onchange='updateSteptree()')
                                                     i
-
+                                            h4 Poliéster
                                             div(style="display: none" name="reativosP" class='col-xs-3 reativosP' )
                                                 label(class='checkbox') Reativo
                                                     input(type='checkbox' name='reativosP' id='reativosP'  onchange='updateSteptree()')
@@ -338,6 +334,7 @@ block content
                 $('#f').toggle();
             });
             $(document).ready(function () {
+                $('input:checkbox').prop('checked', false);
                 var steps = !{JSON.stringify(dataSteps)};
                 var servs = !{JSON.stringify(dataServs)};
                 var opts = !{JSON.stringify(dataOpts)};

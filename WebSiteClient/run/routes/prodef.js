@@ -115,7 +115,7 @@ router.post('/',function(req,res,next) {
                                     //console.log("que" + queries[o]);
                                     que = que + queries[o];
                                 }
-                                console.log("po" + que);
+                                //console.log("po" + que);
                                 db.query(que, function (error, result, client) {
                                     var transp = req.transporter;
                                     var mailOptions = {
