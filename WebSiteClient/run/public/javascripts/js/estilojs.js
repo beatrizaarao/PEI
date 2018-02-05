@@ -332,7 +332,7 @@ function containsPoli(){
 
     var a = document.getElementById("CompComp").options[document.getElementById("CompComp").selectedIndex].text
 
-    if((a.indexOf("Poliéster") > -1)){
+    if(a.indexOf("Poliéster") > -1){
         $('#reativosP').removeAttr("disabled");
         $('#cubasP').removeAttr("disabled");
         $('#pigmentosP').removeAttr("disabled");

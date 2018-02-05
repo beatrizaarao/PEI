@@ -46,7 +46,9 @@ router.post('/', function(req, res, next){
                 status: 'O email fornecido não é válido',
                 email: email,
                 assunto: assunto,
-                mensagem: mensagem
+                mensagem: mensagem,
+                mail: req.cookies.email,
+                nome: req.cookies.nome
             }));
         }
         else {
@@ -69,7 +71,6 @@ router.post('/', function(req, res, next){
             });
             var params = [assunto, mensagem, email]
             db.query("INSERT INTO ADMIN_MESSAGE (SUBJECT, CONTENT, client_mail, Tipo, IS_READ, IS_FAVORITE, Data) VALUES (?,?, ?, 1,1,0,CURRENT_DATE)", params, function (error, result, client) {
-                console.log("ENTREI");
                 res.redirect('/messages');
             });
 
@@ -88,7 +89,7 @@ router.post('/clientInfo/:nif', function(req, res, next) {
     var db = req.connection;
     db.query("Select EMAIL from Client where NIF=?",req.params.nif, function (error, result, client) {
         var email= result;
-        res.render('compose', { title: 'Compor', emailDefault: email[0].EMAIL, assunto: "Inserir assunto...", mensagem: "Inserir mensagem..."});
+        res.render('compose', { title: 'Compor', emailDefault: email[0].EMAIL, assunto: "Inserir assunto...", mensagem: "Inserir mensagem...", mail: req.cookies.email, nome: req.cookies.nome});
     });}
 });
 
@@ -106,10 +107,27 @@ router.post('/clientInfo/bymail/:mail/:idmessage', function(req, res, next) {
        if(result[0].IS_READ==1){
            req.app.locals.inbox --;
            db.query("UPDATE ADMIN_MESSAGE SET IS_READ=0 WHERE idMESSAGES=?",req.params.idmessage, function (error, result, client) {
-               res.render('compose', { title: 'Compor', emailDefault: req.params.mail, assunto: "Inserir assunto...", mensagem: "Inserir mensagem..."});
+               res.render('compose', { title: 'Compor', emailDefault: req.params.mail, assunto: "Inserir assunto...", mensagem: "Inserir mensagem...", mail: req.cookies.email, nome: req.cookies.nome});
            });
        }
-       else{res.render('compose', { title: 'Compor', emailDefault: req.params.mail, assunto: "Inserir assunto...", mensagem: "Inserir mensagem..."});}
+       else{res.render('compose', { title: 'Compor', emailDefault: req.params.mail, assunto: "Inserir assunto...", mensagem: "Inserir mensagem...",mail: req.cookies.email, nome: req.cookies.nome});}
     });}
+});
+
+
+router.post('/atualizar/:idtask', function(req, res, next) {
+
+    if(req.cookies.deploy === undefined){
+        res.redirect('/')
+    }
+    else if (req.cookies.online === undefined){
+        res.redirect('/')
+    }
+    else {
+        var db = req.connection;
+        db.query("UPDATE TASK SET STATE=1 WHERE ID_TASK=?", req.params.idtask, function (error, result, client) {
+            res.redirect("/tasks");
+        });
+    }
 });
 module.exports = router;

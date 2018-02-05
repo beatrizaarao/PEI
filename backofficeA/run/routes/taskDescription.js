@@ -27,7 +27,8 @@ router.get('/:taskID', function(req, res, next) {
                                         title: 'Tasks',
                                         task: tarefa,
                                         client: cliente,
-                                        order: encomenda
+                                        order: encomenda,
+                                        nome: req.cookies.nome
                                     });
                                 });
                             });

@@ -95,3 +95,6 @@ block content
                                 form(action="/compose/clientInfo/" + task[0].Client_NIF, method="post" style="display:inline")
                                     div(style="width:8px; height:auto; display:inline-block;")
                                     button(class="btn btn-large" type="submit") Contactar Cliente
+                                form(action="/compose/atualizar/" + task[0].ID_TASK, method="post" style="display:inline")
+                                    div(style="width:8px; height:auto; display:inline-block;")
+                                    button(class="btn btn-large" type="submit") Marcar como vista

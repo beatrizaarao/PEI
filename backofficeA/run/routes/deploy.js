@@ -61,6 +61,7 @@ router.post('/',function(req,res,next){
                             db.query("SELECT * FROM DEPLOY", function(err1, result1, cliente) {
                                 var dep = result1;
                                 res.cookie('deploy', 1);
+                                res.cookie('nome', dep[0].NAME);
                                 res.cookie('email', dep[0].EMAIL);
                                 res.cookie('stat', dep[0].STATISTICS);
                                 res.cookie('phone', dep[0].PHONE);

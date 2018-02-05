@@ -22,7 +22,7 @@ router.get('/', function (req, res, next) {
         db.query('SELECT * FROM CLIENT WHERE NIF =' + nif, function (error, user) {
 
             if (!error && user.length > 0) {
-                res.render('account', {countries: countries, user: user[0], errors: false, NOME: req.cookies.nome, EMAIL: req.cookies.email, PHONE: req.cookies.phone, MORADA: req.cookies.address, SITE: req.cookies.site, FACE: req.cookies.face, TWITTER: req.cookies.twitter, NIF: req.cookies.nif });
+                res.render('account', {countries: countries, user: user[0], errors: false, NAME: req.cookies.nome, EMAIL: req.cookies.email, PHONE: req.cookies.phone, MORADA: req.cookies.address, SITE: req.cookies.site, FACE: req.cookies.face, TWITTER: req.cookies.twitter, NIF: req.cookies.nif });
             }
         });
     }
@@ -49,13 +49,14 @@ router.post('/', function (req, res, next) {
                 extension = extension[extension.length-1]
                 fields.fotografia = nif + "." + extension
 
-                try {
-                    curPath = images_dir + nif + "." + extension
-                    fs.unlinkSync(curPath)
-                } catch(e){
-                    console.log(e)
+                if(fields.namefoto != "avatar.png") {
+                    try {
+                        curPath = images_dir + nif + "." + extension
+                        fs.unlinkSync(curPath)
+                    } catch (e) {
+                        console.log(e)
+                    }
                 }
-
 
                 fs.rename(files.foto1.path, './public/images/upload/' + fields.fotografia, function(err1){
                     if(!err1){

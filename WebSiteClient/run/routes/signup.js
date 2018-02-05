@@ -43,8 +43,15 @@ router.post('/',function(req,res,next) {
                                 extension = extension[extension.length-1]
                                 fields.fotografia = fields.nif + "." + extension
 
+                                try {
+                                    curPath = images_dir + fields.nif + "." + extension
+                                    fs.unlinkSync(curPath)
+                                } catch(e){
+                                    console.log(e)
+                                }
 
-                                fs.rename(files.foto1.path, './images/upload/' + fields.fotografia, function(err1){
+
+                                fs.rename(files.foto1.path, './public/images/upload/' + fields.fotografia, function(err1){
                                     if(!err1){
                                         console.log("Ficheiro recebido e guardado com sucesso")
                                     }
@@ -52,6 +59,9 @@ router.post('/',function(req,res,next) {
                                         console.log("Ocorreram erros na gravação do ficheiro enviado")
                                     }
                                 })
+                            }
+                            else{
+                                fields.fotografia = "avatar.png"
                             }
 
                             fields.name = fields.fname

@@ -104,7 +104,7 @@ router.post('/',function(req,res,next) {
                                                 }
                                                 else if (service[k].IS_CHECKBOX == 0 && fields[service[k].DESCRIPTION] != null) {
                                                     console.log("vou entrar na bd pela serviço 2222"+service[k].DESCRIPTION)
-                                                    queries[queries.length] = "INSERT INTO ORDER_STEP_SERVICE_OPTION (ID_ORDER, id_STEP, id_SERVICE, id_OPTION, SERVICE_valor, opcao_valor, insertionDate) VALUES(" + idorder + "," + steps[i].id_STEP + "," + service[k].id_SERVICE + ", null," +fields[service[k].DESCRIPTION]+ ",null, curdate()); "
+                                                    queries[queries.length] = "INSERT INTO ORDER_STEP_SERVICE_OPTION (ID_ORDER, id_STEP, id_SERVICE, id_OPTION, SERVICE_valor, opcao_valor, insertionDate) VALUES(" + idorder + "," + steps[i].id_STEP + "," + service[k].id_SERVICE + ", null,'" +fields[service[k].DESCRIPTION]+ "',null, curdate()); "
                                                 }
                                             }
                                         }

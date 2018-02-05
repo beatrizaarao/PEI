@@ -39,11 +39,6 @@ CREATE TABLE `ADMINISTRATOR` (
 -- Extraindo dados da tabela `ADMINISTRATOR`
 --
 
-INSERT INTO `ADMINISTRATOR` (`id_ADMINISTRATOR`, `Username`, `PASSWORD`, `deploy`, `IS_LOGGED`) VALUES
-(1, 'encomenda.uniline', 'admin123', 1, 1),
-(2, 'madalenaa.castro', 'Teste123', 1, 0),
-(3, 'luismarques24', 'olaola', 1, 0);
-
 -- --------------------------------------------------------
 
 --
@@ -65,10 +60,6 @@ CREATE TABLE `ADMIN_MESSAGE` (
 -- Extraindo dados da tabela `ADMIN_MESSAGE`
 --
 
-INSERT INTO `ADMIN_MESSAGE` (`idMESSAGES`, `SUBJECT`, `CONTENT`, `Tipo`, `client_mail`, `IS_READ`, `IS_FAVORITE`, `Data`) VALUES
-(15, 'ff', 'fsdf', 1, 'beatrizaarao@gmail.com', 1, 0, '2018-02-02'),
-(16, 'ola', 'aai', 1, 'beatrizaarao@gmail.com', 1, 0, '2018-02-02'),
-(17, 'teste', 'teste', 1, 'beatrizaarao@gmail.com', 1, 0, '2018-02-02');
 
 -- --------------------------------------------------------
 
@@ -95,11 +86,6 @@ CREATE TABLE `CLIENT` (
 
 --
 -- Extraindo dados da tabela `CLIENT`
---
-
-INSERT INTO `CLIENT` (`NAME`, `NIF`, `EMAIL`, `PHONE`, `STREET`, `DOOR_NUMBER`, `CITY`, `COUNTRY`, `ZIP_CODE`, `PASS`, `IS_BLOCKED`, `img_path`, `IS_APPROVED`, `data_registo`) VALUES
-('Madalena', '123456', 'mada@mail', '123', 'oal', 3, 'braga', 'jj', '123', '345', 0, NULL, 1, '2018-02-22'),
-('Beatriz Aarão', '123456789', 'beatrizaarao@gmail.com', '919999999', 'Rua Teixeira Pascoais-229', 2, 'Guimarães', 'PT', '4810-073', 'bea123', 1, NULL, 1, '2018-01-31');
 
 -- --------------------------------------------------------
 
@@ -125,8 +111,6 @@ CREATE TABLE `DEPLOY` (
 -- Extraindo dados da tabela `DEPLOY`
 --
 
-INSERT INTO `DEPLOY` (`NAME`, `ID`, `EMAIL`, `PHONE`, `ADRESS`, `WEBPAGE_LINK`, `URL_ICON`, `FACEBOOK_LINK`, `TWITTER_LINK`, `STATISTICS`, `NIF`) VALUES
-('PeugasLDA.', 1, 'peugas@teste.com', '253000000', 'Rua da Travessa_4000-300_Guimarães_Portugal', 'http://www.etpeugas.com/pt/', 'https://icon-icons.com/icons2/390/PNG/512/socks_39463.png', 'https://www.facebook.com/peugas.co/', 'https://twitter.com/PeugasFilisa', '1000', 123456789);
 
 -- --------------------------------------------------------
 
@@ -157,12 +141,7 @@ CREATE TABLE `OPCAO` (
 -- Extraindo dados da tabela `OPCAO`
 --
 
-INSERT INTO `OPCAO` (`id_OPTION`, `NAME`, `DESCRIPTION`, `VALOR`, `SERVICE_id_SERVICE`, `IS_CHECKBOX`) VALUES
-(1, 'LI intervalo inicial', 'larguraii', '100', 4, 0),
-(2, 'LI intervalo final', 'larguraif', '50', 4, 0),
-(5, 'Meio Branco', 'meiobranco', NULL, 9, 1),
-(11, 'EI', 'ei', NULL, 25, 1),
-(12, 'RM', 'rm', NULL, 25, 1);
+
 
 -- --------------------------------------------------------
 
@@ -195,11 +174,6 @@ CREATE TABLE `ORDEM` (
 -- Extraindo dados da tabela `ORDEM`
 --
 
-INSERT INTO `ORDEM` (`ID_ORDER`, `BEGIN_DATE`, `CLOSE_DATE`, `Client_NIF`, `ASKED_DELIVERY_DATE`, `STATUS`) VALUES
-(1, '2018-02-07', NULL, '123456789', '2018-02-09', 2),
-(49, '2018-02-14', NULL, '123456', '2018-02-06', 0),
-(50, '2018-03-15', NULL, '123456789', '2018-02-07', 0);
-
 -- --------------------------------------------------------
 
 --
@@ -220,16 +194,6 @@ CREATE TABLE `ORDER_STEP_SERVICE_OPTION` (
 -- Extraindo dados da tabela `ORDER_STEP_SERVICE_OPTION`
 --
 
-INSERT INTO `ORDER_STEP_SERVICE_OPTION` (`ID_ORDER`, `id_STEP`, `id_SERVICE`, `id_OPTION`, `SERVICE_valor`, `opcao_valor`, `insertionDate`) VALUES
-(1, 1, 1, NULL, 'Algodão', NULL, '2018-02-03 14:40:38'),
-(1, 1, 4, 1, NULL, 100, '2018-02-03 14:40:39'),
-(1, 1, 4, 2, NULL, 500, '2018-02-03 15:47:42'),
-(1, 2, 9, 5, NULL, NULL, '2018-02-03 14:40:39'),
-(1, 2, 11, NULL, NULL, NULL, '2018-02-03 14:41:05'),
-(1, 4, 23, NULL, NULL, NULL, '2018-02-03 14:41:18'),
-(1, 5, 25, 11, NULL, NULL, '2018-02-03 14:41:34'),
-(1, 5, 25, 12, NULL, NULL, '2018-02-03 14:41:50');
-
 -- --------------------------------------------------------
 
 --
@@ -249,13 +213,7 @@ CREATE TABLE `SERVICE` (
 -- Extraindo dados da tabela `SERVICE`
 --
 
-INSERT INTO `SERVICE` (`id_SERVICE`, `NAME`, `DESCRIPTION`, `STEP_id_step`, `VALOR`, `IS_CHECKBOX`) VALUES
-(1, 'Composição', 'composicao', 1, NULL, 0),
-(4, 'Largura Inicial', 'largurai', 1, NULL, 0),
-(9, 'Branquear', 'branquear', 2, NULL, 1),
-(11, 'Mercerizar', 'mercerizar', 2, NULL, 1),
-(23, 'Sanforizar', 'sanforizar', 4, NULL, 1),
-(25, 'Enfestar', 'enfestar', 5, NULL, 1);
+
 
 -- --------------------------------------------------------
 
@@ -272,12 +230,6 @@ CREATE TABLE `STEP` (
 --
 -- Extraindo dados da tabela `STEP`
 --
-
-INSERT INTO `STEP` (`id_STEP`, `NAME`, `DESCRIPTION`) VALUES
-(1, 'Definição do Produto', 'defProduto'),
-(2, 'Preparação', 'preparacao'),
-(4, 'Acabamento', 'acabamentos'),
-(5, 'Embalagem', 'embalagem');
 
 -- --------------------------------------------------------
 
@@ -299,10 +251,6 @@ CREATE TABLE `Task` (
 -- Extraindo dados da tabela `Task`
 --
 
-INSERT INTO `Task` (`ID_TASK`, `DESCRIPTION`, `STATE`, `Client_NIF`, `Tipo`, `dataPedido`, `Ordem_ID`) VALUES
-(10, 'O cliente com o NIF=123456789pretende registar-se na aplicação', 0, '123456789', 0, '2018-01-31', NULL),
-(11, 'Cancelar encomenda', 1, '123456789', 1, '2018-02-07', 1),
-(12, 'Alterar encomenda', 0, '123456', 2, '2018-02-14', 1);
 
 --
 -- Indexes for dumped tables
